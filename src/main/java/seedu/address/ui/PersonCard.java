@@ -38,7 +38,7 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
-g
+
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
