@@ -351,15 +351,14 @@ _{More to be added}_
 
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
 .  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-.  Should be able to hold up to 1000 rooms without a noticable sluggishness in performance for typical usage. 
-.  Should be able to handle up to 10000 requests per day.  
+.  Should be able to hold up to 1000 rooms without a noticeable sluggishness in performance for typical usage.
+.  Should be able to handle up to 10000 requests per day.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-.  Should not consume more than 200 megabytes of storage (should optimize encoded data). 
-.  Should be able to restart without loss of data. 
-.  Should be able to store back-ups data in case of breaking down. 
- 
-[appendix]
+.  Should not consume more than 200 megabytes of storage (should optimize encoded data).
+.  Should be able to restart without loss of data.
+.  Should be able to store back-ups data in case of breaking down.
 
+[appendix]
 == Glossary
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, Unix, OS-X
