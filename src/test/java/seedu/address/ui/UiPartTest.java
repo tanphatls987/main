@@ -7,10 +7,12 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.net.URL;
 import java.nio.file.Path;
 
-import javafx.fxml.FXML;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
 import seedu.address.MainApp;
+
+import javafx.fxml.FXML;
 
 public class UiPartTest {
 
