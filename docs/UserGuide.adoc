@@ -18,7 +18,8 @@ By: `AY1920S2-CS2103T-W13-2`      Since: `Jan 2020`      Licence: `MIT`
 
 == Introduction
 
-Morpheus is for receptionists who prefer to use a desktop app for hotel room management. More importantly, Morpheus is optimized for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your hotel room management tasks done faster than traditional GUI apps. Enjoy!
+Morpheus is for receptionists who prefer to use a desktop app for hotel room management. More importantly, Morpheus is optimized for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your hotel room management tasks done faster than traditional GUI apps.
+Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
 == Quick Start
 
@@ -33,9 +34,9 @@ image::Ui.png[width="790"]
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* *`list`* : lists all contacts
 * **`checkin`**`n/ Smith r/101` : checks in `Smith` to room `101` in the hotel.
 * **`checkout`**`r/101` : checks out guest from room `101` and removes guest from guest list.
+* *`list`* : lists all guests
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
@@ -65,7 +66,7 @@ Examples:
 * `checkin n/Smith r/101 t/Gold`
 * `checkin n/White r/109`
 
-=== Checking out a guest: `checkin`
+=== Checking out a guest: `checkout`
 
 Checks out a guest to the hotel +
 Format: `checkout n/NAME r/ROOM_NUMBER`
@@ -74,9 +75,7 @@ Examples:
 
 * `checkout n/Smith r/101`
 
-=== Listing all persons : `list`
-
-Shows a list of all the guests in the hotel. +
+=== Shows a list of all the guests in the hotel. +
 Format: `list`
 
 === Fetching the bill of a guest : `bill`
@@ -96,7 +95,6 @@ Shows the bill for Smith's stay up till present moment.
 * `bill n/Smith r/102` +
 
 === Locating persons by name: `find`
-
 Finds persons whose names contain any of the given keywords. +
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -148,6 +146,9 @@ Format: `getroom n/NAME`
 * Shows room number of reservations made by `NAME`.
 ****
 
+* `reserve r/ 102 df/ 2020-12-12 dt/ 2020-12-30` +
+* `getroom n/ Smith` +
+
 Examples:
 
 * `list` +
@@ -181,11 +182,11 @@ _{explain how the user can enable/disable data encryption}_
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
-*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
+*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Morpheus folder.
 
 == Command Summary
 
-* *Check in* `checkin n/NAME R/ROOM_NUMBER [t/TIER]` +
+* *Check in* `checkin n/NAME r/ROOM_NUMBER [t/TIER]` +
 e.g. `checkin n/Smith r/101 t/Gold`
 * *Clear* : `clear`
 * *Check out* : `checkin n/NAME r/ROOM_NUMBER` +

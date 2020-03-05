@@ -279,13 +279,16 @@ Refer to the guide <<DevOps#, here>>.
 
 *Target user profile*:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of hotel guests
+* needs to keep track of all guest information: checkins/services/bills
+* prefers to view all guest information in one window
+* prefers typing over mouse input
 * prefer desktop apps over other types
 * can type fast
-* prefers typing over mouse input
 * is reasonably comfortable using CLI apps
 
-*Value proposition*: manage contacts faster than a typical mouse/GUI driven app
+
+*Value proposition*: manage guests faster than a typical mouse/GUI driven app
 
 [appendix]
 == User Stories
@@ -295,17 +298,50 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 [width="59%",cols="22%,<23%,<25%,<30%",options="header",]
 |=======================================================================
 |Priority |As a ... |I want to ... |So that I can...
-|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
 
-|`* * *` |user |add a new person |
+|`* * *` |receptionist|see which rooms are empty |check guests into them
 
-|`* * *` |user |delete a person |remove entries that I no longer need
+|`* * *` |receptionist |get the bill details of guests |show the guests what they purchased
 
-|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
+|`* * *` |busy receptionist |type as few things as possible |add in information fast
 
-|`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
+|`* * *` |receptionist |change the tag of a room to served |
 
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+|`* * *` |receptionist |see which guests are VIPS |treat these guests with extra care
+
+|`* * *` |receptionist |add people into the database |track hotel guests during their stay
+
+|`* * *` |receptionist |group people together |see which guests are in the same group/family
+
+|`* * *` |receptionist |sort rooms into different categories |search for rooms more easily
+
+|`* * *` |receptionist |keep track of rooms that ordered room service |charge them accordingly
+
+|`* * *` |hotel staff |quickly see which rooms have been checked out |go clean the rooms
+
+|`* * *` |cleaning staff |quickly see rooms with the "clean my room tag" |prioritize cleaning those rooms
+
+|`* *` |receptionist |apply discounts to customers' bills |
+
+|`* *` |receptionist |keep track of the guests staying in each room |address them by name
+
+|`* *` |receptionist |compare two different rooms |see which room is more suitable for the guest
+
+|`* *` |receptionist |create shortcuts/presets |conveniently carry out routine tasks
+
+|`* *` |receptionist |see basic statistics |show my boss when they request for them
+
+|`* *` |receptionist |see as many information as possible |find out certain details quickly
+
+|`* *` |receptionist |be shown suggested keywords as I type |enter information quickly
+
+|`* *` |receptionist |execute the same command on different rooms |efficiently carry out my job
+
+|`* *` |receptionist |see notifications |be aware of customer requests quickly
+
+|`*` |receptionist |see the online bookings that guests have made |efficiently check guests in
+
+|`*` |receptionist |call rooms directly |notify guests easily
 |=======================================================================
 
 _{More to be added}_
@@ -313,17 +349,18 @@ _{More to be added}_
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
+(For all use cases below, the *System* is the `Morpheus` and the *Actor* is the `user`, unless specified otherwise)
 
 [discrete]
-=== Use case: Delete person
+=== Use cases example:
+=== Make a reservation for a room
 
 *MSS*
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list the available room for a given date
+2.  Morpheus shows a list of rooms that is available
+3.  User requests to make a reservation for the selected room(s)
+4.  Morpheus will mark the reservation
 +
 Use case ends.
 
@@ -334,12 +371,55 @@ Use case ends.
 +
 Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given room(s) are invalid or booked.
 +
 [none]
 ** 3a1. AddressBook shows an error message.
 +
 Use case resumes at step 2.
+
+=== Use case: Order a room
+*MSS*
+
+1.  User requests to list the available room for the current date
+2.  Morpheus shows a list of rooms that is available
+3.  User requests to make a booking for the selected room(s)
+4.  Morpheus will mark the booking
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The list is empty.
++
+Use case ends.
+
+* 3a. The given room(s) are invalid or booked.
++
+[none]
+** 3a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+=== Use case: Get bill
+*MSS*
+
+1.  User requests to get bill from room number or customer's name
+2.  Morpheus provide the bill
++
+Use case ends.
+
+*Extensions*
+
+[none]
+
+* 2a. The given room number and customer's name is not valid
++
+[none]
+** 2a1. AddressBook shows an error message.
++
+Use case resumes at step 1.
 
 _{More to be added}_
 
@@ -348,16 +428,17 @@ _{More to be added}_
 
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
 .  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+.  Should be able to hold up to 1000 rooms without a noticeable sluggishness in performance for typical usage.
+.  Should be able to handle up to 10000 requests per day.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-_{More to be added}_
+.  Should not consume more than 200 megabytes of storage (should optimize encoded data).
+.  Should be able to restart without loss of data.
+.  Should be able to store back-ups data in case of breaking down.
 
 [appendix]
 == Glossary
-
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, Unix, OS-X
-
 [[private-contact-detail]] Private contact detail::
 A contact detail that is not meant to be shared with others
 
