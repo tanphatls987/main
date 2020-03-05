@@ -1,4 +1,4 @@
-= AddressBook Level 3 - User Guide
+= Morpheus - User Guide
 :site-section: UserGuide
 :toc:
 :toc-title:
@@ -12,9 +12,9 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level3
+:repoURL: https://github.com/AY1920S2-CS2103T-W13-2/main
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `AY1920S2-CS2103T-W13-2`      Since: `Jan 2020`      Licence: `MIT`
 
 == Introduction
 
@@ -25,7 +25,7 @@ Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
 .  Ensure you have Java `11` or above installed in your Computer.
 .  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for your Address Book.
+.  Copy the file to the folder you want to use as the home folder for Morpheus.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
 image::Ui.png[width="790"]
@@ -34,6 +34,8 @@ image::Ui.png[width="790"]
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
+* **`checkin`**`n/ Smith r/101` : checks in `Smith` to room `101` in the hotel.
+* **`checkout`**`r/101` : checks out guest from room `101` and removes guest from guest list.
 * *`list`* : lists all guests
 * *`exit`* : exits the app
 
@@ -45,58 +47,115 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 ====
 *Command Format*
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-* Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `checkin n/NAME r/ROOM_NUMBER`, `NAME` is a parameter which can be used as `add n/Smith`.
+* Items in square brackets are optional e.g `n/NAME [t/TIER]` can be used as `n/Smith t/Gold` or as `n/Smith`.
+* Parameters can be in any order e.g. if the command specifies `n/NAME r/ROOM_NUMBER`, `r/ROOM_NUMBER n/NAME` is also acceptable.
 ====
 
 === Viewing help : `help`
 
 Format: `help`
 
-=== Checking in/out: `checkin`/ `checkout`
+=== Checking in a guest: `checkin`
 
-Checks-in or Checks-out a guest. +
-Format: `checkin /r ROOM_NUMBER` / `checkout /r ROOM_NUMBER`
-
-
-Examples:
-
-* `checkin /r 102`
-* `checkout /r 111`
-
-=== Get Bill & Bill details : `bill` / `billdetails`
-
-Gets the bill or bill details for a guest’s stay +
-Format: `bill /r ROOM_NUMBER` / `billdetails /r ROOM_NUMBER`
+Checks in a guest to the hotel +
+Format: `checkin n/NAME r/ROOM_NUMBER [t/TIER]`
 
 Examples:
 
-* `bill /r 102`
-* `billdetails /r 111`
+* `checkin n/Smith r/101 t/Gold`
+* `checkin n/White r/109`
 
-=== Reservations : `reserve` / `getroom`
+=== Checking out a guest: `checkout`
 
-Reserves the room under the guest’s name +
-Get the room number of the reservation under a name. +
-Format: `reserve /r ROOM_NUMBER /df FROM_DATE /dt TO_DATE` +
-Format: `getroom /n NAME`
-
-****
-* All fields must be provided.
-* Existing values will be updated to the input values.
-****
+Checks out a guest to the hotel +
+Format: `checkout n/NAME r/ROOM_NUMBER`
 
 Examples:
 
-* `reserve /r 102 /df 2020-12-12 /dt 2020-12-30` +
-* `getroom /n Smith` +
+* `checkout n/Smith r/101`
 
-=== Viewing all guests : `list`
-
-Displays all guests currently checked-in +
-
+=== Shows a list of all the guests in the hotel. +
 Format: `list`
 
+=== Fetching the bill of a guest : `bill`
+
+Retrieves the bill of a guest. +
+Format: `bill n/NAME [r/ROOM_NUMBER]...`
+
+****
+* Fetches the entire bill tied to a guest's name.
+* Name must be entered as an input
+****
+
+Examples:
+
+* `bill  n/Smith` +
+Shows the bill for Smith's stay up till present moment.
+* `bill n/Smith r/102` +
+
+=== Locating persons by name: `find`
+Finds persons whose names contain any of the given keywords. +
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+****
+* The search is case insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+****
+
+Examples:
+
+* `find John` +
+Returns `john` and `John Doe`
+* `find Betsy Tim John` +
+Returns any person having names `Betsy`, `Tim`, or `John`
+
+=== Service : `service`
+
+Adds a service to the guest's tab. +
+Format: `service n/NAME  p/PRICE [d/DESCRIPTION]...`
+
+****
+* Adds service of `PRICE` and `DESCRIPTION` to `NAME` 's bill.
+* Name and price must be entered as an input
+****
+
+Examples:
+
+* `service  n/Smith p/20.00` +
+* `service n/Smith p/20.00 d/massage`
+
+=== Reservations : `reserve`
+
+Makes a reservation for a guest in the hotel +
+Format: `reserve n/NAME r/ROOM_NUMBER df/FROM_DATE dt/TO_DATE`
+
+****
+* Makes a reservation for `NAME` from `FROM_DATE` to `TO_DATE` at `ROOM_NUMBER`.
+****
+
+=== Reservations : `getroom`
+
+Retrieves the room number of the guest who made reservations under their name. +
+Format: `getroom n/NAME`
+
+****
+* Shows room number of reservations made by `NAME`.
+****
+
+* `reserve r/ 102 df/ 2020-12-12 dt/ 2020-12-30` +
+* `getroom n/ Smith` +
+
+Examples:
+
+* `list` +
+`checkin n/Smith r/101` +
+Checks Smith in to room 101.
+* `bill n/Smith~ +
+Shows bill incurred by Smith
 
 // end::delete[]
 === Clearing all entries : `clear`
@@ -127,14 +186,18 @@ _{explain how the user can enable/disable data encryption}_
 
 == Command Summary
 
-* *Check-in/out* `checkin r/ROOM_NUMBER` +
-e.g. `checkin r/101`
+* *Check in* `checkin n/NAME r/ROOM_NUMBER [t/TIER]` +
+e.g. `checkin n/Smith r/101 t/Gold`
 * *Clear* : `clear`
-* *Get Room* : `getroom n/ NAME` +
-e.g. `getroom n/ Smith`
-* *Bill (details)* : `bill r/ROOM_NUMBER` +
-e.g. `bill r/101`
-* *Reserve* : `reserve r/ROOM_NUMBER df/ START_DATE dt/ TO_DATE` +
-e.g. `reserve r/101 df/ 2020-12-12 dt/ 2020-12-24
+* *Check out* : `checkin n/NAME r/ROOM_NUMBER` +
+e.g. `checkin n/Smith r/101`
+* *Bill* : `bill n/NAME [r/ROOM_NUMBER]...` +
+e.g. `bill  n/Smith`
+* *Find* : `find KEYWORD [MORE_KEYWORDS]` +
+e.g. `find James Jake`
+* *Service* : `service n/NAME p/PRICE [d/DESCRIPTION]...`
+e.g. `service n/Smith p/20.00 d/massage`
+* *Reserve* : `reserve n/NAME r/ROOM_NUMBER`
+e.g. `reserve n/White r/102`
 * *List* : `list`
 * *Help* : `help`
