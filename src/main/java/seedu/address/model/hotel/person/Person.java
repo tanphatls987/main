@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.ids.PersonId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,6 +20,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private PersonId personId;
 
     // Data fields
     //private final Address address;
@@ -36,6 +38,22 @@ public class Person {
         //this.address = address;
         this.remark = remark;
         this.tags.addAll(tags);
+    }
+
+
+    /**
+     * New person create adapt to project.
+     * @param name
+     * @param personId
+     */
+    public Person(Name name, PersonId personId) {
+        requireAllNonNull(name, personId);
+        this.name = name;
+        this.personId = personId;
+
+        this.phone = new Phone("9999");
+        this.email = new Email("default@mail");
+        this.remark = new Remark("default");
     }
 
     public Name getName() {

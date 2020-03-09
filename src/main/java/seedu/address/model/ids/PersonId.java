@@ -3,6 +3,9 @@ package seedu.address.model.ids;
 /**
  *
  */
-public class PersonId {
+public class PersonId extends Id {
 
+    public PersonId(String serializedId) {
+        super(serializedId);
+    }
 }
