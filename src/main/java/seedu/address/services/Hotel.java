@@ -1,11 +1,11 @@
 package seedu.address.hotel;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import seedu.address.storage.Storage;
 import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.person.Person;
+import seedu.address.storage.Storage;
+
 /**
  *
  */
