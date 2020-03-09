@@ -5,14 +5,15 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
-import seedu.address.hotel.Hotel;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
 import seedu.address.model.hotel.person.Person;
+import seedu.address.services.Hotel;
 
 /**
  * Add a guest to the hotel.
  */
-public class AddGuestCommand implements HotelCommand {
+public class AddGuestCommand extends HotelCommand {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to guest list. "
@@ -38,14 +39,20 @@ public class AddGuestCommand implements HotelCommand {
     }
 
     @Override
-    public CommandResult execute(Hotel hotel) throws CommandException {
-        requireNonNull(hotel);
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
 
-        if (hotel.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        try {
+            Hotel hotel = (Hotel) model;
+            if (hotel.hasPerson(toAdd)) {
+                throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            }
+            hotel.addPerson(toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        } catch (Exception e) {
+            throw new CommandException("Unable to cast model to hotel");
         }
-        hotel.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+
     }
 
     @Override

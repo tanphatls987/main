@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.hotel.person.Email;
 import seedu.address.model.hotel.person.Name;
 import seedu.address.model.hotel.person.Phone;
+import seedu.address.model.ids.PersonId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -104,5 +105,13 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parse {@code String s} into a {@code PersonId}.
+     */
+    public static PersonId parsePersonId(String s) {
+        requireNonNull(s);
+        return new PersonId(s);
     }
 }
