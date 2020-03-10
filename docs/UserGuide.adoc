@@ -159,7 +159,7 @@ Shows bill incurred by Smith
 
 === Add a guest : `addguest`
 
-Create a guest in the hotel list. + 
+Create a guest in the hotel list. +
 Format: `addguest n/NAME i/ID [num/PHONE_NUMBER]`
 
 Examples:
