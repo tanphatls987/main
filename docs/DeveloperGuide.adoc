@@ -337,7 +337,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *` |receptionist |execute the same command on different rooms |efficiently carry out my job
 
-|`* ` |receptionist |see notifications |be aware of customer requests quickly
+|`*` |receptionist |see notifications |be aware of customer requests quickly
 
 |`*` |receptionist |see the online bookings that guests have made |efficiently check guests in
 
