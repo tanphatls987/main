@@ -351,16 +351,17 @@ _{More to be added}_
 
 (For all use cases below, the *System* is the `Morpheus` and the *Actor* is the `user`, unless specified otherwise)
 
+.Use Case Diagram
+image::UseCaseDiagram.png[]
+
 [discrete]
 === Use cases example:
-=== Make a reservation for a room
+=== Show list of available rooms
 
 *MSS*
 
 1.  User requests to list the available room for a given date
 2.  Morpheus shows a list of rooms that is available
-3.  User requests to make a reservation for the selected room(s)
-4.  Morpheus will mark the reservation
 +
 Use case ends.
 
@@ -371,36 +372,24 @@ Use case ends.
 +
 Use case ends.
 
-* 3a. The given room(s) are invalid or booked.
-+
-[none]
-** 3a1. AddressBook shows an error message.
-+
-Use case resumes at step 2.
-
-=== Use case: Order a room
+=== Use case: Make a reservation for a room
 *MSS*
 
-1.  User requests to list the available room for the current date
-2.  Morpheus shows a list of rooms that is available
-3.  User requests to make a booking for the selected room(s)
-4.  Morpheus will mark the booking
+1.  User requests to <<c1-show-list-of-available-rooms, +++<u>show list of available rooms (C1)</u>+++>>
+2.  User requests to make a booking for the selected room(s)
+3.  Morpheus will mark the booking
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. The list is empty.
-+
-Use case ends.
-
-* 3a. The given room(s) are invalid or booked.
+* 2a. The given room(s) are invalid or booked.
 +
 [none]
-** 3a1. AddressBook shows an error message.
+** 2a1. AddressBook shows an error message.
 +
-Use case resumes at step 2.
+Use case resumes at step 1.
 
 === Use case: Get bill
 *MSS*
