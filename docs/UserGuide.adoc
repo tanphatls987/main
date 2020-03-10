@@ -157,6 +157,16 @@ Checks Smith in to room 101.
 * `bill n/Smith~ +
 Shows bill incurred by Smith
 
+=== Add a guest : `addguest`
+
+Create a guest in the hotel list. +
+Format: `addguest n/NAME i/ID [num/PHONE_NUMBER]`
+
+Examples:
+* `addguest n/ John Doe i/G1231322X`
+Add John Doe with his ID number into the database.
+
+
 // end::delete[]
 === Clearing all entries : `clear`
 
