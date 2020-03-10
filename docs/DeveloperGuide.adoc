@@ -375,7 +375,7 @@ Use case ends.
 === Use case: Make a reservation for a room
 *MSS*
 
-1.  User requests to <<c1-show-list-of-available-rooms, [<u>show list of available rooms (C1)</u>]>>
+1.  User requests to <<c1-show-list-of-available-rooms, +++<u>show list of available rooms (C1)</u>+++>>
 2.  User requests to make a booking for the selected room(s)
 3.  Morpheus will mark the booking
 +
