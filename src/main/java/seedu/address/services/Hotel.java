@@ -1,15 +1,25 @@
 package seedu.address.services;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 import java.util.function.Predicate;
 
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.storage.Storage;
@@ -18,9 +28,15 @@ import seedu.address.storage.Storage;
  *
  */
 public class Hotel implements Model {
+    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+
     private Storage storage;
     private List<Room> rooms;
     private List<Person> persons;
+    private final AddressBook addressBook;
+    private final UserPrefs userPrefs;
+    private FilteredList<Person> filteredPersons;
+
 
     /**
      * [Hotel description]
@@ -29,147 +45,130 @@ public class Hotel implements Model {
     public Hotel() {
         persons = new ArrayList<>();
         rooms = new ArrayList<>();
+        addressBook = new AddressBook();
+        userPrefs = new UserPrefs();
     }
 
     /**
-     * Create new customer.
-     */
-    public void createCustomer() {
-        ///TODO
-    }
-
-    /**
-     * Create new rooms.
-     */
-    public void createRoom(String roomName) {
-
-    }
-
-    /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
-     *
+     * Dummy function to test command.
+     * @param addressBook
      * @param userPrefs
      */
+    public Hotel(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+        super();
+        requireAllNonNull(addressBook, userPrefs);
+
+        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+
+        persons = new ArrayList<>();
+        rooms = new ArrayList<>();
+        this.addressBook = new AddressBook(addressBook);
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+    }
+
+    //=========== UserPrefs ==================================================================================
+
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
-    /**
-     * Returns the user prefs.
-     */
     @Override
     public ReadOnlyUserPrefs getUserPrefs() {
-        return null;
+        return userPrefs;
     }
 
-    /**
-     * Returns the user prefs' GUI settings.
-     */
     @Override
     public GuiSettings getGuiSettings() {
-        return null;
+        return userPrefs.getGuiSettings();
     }
 
-    /**
-     * Sets the user prefs' GUI settings.
-     *
-     * @param guiSettings
-     */
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
-
+        requireNonNull(guiSettings);
+        userPrefs.setGuiSettings(guiSettings);
     }
 
-    /**
-     * Returns the user prefs' address book file path.
-     */
     @Override
     public Path getAddressBookFilePath() {
-        return null;
+        return userPrefs.getAddressBookFilePath();
     }
 
-    /**
-     * Sets the user prefs' address book file path.
-     *
-     * @param addressBookFilePath
-     */
     @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
-
+        requireNonNull(addressBookFilePath);
+        userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    /**
-     * Replaces address book data with the data in {@code addressBook}.
-     *
-     * @param addressBook
-     */
+    //=========== AddressBook ================================================================================
+
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
-
+        this.addressBook.resetData(addressBook);
     }
 
-    /**
-     * Returns the AddressBook
-     */
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return null;
+        return addressBook;
     }
 
-    public boolean hasPerson(Person who) {
-        return false;
+    @Override
+    public boolean hasPerson(Person person) {
+        requireNonNull(person);
+        return persons.contains(person);
     }
 
-    /**
-     * Deletes the given person.
-     * The person must exist in the address book.
-     *
-     * @param target
-     */
     @Override
     public void deletePerson(Person target) {
-
+        addressBook.removePerson(target);
     }
 
-    /**
-     * Add a new person to guest list.
-     * @param person
-     */
+    @Override
     public void addPerson(Person person) {
-        assert(!hasPerson(person));
-        persons.add(person);
+        addressBook.addPerson(person);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
-    /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     *
-     * @param target
-     * @param editedPerson
-     */
     @Override
     public void setPerson(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
 
+        addressBook.setPerson(target, editedPerson);
     }
 
+    //=========== Filtered Person List Accessors =============================================================
+
     /**
-     * Returns an unmodifiable view of the filtered person list
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        return null;
+        return filteredPersons;
     }
 
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     *
-     * @param predicate
-     * @throws NullPointerException if {@code predicate} is null.
-     */
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof ModelManager)) {
+            return false;
+        }
+
+        // state check
+        ModelManager other = (ModelManager) obj;
+        return true;
     }
 }

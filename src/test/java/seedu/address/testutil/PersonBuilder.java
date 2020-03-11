@@ -8,6 +8,7 @@ import seedu.address.model.hotel.person.Name;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.person.Phone;
 import seedu.address.model.hotel.person.Remark;
+import seedu.address.model.ids.PersonId;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -19,13 +20,13 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
-    //public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_ID = "A000000";
     public static final String DEFAULT_REMARK = "She likes aardvarks.";
 
     private Name name;
     private Phone phone;
     private Email email;
-    //private Address address;
+    private PersonId personId;
     private Remark remark;
     private Set<Tag> tags;
 
@@ -33,7 +34,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        //address = new Address(DEFAULT_ADDRESS);
+        personId = new PersonId(DEFAULT_ID);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
     }
@@ -45,7 +46,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        //address = personToCopy.getAddress();
+        personId = personToCopy.getPersonId();
         remark = personToCopy.getRemark();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -67,12 +68,12 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code PersonId} of the {@code Person} that we are building.
      */
-    /*public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public PersonBuilder withPersonId(String personId) {
+        this.personId = new PersonId(personId);
         return this;
-    }*/
+    }
 
     /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
@@ -101,7 +102,7 @@ public class PersonBuilder {
 
 
     public Person build() {
-        return new Person(name, phone, email, remark, tags);
+        return new Person(name, personId, phone, email, remark, tags);
     }
 
 }

@@ -17,11 +17,11 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
+import seedu.address.services.Hotel;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -63,6 +63,10 @@ public class MainApp extends Application {
 
         model = initModelManager(storage, userPrefs);
 
+        if (model instanceof Hotel) {
+            System.out.println("Model is hotel");
+        }
+
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
@@ -89,8 +93,9 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
         }
+        //return new ModelManager(initialData, userPrefs);
 
-        return new ModelManager(initialData, userPrefs);
+        return new Hotel();
     }
 
     private void initLogging(Config config) {

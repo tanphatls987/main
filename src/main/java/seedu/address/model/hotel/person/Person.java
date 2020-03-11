@@ -20,7 +20,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private PersonId personId;
+    private final PersonId personId;
 
     // Data fields
     //private final Address address;
@@ -28,30 +28,40 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Old constructor
      */
     public Person(Name name, Phone phone, Email email, Remark remark, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        //this.address = address;
+        this.personId = new PersonId("A000000");
+        this.remark = remark;
+        this.tags.addAll(tags);
+    }
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, PersonId personId, Phone phone, Email email, Remark remark, Set<Tag> tags) {
+        requireAllNonNull(name, personId, phone, email, tags);
+        this.name = name;
+        this.personId = personId;
+        this.phone = phone;
+        this.email = email;
         this.remark = remark;
         this.tags.addAll(tags);
     }
 
 
     /**
-     * New person create adapt to project.
-     * @param name
-     * @param personId
+     * Simplify person with no personal details.
      */
     public Person(Name name, PersonId personId) {
         requireAllNonNull(name, personId);
         this.name = name;
         this.personId = personId;
 
-        this.phone = new Phone("9999");
+        this.phone = new Phone("99999999");
         this.email = new Email("default@mail");
         this.remark = new Remark("default");
     }
@@ -66,6 +76,10 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+
+    public PersonId getPersonId() {
+        return personId;
     }
 
     /*public Address getAddress() {
@@ -112,17 +126,17 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                //&& otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+        return otherPerson.getPersonId().equals(getPersonId())
+            && otherPerson.getName().equals(getName())
+            && otherPerson.getEmail().equals(getEmail())
+            && otherPerson.getPhone().equals(getPhone())
+            && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, tags);
+        return Objects.hash(name, personId, phone, email, tags);
     }
 
     @Override
@@ -133,8 +147,6 @@ public class Person {
                 .append(getPhone())
                 .append(" Email: ")
                 .append(getEmail())
-                //.append(" Address: ")
-                //.append(getAddress())
                 .append(" Remark: ")
                 .append(getRemark())
                 .append(" Tags: ");
