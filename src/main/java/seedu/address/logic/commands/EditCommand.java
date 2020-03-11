@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -23,6 +24,7 @@ import seedu.address.model.hotel.person.Name;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.person.Phone;
 import seedu.address.model.hotel.person.Remark;
+import seedu.address.model.ids.PersonId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,6 +39,7 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_ID + "ID] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -94,11 +97,11 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        //Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        PersonId updatedPersonId = editPersonDescriptor.getPersonId().orElse(personToEdit.getPersonId());
         Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedRemark, updatedTags);
+        return new Person(updatedName, updatedPersonId, updatedPhone, updatedEmail, updatedRemark, updatedTags);
     }
 
     @Override
@@ -127,7 +130,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        //private Address address;
+        private PersonId personId;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -138,9 +141,9 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
+            setPersonId(toCopy.personId);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            //setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
 
@@ -173,6 +176,13 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+
+        public void setPersonId(PersonId personId) {
+            this.personId = personId;
+        }
+        public Optional<PersonId> getPersonId() {
+            return Optional.ofNullable(personId);
         }
 
         /**
@@ -210,7 +220,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    //&& getAddress().equals(e.getAddress())
+                    && getPersonId().equals(e.getPersonId())
                     && getTags().equals(e.getTags());
         }
     }

@@ -1,12 +1,14 @@
 {
   "persons": [ {
     "name": "Alice Pauline",
+    "personId" : "A000000",
     "phone": "94351253",
     "email": "alice@example.com",
     "remark" : "",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
+    "personId" : "A000000",
     "phone": "94351253",
     "email": "pauline@example.com",
     "remark" : ""

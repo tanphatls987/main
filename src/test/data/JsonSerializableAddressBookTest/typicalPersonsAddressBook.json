@@ -2,42 +2,49 @@
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
     "name" : "Alice Pauline",
+    "personId" : "A000000",
     "phone" : "94351253",
     "email" : "alice@example.com",
     "remark" : "",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
+    "personId" : "B000000",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "remark" : "",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
+    "personId" : "C000000",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "remark" : "",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
+    "personId" : "D000000",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "remark" : "",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
+    "personId" : "E000000",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "remark" : "",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
+    "personId" : "F000000",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "remark" : "",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
+    "personId" : "G000000",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "remark" : "",
