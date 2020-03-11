@@ -10,7 +10,6 @@ build.gradle
 /*.iml
 
 # Storage/log files
-/data/
 /config.json
 /preferences.json
 /*.log.*
