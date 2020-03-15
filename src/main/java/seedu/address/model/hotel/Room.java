@@ -22,6 +22,14 @@ public class Room {
     }
 
     /**
+     * Construct a room with just a name and a default tier
+     * @param roomNum
+     */
+    public Room(String roomNum) {
+        this(roomNum, new Tier());
+    }
+
+    /**
      * RoomNum getter.
      * @return
      */
@@ -30,4 +38,12 @@ public class Room {
     }
 
 
+    /**
+     * Check if this room has some certain name.
+     * @param roomNum
+     * @return comparison
+     */
+    public boolean hasName(String roomNum) {
+        return this.roomNum.equals(roomNum);
+    }
 }

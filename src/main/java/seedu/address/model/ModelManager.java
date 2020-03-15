@@ -31,11 +31,12 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final ArrayList<Room> roomList;
     private final ArrayList<Booking> bookingList;
+    private final Hotel hotel;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, Hotel hotel) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -43,13 +44,18 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.hotel = hotel;
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        roomList = new ArrayList<Room>();
         this.bookingList = new ArrayList<Booking>();
+        roomList = hotel.getRoomList();
+    }
+
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+        this(addressBook, userPrefs, new Hotel());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new Hotel());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -202,5 +208,13 @@ public class ModelManager implements Model {
     @Override
     public void bookRoom(Booking booking) {
         bookingList.add(booking);
+    }
+    public void addRoom(String roomNum) {
+        hotel.addRoom(roomNum);
+    }
+
+    @Override
+    public boolean hasRoom(String roomNum) {
+        return this.hotel.hasRoom(roomNum);
     }
 }

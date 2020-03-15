@@ -121,4 +121,17 @@ public interface Model {
      * @param booking
      */
     void bookRoom(Booking booking);
+    /**
+     * Add a room with roomName
+     * @param roomName
+     *
+     */
+    void addRoom(String roomName);
+
+    /**
+     * Check if a room exist
+     * @param roomName
+     * @return a result
+     */
+    boolean hasRoom(String roomName);
 }
