@@ -21,6 +21,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -148,6 +149,16 @@ public class AddGuestCommandTest {
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ArrayList<Room> getRoomList() {
+            return null;
+        }
+
+        @Override
+        public void fillRoomList() {
+
         }
     }
 

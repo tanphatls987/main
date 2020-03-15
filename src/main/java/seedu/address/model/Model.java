@@ -1,10 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.person.Person;
 
 /**
@@ -84,4 +86,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**Returns list of rooms*/
+    ArrayList<Room> getRoomList();
+
+    /** populates room list */
+    void fillRoomList();
 }
