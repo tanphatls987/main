@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.hotel.Reserve;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.tag.Tag;
 
@@ -27,7 +26,6 @@ public class Person {
     //private final Address address;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
-    //private final Reserve reservation;
 
     /**
      * Old constructor

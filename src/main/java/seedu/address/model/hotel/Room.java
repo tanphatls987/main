@@ -17,13 +17,6 @@ public class Room {
     private RoomId roomId;
     private ArrayList<Booking> bookings;
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-
-
     /**
      * Create a default room.
      */
@@ -35,28 +28,24 @@ public class Room {
         this.bookings = new ArrayList<Booking>();
     }
 
+    /**
+     * Books room under a payee
+     * */
     public void bookRoom(Person payee, LocalDate dateFrom, LocalDate dateTo) throws RoomBookedException {
         try {
-            if(this.bookings.isEmpty()) {
+            if (this.bookings.isEmpty()) {
                 this.bookings.add(new Booking(payee, dateFrom, dateTo, this));
             } else {
-                for(Booking b : this.bookings) {
-                    if(b.bookFrom.isAfter(dateFrom) && b.bookTo.isBefore(dateTo)) {
+                for (Booking b : this.bookings) {
+                    if (b.bookFrom.isAfter(dateFrom) && b.bookTo.isBefore(dateTo)) {
                         throw new RoomBookedException();
                     } else {
                         this.bookings.add(new Booking(payee, dateFrom, dateTo, this));
                     }
                 }
             }
-        } catch (RoomBookedException rbe) {}
-    }
-
-    //public boolean isBooked()
-
-    /**
-     * Returns true if a given string is a valid name.
-     */
-    public static boolean isValidRoom(String test) {
-        return test.matches(VALIDATION_REGEX);
+        } catch (RoomBookedException rbe) {
+            rbe.getLocalizedMessage();
+        }
     }
 }
