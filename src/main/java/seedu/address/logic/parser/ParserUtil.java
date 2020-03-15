@@ -74,9 +74,6 @@ public class ParserUtil {
     public static String parseRoom(String roomNumber) throws ParseException {
         requireNonNull(roomNumber);
         String trimmedRoom = roomNumber.trim();
-        if (!Room.isValidRoom(trimmedRoom)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        }
         return trimmedRoom;
     }
 
