@@ -46,4 +46,12 @@ public class Room {
     public boolean hasName(String roomNum) {
         return this.roomNum.equals(roomNum);
     }
+
+    /**
+     *
+     * @return this room's name
+     */
+    public String getName() {
+        return this.roomNum;
+    }
 }
