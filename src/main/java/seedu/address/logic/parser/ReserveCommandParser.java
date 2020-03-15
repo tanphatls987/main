@@ -38,10 +38,10 @@ public class ReserveCommandParser implements Parser<ReserveCommand> {
                     ReserveCommand.MESSAGE_USAGE), ive);
         }
 
-       String roomNum = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOMNUMBER).get());
-       LocalDate fromDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_FROMDATE).get());
-       LocalDate toDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_TODATE).get());
+        String roomNum = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOMNUMBER).get());
+        LocalDate fromDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_FROMDATE).get());
+        LocalDate toDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_TODATE).get());
 
-       return new ReserveCommand(index, roomNum, fromDate, toDate);
+        return new ReserveCommand(index, roomNum, fromDate, toDate);
     }
 }
