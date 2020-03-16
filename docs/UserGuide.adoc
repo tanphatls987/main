@@ -160,11 +160,11 @@ Shows bill incurred by Smith
 === Add a guest : `addguest`
 
 Create a guest in the hotel list. +
-Format: `addguest n/NAME i/ID [num/PHONE_NUMBER]`
+Format: `addguest n/NAME i/ID p/PHONE_NUMBER e/EMAIL`
 
 Examples:
-* `addguest n/ John Doe i/G1231322X`
-Add John Doe with his ID number into the database.
+* `addguest n/John Doe i/G1231322X p/1928310 e/johndoe@gmail.com`
+Add John Doe with his information into the database.
 
 
 // end::delete[]
