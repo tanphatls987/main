@@ -1,6 +1,5 @@
 package seedu.address.model.hotel;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import seedu.address.model.hotel.booking.Booking;
