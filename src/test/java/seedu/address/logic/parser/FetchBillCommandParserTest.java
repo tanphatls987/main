@@ -17,16 +17,16 @@ import seedu.address.testutil.RoomBuilder;
 
 public class FetchBillCommandParserTest {
     private FetchBillCommandParser parser = new FetchBillCommandParser();
-    private final Person Guest = new PersonBuilder().build();
-    private final PersonId PersonId = Guest.getPersonId();
-    private final Room Room = new RoomBuilder().build();
-    private final String RoomNum = Room.getRoomNum();
+    private static final Person Guest = new PersonBuilder().build();
+    private static final PersonId PersonId = Guest.getPersonId();
+    private static final Room Room = new RoomBuilder().build();
+    private static final String RoomNum = Room.getRoomNum();
 
     @Test
     public void parse_allFieldsPresent_success() {
         // with roomId
         String userInput = FetchBillCommand.COMMAND_WORD + " "
-                + PREFIX_ID + PersonId.toString()
+                + PREFIX_ID + " " + PersonId.toString()
                 + PREFIX_ROOMNUMBER + Room.getRoomNum();
         FetchBillCommand expectedCommand = new FetchBillCommand(PersonId, RoomNum);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -36,7 +36,7 @@ public class FetchBillCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // without roomId
         String userInput = FetchBillCommand.COMMAND_WORD + " "
-                + PREFIX_ID + " ";
+                + PREFIX_ID + " " + PersonId.toString();
         FetchBillCommand expectedCommand = new FetchBillCommand(PersonId);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
