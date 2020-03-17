@@ -1,10 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+//import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+//import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,7 @@ public class FetchBillCommandParserTest {
     private static final String RoomNum = Room.getRoomNum();
 
     private FetchBillCommandParser parser = new FetchBillCommandParser();
-/*
+    /*
     @Test
     public void parse_allFieldsPresent_success() {
         // with roomId
@@ -41,7 +41,7 @@ public class FetchBillCommandParserTest {
         FetchBillCommand expectedCommand = new FetchBillCommand(PersonId);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
-*/
+    */
     @Test
     public void parse_missingCompulsoryField_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FetchBillCommand.MESSAGE_USAGE);
