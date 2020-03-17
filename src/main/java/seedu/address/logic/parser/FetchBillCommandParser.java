@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FetchBillCommand;
-import seedu.address.logic.commands.ReserveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
@@ -31,7 +30,7 @@ public class FetchBillCommandParser implements Parser<FetchBillCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ID)) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReserveCommand.MESSAGE_USAGE)
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FetchBillCommand.MESSAGE_USAGE)
             );
         }
 
