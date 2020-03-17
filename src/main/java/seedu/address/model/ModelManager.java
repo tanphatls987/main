@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -13,11 +14,14 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.hotel.Bill;
 import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.Tier;
 import seedu.address.model.hotel.booking.Booking;
+import seedu.address.model.hotel.person.NameContainsKeywordsPredicate;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.ids.PersonId;
+import seedu.address.model.ids.RoomId;
 import seedu.address.model.timeframe.TimeFrame;
 
 /**
@@ -202,5 +206,18 @@ public class ModelManager implements Model {
     @Override
     public void bookRoom(Booking booking) {
         bookingList.add(booking);
+    }
+
+    // to update accordingly when implementing billing system.
+    @Override
+    public void fetchBillList(Person person) {
+        String[] dummy = new String[] {"bnfajdnnlasdf"};
+        updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(dummy)));
+    }
+
+    @Override
+    public void fetchBill(Person person, RoomId roomId) {
+        String[] dummy = new String[] {"bnfajdnnlasdf"};
+        updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(dummy)));
     }
 }

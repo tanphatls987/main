@@ -125,8 +125,8 @@ public interface Model {
     void bookRoom(Booking booking);
 
     /** Returns list of bills for specified person*/
-    ArrayList<Bill> fetchBillList(PersonId personId);
+    void fetchBillList(Person person);
 
     /** Returns bill for specified room of person */
-    Bill fetchBill(PersonId personId, RoomId roomId);
+    void fetchBill(Person person, RoomId roomId);
 }
