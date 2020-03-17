@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -13,11 +14,14 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.hotel.Bill;
+import seedu.address.model.hotel.Room;
+import seedu.address.model.hotel.Tier;
 import seedu.address.model.hotel.booking.Booking;
+import seedu.address.model.hotel.person.NameContainsKeywordsPredicate;
 import seedu.address.model.hotel.person.Person;
-import seedu.address.model.hotel.room.Room;
-import seedu.address.model.hotel.room.Tier;
 import seedu.address.model.ids.PersonId;
+import seedu.address.model.ids.RoomId;
 import seedu.address.model.timeframe.TimeFrame;
 
 /**
@@ -29,14 +33,13 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Room> roomList;
+    private final ArrayList<Room> roomList;
     private final ArrayList<Booking> bookingList;
-    private final Hotel hotel;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyHotel hotel) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -44,18 +47,13 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.hotel = new Hotel(hotel);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        roomList = new ArrayList<Room>();
         this.bookingList = new ArrayList<Booking>();
-        roomList = new FilteredList<>(this.hotel.getRoomList());
-    }
-
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        this(addressBook, userPrefs, new Hotel());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new Hotel());
+        this(new AddressBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -103,11 +101,6 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
-    }
-
-    @Override
-    public ReadOnlyHotel getHotel() {
-        return hotel;
     }
 
     @Override
@@ -178,12 +171,11 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
-                && roomList.equals(other.roomList);
+                && filteredPersons.equals(other.filteredPersons);
     }
 
     @Override
-    public ObservableList<Room> getRoomList() {
+    public ArrayList<Room> getRoomList() {
         return roomList;
     }
 
@@ -195,9 +187,7 @@ public class ModelManager implements Model {
 
     @Override
     public Optional<Room> findRoom(String roomNum) {
-        requireNonNull(roomNum);
-        return hotel.getRoom(roomNum);
-        //roomList.stream().filter(u -> u.getRoomNum().equals(roomNum)).findFirst();
+        return roomList.stream().filter(u -> u.getRoomNum().equals(roomNum)).findFirst();
     }
 
     @Override
@@ -215,22 +205,19 @@ public class ModelManager implements Model {
 
     @Override
     public void bookRoom(Booking booking) {
-        requireNonNull(booking);
-
         bookingList.add(booking);
     }
 
+    // to update accordingly when implementing billing system.
     @Override
-    public void addRoom(String roomNum) {
-        requireNonNull(roomNum);
-
-        hotel.addRoom(roomNum);
+    public void fetchBillList(Person person) {
+        String[] dummy = new String[] {"bnfajdnnlasdf"};
+        updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(dummy)));
     }
 
     @Override
-    public boolean hasRoom(String roomNum) {
-        requireNonNull(roomNum);
-
-        return this.hotel.hasRoom(roomNum);
+    public void fetchBill(Person person, RoomId roomId) {
+        String[] dummy = new String[] {"bnfajdnnlasdf"};
+        updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(dummy)));
     }
 }

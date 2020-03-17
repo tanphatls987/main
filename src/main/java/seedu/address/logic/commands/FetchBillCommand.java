@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Optional;
 
@@ -32,8 +31,8 @@ public class FetchBillCommand extends Command {
             + PREFIX_ID + "J0000000 "
             + PREFIX_ROOMNUMBER + "101";
 
-    public static final String MESSAGE_SUCCESS_NONSPECIFIC = "This is the bill for %1$s.";
-    public static final String MESSAGE_SUCCESS_SPECIFIC = "This is the bill for room %1$s of %2$s.";
+    public static final String MESSAGE_SUCCESS_NONSPECIFIC = "These are the bill/s for guest %1$s (%2$s).";
+    public static final String MESSAGE_SUCCESS_SPECIFIC = "This is the bill for room %1$s of guest %2$s (%3$s).";
     public static final String MESSAGE_GUEST_NONEXISTENT = "Guest %1$s does not exist in the system.";
     public static final String MESSAGE_ROOM_NONEXISTENT = "Room %1$s does not exist in the system.";
 
@@ -47,6 +46,7 @@ public class FetchBillCommand extends Command {
     public FetchBillCommand(PersonId personId) {
         requireNonNull(personId);
         this.personId = personId;
+        this.roomId = null;
         this.isSpecific = false;
     }
 
@@ -55,7 +55,7 @@ public class FetchBillCommand extends Command {
      */
     public FetchBillCommand(PersonId personId, RoomId roomNum) {
         requireNonNull(personId);
-        requireNonNull(roomNum)
+        requireNonNull(roomNum);
         this.personId = personId;
         this.roomId = roomNum;
         this.isSpecific = true;
@@ -78,11 +78,11 @@ public class FetchBillCommand extends Command {
                 throw new CommandException(String.format(MESSAGE_ROOM_NONEXISTENT, roomId));
             }
 
-            model.fetchBill(personId, roomId)
-            return new CommandResult(String.format(MESSAGE_SUCCESS_SPECIFIC, roomId, personId));
+            model.fetchBill(person.get(), roomId);
+            return new CommandResult(String.format(MESSAGE_SUCCESS_SPECIFIC, roomId, personId, person.get().getName()));
         } else {
-            model.fetchBillList(personId);
-            return new CommandResult(String.format(MESSAGE_SUCCESS_NONSPECIFIC, personId));
+            model.fetchBillList(person.get());
+            return new CommandResult(String.format(MESSAGE_SUCCESS_NONSPECIFIC, personId, person.get().getName()));
         }
     }
 }

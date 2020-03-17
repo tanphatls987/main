@@ -2,11 +2,13 @@ package seedu.address.model.hotel.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.hotel.Bill;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.tag.Tag;
 
@@ -26,6 +28,7 @@ public class Person {
     //private final Address address;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
+    private final ArrayList<Bill> bills = new ArrayList<>();
 
     /**
      * Old constructor
@@ -96,6 +99,8 @@ public class Person {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+
+    public ArrayList<Bill> getBills() { return bills; }
 
     /**
      * Returns true if both persons of the same name have at least one other identity field that is the same.
