@@ -81,7 +81,7 @@ Format: `list`
 === Fetching the bill of a guest : `bill`
 
 Retrieves the bill of a guest. +
-Format: `bill n/NAME [r/ROOM_NUMBER]...`
+Format: `bill n/NAME [rn/ROOM_NUMBER]...`
 
 ****
 * Fetches the entire bill tied to a guest's name.
