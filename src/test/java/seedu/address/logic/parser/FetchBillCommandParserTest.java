@@ -20,20 +20,17 @@ public class FetchBillCommandParserTest {
     private final Person Guest = new PersonBuilder().build();
     private final PersonId PersonId = Guest.getPersonId();
     private final Room Room = new RoomBuilder().build();
-    private final RoomId RoomId = Room.getRoomNum();
-/*
-    need to fix room builder
+    private final String RoomNum = Room.getRoomNum();
 
     @Test
     public void parse_allFieldsPresent_success() {
         // with roomId
         String userInput = FetchBillCommand.COMMAND_WORD + " "
                 + PREFIX_ID + PersonId.toString()
-                + PREFIX_ROOMNUMBER + "";
-        FetchBillCommand expectedCommand = new FetchBillCommand(PersonId, RoomId);
+                + PREFIX_ROOMNUMBER + Room.getRoomNum();
+        FetchBillCommand expectedCommand = new FetchBillCommand(PersonId, RoomNum);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
-*/
 
     @Test
     public void parse_optionalFieldsMissing_success() {

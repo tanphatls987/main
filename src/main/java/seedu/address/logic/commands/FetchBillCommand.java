@@ -38,7 +38,7 @@ public class FetchBillCommand extends Command {
 
     private final PersonId personId;
     private final boolean isSpecific;
-    private final RoomId roomId;
+    private final String roomNum;
 
     /**
      * @param personId to fetch the bills of
@@ -46,7 +46,7 @@ public class FetchBillCommand extends Command {
     public FetchBillCommand(PersonId personId) {
         requireNonNull(personId);
         this.personId = personId;
-        this.roomId = null;
+        this.roomNum = null;
         this.isSpecific = false;
     }
 
@@ -57,7 +57,7 @@ public class FetchBillCommand extends Command {
         requireNonNull(personId);
         requireNonNull(roomNum);
         this.personId = personId;
-        this.roomId = roomNum;
+        this.roomNum = roomNum;
         this.isSpecific = true;
     }
 
@@ -75,11 +75,11 @@ public class FetchBillCommand extends Command {
             Optional<Room> room = model.findRoom(personId.toString());
 
             if (room.isEmpty()) {
-                throw new CommandException(String.format(MESSAGE_ROOM_NONEXISTENT, roomId));
+                throw new CommandException(String.format(MESSAGE_ROOM_NONEXISTENT, roomNum));
             }
 
-            model.fetchBill(person.get(), roomId);
-            return new CommandResult(String.format(MESSAGE_SUCCESS_SPECIFIC, roomId, personId, person.get().getName()));
+            model.fetchBill(person.get(), roomNum);
+            return new CommandResult(String.format(MESSAGE_SUCCESS_SPECIFIC, roomNum, personId, person.get().getName()));
         } else {
             model.fetchBillList(person.get());
             return new CommandResult(String.format(MESSAGE_SUCCESS_NONSPECIFIC, personId, person.get().getName()));
