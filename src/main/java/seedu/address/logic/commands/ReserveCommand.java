@@ -43,7 +43,7 @@ public class ReserveCommand extends Command {
     private final PersonId personId;
     private final TimeFrame reserveDuration;
 
-    public ReserveCommand(PersonId personId, String roomNum, LocalDateTime fromDate, LocalDateTime toDate)
+    public ReserveCommand(PersonId personId, String roomNum, LocalDateTime fromDate, LocalDateTime toDate) {
         throws InvalidTimeFrameException {
         requireAllNonNull(personId, roomNum, fromDate, toDate);
         this.roomNum = roomNum;
