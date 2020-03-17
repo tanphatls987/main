@@ -230,8 +230,9 @@ public class ModelManager implements Model {
 
     @Override
     public void fetchBill(Person person, String roomNum) {
-        String[] dummy = new String[] {"bnfajdnnlasdf"};
+        String[] dummy = new String[]{"bnfajdnnlasdf"};
         updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(dummy)));
+    }
 
     @Override
     public void addRoom(String roomNum) {
