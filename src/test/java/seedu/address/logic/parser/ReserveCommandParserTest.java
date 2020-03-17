@@ -29,7 +29,7 @@ public class ReserveCommandParserTest {
 
     @Test
     public void parse_personIdSpecified_success() {
-        String userInput = PREFIX_ID + Id.toString()
+        String userInput = ReserveCommand.COMMAND_WORD + PREFIX_ID + Id.toString()
                 + PREFIX_ROOMNUMBER + Room.getRoomNum()
                 + PREFIX_FROMDATE + From_Date
                 + PREFIX_TODATE + To_Date;

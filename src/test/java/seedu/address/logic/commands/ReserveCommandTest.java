@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -35,10 +34,10 @@ public class ReserveCommandTest {
         Booking booking = RESERVE_STUB;
         ReserveCommand reserveCommand = new ReserveCommand(ALICE.getPersonId(),
                 DEFAULT_ROOM.getRoomNum(), FROM_DATE, TO_DATE);
+        model.getBookingList().add(new Reserve(ALICE, DEFAULT_ROOM, FROM_DATE, TO_DATE));
         String expectedMessage = String.format(ReserveCommand.MESSAGE_ADD_RESERVE_SUCCESS, ALICE);
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.bookRoom(booking);
         assertCommandSuccess(reserveCommand, model, expectedMessage, expectedModel);
     }
-
 }
