@@ -25,7 +25,7 @@ public class FetchBillCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Retrieves the bill of a guest.\n"
             + "Parameters:"
-            + PREFIX_NAME + "NAME "
+            + PREFIX_ID + "PERSONID "
             + "[" + PREFIX_ROOMNUMBER + "ROOMNUMBER]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ID + "J0000000 "
@@ -53,7 +53,7 @@ public class FetchBillCommand extends Command {
     /**
      * Specifically fetch the bill of room number {@code roomNum} for {@code personId}
      */
-    public FetchBillCommand(PersonId personId, RoomId roomNum) {
+    public FetchBillCommand(PersonId personId, String roomNum) {
         requireNonNull(personId);
         requireNonNull(roomNum);
         this.personId = personId;

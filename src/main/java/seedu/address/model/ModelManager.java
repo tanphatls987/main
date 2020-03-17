@@ -216,7 +216,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void fetchBill(Person person, RoomId roomId) {
+    public void fetchBill(Person person, String roomNum) {
         String[] dummy = new String[] {"bnfajdnnlasdf"};
         updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(dummy)));
     }
