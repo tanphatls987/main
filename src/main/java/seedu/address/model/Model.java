@@ -7,10 +7,12 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.hotel.Bill;
 import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.ids.PersonId;
+import seedu.address.model.ids.RoomId;
 import seedu.address.model.timeframe.TimeFrame;
 
 /**
@@ -97,15 +99,15 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /**Returns list of rooms*/
+    /** Returns list of rooms */
     ArrayList<Room> getRoomList();
 
-    /**returns list of bookings*/
+    /** Returns list of bookings */
     ArrayList<Booking> getBookingList();
 
     Optional<Room> findRoom(String roomNum);
 
-    /** populates room list */
+    /** Populates room list */
     void fillRoomList();
 
     /**
@@ -121,4 +123,10 @@ public interface Model {
      * @param booking
      */
     void bookRoom(Booking booking);
+
+    /** Returns list of bills for specified person*/
+    ArrayList<Bill> fetchBillList(PersonId personId);
+
+    /** Returns bill for specified room of person */
+    Bill fetchBill(PersonId personId, RoomId roomId);
 }
