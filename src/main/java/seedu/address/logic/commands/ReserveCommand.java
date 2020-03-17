@@ -71,7 +71,7 @@ public class ReserveCommand extends Command {
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
+     * Generates a command execution success message based on whether reservation added successfully
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person payee) {
