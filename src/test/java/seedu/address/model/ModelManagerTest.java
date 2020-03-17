@@ -7,6 +7,8 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalRooms.BEST_ROOM;
+import static seedu.address.testutil.TypicalRooms.WORST_ROOM;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -87,6 +89,23 @@ public class ModelManagerTest {
     public void hasPerson_personInAddressBook_returnsTrue() {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void hasRoom_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasRoom(null));
+    }
+
+    @Test
+    public void hasRoom_roomNotInHotel_returnsFalse() {
+        assertFalse(modelManager.hasRoom(BEST_ROOM.getRoomNum()));
+    }
+
+    @Test
+    public void hasRoom_roomInHotel_returnsTrue() {
+        modelManager.addRoom(BEST_ROOM.getRoomNum());
+        modelManager.addRoom(WORST_ROOM.getRoomNum());
+        assertTrue(modelManager.hasRoom(BEST_ROOM.getRoomNum()));
     }
 
     @Test

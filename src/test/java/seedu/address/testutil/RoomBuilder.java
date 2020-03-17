@@ -17,15 +17,27 @@ public class RoomBuilder {
     private String roomNum;
     private RoomId roomId;
 
-
+    /**
+     * Create new room builder.
+     */
     public RoomBuilder() {
         roomTier = DEFAULT_TIER;
         roomNum = DEFAULT_ROOMNUM;
         roomId = DEFAULT_ROOMID;
     }
 
+    /**
+     * Build a default room.
+     */
     public Room build() {
         return new Room(roomNum, roomTier);
+    }
+
+    /**
+     * Build a room with name.
+     */
+    public Room withRoomNum(String roomNum) {
+        return new Room(roomNum);
     }
 
 }

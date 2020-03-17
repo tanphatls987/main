@@ -194,6 +194,7 @@ public class ModelManager implements Model {
 
     @Override
     public Optional<Room> findRoom(String roomNum) {
+        requireNonNull(roomNum);
         return roomList.stream().filter(u -> u.getRoomNum().equals(roomNum)).findFirst();
     }
 
@@ -212,14 +213,22 @@ public class ModelManager implements Model {
 
     @Override
     public void bookRoom(Booking booking) {
+        requireNonNull(booking);
+
         bookingList.add(booking);
     }
+
+    @Override
     public void addRoom(String roomNum) {
+        requireNonNull(roomNum);
+
         hotel.addRoom(roomNum);
     }
 
     @Override
     public boolean hasRoom(String roomNum) {
+        requireNonNull(roomNum);
+
         return this.hotel.hasRoom(roomNum);
     }
 }
