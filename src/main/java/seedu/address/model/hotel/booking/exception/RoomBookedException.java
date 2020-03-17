@@ -1,4 +1,4 @@
-package seedu.address.model.hotel.person.exceptions;
+package seedu.address.model.hotel.booking.exception;
 
 /**
  * Exception for if room has already been booked

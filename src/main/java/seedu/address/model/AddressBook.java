@@ -3,10 +3,13 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
+
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.person.UniquePersonList;
+import seedu.address.model.ids.PersonId;
 
 /**
  * Wraps all data at the address-book level
@@ -66,6 +69,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.contains(person);
     }
 
+    /**
+     * Return a person with matching id
+     * @param personId
+     * @return
+     */
+    public Optional<Person> findPersonWithId(PersonId personId) {
+        return persons.asUnmodifiableObservableList()
+            .stream()
+            .filter(u -> u.getPersonId().equals(personId))
+            .findFirst();
+    }
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
