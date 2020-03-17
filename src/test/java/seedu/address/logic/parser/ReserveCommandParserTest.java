@@ -23,8 +23,8 @@ public class ReserveCommandParserTest {
     private ReserveCommandParser parser = new ReserveCommandParser();
     private final Room Room = new RoomBuilder().build();
     private final Person Payee = new PersonBuilder().build();
-    private final LocalDateTime From_Date = LocalDateTime.parse("2020-12-12");
-    private final LocalDateTime To_Date = LocalDateTime.parse("2020-12-23");
+    private final LocalDateTime From_Date = LocalDateTime.parse("2020-12-12T12:30:00");
+    private final LocalDateTime To_Date = LocalDateTime.parse("2020-12-23T12:30:00");
     private final PersonId Id = Payee.getPersonId();
 
     @Test

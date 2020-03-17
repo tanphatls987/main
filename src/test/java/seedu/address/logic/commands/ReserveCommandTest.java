@@ -24,8 +24,8 @@ import seedu.address.testutil.RoomBuilder;
 public class ReserveCommandTest {
     private static final Person ALICE = new PersonBuilder().build();
     private static final Room DEFAULT_ROOM = new RoomBuilder().build();
-    private static final LocalDateTime FROM_DATE = LocalDateTime.parse("2020-12-12");
-    private static final LocalDateTime TO_DATE = LocalDateTime.parse("2020-12-23");
+    private static final LocalDateTime FROM_DATE = LocalDateTime.parse("2020-12-12T12:30:00");
+    private static final LocalDateTime TO_DATE = LocalDateTime.parse("2020-12-23T12:30:00");
     private static final Reserve RESERVE_STUB = new Reserve(ALICE, DEFAULT_ROOM, FROM_DATE, TO_DATE);
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
