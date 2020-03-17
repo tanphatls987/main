@@ -58,13 +58,12 @@ Format: `help`
 
 === Checking in a guest: `checkin`
 
-Checks in a guest to the hotel +
-Format: `checkin n/NAME r/ROOM_NUMBER [t/TIER]`
+Checks in a guest to the hotel from the current date until the TO_DATE +
+Format: `checkin i/ID rn/ROOM_NUMBER td/TO_DATE`
 
 Examples:
 
-* `checkin n/Smith r/101 t/Gold`
-* `checkin n/White r/109`
+* `checkin n/G1231231X r/101 td/2020-03-14`
 
 === Checking out a guest: `checkout`
 
@@ -157,6 +156,7 @@ Checks Smith in to room 101.
 * `bill n/Smith~ +
 Shows bill incurred by Smith
 
+//tag::addguest[]
 === Add a guest : `addguest`
 
 Create a guest in the hotel list. +
@@ -167,7 +167,7 @@ Examples:
 Add John Doe with his information into the database.
 
 
-// end::delete[]
+// end::addguest[]
 === Clearing all entries : `clear`
 
 Clears all entries from the address book. +
