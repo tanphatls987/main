@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TODATE;
 
 import java.time.LocalDate;
-import java.time.LocalDate;
 import java.util.Optional;
 
 import seedu.address.logic.commands.exceptions.CommandException;
