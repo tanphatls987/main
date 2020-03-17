@@ -36,12 +36,12 @@ public class ReserveCommandParser implements Parser<ReserveCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReserveCommand.MESSAGE_USAGE)
             );
         }
-            PersonId personId = ParserUtil.parsePersonId(argMultimap.getValue(PREFIX_ID).get());
-            String roomNum = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOMNUMBER).get());
-            LocalDateTime fromDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_FROMDATE).get());
-            LocalDateTime toDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_TODATE).get());
+        PersonId personId = ParserUtil.parsePersonId(argMultimap.getValue(PREFIX_ID).get());
+        String roomNum = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOMNUMBER).get());
+        LocalDateTime fromDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_FROMDATE).get());
+        LocalDateTime toDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_TODATE).get());
 
-            return new ReserveCommand(personId, roomNum, fromDate, toDate);
+        return new ReserveCommand(personId, roomNum, fromDate, toDate);
     }
 
     /**
