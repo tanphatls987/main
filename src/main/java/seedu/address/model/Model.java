@@ -6,7 +6,6 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.booking.Booking;
@@ -100,6 +99,9 @@ public interface Model {
 
     /**Returns list of rooms*/
     ArrayList<Room> getRoomList();
+
+    /**returns list of bookings*/
+    ArrayList<Booking> getBookingList();
 
     Optional<Room> findRoom(String roomNum);
 

@@ -31,11 +31,11 @@ public class ReserveCommand extends Command {
         + PREFIX_ROOMNUMBER + "\n"
         + "Parameters: PERSONID, ROOMNUMBER, FROMDATE, TODATE\n"
         + "Example: "
-        + COMMAND_WORD
-        + PREFIX_ID + "C0000000\n"
-        + PREFIX_ROOMNUMBER + "101\n"
-        + PREFIX_FROMDATE + "2020-12-12\n"
-        + PREFIX_TODATE + "2020-12-23\n";
+        + COMMAND_WORD + " "
+        + PREFIX_ID + "C0000000 "
+        + PREFIX_ROOMNUMBER + "101 "
+        + PREFIX_FROMDATE + "2020-12-12 "
+        + PREFIX_TODATE + "2020-12-23 ";
 
     public static final String MESSAGE_ADD_RESERVE_SUCCESS = "Added booking to Person: %1$s";
 
@@ -47,8 +47,8 @@ public class ReserveCommand extends Command {
         throws InvalidTimeFrameException {
         requireAllNonNull(personId, roomNum, fromDate, toDate);
         this.roomNum = roomNum;
-        LocalDateTime reserveFrom = LocalDateTime.from(fromDate);
-        LocalDateTime reserveTo = LocalDateTime.from(toDate);
+        LocalDateTime reserveFrom = fromDate;
+        LocalDateTime reserveTo = toDate;
 
         ///this can throw InvalidTimeFrame
         this.reserveDuration = new TimeFrame(reserveFrom, reserveTo);
@@ -57,6 +57,7 @@ public class ReserveCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        model.fillRoomList();
         Optional<Person> payee = model.findPersonWithId(personId);
         if (payee.isEmpty()) {
             throw new CommandException("No guest with this id");
@@ -66,16 +67,16 @@ public class ReserveCommand extends Command {
             throw new CommandException("No room with this number");
         }
         model.bookRoom(new Booking(payee.get(), room.get(), reserveDuration));
-        return new CommandResult(generateSuccessMessage(roomNum, payee.get()));
+        return new CommandResult(generateSuccessMessage(payee.get()));
 
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
+     * Generates a command execution success message based on whether reservation added successfully
      * {@code personToEdit}.
      */
-    private String generateSuccessMessage(String roomNum, Person payee) {
+    private String generateSuccessMessage(Person payee) {
         String message = MESSAGE_ADD_RESERVE_SUCCESS;
-        return String.format(message, payee);
+        return String.format(message, payee.getName());
     }
 }
