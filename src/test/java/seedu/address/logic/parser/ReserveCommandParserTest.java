@@ -29,9 +29,9 @@ public class ReserveCommandParserTest {
 
     @Test
     public void parse_personIdSpecified_success() {
-        String userInput = ReserveCommand.COMMAND_WORD + PREFIX_ID + Id.toString()
-                + PREFIX_ROOMNUMBER + Room.getRoomNum()
-                + PREFIX_FROMDATE + From_Date
+        String userInput = PREFIX_ID + Id.toString() + " "
+                + PREFIX_ROOMNUMBER + Room.getRoomNum() + " "
+                + PREFIX_FROMDATE + From_Date + " "
                 + PREFIX_TODATE + To_Date;
         ReserveCommand expectedCommand = new ReserveCommand(Id, Room.getRoomNum(), From_Date, To_Date);
         assertParseSuccess(parser, userInput, expectedCommand);
