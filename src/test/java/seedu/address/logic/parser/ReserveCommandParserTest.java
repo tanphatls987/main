@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.ReserveCommand;
@@ -22,8 +23,8 @@ public class ReserveCommandParserTest {
     private ReserveCommandParser parser = new ReserveCommandParser();
     private final Room ROOM = new RoomBuilder().build();
     private final Person PAYEE = new PersonBuilder().build();
-    private final LocalDate FROM_DATE = LocalDate.parse("2020-12-12");
-    private final LocalDate TO_DATE = LocalDate.parse("2020-12-23");
+    private final LocalDateTime FROM_DATE = LocalDateTime.parse("2020-12-12");
+    private final LocalDateTime TO_DATE = LocalDateTime.parse("2020-12-23");
     private final PersonId ID = PAYEE.getPersonId();
 
     @Test
