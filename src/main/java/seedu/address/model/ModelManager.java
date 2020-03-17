@@ -4,14 +4,22 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.hotel.Room;
+import seedu.address.model.hotel.Tier;
+import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
+import seedu.address.model.ids.PersonId;
+import seedu.address.model.timeframe.TimeFrame;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +30,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final ArrayList<Room> roomList;
+    private final ArrayList<Booking> bookingList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +45,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        roomList = new ArrayList<Room>();
+        this.bookingList = new ArrayList<Booking>();
     }
 
     public ModelManager() {
@@ -94,6 +106,17 @@ public class ModelManager implements Model {
         return addressBook.hasPerson(person);
     }
 
+    /**
+     * Return a person with matching personId
+     *
+     * @param personId
+     * @return
+     */
+    @Override
+    public Optional<Person> findPersonWithId(PersonId personId) {
+        return addressBook.findPersonWithId(personId);
+    }
+
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
@@ -148,4 +171,31 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    @Override
+    public ArrayList<Room> getRoomList() {
+        return roomList;
+    }
+
+    @Override
+    public Optional<Room> findRoom(String roomNum) {
+        return roomList.stream().filter(u -> u.getRoomNum().equals(roomNum)).findFirst();
+    }
+
+    @Override
+    public void fillRoomList() {
+        for (int i = 0; i < 10; i++) {
+            roomList.add(new Room(Integer.toString(i), new Tier()));
+        }
+    }
+
+    @Override
+    public boolean isRoomFree(Room room, TimeFrame duration) {
+        ///timeframe create successfully mean no bogus duration
+        return bookingList.stream().anyMatch(u -> u.isClash(room, duration));
+    }
+
+    @Override
+    public void bookRoom(Booking booking) {
+        bookingList.add(booking);
+    }
 }

@@ -15,6 +15,7 @@ import seedu.address.model.hotel.person.Name;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.person.Phone;
 import seedu.address.model.hotel.person.Remark;
+import seedu.address.model.ids.PersonId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,7 +28,7 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
-    //private final String address;
+    private final String personId;
     private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -35,13 +36,14 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("personId") String personId,
+            @JsonProperty("phone") String phone,
             @JsonProperty("email") String email,
             @JsonProperty("remark") String remark, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        //this.address = address;
+        this.personId = personId;
         this.remark = remark;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -55,7 +57,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        //address = source.getAddress().value;
+        personId = source.getPersonId().toString();
         remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -81,6 +83,13 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
+        if (personId == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                PersonId.class.getSimpleName()));
+        }
+
+        final PersonId modelPersonId = new PersonId(personId);
+
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
@@ -97,20 +106,13 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        /*if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }*/
-        /*if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);*/
         if (remark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelRemark, modelTags);
+        return new Person(modelName, modelPersonId, modelPhone, modelEmail, modelRemark, modelTags);
     }
 
 }

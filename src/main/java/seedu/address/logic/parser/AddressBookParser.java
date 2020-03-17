@@ -6,7 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddGuestCommand;
 import seedu.address.logic.commands.CheckInCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -17,6 +17,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
+import seedu.address.logic.commands.ReserveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -44,10 +45,11 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddGuestCommand.COMMAND_WORD:
+            return new AddGuestCommandParser().parse(arguments);
 
         case CheckInCommand.COMMAND_WORD:
             return new CheckInCommandParser().parse(arguments);
@@ -66,6 +68,9 @@ public class AddressBookParser {
 
         case RemarkCommand.COMMAND_WORD:
             return new RemarkCommandParser().parse(arguments);
+
+        case ReserveCommand.COMMAND_WORD:
+            return new ReserveCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

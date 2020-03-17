@@ -1,11 +1,18 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.hotel.Room;
+import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
+import seedu.address.model.ids.PersonId;
+import seedu.address.model.timeframe.TimeFrame;
 
 /**
  * The API of the Model component.
@@ -58,6 +65,12 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Return a person with matching personId
+     * @param personId
+     * @return
+     */
+    Optional<Person> findPersonWithId(PersonId personId);
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -84,4 +97,26 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**Returns list of rooms*/
+    ArrayList<Room> getRoomList();
+
+    Optional<Room> findRoom(String roomNum);
+
+    /** populates room list */
+    void fillRoomList();
+
+    /**
+     * Check if a room is available during a period.
+     * @param room
+     * @param duration
+     * @return
+     */
+    boolean isRoomFree(Room room, TimeFrame duration);
+
+    /**
+     * Book a room with booking details.
+     * @param booking
+     */
+    void bookRoom(Booking booking);
 }

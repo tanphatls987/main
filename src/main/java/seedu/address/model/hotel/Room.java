@@ -1,27 +1,33 @@
 package seedu.address.model.hotel;
 
-import java.util.ArrayList;
-
-import seedu.address.model.hotel.person.Person;
 import seedu.address.model.ids.RoomId;
 
 /**
  * Store room information.
  */
 public class Room {
-    private ArrayList<Person> guests;
     private Tier roomTier;
-    private String roomName;
+    private String roomNum;
     private RoomId roomId;
 
+    /**
+     * Create a room with name and tier.
+     * @param roomNum
+     * @param roomTier
+     */
+    public Room(String roomNum, Tier roomTier) {
+        this.roomTier = roomTier;
+        this.roomNum = roomNum;
+        this.roomId = RoomId.generate(roomNum);
+    }
 
     /**
-     * Create a default room.
+     * RoomNum getter.
+     * @return
      */
-    public Room(String roomName) {
-        guests = new ArrayList<>();
-        roomTier = null;
-        this.roomName = roomName;
-        this.roomId = RoomId.generate(roomName);
+    public String getRoomNum() {
+        return this.roomNum;
     }
+
+
 }
