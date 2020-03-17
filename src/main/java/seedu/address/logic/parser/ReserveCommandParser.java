@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TODATE;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -45,8 +46,8 @@ public class ReserveCommandParser implements Parser<ReserveCommand> {
 
         PersonId personId = ParserUtil.parsePersonId(argMultimap.getValue(PREFIX_ID).get());
         String roomNum = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOMNUMBER).get());
-        LocalDate fromDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_FROMDATE).get());
-        LocalDate toDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_TODATE).get());
+        LocalDateTime fromDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_FROMDATE).get());
+        LocalDateTime toDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_TODATE).get());
 
         return new ReserveCommand(personId, roomNum, fromDate, toDate);
     }

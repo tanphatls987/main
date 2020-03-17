@@ -31,11 +31,11 @@ public class ReserveCommand extends Command {
         + PREFIX_ROOMNUMBER + "\n"
         + "Parameters: PERSONID, ROOMNUMBER, FROMDATE, TODATE\n"
         + "Example: "
-        + COMMAND_WORD
-        + PREFIX_ID + "C0000000\n"
-        + PREFIX_ROOMNUMBER + "101\n"
-        + PREFIX_FROMDATE + "2020-12-12\n"
-        + PREFIX_TODATE + "2020-12-23\n";
+        + COMMAND_WORD + " "
+        + PREFIX_ID + "C0000000 "
+        + PREFIX_ROOMNUMBER + "101 "
+        + PREFIX_FROMDATE + "2020-12-12 "
+        + PREFIX_TODATE + "2020-12-23 ";
 
     public static final String MESSAGE_ADD_RESERVE_SUCCESS = "Added booking to Person: %1$s";
 
@@ -44,7 +44,7 @@ public class ReserveCommand extends Command {
     private final TimeFrame reserveDuration;
 
     public ReserveCommand(PersonId personId, String roomNum, LocalDateTime fromDate, LocalDateTime toDate)
-        throws InvalidTimeFrameException {
+            throws InvalidTimeFrameException {
         requireAllNonNull(personId, roomNum, fromDate, toDate);
         this.roomNum = roomNum;
         LocalDateTime reserveFrom = LocalDateTime.from(fromDate).withHour(0).withMinute(0).withSecond(0);
@@ -66,7 +66,7 @@ public class ReserveCommand extends Command {
             throw new CommandException("No room with this number");
         }
         model.bookRoom(new Booking(payee.get(), room.get(), reserveDuration));
-        return new CommandResult(generateSuccessMessage(roomNum, payee.get()));
+        return new CommandResult(generateSuccessMessage(payee.get()));
 
     }
 
@@ -74,7 +74,7 @@ public class ReserveCommand extends Command {
      * Generates a command execution success message based on whether the remark is added to or removed from
      * {@code personToEdit}.
      */
-    private String generateSuccessMessage(String roomNum, Person payee) {
+    private String generateSuccessMessage(Person payee) {
         String message = MESSAGE_ADD_RESERVE_SUCCESS;
         return String.format(message, payee);
     }
