@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TODATE;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Optional;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -48,8 +48,8 @@ public class ReserveCommand extends Command {
         throws InvalidTimeFrameException {
         requireAllNonNull(personId, roomNum, fromDate, toDate);
         this.roomNum = roomNum;
-        LocalDateTime reserveFrom = LocalDateTime.from(fromDate).withHour(0).withMinute(0).withSecond(0);
-        LocalDateTime reserveTo = LocalDateTime.from(toDate).withHour(0).withMinute(0).withSecond(0);
+        LocalDate reserveFrom = LocalDate.from(fromDate);
+        LocalDate reserveTo = LocalDate.from(toDate);
 
         ///this can throw InvalidTimeFrame
         this.reserveDuration = new TimeFrame(reserveFrom, reserveTo);

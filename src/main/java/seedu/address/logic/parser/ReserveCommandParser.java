@@ -14,6 +14,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.ReserveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ids.PersonId;
+import seedu.address.model.ids.RoomId;
 
 /**
  * Parses input arguments and creates a new AddGuestCommand object
@@ -44,10 +45,10 @@ public class ReserveCommandParser implements Parser<ReserveCommand> {
         }
 
         PersonId personId = ParserUtil.parsePersonId(argMultimap.getValue(PREFIX_ID).get());
-        String roomNum = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOMNUMBER).get());
+        RoomId roomNum = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOMNUMBER).get());
         LocalDate fromDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_FROMDATE).get());
         LocalDate toDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_TODATE).get());
 
-        return new ReserveCommand(personId, roomNum, fromDate, toDate);
+        return new ReserveCommand(personId, roomNum.toString(), fromDate, toDate);
     }
 }

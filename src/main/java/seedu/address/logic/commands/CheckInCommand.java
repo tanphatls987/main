@@ -15,6 +15,7 @@ import java.util.Optional;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TODATE;
 
 public class CheckInCommand extends Command {
 
@@ -24,14 +25,16 @@ public class CheckInCommand extends Command {
         + "Parameters: "
         + PREFIX_ID + "ID "
         + PREFIX_ROOMNUMBER + "ROOMNUMBER "
+        + PREFIX_TODATE + "TODATE "
         + "Example: " + COMMAND_WORD + " "
-        + PREFIX_ID + "G1231231U"
-        + PREFIX_ROOMNUMBER + "101";
+        + PREFIX_ID + "G1231231U "
+        + PREFIX_ROOMNUMBER + "101 "
+        + PREFIX_TODATE + "2020-03-14";
 
     public static final String MESSAGE_SUCCESS = "Room %1$s is booked by %2$s";
     public static final String MESSAGE_ROOM_OCCUPIED = "Room %1$s is occupied";
     public static final String MESSAGE_ROOM_NOT_EXISTS = "Room %1$s does not exists";
-    public static final String MESSAGE_PERSON_NOT_EXISTS = "Room %1$s does not exists";
+    public static final String MESSAGE_PERSON_NOT_EXISTS = "Person %1$s does not exists";
     public static final String MESSAGE_DATE_PASSED = "%1$s has passed";
 
     private final PersonId personId;
