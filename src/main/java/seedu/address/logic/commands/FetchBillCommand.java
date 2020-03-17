@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 
 import java.util.Optional;
@@ -13,7 +12,6 @@ import seedu.address.model.Model;
 import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.ids.PersonId;
-import seedu.address.model.ids.RoomId;
 
 /**
  * Retrieves the bill of a guest
@@ -79,7 +77,8 @@ public class FetchBillCommand extends Command {
             }
 
             model.fetchBill(person.get(), roomNum);
-            return new CommandResult(String.format(MESSAGE_SUCCESS_SPECIFIC, roomNum, personId, person.get().getName()));
+            return new CommandResult(String.format(MESSAGE_SUCCESS_SPECIFIC, roomNum,
+                    personId, person.get().getName()));
         } else {
             model.fetchBillList(person.get());
             return new CommandResult(String.format(MESSAGE_SUCCESS_NONSPECIFIC, personId, person.get().getName()));
