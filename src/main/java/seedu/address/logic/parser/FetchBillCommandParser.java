@@ -12,6 +12,7 @@ import seedu.address.logic.commands.FetchBillCommand;
 import seedu.address.logic.commands.ReserveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ids.PersonId;
+import seedu.address.model.ids.RoomId;
 
 /**
  * Parses input arguments and creates a new FetchBillCommand object
@@ -26,7 +27,7 @@ public class FetchBillCommandParser implements Parser<FetchBillCommand> {
      */
     public FetchBillCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ID);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ID, PREFIX_ROOMNUMBER);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ID)) {
             throw new ParseException(
@@ -36,7 +37,13 @@ public class FetchBillCommandParser implements Parser<FetchBillCommand> {
 
         PersonId personId = ParserUtil.parsePersonId(argMultimap.getValue(PREFIX_ID).get());
 
-        return new FetchBillCommand(personId);
+        if (arePrefixesPresent(argMultimap, PREFIX_ROOMNUMBER)) {
+            RoomId roomNum = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOMNUMBER).get());
+
+            return new FetchBillCommand(personId, roomNum);
+        } else {
+            return new FetchBillCommand(personId);
+        }
     }
 
     /**
