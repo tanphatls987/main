@@ -37,7 +37,7 @@ public class FetchBillCommandParser implements Parser<FetchBillCommand> {
         PersonId personId = ParserUtil.parsePersonId(argMultimap.getValue(PREFIX_ID).get());
 
         if (arePrefixesPresent(argMultimap, PREFIX_ROOMNUMBER)) {
-            RoomId roomNum = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOMNUMBER).get());
+            String roomNum = argMultimap.getValue(PREFIX_ROOMNUMBER).get();
 
             return new FetchBillCommand(personId, roomNum);
         } else {
