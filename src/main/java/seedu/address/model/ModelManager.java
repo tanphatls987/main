@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.hotel.Room;
@@ -175,6 +174,12 @@ public class ModelManager implements Model {
     public ArrayList<Room> getRoomList() {
         return roomList;
     }
+
+    @Override
+    public ArrayList<Booking> getBookingList() {
+        return bookingList;
+    }
+
 
     @Override
     public Optional<Room> findRoom(String roomNum) {
