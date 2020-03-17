@@ -72,8 +72,7 @@ public class ParserUtil {
      */
     public static String parseRoom(String roomNumber) throws ParseException {
         requireNonNull(roomNumber);
-        String trimmedRoom = roomNumber.trim();
-        return trimmedRoom;
+        return roomNumber.trim();
     }
 
     /**
