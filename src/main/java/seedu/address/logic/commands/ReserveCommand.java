@@ -44,7 +44,7 @@ public class ReserveCommand extends Command {
     private final TimeFrame reserveDuration;
 
     public ReserveCommand(PersonId personId, String roomNum, LocalDateTime fromDate, LocalDateTime toDate)
-            throws InvalidTimeFrameException {
+        throws InvalidTimeFrameException {
         requireAllNonNull(personId, roomNum, fromDate, toDate);
         this.roomNum = roomNum;
         LocalDateTime reserveFrom = LocalDateTime.from(fromDate).withHour(0).withMinute(0).withSecond(0);
