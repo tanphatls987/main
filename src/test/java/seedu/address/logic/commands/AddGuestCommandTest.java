@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.hotel.Room;
+import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
+import seedu.address.model.ids.PersonId;
+import seedu.address.model.timeframe.TimeFrame;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddGuestCommandTest {
@@ -132,6 +136,11 @@ public class AddGuestCommandTest {
         }
 
         @Override
+        public Optional<Person> findPersonWithId(PersonId personId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -153,12 +162,27 @@ public class AddGuestCommandTest {
 
         @Override
         public ArrayList<Room> getRoomList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Room> findRoom(String roomNum) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void fillRoomList() {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public boolean isRoomFree(Room room, TimeFrame duration) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void bookRoom(Booking booking) {
+            throw new AssertionError("This method should not be called.");
         }
     }
 
