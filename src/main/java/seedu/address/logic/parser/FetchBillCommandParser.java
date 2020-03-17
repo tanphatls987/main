@@ -11,7 +11,6 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.FetchBillCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ids.PersonId;
-import seedu.address.model.ids.RoomId;
 
 /**
  * Parses input arguments and creates a new FetchBillCommand object
