@@ -47,8 +47,8 @@ public class ReserveCommand extends Command {
         throws InvalidTimeFrameException {
         requireAllNonNull(personId, roomNum, fromDate, toDate);
         this.roomNum = roomNum;
-        LocalDateTime reserveFrom = LocalDateTime.from(fromDate).withHour(0).withMinute(0).withSecond(0);
-        LocalDateTime reserveTo = LocalDateTime.from(toDate).withHour(0).withMinute(0).withSecond(0);
+        LocalDateTime reserveFrom = fromDate;
+        LocalDateTime reserveTo = toDate;
 
         ///this can throw InvalidTimeFrame
         this.reserveDuration = new TimeFrame(reserveFrom, reserveTo);
@@ -57,6 +57,7 @@ public class ReserveCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        model.fillRoomList();
         Optional<Person> payee = model.findPersonWithId(personId);
         if (payee.isEmpty()) {
             throw new CommandException("No guest with this id");
@@ -76,6 +77,6 @@ public class ReserveCommand extends Command {
      */
     private String generateSuccessMessage(Person payee) {
         String message = MESSAGE_ADD_RESERVE_SUCCESS;
-        return String.format(message, payee);
+        return String.format(message, payee.getName());
     }
 }
