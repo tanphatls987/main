@@ -156,6 +156,7 @@ Checks Smith in to room 101.
 * `bill n/Smith~ +
 Shows bill incurred by Smith
 
+//tag::addguest[]
 === Add a guest : `addguest`
 
 Create a guest in the hotel list. +
@@ -166,7 +167,7 @@ Examples:
 Add John Doe with his information into the database.
 
 
-// end::delete[]
+// end::addguest[]
 === Clearing all entries : `clear`
 
 Clears all entries from the address book. +
