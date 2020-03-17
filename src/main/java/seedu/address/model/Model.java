@@ -7,12 +7,10 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.hotel.Bill;
 import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.ids.PersonId;
-import seedu.address.model.ids.RoomId;
 import seedu.address.model.timeframe.TimeFrame;
 
 /**

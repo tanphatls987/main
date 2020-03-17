@@ -28,7 +28,6 @@ public class Person {
     //private final Address address;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
-    private final ArrayList<Bill> bills = new ArrayList<>();
 
     /**
      * Old constructor
@@ -99,8 +98,6 @@ public class Person {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
-
-    public ArrayList<Bill> getBills() { return bills; }
 
     /**
      * Returns true if both persons of the same name have at least one other identity field that is the same.
