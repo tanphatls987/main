@@ -2,7 +2,7 @@ package seedu.address.model.timeframe;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import seedu.address.model.timeframe.exception.InvalidTimeFrameException;
 
@@ -10,17 +10,17 @@ import seedu.address.model.timeframe.exception.InvalidTimeFrameException;
  * Represent a period of time.
  */
 public class TimeFrame {
-    private LocalDate from;
-    private LocalDate to;
+    private LocalDateTime from;
+    private LocalDateTime to;
 
     /**
      * Construct a new timeframe.
-     * Use LocalDate.MIN or LocalDate.MAX in case no start or end time.
+     * Use LocalDateTime.MIN or LocalDateTime.MAX in case no start or end time.
      * @param from
      * @param to
      * @throws InvalidTimeFrameException
      */
-    public TimeFrame(LocalDate from, LocalDate to) throws InvalidTimeFrameException {
+    public TimeFrame(LocalDateTime from, LocalDateTime to) throws InvalidTimeFrameException {
         requireAllNonNull(from, to);
         this.from = from;
         this.to = to;
@@ -34,7 +34,7 @@ public class TimeFrame {
      * Start time getter
      * @return
      */
-    public LocalDate getStartTime() {
+    public LocalDateTime getStartTime() {
         return from;
     }
 
@@ -42,7 +42,7 @@ public class TimeFrame {
      * End time getter
      * @return
      */
-    public LocalDate getEndTime() {
+    public LocalDateTime getEndTime() {
         return to;
     }
 
@@ -52,11 +52,11 @@ public class TimeFrame {
      * @return true if at least 1 second period is common in 2 timeframe
      */
     public boolean isClash(TimeFrame oth) {
-        LocalDate commonLeft = from;
+        LocalDateTime commonLeft = from;
         if (commonLeft.isBefore(oth.from)) {
             commonLeft = oth.from;
         }
-        LocalDate commonRight = to;
+        LocalDateTime commonRight = to;
         if (commonRight.isAfter(oth.to)) {
             commonRight = oth.to;
         }

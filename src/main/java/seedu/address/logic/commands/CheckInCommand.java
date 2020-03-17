@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TODATE;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -42,8 +42,7 @@ public class CheckInCommand extends Command {
 
     private final PersonId personId;
     private final RoomId roomId;
-    private final LocalDate toDate;
-
+    private final LocalDateTime toDate;
 
     /**
      * Creates a CheckInCommand from current date until {@code toDate}
@@ -51,7 +50,7 @@ public class CheckInCommand extends Command {
      * @param roomId the ID of the Room that is going to be checked in.
      * @param toDate the end Date of the stay.
      */
-    public CheckInCommand(PersonId personId, RoomId roomId, LocalDate toDate) {
+    public CheckInCommand(PersonId personId, RoomId roomId, LocalDateTime toDate) {
         requireNonNull(personId);
         requireNonNull(roomId);
         requireNonNull(toDate);
@@ -73,14 +72,14 @@ public class CheckInCommand extends Command {
         if (room.isEmpty()) {
             throw new CommandException(String.format(MESSAGE_ROOM_NOT_EXISTS, roomId));
         }
-        if (!(toDate.isAfter(LocalDate.now()))) {
+        if (!(toDate.isAfter(LocalDateTime.now()))) {
             throw new CommandException(String.format(MESSAGE_DATE_PASSED, toDate));
         }
-        if (!(model.isRoomFree(room.get(), new TimeFrame(LocalDate.now(), toDate)))) {
+        if (!(model.isRoomFree(room.get(), new TimeFrame(LocalDateTime.now(), toDate)))) {
             throw new CommandException(MESSAGE_ROOM_OCCUPIED);
         }
 
-        Stay stay = new Stay(person.get(), room.get(), LocalDate.now(), toDate, "");
+        Stay stay = new Stay(person.get(), room.get(), LocalDateTime.now(), toDate, "");
         model.bookRoom(stay);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, roomId, personId));

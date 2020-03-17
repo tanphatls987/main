@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TODATE;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.CheckInCommand;
@@ -37,7 +37,7 @@ public class CheckInCommandParser implements Parser<CheckInCommand> {
 
         PersonId personId = ParserUtil.parsePersonId(argMultimap.getValue(PREFIX_ID).get());
         RoomId roomId = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOMNUMBER).get());
-        LocalDate toDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_TODATE).get());
+        LocalDateTime toDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_TODATE).get());
 
         return new CheckInCommand(personId, roomId, toDate);
     }

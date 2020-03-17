@@ -1,6 +1,6 @@
 package seedu.address.model.hotel;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
@@ -13,7 +13,7 @@ public class Reserve extends Booking {
     /**
      * Create an empty reservation.
      */
-    public Reserve(Person payee, Room room, LocalDate bookFrom, LocalDate bookTo) {
+    public Reserve(Person payee, Room room, LocalDateTime bookFrom, LocalDateTime bookTo) {
         super(payee, room, bookFrom, bookTo);
     }
 }
