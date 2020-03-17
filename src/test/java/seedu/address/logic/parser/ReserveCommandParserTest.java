@@ -19,12 +19,12 @@ import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.RoomBuilder;
 
 public class ReserveCommandParserTest {
+    private static final Room Room = new RoomBuilder().build();
+    private static final Person Payee = new PersonBuilder().build();
+    private static final LocalDateTime From_Date = LocalDateTime.parse("2020-12-12T12:30:00");
+    private static final LocalDateTime To_Date = LocalDateTime.parse("2020-12-23T12:30:00");
+    private static final PersonId Id = Payee.getPersonId();
     private ReserveCommandParser parser = new ReserveCommandParser();
-    private final Room Room = new RoomBuilder().build();
-    private final Person Payee = new PersonBuilder().build();
-    private final LocalDateTime From_Date = LocalDateTime.parse("2020-12-12T12:30:00");
-    private final LocalDateTime To_Date = LocalDateTime.parse("2020-12-23T12:30:00");
-    private final PersonId Id = Payee.getPersonId();
 
     /*@Test
     public void parse_personIdSpecified_success() throws ParseException {

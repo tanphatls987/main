@@ -21,6 +21,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.booking.Booking;
@@ -131,6 +132,11 @@ public class AddGuestCommandTest {
         }
 
         @Override
+        public ReadOnlyHotel getHotel() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -143,6 +149,16 @@ public class AddGuestCommandTest {
         @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasRoom(String roomNum) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addRoom(String roomNum) {
+            throw new AssertionError("This method should not be called");
         }
 
         @Override

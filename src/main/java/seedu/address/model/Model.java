@@ -58,6 +58,9 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+    /** Returns the Hotel*/
+    ReadOnlyHotel getHotel();
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -127,4 +130,19 @@ public interface Model {
 
     /** Returns bill for specified room of person */
     void fetchBill(Person person, String roomNum);
+
+    /**
+     * Add a room with roomName
+     * @param roomName
+     *
+     */
+    void addRoom(String roomName);
+
+    /**
+     * Check if a room exist
+     * @param roomName
+     * @return a result
+     */
+    boolean hasRoom(String roomName);
+
 }

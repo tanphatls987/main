@@ -33,11 +33,12 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final ArrayList<Room> roomList;
     private final ArrayList<Booking> bookingList;
+    private final Hotel hotel;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyHotel hotel) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -45,13 +46,18 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.hotel = new Hotel(hotel);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        roomList = new ArrayList<Room>();
         this.bookingList = new ArrayList<Booking>();
+        roomList = this.hotel.getRoomList();
+    }
+
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+        this(addressBook, userPrefs, new Hotel());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new Hotel());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -99,6 +105,11 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
+    }
+
+    @Override
+    public ReadOnlyHotel getHotel() {
+        return hotel;
     }
 
     @Override
@@ -185,6 +196,7 @@ public class ModelManager implements Model {
 
     @Override
     public Optional<Room> findRoom(String roomNum) {
+        requireNonNull(roomNum);
         return roomList.stream().filter(u -> u.getRoomNum().equals(roomNum)).findFirst();
     }
 
@@ -203,8 +215,11 @@ public class ModelManager implements Model {
 
     @Override
     public void bookRoom(Booking booking) {
+        requireNonNull(booking);
+
         bookingList.add(booking);
     }
+
 
     // to update accordingly when implementing billing system.
     @Override
@@ -217,5 +232,19 @@ public class ModelManager implements Model {
     public void fetchBill(Person person, String roomNum) {
         String[] dummy = new String[] {"bnfajdnnlasdf"};
         updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(dummy)));
+
+    @Override
+    public void addRoom(String roomNum) {
+        requireNonNull(roomNum);
+
+        hotel.addRoom(roomNum);
+    }
+
+    @Override
+    public boolean hasRoom(String roomNum) {
+        requireNonNull(roomNum);
+
+        return this.hotel.hasRoom(roomNum);
+
     }
 }
