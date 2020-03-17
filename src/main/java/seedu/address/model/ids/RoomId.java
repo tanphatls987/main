@@ -5,7 +5,7 @@ package seedu.address.model.ids;
  */
 public class RoomId extends Id {
 
-    private RoomId(String serializedId) {
+    public RoomId(String serializedId) {
         super(serializedId);
     }
 

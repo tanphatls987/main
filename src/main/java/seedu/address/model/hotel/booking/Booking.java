@@ -1,6 +1,6 @@
 package seedu.address.model.hotel.booking;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.person.Person;
@@ -36,7 +36,7 @@ public class Booking {
      * @param to
      * @throws InvalidTimeFrameException
      */
-    public Booking(Person payee, Room room, LocalDateTime from, LocalDateTime to)
+    public Booking(Person payee, Room room, LocalDate from, LocalDate to)
         throws InvalidTimeFrameException {
         this.payee = payee;
         this.room = room;

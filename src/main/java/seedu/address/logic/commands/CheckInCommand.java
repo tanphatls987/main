@@ -3,8 +3,14 @@ package seedu.address.logic.commands;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.hotel.Room;
+import seedu.address.model.hotel.Stay;
+import seedu.address.model.hotel.person.Person;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
+import seedu.address.model.timeframe.TimeFrame;
+
+import java.time.LocalDate;
+import java.util.Optional;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
@@ -25,23 +31,45 @@ public class CheckInCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Room %1$s is booked by %2$s";
     public static final String MESSAGE_ROOM_OCCUPIED = "Room %1$s is occupied";
     public static final String MESSAGE_ROOM_NOT_EXISTS = "Room %1$s does not exists";
+    public static final String MESSAGE_PERSON_NOT_EXISTS = "Room %1$s does not exists";
+    public static final String MESSAGE_DATE_PASSED = "%1$s has passed";
 
     private final PersonId personId;
     private final RoomId roomId;
+    private final LocalDate toDate;
 
 
-    public CheckInCommand(PersonId personId, RoomId roomId) {
+    public CheckInCommand(PersonId personId, RoomId roomId, LocalDate toDate) {
         requireNonNull(personId);
         requireNonNull(roomId);
+        requireNonNull(toDate);
         this.personId = personId;
         this.roomId = roomId;
+        this.toDate = toDate;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if ()
+        Optional<Person> person = model.findPersonWithId(personId);
+        Optional<Room> room = model.findRoom(personId.toString());
+
+        if (person.isEmpty()) {
+            throw new CommandException(String.format(MESSAGE_PERSON_NOT_EXISTS, personId));
+        }
+        if (room.isEmpty()) {
+            throw new CommandException(String.format(MESSAGE_ROOM_NOT_EXISTS, roomId));
+        }
+        if (!(toDate.isAfter(LocalDate.now()))) {
+            throw new CommandException(String.format(MESSAGE_DATE_PASSED, toDate));
+        }
+        if (!(model.isRoomFree(room.get(), new TimeFrame(LocalDate.now(), toDate)))) {
+            throw new CommandException(MESSAGE_ROOM_OCCUPIED);
+        }
+
+        Stay stay = new Stay(person.get(), room.get(), LocalDate.now(), toDate, "");
+        model.bookRoom(stay);
 
         return null;
     }
