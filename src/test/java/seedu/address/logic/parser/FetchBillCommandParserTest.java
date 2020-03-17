@@ -16,11 +16,12 @@ import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.RoomBuilder;
 
 public class FetchBillCommandParserTest {
-    private FetchBillCommandParser parser = new FetchBillCommandParser();
     private static final Person Guest = new PersonBuilder().build();
     private static final PersonId PersonId = Guest.getPersonId();
     private static final Room Room = new RoomBuilder().build();
     private static final String RoomNum = Room.getRoomNum();
+
+    private FetchBillCommandParser parser = new FetchBillCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
