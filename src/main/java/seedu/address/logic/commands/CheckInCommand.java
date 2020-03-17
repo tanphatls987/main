@@ -17,6 +17,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TODATE;
 
+/**
+ * Checks in a guest to the hotel.
+ */
 public class CheckInCommand extends Command {
 
     public static final String COMMAND_WORD = "checkin";
@@ -42,6 +45,12 @@ public class CheckInCommand extends Command {
     private final LocalDate toDate;
 
 
+    /**
+     * Creates a CheckInCommand from current date until {@code toDate}
+     * @param personId the ID of the Person who wants to check in.
+     * @param roomId the ID of the Room that is going to be checked in.
+     * @param toDate the end Date of the stay.
+     */
     public CheckInCommand(PersonId personId, RoomId roomId, LocalDate toDate) {
         requireNonNull(personId);
         requireNonNull(roomId);
