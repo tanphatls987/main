@@ -39,6 +39,7 @@ public class ReserveCommandTest {
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         CommandResult expectedCommandResult = reserveCommand.execute(expectedModel);
         expectedModel.bookRoom(booking);
-        assertEquals(String.format(ReserveCommand.MESSAGE_ADD_RESERVE_SUCCESS, ALICE.getName()), expectedCommandResult.getFeedbackToUser());
+        assertEquals(String.format(ReserveCommand.MESSAGE_ADD_RESERVE_SUCCESS,
+                ALICE.getName()), expectedCommandResult.getFeedbackToUser());
     }
 }
