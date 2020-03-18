@@ -1,3 +1,6 @@
+.anchor-pane {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
     background-color: #383838; /* Used in the default.html file */
@@ -306,7 +309,6 @@
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 8 1 8 1;
 }
-
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
