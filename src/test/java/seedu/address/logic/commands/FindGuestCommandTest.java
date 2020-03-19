@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -19,8 +20,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.hotel.person.MatchNamePredicate;
-import seedu.address.model.hotel.person.MatchPersonIdPredicate;
 import seedu.address.model.hotel.person.Name;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.ids.PersonId;
@@ -34,18 +33,17 @@ public class FindGuestCommandTest {
 
     @Test
     public void equals() {
-        Predicate<Person> firstPredicate = preparePredicate(List.of(new Name("Alice")),
-            List.of(new PersonId("A0")));
-        MatchNamePredicate secondPredicate = new MatchNamePredicate(List.of(new Name("Bob")));
+        HashSet<Name> nameList = new HashSet<>(List.of(new Name("Alice")));
+        HashSet<PersonId> personIdList = new HashSet<>(List.of(new PersonId("A0")));
 
-        FindGuestCommand findFirstCommand = new FindGuestCommand(firstPredicate);
-        FindGuestCommand findSecondCommand = new FindGuestCommand(secondPredicate);
+        FindGuestCommand findFirstCommand = new FindGuestCommand(nameList, new HashSet<>());
+        FindGuestCommand findSecondCommand = new FindGuestCommand(new HashSet<>(), personIdList);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindGuestCommand findFirstCommandCopy = new FindGuestCommand(firstPredicate);
+        FindGuestCommand findFirstCommandCopy = new FindGuestCommand(nameList, new HashSet<>());
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -62,11 +60,13 @@ public class FindGuestCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        Predicate<Person> predicate = preparePredicate(
-            List.of(ALICE.getName(), BENSON.getName()),
-            List.of(CARL.getPersonId())
-        );
-        FindGuestCommand command = new FindGuestCommand(predicate);
+
+        List<Name> nameList = List.of(ALICE.getName(), BENSON.getName());
+        List<PersonId> personIdList = List.of(CARL.getPersonId());
+
+
+        Predicate<Person> predicate = preparePredicate(nameList, personIdList);
+        FindGuestCommand command = prepareCommand(nameList, personIdList);
         expectedModel.updateFilteredPersonList(predicate);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -75,6 +75,10 @@ public class FindGuestCommandTest {
     }
 
     private Predicate<Person> preparePredicate(List<Name> nameList, List<PersonId> personIdList) {
-        return new MatchNamePredicate(nameList).or(new MatchPersonIdPredicate(personIdList));
+        return u -> nameList.contains(u.getName())
+            || personIdList.contains(u.getPersonId());
+    }
+    private FindGuestCommand prepareCommand(List<Name> nameList, List<PersonId> personIdList) {
+        return new FindGuestCommand(new HashSet<>(nameList), new HashSet<>(personIdList));
     }
 }

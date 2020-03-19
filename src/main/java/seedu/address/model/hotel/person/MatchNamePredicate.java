@@ -14,8 +14,16 @@ public class MatchNamePredicate implements Predicate<Person> {
      * Create predicate with nameList
      * @param nameList
      */
-    public MatchNamePredicate(List<Name> nameList) {
+    public MatchNamePredicate(HashSet<Name> nameList) {
         ///nameList may change later on
+        this.nameList = nameList;
+    }
+
+    /**
+     * Altenative constructor.
+     * @param nameList
+     */
+    public MatchNamePredicate(List<Name> nameList) {
         this.nameList = new HashSet<>(nameList);
     }
 

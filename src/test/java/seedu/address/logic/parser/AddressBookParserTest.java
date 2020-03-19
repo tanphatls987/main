@@ -10,8 +10,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.HashSet;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -27,8 +27,6 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.hotel.person.MatchNamePredicate;
-import seedu.address.model.hotel.person.MatchPersonIdPredicate;
 import seedu.address.model.hotel.person.Name;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.person.Remark;
@@ -87,13 +85,11 @@ public class AddressBookParserTest {
                     + personIdList.stream().map(p -> PREFIX_ID + p)
                         .collect(Collectors.joining(" "))
         );
-        Predicate<Person> expectedPredicate = new MatchNamePredicate(nameList
-            .stream().map(p -> new Name(p)).collect(Collectors.toList()))
-            .or(new MatchPersonIdPredicate(personIdList
-                .stream().map(p -> new PersonId(p)).collect(Collectors.toList()))
-            );
-        //now that command is a composite predicate, can't test like this.
-        //assertEquals(new FindGuestCommand(expectedPredicate), command);
+        HashSet<Name> nameHashSet = new HashSet<>();
+        nameList.forEach(u -> nameHashSet.add(new Name(u)));
+        HashSet<PersonId> personIdHashSet = new HashSet<>();
+        personIdList.forEach(u -> personIdHashSet.add(new PersonId(u)));
+        assertEquals(new FindGuestCommand(nameHashSet, personIdHashSet), command);
     }
 
     @Test

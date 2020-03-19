@@ -16,10 +16,19 @@ public class MatchPersonIdPredicate implements Predicate<Person> {
      * Create predicate.
      * @param personIdList
      */
-    public MatchPersonIdPredicate(List<PersonId> personIdList) {
+    public MatchPersonIdPredicate(HashSet<PersonId> personIdList) {
         ///personIdList may change later
+        this.personIdList = personIdList;
+    }
+
+    /**
+     * Altenative constructor.
+     * @param personIdList
+     */
+    public MatchPersonIdPredicate(List<PersonId> personIdList) {
         this.personIdList = new HashSet<>(personIdList);
     }
+
     @Override
     public boolean test(Person person) {
         return personIdList.contains(person.getPersonId());

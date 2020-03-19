@@ -30,4 +30,9 @@ public abstract class Id {
         Id othId = (Id) oth;
         return othId.serializedId.equals(serializedId);
     }
+
+    @Override
+    public int hashCode() {
+        return serializedId.hashCode();
+    }
 }

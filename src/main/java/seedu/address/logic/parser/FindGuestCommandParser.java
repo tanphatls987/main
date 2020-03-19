@@ -4,14 +4,12 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindGuestCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.hotel.person.MatchNamePredicate;
-import seedu.address.model.hotel.person.MatchPersonIdPredicate;
 import seedu.address.model.hotel.person.Name;
 import seedu.address.model.ids.PersonId;
 
@@ -36,16 +34,26 @@ public class FindGuestCommandParser implements Parser<FindGuestCommand> {
             );
         }
 
-        List<PersonId> personIdList = argMultimap.getAllValues(PREFIX_ID)
+        HashSet<PersonId> personIdList = getPersonIdList(argMultimap);
+        HashSet<Name> nameList = getNameList(argMultimap);
+        return new FindGuestCommand(nameList, personIdList);
+    }
+
+    private HashSet<PersonId> getPersonIdList(ArgumentMultimap argMultimap) {
+        return new HashSet<>(argMultimap
+            .getAllValues(PREFIX_ID)
             .stream()
             .map(PersonId::new)
-            .collect(Collectors.toList());
-        List<Name> nameList = argMultimap.getAllValues(PREFIX_NAME)
+            .collect(Collectors.toList())
+        );
+    }
+
+    private HashSet<Name> getNameList(ArgumentMultimap argMultimap) {
+        return new HashSet<>(argMultimap
+            .getAllValues(PREFIX_NAME)
             .stream()
             .map(Name::new)
-            .collect(Collectors.toList());
-        return new FindGuestCommand(new MatchNamePredicate(nameList)
-            .or(new MatchPersonIdPredicate(personIdList))
+            .collect(Collectors.toList())
         );
     }
 

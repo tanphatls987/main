@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -121,7 +122,9 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        model.updateFilteredPersonList(new MatchPersonIdPredicate(List.of(person.getPersonId())));
+        model.updateFilteredPersonList(new MatchPersonIdPredicate(
+            new HashSet<>(List.of(person.getPersonId())))
+        );
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
