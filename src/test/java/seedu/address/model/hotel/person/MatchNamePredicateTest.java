@@ -8,16 +8,17 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.TypicalPersons;
+import seedu.address.testutil.TypicalPersons.ALICE;
+import seedu.address.testutil.TypicalPersons.BENSON;
 
 class MatchNamePredicateTest {
 
     @Test
     void test() {
-        Person alice = TypicalPersons.ALICE;
+        Person alice = ALICE;
         List<Name> nameList = new ArrayList<>();
 
-        nameList.add(TypicalPersons.BENSON.getName());
+        nameList.add(BENSON.getName());
         MatchNamePredicate pred1 = new MatchNamePredicate(nameList);
 
         nameList.add(alice.getName());
@@ -25,7 +26,7 @@ class MatchNamePredicateTest {
         MatchNamePredicate pred2 = new MatchNamePredicate(nameList);
 
         assertFalse(pred1.test(alice));
-        assertTrue(pred1.test(TypicalPersons.BENSON));
+        assertTrue(pred1.test(BENSON));
         assertTrue(pred2.test(alice));
     }
 }
