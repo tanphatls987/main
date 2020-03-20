@@ -177,7 +177,7 @@ public class AddGuestCommandTest {
         }
 
         @Override
-        public ArrayList<Room> getRoomList() {
+        public ObservableList<Room> getRoomList() {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -54,4 +54,8 @@ public class Room {
     public String getName() {
         return this.roomNum;
     }
+
+    public Tier getTier() {
+        return this.roomTier;
+    }
 }

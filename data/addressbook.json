@@ -41,5 +41,35 @@
     "email" : "royb@example.com",
     "remark" : "",
     "tagged" : [ "colleagues" ]
+  }, {
+    "name" : "john",
+    "personId" : "K000000",
+    "phone" : "12345678",
+    "email" : "abc@gmail.com",
+    "remark" : "",
+    "tagged" : [ ]
+  } ],
+
+  "rooms" : [ {
+    "Tier" : "Bronze",
+    "roomNum" : "001",
+  }, {
+    "Tier" : "Bronze",
+    "roomNum" : "002"
+  }, {
+    "Tier" : "Bronze",
+    "roomNum" : "003"
+  }, {
+    "Tier" : "Bronze",
+    "roomNum" : "004"
+  }, {
+    "Tier" : "Silver",
+    "roomNum" : "005"
+  }, {
+    "Tier" : "Silver",
+    "roomNum" : "006"
+  }, {
+    "Tier" : "Gold",
+    "roomNum" : "007"
   } ]
 }

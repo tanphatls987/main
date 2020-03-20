@@ -178,12 +178,13 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && roomList.equals(other.roomList);
     }
 
     @Override
-    public ArrayList<Room> getRoomList() {
-        return roomList;
+    public ObservableList<Room> getRoomList() {
+        return hotel.getImmutableRoomList();
     }
 
     @Override

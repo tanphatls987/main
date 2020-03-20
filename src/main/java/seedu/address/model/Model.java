@@ -100,8 +100,9 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /**Returns list of rooms*/
-    ArrayList<Room> getRoomList();
+    /**Returns list of rooms
+     * @return*/
+    ObservableList<Room> getRoomList();
 
     /**returns list of bookings*/
     ArrayList<Booking> getBookingList();
