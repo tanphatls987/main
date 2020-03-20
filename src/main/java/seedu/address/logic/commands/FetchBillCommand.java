@@ -70,7 +70,7 @@ public class FetchBillCommand extends Command {
         }
 
         if (isSpecific) {
-            Optional<Room> room = model.findRoom(personId.toString());
+            Optional<Room> room = model.findRoom(roomNum);
 
             if (room.isEmpty()) {
                 throw new CommandException(String.format(MESSAGE_ROOM_NONEXISTENT, roomNum));
