@@ -91,24 +91,19 @@ Examples:
 * `bill  i/G1231231X` +
 Shows the bill for guest with ID G1231231X's stay up till present moment.
 
-=== Locating persons by name: `find`
-Finds persons whose names contain any of the given keywords. +
-Format: `find KEYWORD [MORE_KEYWORDS]`
+=== Locating persons by name or id: `findguest`
+Finds persons whose names or id match.
+Format: `findguest n/NAME ... n/NAME i/ID ... i/ID`
 
 ****
-* The search is case insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The order of the keywords does not matter. e.g. `n/Alice i/A10` is same as`i/A10 n/Alice`
+* Persons matching at least one keyword will be returned
 ****
 
 Examples:
 
-* `find John` +
-Returns `john` and `John Doe`
-* `find Betsy Tim John` +
-Returns any person having names `Betsy`, `Tim`, or `John`
+* `findguest n/Alice i/A10`
+Return person with name Alice or id A10
 
 === Service : `service`
 

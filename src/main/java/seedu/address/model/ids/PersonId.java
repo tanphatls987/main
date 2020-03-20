@@ -20,4 +20,9 @@ public class PersonId extends Id {
         PersonId othPersonId = (PersonId) oth;
         return othPersonId.getSerializedId().equals(getSerializedId());
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
