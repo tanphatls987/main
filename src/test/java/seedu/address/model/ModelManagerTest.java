@@ -7,14 +7,16 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalRooms.BEST_ROOM;
+import static seedu.address.testutil.TypicalRooms.WORST_ROOM;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.hotel.person.NameContainsKeywordsPredicate;
+import seedu.address.model.hotel.person.MatchPersonIdPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -26,6 +28,7 @@ public class ModelManagerTest {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new Hotel(), new Hotel(modelManager.getHotel()));
     }
 
     @Test
@@ -88,6 +91,23 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasRoom_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasRoom(null));
+    }
+
+    @Test
+    public void hasRoom_roomNotInHotel_returnsFalse() {
+        assertFalse(modelManager.hasRoom(BEST_ROOM.getRoomNum()));
+    }
+
+    @Test
+    public void hasRoom_roomInHotel_returnsTrue() {
+        modelManager.addRoom(BEST_ROOM.getRoomNum());
+        modelManager.addRoom(WORST_ROOM.getRoomNum());
+        assertTrue(modelManager.hasRoom(BEST_ROOM.getRoomNum()));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
@@ -116,8 +136,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredPersonList(new MatchPersonIdPredicate(List.of(ALICE.getPersonId())));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

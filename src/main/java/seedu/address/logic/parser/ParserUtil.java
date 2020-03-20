@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +14,7 @@ import seedu.address.model.hotel.person.Email;
 import seedu.address.model.hotel.person.Name;
 import seedu.address.model.hotel.person.Phone;
 import seedu.address.model.ids.PersonId;
+import seedu.address.model.ids.RoomId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -57,11 +58,11 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static LocalDate parseDate(String date) throws ParseException {
+    public static LocalDateTime parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
         //assume date is always valid
-        return LocalDate.parse(trimmedDate);
+        return LocalDateTime.parse(trimmedDate);
     }
 
     /**
@@ -70,10 +71,9 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static String parseRoom(String roomNumber) throws ParseException {
+    public static RoomId parseRoom(String roomNumber) throws ParseException {
         requireNonNull(roomNumber);
-        String trimmedRoom = roomNumber.trim();
-        return trimmedRoom;
+        return new RoomId(roomNumber.trim());
     }
 
     /**

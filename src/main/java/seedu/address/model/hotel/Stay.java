@@ -19,4 +19,5 @@ public class Stay extends Booking {
         super(payee, room, from, to);
         this.description = description;
     }
+
 }
