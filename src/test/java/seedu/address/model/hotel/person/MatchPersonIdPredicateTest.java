@@ -9,16 +9,17 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.ids.PersonId;
-import seedu.address.testutil.TypicalPersons;
+import seedu.address.testutil.TypicalPersons.ALICE;
+import seedu.address.testutil.TypicalPersons.BENSON;
 
 class MatchPersonIdPredicateTest {
 
     @Test
     void test() {
-        Person alice = TypicalPersons.ALICE;
+        Person alice = ALICE;
         List<PersonId> personIdList = new ArrayList<>();
 
-        personIdList.add(TypicalPersons.BENSON.getPersonId());
+        personIdList.add(BENSON.getPersonId());
         MatchPersonIdPredicate pred1 = new MatchPersonIdPredicate(personIdList);
 
         personIdList.add(alice.getPersonId());
