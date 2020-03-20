@@ -2,6 +2,8 @@ package seedu.address.model.hotel.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +11,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.ids.PersonId;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
 
 class MatchPersonIdPredicateTest {
 
