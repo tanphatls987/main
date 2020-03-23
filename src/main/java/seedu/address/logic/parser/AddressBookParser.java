@@ -8,11 +8,8 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddGuestCommand;
 import seedu.address.logic.commands.AddRoomCommand;
-<<<<<<< HEAD
-import seedu.address.logic.commands.CheckInCommand;
-=======
 import seedu.address.logic.commands.AddTierCommand;
->>>>>>> addCommand-and-Parser
+import seedu.address.logic.commands.CheckInCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
