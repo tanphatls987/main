@@ -51,7 +51,7 @@ public class Room {
      * Check if this room has non default tier or not
      */
     public boolean hasNonDefaultTier() {
-        return this.roomTier.isDefaultTier();
+        return !this.roomTier.isDefaultTier();
     }
 
     /**
@@ -60,5 +60,12 @@ public class Room {
      */
     public String getName() {
         return this.roomNum;
+    }
+
+    /**
+     * set tier for this room
+     */
+    public void setTier(Tier tier) {
+        this.roomTier = tier;
     }
 }

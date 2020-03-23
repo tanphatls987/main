@@ -208,20 +208,26 @@ public class AddGuestCommandTest {
         }
 
         @Override
-<<<<<<< HEAD
         public void fetchBillList(Person person) {
-=======
-        public void addTier(Tier tier) {
->>>>>>> addCommand-and-Parser
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-<<<<<<< HEAD
+        public void addTier(Tier tier) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTier(Tier tier, ArrayList<String> roomNums) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void fetchBill(Person person, String roomNum) {
-=======
+            throw new AssertionError("This method should not be called.");
+        }
+                @Override
         public boolean hasTier(Tier tier) {
->>>>>>> addCommand-and-Parser
             throw new AssertionError("This method should not be called.");
         }
     }

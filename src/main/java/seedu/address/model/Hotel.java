@@ -68,6 +68,7 @@ public class Hotel implements ReadOnlyHotel {
     }
 
     /**
+<<<<<<< HEAD
      * Get the room object using the room number.
      * @param roomNum String of the room number.
      * @return Optional of the room object if exist. Optional of empty otherwise.
@@ -82,6 +83,22 @@ public class Hotel implements ReadOnlyHotel {
      * Check if tier exists
      * @param otherTier tier
      * @return result
+=======
+     * find a room
+     */
+    private Room findRoom(String roomNum) {
+        for (Room room: roomList) {
+            if (room.hasName(roomNum)) {
+                return room;
+            }
+        }
+        return null;
+    }
+
+
+    /**
+     * check a if a tier exists
+>>>>>>> addIntegrationTest
      */
     public boolean hasTier(Tier otherTier) {
         for (Tier tier: tierList) {
@@ -111,8 +128,16 @@ public class Hotel implements ReadOnlyHotel {
     /**
      * adds a new tier.
      */
-    public void addTier(Tier tier) {
+    public void addTier(Tier tier, ArrayList<String> roomNums) {
         tierList.add(tier);
+
+        for (String roomNum: roomNums) {
+            if (hasRoom(roomNum)) {
+                Room current = findRoom(roomNum);
+                assert current != null;
+                current.setTier(tier);
+            }
+        }
     }
 
     @Override

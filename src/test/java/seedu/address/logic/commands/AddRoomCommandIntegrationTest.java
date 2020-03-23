@@ -22,7 +22,7 @@ public class AddRoomCommandIntegrationTest {
 
 
     @Test
-    public void executeReserve_success() throws CommandException {
+    public void executeAddRoom_success() throws CommandException {
         AddRoomCommand command = new AddRoomCommand(DEFAULT_ROOM.getName());
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getHotel());

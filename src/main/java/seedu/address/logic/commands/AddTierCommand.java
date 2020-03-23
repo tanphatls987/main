@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIER;
 
 import java.util.ArrayList;
+import java.util.function.Function;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -58,19 +59,33 @@ public class AddTierCommand extends Command {
 
         ReadOnlyHotel hotel = model.getHotel();
 
-        for (Room room: hotel.getImmutableRoomList()) {
-            if (room.hasNonDefaultTier()) {
-                throw new CommandException(MESSAGE_ROOM_HAS_TIER);
-            }
-        }
-
         for (String roomNum: roomNums) {
             if (!model.hasRoom(roomNum)) {
                 throw new CommandException(MESSAGE_ROOM_NOT_FOUND);
             }
         }
 
-        model.addTier(this.toAdd);
+        Function<String, Room> findRoom = (String s) -> {
+            for (Room room: hotel.getImmutableRoomList()) {
+                if (room.hasName(s)) {
+                    return room;
+                }
+            }
+            return null;
+        };
+
+        for (String roomNum: roomNums) {
+            if (model.hasRoom(roomNum)) {
+                Room current = findRoom.apply(roomNum);
+                assert current != null;
+                if (current.hasNonDefaultTier()) {
+                    throw new CommandException(MESSAGE_ROOM_HAS_TIER);
+                }
+            }
+        }
+
+        model.addTier(this.toAdd, this.roomNums);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
@@ -88,5 +103,4 @@ public class AddTierCommand extends Command {
 
         return false;
     }
-
 }

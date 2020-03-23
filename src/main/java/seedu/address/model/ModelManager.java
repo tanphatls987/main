@@ -251,9 +251,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addTier(Tier tier) {
+    public void addTier(Tier tier, ArrayList<String> roomNums) {
         requireNonNull(tier);
+        requireNonNull(roomNums);
 
-        this.hotel.addTier(tier);
+        this.hotel.addTier(tier, roomNums);
     }
 }
