@@ -48,6 +48,13 @@ public class Room {
     }
 
     /**
+     * Check if this room has non default tier or not
+     */
+    public boolean hasNonDefaultTier() {
+        return this.roomTier.isDefaultTier();
+    }
+
+    /**
      *
      * @return this room's name
      */

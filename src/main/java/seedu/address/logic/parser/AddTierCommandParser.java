@@ -17,7 +17,7 @@ import seedu.address.model.hotel.Tier;
 /**
  * Parses input arguments ad creates new AddTierCommand object.
  */
-public class AddTierCommandParser {
+public class AddTierCommandParser implements Parser<AddTierCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddRoomCommand
      * and returns an AddTierCommand object for execution.

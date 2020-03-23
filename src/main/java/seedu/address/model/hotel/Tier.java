@@ -6,6 +6,7 @@ package seedu.address.model.hotel;
  */
 public class Tier {
     private String name;
+    private boolean isDefault;
 
     /**
      * Create a tier with name
@@ -13,6 +14,7 @@ public class Tier {
      */
     public Tier(String name) {
         this.name = name;
+        this.isDefault = false;
     }
 
     /**
@@ -20,6 +22,14 @@ public class Tier {
      */
     public Tier() {
         name = "default";
+        this.isDefault = true;
+    }
+
+    /**
+     * Check if this tier is default tier.
+     */
+    public boolean isDefaultTier() {
+        return this.isDefault;
     }
 
     @Override
