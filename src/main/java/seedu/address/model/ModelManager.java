@@ -203,6 +203,9 @@ public class ModelManager implements Model {
 
     @Override
     public boolean isRoomFree(Room room, TimeFrame duration) {
+        requireNonNull(room);
+        requireNonNull(duration);
+
         ///timeframe create successfully mean no bogus duration
         return bookingList.stream().anyMatch(u -> u.isClash(room, duration));
     }
@@ -238,5 +241,19 @@ public class ModelManager implements Model {
 
         return this.hotel.hasRoom(roomNum);
 
+    }
+
+    @Override
+    public boolean hasTier(Tier tier) {
+        requireNonNull(tier);
+
+        return this.hotel.hasTier(tier);
+    }
+
+    @Override
+    public void addTier(Tier tier) {
+        requireNonNull(tier);
+
+        this.hotel.addTier(tier);
     }
 }

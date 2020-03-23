@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.hotel.Room;
+import seedu.address.model.hotel.Tier;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.ids.PersonId;
@@ -140,9 +141,19 @@ public interface Model {
 
     /**
      * Check if a room exist
-     * @param roomName
-     * @return a result
      */
     boolean hasRoom(String roomName);
 
+<<<<<<< HEAD
+=======
+    /**
+     * Check if a tier name exists
+     */
+    boolean hasTier(Tier tier);
+
+    /**
+     * Add a tier with a tiername
+     */
+    void addTier(Tier tier);
+>>>>>>> addCommand-and-Parser
 }

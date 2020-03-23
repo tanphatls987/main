@@ -24,6 +24,10 @@ public class AddRoomCommand extends Command {
 
     private final String toAdd;
 
+    /**
+     * Construct a room command with a room name
+     * @param roomName: name of the added room.
+     */
     public AddRoomCommand(String roomName) {
         requireNonNull(roomName);
         this.toAdd = roomName;
