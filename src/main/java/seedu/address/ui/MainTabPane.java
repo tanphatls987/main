@@ -26,11 +26,6 @@ public class MainTabPane extends UiPart<Region> {
     @FXML
     private StackPane personListPlaceholder;
 
-
-    private void setPersonListPanel() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPlaceholder.getChildren().add(personListPanel.getRoot());
-    }
     /**
      * Create a mainTabPane
      * @param logic
@@ -44,5 +39,8 @@ public class MainTabPane extends UiPart<Region> {
         setPersonListPanel();
         mainTabPane.getStyleClass().add("floating");
     }
-
+    private void setPersonListPanel() {
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPlaceholder.getChildren().add(personListPanel.getRoot());
+    }
 }
