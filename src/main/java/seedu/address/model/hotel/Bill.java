@@ -3,17 +3,23 @@ package seedu.address.model.hotel;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * Contains information about bills.
+ * Contains a list of chargeable objects that a guest has requested for.
  */
 public class Bill {
     private List<Chargeable> charges;
 
     /**
-     * [Bill description]
-     * @return [description]
+     * Creates an empty {@code bill}.
      */
     public Bill() {
         this.charges = new ArrayList<>();
+    }
+
+    /**
+     * Returns true if there is no chargeable objects in the bill.
+     */
+    public boolean isEmpty() {
+        return charges.isEmpty();
     }
 }
 
