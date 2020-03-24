@@ -8,6 +8,7 @@ import java.util.Optional;
 import javafx.collections.ObservableList;
 
 import seedu.address.model.hotel.room.Room;
+import seedu.address.model.hotel.room.Tier;
 import seedu.address.model.hotel.room.UniqueRoomList;
 import seedu.address.model.ids.RoomId;
 
@@ -171,11 +172,6 @@ public class Hotel implements ReadOnlyHotel {
         // TODO: refine later
     }
 
-    @Override
-    public int hashCode() {
-        return roomList.hashCode();
-    }
-  
     public void fillRoomList() {
         for (int i = 0; i < 10; i++) {
             roomList.add(new Room(Integer.toString(i), new Tier()));
@@ -193,5 +189,10 @@ public class Hotel implements ReadOnlyHotel {
         }
 
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return roomList.hashCode();
     }
 }

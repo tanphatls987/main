@@ -104,7 +104,7 @@ public interface Model {
     /**Returns list of rooms
      * @return*/
     ObservableList<Room> getRoomList();
-  
+
     /** Returns list of bookings */
     ArrayList<Booking> getBookingList();
 
