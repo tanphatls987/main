@@ -203,7 +203,7 @@ public class ModelManager implements Model {
     @Override
     public void fillRoomList() {
         for (int i = 0; i < 10; i++) {
-            roomList.add(new Room(Integer.toString(i), new Tier()));
+            roomList.add(new Room(Integer.toString(i), new Tier())); //changed here
         }
     }
 
