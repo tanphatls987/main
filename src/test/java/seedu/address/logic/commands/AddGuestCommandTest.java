@@ -205,6 +205,16 @@ public class AddGuestCommandTest {
         public void bookRoom(Booking booking) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void fetchBillList(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void fetchBill(Person person, String roomNum) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

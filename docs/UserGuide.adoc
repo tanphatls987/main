@@ -34,8 +34,8 @@ image::Ui.png[width="790"]
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* **`checkin`**`n/ Smith r/101` : checks in `Smith` to room `101` in the hotel.
-* **`checkout`**`r/101` : checks out guest from room `101` and removes guest from guest list.
+* **`checkin`**`checkin i/G1231231X rn/101 td/2020-03-14` : checks in guest `G1231231X` to room `101` in the hotel from current date until `2020-03-14`.
+* **`checkout`**`checkout i/G1231231X rn/101` : checks out guest `G1231231X` from room `101` and removes guest from guest list.
 * *`list`* : lists all guests
 * *`exit`* : exits the app
 
@@ -47,9 +47,9 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 ====
 *Command Format*
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `checkin n/NAME r/ROOM_NUMBER`, `NAME` is a parameter which can be used as `add n/Smith`.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `checkin i/ID rn/ROOM_NUMBER td/TO_DATE`, `ID` is a parameter which can be used as `checkin i/G1231231X`.
 * Items in square brackets are optional e.g `n/NAME [t/TIER]` can be used as `n/Smith t/Gold` or as `n/Smith`.
-* Parameters can be in any order e.g. if the command specifies `n/NAME r/ROOM_NUMBER`, `r/ROOM_NUMBER n/NAME` is also acceptable.
+* Parameters can be in any order e.g. if the command specifies `n/NAME rn/ROOM_NUMBER`, `rn/ROOM_NUMBER n/NAME` is also acceptable.
 ====
 
 === Viewing help : `help`
@@ -63,16 +63,16 @@ Format: `checkin i/ID rn/ROOM_NUMBER td/TO_DATE`
 
 Examples:
 
-* `checkin n/G1231231X r/101 td/2020-03-14`
+* `checkin i/G1231231X rn/101 td/2020-03-14`
 
 === Checking out a guest: `checkout`
 
-Checks out a guest to the hotel +
-Format: `checkout n/NAME r/ROOM_NUMBER`
+Checks out a guest from the hotel +
+Format: `checkout i/ID rn/ROOM_NUMBER`
 
 Examples:
 
-* `checkout n/Smith r/101`
+* `checkout i/G1231231X rn/101`
 
 === Shows a list of all the guests in the hotel. +
 Format: `list`
@@ -80,18 +80,16 @@ Format: `list`
 === Fetching the bill of a guest : `bill`
 
 Retrieves the bill of a guest. +
-Format: `bill n/NAME [r/ROOM_NUMBER]...`
+Format: `bill i/ID [r/ROOM_NUMBER]`
 
 ****
 * Fetches the entire bill tied to a guest's name.
-* Name must be entered as an input
 ****
 
 Examples:
 
-* `bill  n/Smith` +
-Shows the bill for Smith's stay up till present moment.
-* `bill n/Smith r/102` +
+* `bill  i/G1231231X` +
+Shows the bill for guest with ID G1231231X's stay up till present moment.
 
 === Locating persons by name or id: `findguest`
 Finds persons whose names or id match.
@@ -125,11 +123,15 @@ Examples:
 === Reservations : `reserve`
 
 Makes a reservation for a guest in the hotel +
-Format: `reserve n/NAME r/ROOM_NUMBER df/FROM_DATE dt/TO_DATE`
+Format: `reserve i/ID rn/ROOM_NUMBER df/FROM_DATE dt/TO_DATE`
 
 ****
-* Makes a reservation for `NAME` from `FROM_DATE` to `TO_DATE` at `ROOM_NUMBER`.
+* Makes a reservation for `ID` from `FROM_DATE` to `TO_DATE` at `ROOM_NUMBER`.
 ****
+
+Examples:
+
+* `reserve i/G1231231X rn/102 df/ 2020-12-12 dt/ 2020-12-30`
 
 === Reservations : `getroom`
 
@@ -140,7 +142,6 @@ Format: `getroom n/NAME`
 * Shows room number of reservations made by `NAME`.
 ****
 
-* `reserve r/ 102 df/ 2020-12-12 dt/ 2020-12-30` +
 * `getroom n/ Smith` +
 
 Examples:
