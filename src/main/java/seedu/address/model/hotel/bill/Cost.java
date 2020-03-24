@@ -3,6 +3,10 @@ package seedu.address.model.hotel.bill;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Cost of a chargeable object.
+ * Guarantees: immutable; is valid as declared in {@link #isValidCost(String)}
+ */
 public class Cost {
     public static final String MESSAGE_CONSTRAINTS =
             "Cost should only contain numbers, and it should have a maximum of 2 decimal places";

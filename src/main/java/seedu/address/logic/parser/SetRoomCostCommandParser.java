@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.FetchBillCommand;
 import seedu.address.logic.commands.SetRoomCostCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.hotel.bill.Cost;
