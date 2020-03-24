@@ -81,7 +81,7 @@ public class Hotel implements ReadOnlyHotel {
     }
 
     /**
-     * populates room list
+     * populates room list.
      */
     public void fillRoomList() {
         for (int i = 0; i < 10; i++) {
