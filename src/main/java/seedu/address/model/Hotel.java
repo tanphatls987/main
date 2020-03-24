@@ -3,11 +3,13 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import seedu.address.model.hotel.Room;
+import seedu.address.model.hotel.Tier;
 
 /**
  * Storing hotel's details: rooms, booking
@@ -59,12 +61,32 @@ public class Hotel implements ReadOnlyHotel {
     }
 
     /**
+     * Get the room object using the room number.
+     * @param roomNum String of the room number.
+     * @return Optional of the room object if exist. Optional of empty otherwise.
+     */
+    public Optional<Room> findRoom(String roomNum) {
+        requireNonNull(roomNum);
+
+        return roomList.stream().filter(u -> u.getRoomNum().equals(roomNum)).findFirst();
+    }
+
+    /**
      * add a new room
      * @param roomNum
      */
     public void addRoom(String roomNum) {
         Room newRoom = new Room(roomNum);
         roomList.add(newRoom);
+    }
+
+    /**
+     * populates room list.
+     */
+    public void fillRoomList() {
+        for (int i = 0; i < 10; i++) {
+            roomList.add(new Room(Integer.toString(i), new Tier()));
+        }
     }
 
     @Override

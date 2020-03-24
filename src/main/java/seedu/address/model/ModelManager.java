@@ -14,7 +14,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.hotel.Room;
-import seedu.address.model.hotel.Tier;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.ids.PersonId;
@@ -29,7 +28,6 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final ArrayList<Room> roomList;
     private final ArrayList<Booking> bookingList;
     private final Hotel hotel;
 
@@ -47,7 +45,6 @@ public class ModelManager implements Model {
         this.hotel = new Hotel(hotel);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.bookingList = new ArrayList<Booking>();
-        roomList = this.hotel.getRoomList();
     }
 
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
@@ -183,7 +180,7 @@ public class ModelManager implements Model {
 
     @Override
     public ArrayList<Room> getRoomList() {
-        return roomList;
+        return hotel.getRoomList();
     }
 
     @Override
@@ -195,14 +192,13 @@ public class ModelManager implements Model {
     @Override
     public Optional<Room> findRoom(String roomNum) {
         requireNonNull(roomNum);
-        return roomList.stream().filter(u -> u.getRoomNum().equals(roomNum)).findFirst();
+
+        return hotel.findRoom(roomNum);
     }
 
     @Override
     public void fillRoomList() {
-        for (int i = 0; i < 10; i++) {
-            roomList.add(new Room(Integer.toString(i), new Tier()));
-        }
+        hotel.fillRoomList();
     }
 
     @Override
