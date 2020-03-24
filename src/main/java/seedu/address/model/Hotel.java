@@ -172,6 +172,9 @@ public class Hotel implements ReadOnlyHotel {
         // TODO: refine later
     }
 
+    /**
+     * Populates room list
+     */
     public void fillRoomList() {
         for (int i = 0; i < 10; i++) {
             roomList.add(new Room(Integer.toString(i), new Tier()));
