@@ -144,8 +144,6 @@ public interface Model {
      */
     boolean hasRoom(String roomName);
 
-<<<<<<< HEAD
-=======
     /**
      * Check if a tier name exists
      */
@@ -154,10 +152,5 @@ public interface Model {
     /**
      * Add a tier with a tiername
      */
-<<<<<<< HEAD
-    void addTier(Tier tier);
->>>>>>> addCommand-and-Parser
-=======
     void addTier(Tier tier, ArrayList<String> roomNums);
->>>>>>> addIntegrationTest
 }
