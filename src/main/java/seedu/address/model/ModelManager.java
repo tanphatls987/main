@@ -219,7 +219,7 @@ public class ModelManager implements Model {
 
         bookingList.add(booking);
     }
-
+  
     // to update accordingly when implementing billing system.
     @Override
     public void fetchBillList(Person person) {
@@ -242,5 +242,6 @@ public class ModelManager implements Model {
         requireNonNull(roomNum);
 
         return this.hotel.hasRoom(roomNum);
+
     }
 }

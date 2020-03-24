@@ -175,6 +175,12 @@ public class Hotel implements ReadOnlyHotel {
     public int hashCode() {
         return roomList.hashCode();
     }
+  
+    public void fillRoomList() {
+        for (int i = 0; i < 10; i++) {
+            roomList.add(new Room(Integer.toString(i), new Tier()));
+        }
+    }
 
     @Override
     public boolean equals(Object other) {

@@ -100,16 +100,17 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+
     /**Returns list of rooms
      * @return*/
     ObservableList<Room> getRoomList();
-
-    /**returns list of bookings*/
+  
+    /** Returns list of bookings */
     ArrayList<Booking> getBookingList();
 
     Optional<Room> findRoom(String roomNum);
 
-    /** populates room list */
+    /** Populates room list */
     void fillRoomList();
 
 
@@ -146,4 +147,5 @@ public interface Model {
      * @return a result
      */
     boolean hasRoom(String roomName);
+
 }
