@@ -220,6 +220,16 @@ public class ModelManager implements Model {
         bookingList.add(booking);
     }
 
+    // to update accordingly when implementing billing system.
+    @Override
+    public void fetchBillList(Person person) {
+    }
+
+    // to update accordingly when implementing billing system.
+    @Override
+    public void fetchBill(Person person, String roomNum) {
+    }
+
     @Override
     public void addRoom(String roomNum) {
         requireNonNull(roomNum);

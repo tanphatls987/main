@@ -126,6 +126,13 @@ public interface Model {
      * @param booking
      */
     void bookRoom(Booking booking);
+
+    /** Returns list of bills for specified person*/
+    void fetchBillList(Person person);
+
+    /** Returns bill for specified room of person */
+    void fetchBill(Person person, String roomNum);
+
     /**
      * Add a room with roomName
      * @param roomName
