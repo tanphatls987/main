@@ -1,4 +1,4 @@
-package seedu.address.model.hotel;
+package seedu.address.model.hotel.bill;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package seedu.address.model.hotel;
+package seedu.address.model.hotel.bill;
 
 /**
  * Represents a Chargeable item/service that guests have requested for.
