@@ -1,27 +1,75 @@
 {
+  "persons" : [ {
+    "name" : "Alex Yeoh",
+    "personId" : "A000000",
+    "phone" : "87438807",
+    "email" : "alexyeoh@example.com",
+    "remark" : "",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Bernice Yu",
+    "personId" : "B000000",
+    "phone" : "99272758",
+    "email" : "berniceyu@example.com",
+    "remark" : "",
+    "tagged" : [ "colleagues", "friends" ]
+  }, {
+    "name" : "Charlotte Oliveiro",
+    "personId" : "C000000",
+    "phone" : "93210283",
+    "email" : "charlotte@example.com",
+    "remark" : "",
+    "tagged" : [ "neighbours" ]
+  }, {
+    "name" : "David Li",
+    "personId" : "D000000",
+    "phone" : "91031282",
+    "email" : "lidavid@example.com",
+    "remark" : "",
+    "tagged" : [ "family" ]
+  }, {
+    "name" : "Irfan Ibrahim",
+    "personId" : "I000000",
+    "phone" : "92492021",
+    "email" : "irfan@example.com",
+    "remark" : "",
+    "tagged" : [ "classmates" ]
+  }, {
+    "name" : "Roy Balakrishnan",
+    "personId" : "R000000",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "remark" : "",
+    "tagged" : [ "colleagues" ]
+  }, {
+    "name" : "john",
+    "personId" : "K000000",
+    "phone" : "12345678",
+    "email" : "abc@gmail.com",
+    "remark" : "",
+    "tagged" : [ ]
+  } ],
+
   "rooms" : [ {
-    "tier" : "seedu.address.model.hotel.room.Tier@69c3cc2b",
-    "number" : "001"
+    "Tier" : "bronze",
+    "roomNum" : "001"
   }, {
-    "tier" : "seedu.address.model.hotel.room.Tier@4fa507",
-    "number" : "002"
+    "Tier" : "bronze",
+    "roomNum" : "002"
   }, {
-    "tier" : "seedu.address.model.hotel.room.Tier@631da9fa",
-    "number" : "003"
+    "Tier" : "bronze",
+    "roomNum" : "003"
   }, {
-    "tier" : "seedu.address.model.hotel.room.Tier@203963fd",
-    "number" : "004"
+    "Tier" : "bronze",
+    "roomNum" : "004"
   }, {
-    "tier" : "seedu.address.model.hotel.room.Tier@57ec5145",
-    "number" : "005"
+    "Tier" : "silver",
+    "roomNum" : "005"
   }, {
-    "tier" : "seedu.address.model.hotel.room.Tier@2a76a122",
-    "number" : "006"
+    "Tier" : "silver",
+    "roomNum" : "006"
   }, {
-    "tier" : "seedu.address.model.hotel.room.Tier@24aa9fef",
-    "number" : "007"
-  }, {
-    "tier" : "seedu.address.model.hotel.room.Tier@4f67360c",
-    "number" : "011"
+    "Tier" : "gold",
+    "roomNum" : "007"
   } ]
 }
