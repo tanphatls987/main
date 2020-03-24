@@ -76,7 +76,7 @@ public class CheckInCommand extends Command {
             throw new CommandException(String.format(MESSAGE_DATE_PASSED, toDate));
         }
         if (!(model.isRoomFree(room.get(), new TimeFrame(LocalDateTime.now(), toDate)))) {
-            throw new CommandException(MESSAGE_ROOM_OCCUPIED);
+            throw new CommandException(String.format(MESSAGE_ROOM_OCCUPIED, roomId));
         }
 
         Stay stay = new Stay(person.get(), room.get(), LocalDateTime.now(), toDate, "");

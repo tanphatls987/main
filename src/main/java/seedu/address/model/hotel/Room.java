@@ -37,6 +37,14 @@ public class Room {
         return this.roomNum;
     }
 
+    /**
+     * RoomId getter.
+     * @return roomId
+     */
+    public RoomId getRoomId() {
+        return this.roomId;
+    }
+
 
     /**
      * Check if this room has some certain name.
