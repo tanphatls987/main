@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -64,14 +65,26 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyHotel> readHotel() throws DataConversionException, IOException {
+        return readHotel(addressBookStorage.getAddressBookFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public Optional <ReadOnlyHotel> readHotel(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return addressBookStorage.readHotel(filePath);
+    }
+
+    @Override
+    public void saveAddressBook(ReadOnlyAddressBook addressBook, ReadOnlyHotel hotel) throws IOException {
+        saveAddressBook(addressBook, hotel, addressBookStorage.getAddressBookFilePath());
+    }
+
+    @Override
+    public void saveAddressBook(ReadOnlyAddressBook addressBook,
+                                ReadOnlyHotel hotel, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        addressBookStorage.saveAddressBook(addressBook, hotel, filePath);
     }
 
 }

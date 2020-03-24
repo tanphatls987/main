@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -27,6 +28,12 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveAddressBook(ReadOnlyAddressBook addressBook, ReadOnlyHotel hotel) throws IOException;
+
+    @Override
+    Optional<ReadOnlyHotel> readHotel() throws DataConversionException, IOException;
+
+    @Override
+    Optional <ReadOnlyHotel> readHotel(Path filePath) throws DataConversionException, IOException;
 
 }

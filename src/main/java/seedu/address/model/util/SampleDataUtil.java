@@ -5,12 +5,16 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.Hotel;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.hotel.person.Email;
 import seedu.address.model.hotel.person.Name;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.person.Phone;
 import seedu.address.model.hotel.person.Remark;
+import seedu.address.model.hotel.room.Room;
+import seedu.address.model.hotel.room.Tier;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -41,12 +45,31 @@ public class SampleDataUtil {
         };
     }
 
+    public static Room[] getSampleRooms() {
+        return new Room[] {
+            new Room("001", new Tier("gold")),
+            new Room("002", new Tier("silver")),
+            new Room("003", new Tier("silver")),
+            new Room("004", new Tier("bronze")),
+            new Room("005", new Tier("bronze")),
+            new Room("006", new Tier("bronze"))
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+    public static ReadOnlyHotel getSampleHotel() {
+        Hotel sampleH = new Hotel();
+        for (Room sampleRoom: getSampleRooms()) {
+            sampleH.addRoom(sampleRoom);
+        }
+        return sampleH;
     }
 
     /**

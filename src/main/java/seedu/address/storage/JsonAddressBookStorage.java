@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyHotel;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
@@ -29,6 +30,34 @@ public class JsonAddressBookStorage implements AddressBookStorage {
 
     public Path getAddressBookFilePath() {
         return filePath;
+    }
+
+    @Override
+    public Optional<ReadOnlyHotel> readHotel() throws DataConversionException, IOException {
+        return readHotel(filePath);
+    }
+
+    /**
+     * Similar to {@link #readAddressBook()}.
+     *
+     * @param filePath location of the data. Cannot be null.
+     * @throws DataConversionException if the file is not in the correct format.
+     */
+    public Optional<ReadOnlyHotel> readHotel(Path filePath) throws DataConversionException {
+        requireNonNull(filePath);
+
+        Optional<JsonSerializableHotel> jsonHotel = JsonUtil.readJsonFile(
+                filePath, JsonSerializableHotel.class);
+        if (!jsonHotel.isPresent()) {
+            return Optional.empty();
+        }
+
+        try {
+            return Optional.of(jsonHotel.get().toModelType());
+        } catch (IllegalValueException ive) {
+            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            throw new DataConversionException(ive);
+        }
     }
 
     @Override
@@ -60,21 +89,23 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveAddressBook(ReadOnlyAddressBook addressBook, ReadOnlyHotel hotel) throws IOException {
+        saveAddressBook(addressBook, hotel, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook)}.
+     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook, ReadOnlyHotel)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveAddressBook(ReadOnlyAddressBook addressBook,
+                                ReadOnlyHotel hotel, Path filePath) throws IOException {
         requireNonNull(addressBook);
+        requireNonNull(hotel);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), new JsonSerializableHotel(hotel), filePath);
     }
 
 }

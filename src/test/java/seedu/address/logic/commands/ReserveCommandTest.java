@@ -12,9 +12,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.hotel.Reserve;
-import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
+import seedu.address.model.hotel.room.Room;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.RoomBuilder;
 

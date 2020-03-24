@@ -7,9 +7,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
+import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.timeframe.TimeFrame;
 
@@ -111,6 +111,7 @@ public interface Model {
 
     /** populates room list */
     void fillRoomList();
+
 
     /**
      * Check if a room is available during a period.

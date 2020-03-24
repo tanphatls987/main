@@ -13,10 +13,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.hotel.Room;
-import seedu.address.model.hotel.Tier;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
+import seedu.address.model.hotel.room.Room;
+import seedu.address.model.hotel.room.Tier;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.timeframe.TimeFrame;
 
@@ -29,7 +29,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final ArrayList<Room> roomList;
+    private final FilteredList<Room> roomList;
     private final ArrayList<Booking> bookingList;
     private final Hotel hotel;
 
@@ -47,7 +47,7 @@ public class ModelManager implements Model {
         this.hotel = new Hotel(hotel);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.bookingList = new ArrayList<Booking>();
-        roomList = this.hotel.getRoomList();
+        roomList = new FilteredList<>(this.hotel.getRoomList());
     }
 
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
@@ -184,7 +184,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Room> getRoomList() {
-        return hotel.getImmutableRoomList();
+        return hotel.getRoomList();
     }
 
     @Override
@@ -196,7 +196,8 @@ public class ModelManager implements Model {
     @Override
     public Optional<Room> findRoom(String roomNum) {
         requireNonNull(roomNum);
-        return roomList.stream().filter(u -> u.getRoomNum().equals(roomNum)).findFirst();
+        return hotel.getRoom(roomNum);
+        //roomList.stream().filter(u -> u.getRoomNum().equals(roomNum)).findFirst();
     }
 
     @Override

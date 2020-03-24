@@ -11,9 +11,9 @@ import java.util.Optional;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
+import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.timeframe.TimeFrame;
 import seedu.address.model.timeframe.exception.InvalidTimeFrameException;
@@ -57,7 +57,7 @@ public class ReserveCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        model.fillRoomList();
+        //model.fillRoomList();
         Optional<Person> payee = model.findPersonWithId(personId);
         if (payee.isEmpty()) {
             throw new CommandException("No guest with this id");

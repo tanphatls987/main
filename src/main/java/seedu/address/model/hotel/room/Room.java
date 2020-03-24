@@ -1,4 +1,4 @@
-package seedu.address.model.hotel;
+package seedu.address.model.hotel.room;
 
 import seedu.address.model.ids.RoomId;
 
@@ -57,5 +57,22 @@ public class Room {
 
     public Tier getTier() {
         return this.roomTier;
+    }
+
+    /***
+     * Checks if room is same as @code room
+     * @param room
+     */
+    public boolean isSameRoom(Room room) {
+        if (room == this) {
+            return true;
+        }
+
+        return room != null
+                && room.getRoomNum().equals(getRoomNum());
+    }
+
+    public RoomId getRoomId() {
+        return this.roomId;
     }
 }
