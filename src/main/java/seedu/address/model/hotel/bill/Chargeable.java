@@ -7,5 +7,5 @@ public interface Chargeable {
     /**
      * Returns the cost of the chargeable item/service
      */
-    public double getCost();
+    public Cost getCost();
 }

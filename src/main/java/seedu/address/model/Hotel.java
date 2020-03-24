@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 
 import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.Tier;
+import seedu.address.model.hotel.bill.RoomCost;
 
 /**
  * Storing hotel's details: rooms, booking
@@ -85,7 +86,7 @@ public class Hotel implements ReadOnlyHotel {
      */
     public void fillRoomList() {
         for (int i = 0; i < 10; i++) {
-            roomList.add(new Room(Integer.toString(i), new Tier()));
+            roomList.add(new Room(Integer.toString(i), new Tier(), new RoomCost()));
         }
     }
 

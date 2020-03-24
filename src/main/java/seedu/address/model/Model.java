@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.hotel.Room;
+import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.ids.PersonId;
@@ -145,4 +146,8 @@ public interface Model {
      */
     boolean hasRoom(String roomName);
 
+    /**
+     * Sets the the room cost for the given room.
+     */
+    void setRoomCost(Room room, RoomCost roomCost);
 }

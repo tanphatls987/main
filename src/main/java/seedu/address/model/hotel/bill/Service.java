@@ -41,7 +41,7 @@ public class Service implements Chargeable {
     }
 
     @Override
-    public double getCost() {
+    public Cost getCost() {
         return this.cost;
     }
 }

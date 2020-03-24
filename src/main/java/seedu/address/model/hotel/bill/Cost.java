@@ -24,8 +24,12 @@ public class Cost {
     /**
      * Returns true if a given string is a valid cost.
      */
-    @Override
     public static boolean isValidCost(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%.2f", cost);
     }
 }

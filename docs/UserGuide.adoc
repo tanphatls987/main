@@ -80,7 +80,7 @@ Format: `list`
 === Fetching the bill of a guest : `bill`
 
 Retrieves the bill of a guest. +
-Format: `bill i/ID [r/ROOM_NUMBER]`
+Format: `bill i/ID [rn/ROOM_NUMBER]`
 
 ****
 * Fetches the entire bill tied to a guest's name.
@@ -164,6 +164,20 @@ Add John Doe with his information into the database.
 
 
 // end::addguest[]
+
+=== Setting the cost for a room : `setrcost`
+
+Sets the cost for a room (per night). +
+Format: `setrcost rn/ROOM_NUMBER c/COST`
+
+****
+* Sets the cost for `ROOM_NUMBER` as `COST` per night.
+****
+
+Examples:
+
+* `setrcost  rn/101 c/50`
+
 === Clearing all entries : `clear`
 
 Clears all entries from the address book. +
