@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -56,6 +57,17 @@ public class Hotel implements ReadOnlyHotel {
             }
         }
         return false;
+    }
+
+    /**
+     * Get the room object using the room number.
+     * @param roomNum String of the room number.
+     * @return Optional of the room object if exist. Optional of empty otherwise.
+     */
+    public Optional<Room> findRoom(String roomNum) {
+        requireNonNull(roomNum);
+
+        return roomList.stream().filter(u -> u.getRoomNum().equals(roomNum)).findFirst();
     }
 
     /**
