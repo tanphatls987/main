@@ -38,4 +38,9 @@ public class Tier {
         Tier othTier = (Tier) oth;
         return othTier.name.equals(name);
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

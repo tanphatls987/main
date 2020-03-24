@@ -43,25 +43,25 @@
     "tagged" : [ "colleagues" ]
   } ],
   "rooms" : [ {
-    "Tier" : "Bronze",
-    "roomNum" : "001",
+    "Tier" : "bronze",
+    "roomNum" : "001"
   }, {
-    "Tier" : "Bronze",
+    "Tier" : "bronze",
     "roomNum" : "002"
   }, {
-    "Tier" : "Bronze",
+    "Tier" : "bronze",
     "roomNum" : "003"
   }, {
-    "Tier" : "Bronze",
+    "Tier" : "bronze",
     "roomNum" : "004"
   }, {
-    "Tier" : "Silver",
+    "Tier" : "silver",
     "roomNum" : "005"
   }, {
-    "Tier" : "Silver",
+    "Tier" : "silver",
     "roomNum" : "006"
   }, {
-    "Tier" : "Gold",
+    "Tier" : "gold",
     "roomNum" : "007"
   } ]
 }

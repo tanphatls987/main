@@ -23,7 +23,7 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="RoomNumber" text="\$first" styleClass="cell_big_label" />
+                <Label fx:id="roomNum" text="\$first" styleClass="cell_big_label" />
             </HBox>
             <Label fx:id="Tier" styleClass="cell_small_label" text="\$Tier" />
         </VBox>

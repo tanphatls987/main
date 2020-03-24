@@ -75,4 +75,13 @@ public class Room {
     public RoomId getRoomId() {
         return this.roomId;
     }
+
+    @Override
+    public String toString() {
+        return "Room{"
+                + "roomTier=" + roomTier.toString()
+                + ", roomNum='" + roomNum + '\''
+                + ", roomId=" + roomId
+                + '}';
+    }
 }

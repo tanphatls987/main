@@ -184,7 +184,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Room> getRoomList() {
-        return hotel.getRoomList();
+        return roomList;
     }
 
     @Override

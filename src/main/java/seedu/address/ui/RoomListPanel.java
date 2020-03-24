@@ -18,12 +18,12 @@ public class RoomListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(RoomListPanel.class);
 
     @FXML
-    private ListView<Room> RoomListView;
+    private ListView<Room> roomListView;
 
     public RoomListPanel(ObservableList<Room> roomList) {
         super(FXML);
-        RoomListView.setItems(roomList);
-        RoomListView.setCellFactory(listView -> new RoomListPanel.RoomListViewCell());
+        roomListView.setItems(roomList);
+        roomListView.setCellFactory(listView -> new RoomListPanel.RoomListViewCell());
     }
 
     /**

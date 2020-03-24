@@ -41,15 +41,7 @@
     "email" : "royb@example.com",
     "remark" : "",
     "tagged" : [ "colleagues" ]
-  }, {
-    "name" : "john",
-    "personId" : "K000000",
-    "phone" : "12345678",
-    "email" : "abc@gmail.com",
-    "remark" : "",
-    "tagged" : [ ]
   } ],
-
   "rooms" : [ {
     "Tier" : "bronze",
     "roomNum" : "001"

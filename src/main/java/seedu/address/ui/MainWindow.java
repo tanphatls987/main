@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private RoomListPanel roomListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -43,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane roomListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,6 +114,9 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        roomListPanel = new RoomListPanel(logic.getRoomList());
+        roomListPanelPlaceholder.getChildren().add(roomListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -163,6 +170,9 @@ public class MainWindow extends UiPart<Stage> {
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
+
+    public RoomListPanel getRoomListPanel() {
+        return roomListPanel; }
 
     /**
      * Executes the command and returns the result.

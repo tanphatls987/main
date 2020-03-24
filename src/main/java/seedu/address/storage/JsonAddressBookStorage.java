@@ -49,6 +49,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         Optional<JsonSerializableHotel> jsonHotel = JsonUtil.readJsonFile(
                 filePath, JsonSerializableHotel.class);
         if (!jsonHotel.isPresent()) {
+            System.out.println("hotel empty");
             return Optional.empty();
         }
 
