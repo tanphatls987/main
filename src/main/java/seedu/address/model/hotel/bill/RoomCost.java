@@ -1,35 +1,35 @@
 package seedu.address.model.hotel.bill;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 /**
  * Represents the cost of the room for a night.
  */
 public class RoomCost implements Chargeable {
-
-    public static final String MESSAGE_CONSTRAINTS =
-            "Cost should only contain numbers, and it should have a maximum of 2 decimal places";
-    public static final String VALIDATION_REGEX = "[\\d\.\\\d{2}]";
-
-    private double cost;
+    private Cost cost;
+    private boolean isSet;
 
     /**
-     * Constructs a {@code RoomCost}.
+     * Construsts a {@code RoomCost} without a set {@code cost}.
      */
-    public RoomCost(String cost) {
-        requireNonNull(cost);
-        checkArgument(isValidCost(cost), MESSAGE_CONSTRAINTS);
-        this.cost = Double.valueOf(cost);
+    public RoomCost() {
+        this.cost = null;
+        this.isSet = false;
     }
 
     /**
-     * Returns true if a given string is a valid price.
+     * Constructs a {@code RoomCost} with a set {@code cost}.
      */
-    @Override
-    public static boolean isValidCost(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public RoomCost(Cost cost) {
+        this.cost = cost;
+        this.isSet = false;
     }
+
+    /**
+     * Return true if cost is set.
+     */
+    public boolean isSet() {
+        return isSet;
+    }
+
 
     @Override
     public double getCost() {
