@@ -1,20 +1,22 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+//import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+//import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FetchBillCommand;
+
+
 import seedu.address.model.hotel.person.Person;
+
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.PersonId;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.RoomBuilder;
-
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
-//import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 public class FetchBillCommandParserTest {
     private static final Person Guest = new PersonBuilder().build();

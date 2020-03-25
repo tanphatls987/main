@@ -29,7 +29,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Room> roomList;
+    private final ObservableList<Room> roomList;
     private final ArrayList<Booking> bookingList;
     private final Hotel hotel;
 
@@ -47,7 +47,7 @@ public class ModelManager implements Model {
         this.hotel = new Hotel(hotel);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.bookingList = new ArrayList<Booking>();
-        roomList = new FilteredList<>(this.hotel.getRoomList());
+        roomList = this.hotel.getRoomList();
     }
 
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
@@ -105,7 +105,7 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
-    @Override
+
     public ReadOnlyHotel getHotel() {
         return hotel;
     }
@@ -178,8 +178,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
-                && roomList.equals(other.roomList);
+                && filteredPersons.equals(other.filteredPersons);
     }
 
     @Override
@@ -196,8 +195,7 @@ public class ModelManager implements Model {
     @Override
     public Optional<Room> findRoom(String roomNum) {
         requireNonNull(roomNum);
-        return hotel.getRoom(roomNum);
-        //roomList.stream().filter(u -> u.getRoomNum().equals(roomNum)).findFirst();
+        return roomList.stream().filter(u -> u.getRoomNum().equals(roomNum)).findFirst();
     }
 
     @Override

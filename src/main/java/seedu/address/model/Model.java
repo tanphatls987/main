@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
@@ -58,9 +59,6 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns the Hotel*/
-    ReadOnlyHotel getHotel();
-
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -100,7 +98,6 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-
     /**Returns list of rooms
      * @return*/
     ObservableList<Room> getRoomList();
@@ -112,7 +109,6 @@ public interface Model {
 
     /** Populates room list */
     void fillRoomList();
-
 
     /**
      * Check if a room is available during a period.
