@@ -105,7 +105,7 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
-
+    @Override
     public ReadOnlyHotel getHotel() {
         return hotel;
     }
