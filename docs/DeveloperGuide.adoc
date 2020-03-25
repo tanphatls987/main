@@ -154,6 +154,14 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 // tag::undoredo[]
+
+=== Search operation
+Firstly, command from user will be parsed into a list of pattern contained in the search command.
+Then the command when execute will filter guest list base on stored pattern.
+Below is the diagram to show the execution of the command.
+
+image::SearchWorkflow.png[]
+
 === [Proposed] Undo/Redo feature
 ==== Proposed Implementation
 
