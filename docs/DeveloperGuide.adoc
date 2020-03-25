@@ -16,6 +16,22 @@ endif::[]
 
 By: `AY1920S2-CS2103T-W13-2`      Since: `Feb 2020`      Licence: `MIT`
 
+== Introduction
+
+=== Product Description
+
+Morpheus is a desktop application that aims to facilitate the administrative work of hotel services as a hotel room management system.
+The system will also provide statistics and reports, constructed from the analysis of the details in the user-provided database.
+Most of the user interaction occurs via a CLI (Command Line Interface).
+
+.Morpheus Ui
+image::Ui.png[]
+
+=== Purpose
+
+This document describes the architecture and software design of Morpheus.
+The intended audience is the developers, designers and software testers who wish to understand, maintain & upgrade the desktop application.
+
 == Setting up
 
 Refer to the guide <<SettingUp#, here>>.
@@ -153,15 +169,62 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-// tag::undoredo[]
+=== Room Management feature
 
-=== Search operation
-Firstly, command from user will be parsed into a list of pattern contained in the search command.
-Then the command when execute will filter guest list base on stored pattern.
+=== Search feature
+===== Implementation
+The following steps show how the search feature works:
+
+1.  The command from user will be parsed into a list of pattern contained in the search command.
+2.  Then the command when execute will filter guest list base on stored pattern.
+
 Below is the diagram to show the execution of the command.
 
 image::SearchWorkflow.png[]
 
+===== Design Considerations
+
+=== Billing feature
+
+The billing feature is designed to aid hotel receptionists in their bookkeeping and consists of the following operations:
+
+* `SetRoomCostCommand` -- Sets the cost of a room.
+* `AddServiceCommand` -- Creates a chargeable service.
+* `ChargeServiceCommand` -- Charges a guest for a requested service.
+* `RemoveChargeServiceCommand` -- Removes a charged service from the bill of a guest.
+* `ApplyDiscountCommand` -- Applies a discount to an item on the bill.
+* `FetchBillCommand` -- Fetches the bill of a guest, including the cost of the room.
+
+The following activity diagram summarizes the usage of the billing feature:
+
+image::BillingActivityDiagram.png[]
+
+==== SetRoomCost Command
+===== Implementation
+The following steps show how the SetRoomCost command is implemented:
+===== Design Considerations
+
+==== AddService Command
+===== Implementation
+===== Design Considerations
+
+==== ChargeService Command Implementation
+===== Implementation
+===== Design Considerations
+
+==== RemoveChargeService Command Implementation
+===== Implementation
+===== Design Considerations
+
+==== ApplyDiscount Command Implementation
+===== Implementation
+===== Design Considerations
+
+==== FetchBill Command Implementation
+===== Implementation
+===== Design Considerations
+
+// tag::undoredo[]
 === [Proposed] Undo/Redo feature
 ==== Proposed Implementation
 
