@@ -20,7 +20,7 @@ public class Tier {
      * Create a default tier
      */
     public Tier() {
-        name = "default";
+        name = "bronze";
     }
 
     public static boolean isValid(String tier) {
