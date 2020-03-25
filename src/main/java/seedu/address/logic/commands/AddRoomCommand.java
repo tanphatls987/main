@@ -20,9 +20,14 @@ public class AddRoomCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New room added: %1s";
     public static final String MESSAGE_DUPLICATE_ROOM = "This room was added before!";
+    public static final String MESSAGE_ROOM_NAME_NOT_ALLOWED = "This room name is not allowed";
 
     private final String toAdd;
 
+    /**
+     * Construct a room command with a room name
+     * @param roomName: name of the added room.
+     */
     public AddRoomCommand(String roomName) {
         requireNonNull(roomName);
         this.toAdd = roomName;
@@ -31,6 +36,11 @@ public class AddRoomCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        // Room name cannot contain space
+        if (this.toAdd.contains(" ")) {
+            throw new CommandException(MESSAGE_ROOM_NAME_NOT_ALLOWED);
+        }
 
         if (model.hasRoom(this.toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ROOM);

@@ -16,12 +16,14 @@ import seedu.address.model.hotel.Tier;
  */
 public class Hotel implements ReadOnlyHotel {
     private final ArrayList<Room> roomList;
+    private final ArrayList<Tier> tierList;
 
     /**
      * Create new empty hotel.
      */
     public Hotel() {
         roomList = new ArrayList<>();
+        tierList = new ArrayList<>();
     }
 
     /**
@@ -32,6 +34,7 @@ public class Hotel implements ReadOnlyHotel {
         requireNonNull(toBeCopied);
 
         this.roomList.addAll(toBeCopied.getImmutableRoomList());
+        this.tierList.addAll(toBeCopied.getImmutableTierList());
     }
 
     /**
@@ -42,14 +45,18 @@ public class Hotel implements ReadOnlyHotel {
         return this.roomList;
     }
 
+    @Override
     public ObservableList<Room> getImmutableRoomList() {
         return FXCollections.observableArrayList(roomList);
     }
 
+    @Override
+    public ObservableList<Tier> getImmutableTierList() {
+        return FXCollections.observableArrayList(tierList);
+    }
+
     /**
      * check room num exists.
-     * @param roomNum
-     * @return
      */
     public boolean hasRoom(String roomNum) {
         for (Room room: roomList) {
@@ -72,8 +79,32 @@ public class Hotel implements ReadOnlyHotel {
     }
 
     /**
+     * find a room
+     */
+    private Room findSureRoom(String roomNum) {
+        for (Room room: roomList) {
+            if (room.hasName(roomNum)) {
+                return room;
+            }
+        }
+        return null;
+    }
+
+
+    /**
+     * check a if a tier exists
+     */
+    public boolean hasTier(Tier otherTier) {
+        for (Tier tier: tierList) {
+            if (tier.equals(otherTier)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * add a new room
-     * @param roomNum
      */
     public void addRoom(String roomNum) {
         Room newRoom = new Room(roomNum);
@@ -86,6 +117,20 @@ public class Hotel implements ReadOnlyHotel {
     public void fillRoomList() {
         for (int i = 0; i < 10; i++) {
             roomList.add(new Room(Integer.toString(i), new Tier()));
+        }
+    }
+    /**
+     * adds a new tier.
+     */
+    public void addTier(Tier tier, ArrayList<String> roomNums) {
+        tierList.add(tier);
+
+        for (String roomNum: roomNums) {
+            if (hasRoom(roomNum)) {
+                Room current = findSureRoom(roomNum);
+                assert current != null;
+                current.setTier(tier);
+            }
         }
     }
 

@@ -24,6 +24,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.hotel.Room;
+import seedu.address.model.hotel.Tier;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.ids.PersonId;
@@ -212,7 +213,16 @@ public class AddGuestCommandTest {
         }
 
         @Override
+        public void addTier(Tier tier, ArrayList<String> roomNums) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void fetchBill(Person person, String roomNum) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public boolean hasTier(Tier tier) {
             throw new AssertionError("This method should not be called.");
         }
     }
