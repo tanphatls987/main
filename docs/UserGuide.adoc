@@ -170,7 +170,7 @@ Add a tier and set this tier to certain rooms +
 Format: `addtier ti/TIER_NAME rn/ROOM_NUMBERS`
 
 Examples
-* `addtier ti/Gold rn/12E 12F 12T`. 
+* `addtier ti/Gold rn/12E 12F 12T`.
 
 === Clearing all entries : `clear`
 
