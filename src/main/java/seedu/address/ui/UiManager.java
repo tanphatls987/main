@@ -24,6 +24,7 @@ public class UiManager implements Ui {
 
     private Logic logic;
     private MainWindow mainWindow;
+    private boolean isViewRoom = false;
 
     public UiManager(Logic logic) {
         super();
@@ -40,8 +41,11 @@ public class UiManager implements Ui {
         try {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
-            mainWindow.fillInnerParts();
-
+            if (isViewRoom) {
+                mainWindow.fillInnerPartsRoom();
+            } else {
+                mainWindow.fillInnerPartsGuest();
+            }
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
