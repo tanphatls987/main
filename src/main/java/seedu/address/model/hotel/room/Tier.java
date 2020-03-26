@@ -7,6 +7,7 @@ package seedu.address.model.hotel.room;
 public class Tier {
     public static final String MESSAGE_CONSTRAINTS = "Tier must be gold, silver or bronze";
     private String name;
+    private boolean isDefault;
 
     /**
      * Create a tier with name
@@ -14,6 +15,7 @@ public class Tier {
      */
     public Tier(String name) {
         this.name = name;
+        this.isDefault = false;
     }
 
     /**
@@ -25,6 +27,13 @@ public class Tier {
 
     public static boolean isValid(String tier) {
         return tier.equals("gold") || tier.equals("silver") || tier.equals("bronze");
+    }
+
+    /**
+     * Check if this tier is default tier.
+     */
+    public boolean isDefaultTier() {
+        return this.isDefault;
     }
 
     @Override

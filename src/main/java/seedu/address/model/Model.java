@@ -11,6 +11,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
+import seedu.address.model.hotel.room.Tier;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.timeframe.TimeFrame;
 
@@ -142,9 +143,16 @@ public interface Model {
 
     /**
      * Check if a room exist
-     * @param roomName
-     * @return a result
      */
     boolean hasRoom(String roomName);
 
+    /**
+     * Check if a tier name exists
+     */
+    boolean hasTier(Tier tier);
+
+    /**
+     * Add a tier with a tiername
+     */
+    void addTier(Tier tier, ArrayList<String> roomNums);
 }

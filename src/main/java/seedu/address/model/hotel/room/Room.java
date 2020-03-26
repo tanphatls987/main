@@ -12,6 +12,7 @@ public class Room {
 
     /**
      * Create a room with name and tier.
+     *
      * @param roomNum
      * @param roomTier
      */
@@ -23,6 +24,7 @@ public class Room {
 
     /**
      * Construct a room with just a name and a default tier
+     *
      * @param roomNum
      */
     public Room(String roomNum) {
@@ -31,6 +33,7 @@ public class Room {
 
     /**
      * RoomNum getter.
+     *
      * @return
      */
     public String getRoomNum() {
@@ -40,6 +43,7 @@ public class Room {
 
     /**
      * Check if this room has some certain name.
+     *
      * @param roomNum
      * @return comparison
      */
@@ -48,7 +52,13 @@ public class Room {
     }
 
     /**
-     *
+     * Check if this room has non default tier or not
+     */
+    public boolean hasNonDefaultTier() {
+        return !this.roomTier.isDefaultTier();
+    }
+
+    /**
      * @return this room's name
      */
     public String getName() {
@@ -83,5 +93,12 @@ public class Room {
                 + ", roomNum='" + roomNum + '\''
                 + ", roomId=" + roomId
                 + '}';
+    }
+
+    /**
+     * set tier for this room
+     */
+    public void setTier(Tier tier) {
+        this.roomTier = tier;
     }
 }

@@ -31,9 +31,10 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private MainTabPane mainTabPane;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private PersonListPanel personListPanel;
     private RoomListPanel roomListPanel;
 
     @FXML
@@ -43,10 +44,13 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane mainTabPanePlaceholder;
 
     @FXML
     private StackPane roomListPanelPlaceholder;
+
+    @FXML
+    private StackPane personListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;

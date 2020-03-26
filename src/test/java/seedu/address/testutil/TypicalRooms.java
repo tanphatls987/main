@@ -2,7 +2,6 @@ package seedu.address.testutil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import seedu.address.model.Hotel;
 import seedu.address.model.hotel.room.Room;
@@ -18,7 +17,7 @@ public class TypicalRooms {
     /**
      * get list of typical rooms.
      */
-    public static List<Room> getTypicalRooms() {
+    public static ArrayList<Room> getTypicalRooms() {
         return new ArrayList<>(Arrays.asList(BEST_ROOM, WORST_ROOM));
     }
 
