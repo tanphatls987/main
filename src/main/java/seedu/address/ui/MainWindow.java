@@ -45,6 +45,12 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane mainTabPanePlaceholder;
 
     @FXML
+    private StackPane roomListPanelPlaceholder;
+
+    @FXML
+    private StackPane personListPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
