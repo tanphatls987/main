@@ -20,37 +20,37 @@ Role: Developer
 '''
 
 === Tey Hui Ming
-image::hmtey.jpg[width="150", align="left"]
-{empty}[http://github.com/hmtey[github]] [<<hmtey#, portfolio>>]
+image::hmtey.png[width="150", align="left"]
+{empty}[http://github.com/hmtey[github]]
 
 Role: Developer
 Responsibilities: UI
 
 '''
 
-=== Johnny Doe
-image::yijinl.jpg[width="150", align="left"]
-{empty}[http://github.com/yijinl[github]] [<<johndoe#, portfolio>>]
+=== Tuan Le
+image::youaremysky99.png[width="150", align="left"]
+{empty}[http://github.com/youaremysky99[github]] [<<youaremysky99#, portfolio>>]
 
-Role: Developer +
+Role: Developer
 Responsibilities: Data
 
 '''
 
-=== Johnny Roe
+=== Sanchari Bandyopadhyay
 image::sancharib-git.png[width="150", align="left"]
-{empty}[http://github.com/sancharib-git[github]] [<<johndoe#, portfolio>>]
+{empty}[http://github.com/sancharib-git[github]] [<<sancharib-git#, portfolio>>]
 
-Role: Developer +
+Role: Developer
 Responsibilities: Dev Ops + Threading
 
 '''
 
-=== Benson Meier
-image::yl_coder.jpg[width="150", align="left"]
-{empty}[http://github.com/yl-coder[github]] [<<johndoe#, portfolio>>]
+=== Phat Tran
+image::tanphatls987.png[width="150", align="left"]
+{empty}[http://github.com/tanphatls987[github]] [<<tanphatls987#, portfolio>>]
 
-Role: Developer +
+Role: Developer
 Responsibilities: UI
 
 '''

@@ -24,7 +24,7 @@ Morpheus is a desktop application that aims to facilitate the administrative wor
 The system will also provide statistics and reports, constructed from the analysis of the details in the user-provided database.
 Most of the user interaction occurs via a CLI (Command Line Interface).
 
-.Morpheus Ui
+.Morpheus UI
 image::Ui.png[]
 
 === Purpose
@@ -212,7 +212,7 @@ The following steps show how the SetRoomCost command is implemented:
 
 The sequence diagram below shoes how the SetRoomCost command works:
 
-.Sequence Diaggram of SetRooomCost Command
+.Sequence Diagram of SetRooomCost Command
 image::SetRoomCostSequenceDiagram.png[]
 
 ===== Design Considerations

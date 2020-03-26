@@ -56,6 +56,15 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 Format: `help`
 
+=== Adding a guest : `addguest`
+
+Create a guest in the hotel list. +
+Format: `addguest n/NAME i/ID p/PHONE_NUMBER e/EMAIL`
+
+Examples:
+* `addguest n/John Doe i/G1231322X p/1928310 e/johndoe@gmail.com`
+Add John Doe with his information into the database.
+
 === Checking in a guest: `checkin`
 
 Checks in a guest to the hotel from the current date until the TO_DATE +
@@ -74,8 +83,22 @@ Examples:
 
 * `checkout i/G1231231X rn/101`
 
-=== Shows a list of all the guests in the hotel. +
+=== Show a list of all the guests in the hotel: `list`
 Format: `list`
+
+=== Locating guests by name or id: `findguest`
+Finds persons whose names or id match.
+Format: `findguest n/NAME ... n/NAME i/ID ... i/ID`
+
+****
+* The order of the keywords does not matter. e.g. `n/Alice i/A10` is same as`i/A10 n/Alice`
+* Persons matching at least one keyword will be returned
+****
+
+Examples:
+
+* `findguest n/Alice i/A10`
+Return person with name Alice or id A10
 
 === Fetching the bill of a guest : `bill`
 
@@ -91,21 +114,7 @@ Examples:
 * `bill  i/G1231231X` +
 Shows the bill for guest with ID G1231231X's stay up till present moment.
 
-=== Locating persons by name or id: `findguest`
-Finds persons whose names or id match.
-Format: `findguest n/NAME ... n/NAME i/ID ... i/ID`
-
-****
-* The order of the keywords does not matter. e.g. `n/Alice i/A10` is same as`i/A10 n/Alice`
-* Persons matching at least one keyword will be returned
-****
-
-Examples:
-
-* `findguest n/Alice i/A10`
-Return person with name Alice or id A10
-
-=== Service : `service`
+=== Charging a service : `service`
 
 Adds a service to the guest's tab. +
 Format: `service n/NAME  p/PRICE [d/DESCRIPTION]...`
@@ -120,7 +129,7 @@ Examples:
 * `service  n/Smith p/20.00` +
 * `service n/Smith p/20.00 d/massage`
 
-=== Reservations : `reserve`
+=== Making a reservation : `reserve`
 
 Makes a reservation for a guest in the hotel +
 Format: `reserve i/ID rn/ROOM_NUMBER df/FROM_DATE dt/TO_DATE`
@@ -133,7 +142,7 @@ Examples:
 
 * `reserve i/G1231231X rn/102 df/ 2020-12-12 dt/ 2020-12-30`
 
-=== Reservations : `getroom`
+=== Locating the room of a guest : `getroom`
 
 Retrieves the room number of the guest who made reservations under their name. +
 Format: `getroom n/NAME`
@@ -152,19 +161,7 @@ Checks Smith in to room 101.
 * `bill n/Smith~ +
 Shows bill incurred by Smith
 
-//tag::addguest[]
-=== Add a guest : `addguest`
-
-Create a guest in the hotel list. +
-Format: `addguest n/NAME i/ID p/PHONE_NUMBER e/EMAIL`
-
-Examples:
-* `addguest n/John Doe i/G1231322X p/1928310 e/johndoe@gmail.com`
-Add John Doe with his information into the database.
-
-
-// end::addguest[]
-=== Add tier: `addtier`
+=== Adding a tier: `addtier`
 
 Add a tier and set this tier to certain rooms +
 Format: `addtier ti/TIER_NAME rn/ROOM_NUMBERS`
