@@ -41,5 +41,27 @@
     "email" : "royb@example.com",
     "remark" : "",
     "tagged" : [ "colleagues" ]
+  } ],
+  "rooms" : [ {
+    "Tier" : "bronze",
+    "roomNum" : "001"
+  }, {
+    "Tier" : "bronze",
+    "roomNum" : "002"
+  }, {
+    "Tier" : "bronze",
+    "roomNum" : "003"
+  }, {
+    "Tier" : "bronze",
+    "roomNum" : "004"
+  }, {
+    "Tier" : "silver",
+    "roomNum" : "005"
+  }, {
+    "Tier" : "silver",
+    "roomNum" : "006"
+  }, {
+    "Tier" : "gold",
+    "roomNum" : "007"
   } ]
 }

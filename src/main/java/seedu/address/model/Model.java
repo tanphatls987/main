@@ -6,11 +6,12 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.hotel.Room;
-import seedu.address.model.hotel.Tier;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
+import seedu.address.model.hotel.room.Room;
+import seedu.address.model.hotel.room.Tier;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.timeframe.TimeFrame;
 
@@ -59,7 +60,7 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns the Hotel*/
+    /**Returns hotel*/
     ReadOnlyHotel getHotel();
 
     /**
@@ -101,8 +102,9 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /** Returns list of rooms */
-    ArrayList<Room> getRoomList();
+    /**Returns list of rooms
+     * @return*/
+    ObservableList<Room> getRoomList();
 
     /** Returns list of bookings */
     ArrayList<Booking> getBookingList();

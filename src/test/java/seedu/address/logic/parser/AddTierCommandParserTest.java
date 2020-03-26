@@ -10,7 +10,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddTierCommand;
-import seedu.address.model.hotel.Room;
+import seedu.address.model.hotel.room.Room;
 import seedu.address.testutil.TypicalRooms;
 
 /**

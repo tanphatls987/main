@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.model.hotel.Tier;
+import seedu.address.model.hotel.room.Tier;
 
 /**
  * A utility class to help build tiers

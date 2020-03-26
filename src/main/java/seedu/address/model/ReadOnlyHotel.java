@@ -1,8 +1,11 @@
 package seedu.address.model;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
-import seedu.address.model.hotel.Room;
-import seedu.address.model.hotel.Tier;
+
+import seedu.address.model.hotel.room.Room;
+import seedu.address.model.hotel.room.Tier;
 
 /**
  * Unmodifiable hotel
@@ -13,6 +16,7 @@ public interface ReadOnlyHotel {
      */
     ObservableList<Room> getImmutableRoomList();
 
+    List<Room> getRoomList();
     /**
      * @return: a list of tiers;
      */

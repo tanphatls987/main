@@ -14,8 +14,8 @@ import seedu.address.model.Hotel;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.hotel.Room;
-import seedu.address.model.hotel.Tier;
+import seedu.address.model.hotel.room.Room;
+import seedu.address.model.hotel.room.Tier;
 import seedu.address.testutil.TierBuilder;
 import seedu.address.testutil.TypicalRooms;
 
