@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.hotel.Tier;
+import seedu.address.model.hotel.room.Tier;
 import seedu.address.testutil.TypicalRooms;
 /**
  * Test for add tier command.

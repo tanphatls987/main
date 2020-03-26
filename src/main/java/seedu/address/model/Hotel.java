@@ -104,11 +104,6 @@ public class Hotel implements ReadOnlyHotel {
         return roomList.contains(room);
     }
 
-    @Override
-    public ObservableList<Tier> getImmutableTierList() {
-        return FXCollections.observableArrayList(tierList);
-    }
-
     /**
      * check room num exists.
      */
@@ -119,6 +114,11 @@ public class Hotel implements ReadOnlyHotel {
             }
         }
         return false;
+    }
+
+    @Override
+    public ObservableList<Tier> getImmutableTierList() {
+        return FXCollections.observableArrayList(tierList);
     }
 
     /**
@@ -154,6 +154,14 @@ public class Hotel implements ReadOnlyHotel {
     }
 
     /**
+     * add a new room
+     */
+    public void addRoom(String roomNum) {
+        Room newRoom = new Room(roomNum);
+        roomList.add(newRoom);
+    }
+
+    /**
      * find a room
      */
     private Room findSureRoom(String roomNum) {
@@ -176,14 +184,6 @@ public class Hotel implements ReadOnlyHotel {
             }
         }
         return false;
-    }
-
-    /**
-     * add a new room
-     */
-    public void addRoom(String roomNum) {
-        Room newRoom = new Room(roomNum);
-        roomList.add(newRoom);
     }
 
     /**
