@@ -32,11 +32,6 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         return filePath;
     }
 
-    @Override
-    public Optional<ReadOnlyHotel> readHotel() throws DataConversionException, IOException {
-        return readHotel(filePath);
-    }
-
     /**
      * Similar to {@link #readAddressBook()}.
      *
@@ -90,23 +85,21 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, ReadOnlyHotel hotel) throws IOException {
-        saveAddressBook(addressBook, hotel, filePath);
+    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
+        saveAddressBook(addressBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook, ReadOnlyHotel)}.
+     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyAddressBook addressBook,
-                                ReadOnlyHotel hotel, Path filePath) throws IOException {
+    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         requireNonNull(addressBook);
-        requireNonNull(hotel);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), new JsonSerializableHotel(hotel), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
     }
 
 }
