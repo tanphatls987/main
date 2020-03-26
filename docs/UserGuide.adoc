@@ -209,13 +209,13 @@ e.g. `checkout i/G1231231X rn/101`
 e.g. `findguest n/Alice i/A10`
 * *Fetch Bill* : `bill i/ID [rn/ROOM_NUMBER]` +
 e.g. `bill i/G1231231X`
-* *Charge Service* : `service n/NAME p/PRICE [d/DESCRIPTION]...`
+* *Charge Service* : `service n/NAME p/PRICE [d/DESCRIPTION]...` +
 e.g. `service n/Smith p/20.00 d/massage`
-* *Make Reservation* : `reserve i/ID rn/ROOM_NUMBER df/FROM_DATE dt/TO_DATE`
+* *Make Reservation* : `reserve i/ID rn/ROOM_NUMBER df/FROM_DATE dt/TO_DATE` +
 e.g. `reserve i/G1231231X rn/102 df/ 2020-12-12 dt/ 2020-12-30`
-* *Locate Room* : `getroom n/NAME`
+* *Locate Room* : `getroom n/NAME` +
 e.g. `getroom n/ Smith`
-* *Add Tier* : `addtier ti/TIER_NAME rn/ROOM_NUMBERS`
+* *Add Tier* : `addtier ti/TIER_NAME rn/ROOM_NUMBERS` +
 e.g. `addtier ti/Gold rn/12E 12F 12T`
 * *Clear* : `clear`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
