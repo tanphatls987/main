@@ -180,6 +180,7 @@ The following steps show how the search feature works:
 
 The diagram below shows the execution of the command:
 
+.Activity Diagram of Search Feature
 image::SearchWorkflow.png[]
 
 ===== Design Considerations
@@ -197,6 +198,7 @@ The billing feature is designed to aid hotel receptionists in their bookkeeping 
 
 The following activity diagram summarizes the usage of the billing feature:
 
+.Activity Diagram of Billing Feature
 image::BillingActivityDiagram.png[]
 
 ==== SetRoomCost Command
@@ -210,6 +212,7 @@ The following steps show how the SetRoomCost command is implemented:
 
 The sequence diagram below shoes how the SetRoomCost command works:
 
+.Sequence Diaggram of SetRooomCost Command
 image::SetRoomCostSequenceDiagram.png[]
 
 ===== Design Considerations
