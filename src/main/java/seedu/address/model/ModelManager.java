@@ -14,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.hotel.Room;
+import seedu.address.model.hotel.Tier;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
@@ -204,6 +205,9 @@ public class ModelManager implements Model {
 
     @Override
     public boolean isRoomFree(Room room, TimeFrame duration) {
+        requireNonNull(room);
+        requireNonNull(duration);
+
         ///timeframe create successfully mean no bogus duration
         return bookingList.stream().anyMatch(u -> u.isClash(room, duration));
     }
@@ -230,6 +234,22 @@ public class ModelManager implements Model {
 
     }
 
+    @Override
+    public boolean hasTier(Tier tier) {
+        requireNonNull(tier);
+
+        return this.hotel.hasTier(tier);
+    }
+
+    @Override
+    public void addTier(Tier tier, ArrayList<String> roomNums) {
+        requireNonNull(tier);
+        requireNonNull(roomNums);
+
+        this.hotel.addTier(tier, roomNums);
+
+    }
+
     //=========== Billing System =============================================================================
 
     @Override
@@ -249,4 +269,5 @@ public class ModelManager implements Model {
     public void fetchBill(Person person, String roomNum) {
         requireAllNonNull(person, roomNum);
     }
+
 }

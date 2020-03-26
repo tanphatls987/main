@@ -10,6 +10,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.hotel.Tier;
 import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.person.Email;
 import seedu.address.model.hotel.person.Name;
@@ -143,6 +144,14 @@ public class ParserUtil {
     }
 
     /**
+     * Parse {@code String s} into a {@code Tier}
+     */
+    public static Tier parseTier(String s) {
+        requireNonNull(s);
+        return new Tier(s);
+    }
+
+   /**
      * Parses a {@code String cost} into a {@code Cost}.
      * Leading and trailing whitespaces will be trimmed.
      *
