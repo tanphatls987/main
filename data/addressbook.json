@@ -42,26 +42,30 @@
     "remark" : "",
     "tagged" : [ "colleagues" ]
   } ],
+
   "rooms" : [ {
-    "Tier" : "bronze",
-    "roomNum" : "001"
+    "tier" : "bronze",
+    "number" : "001"
   }, {
-    "Tier" : "bronze",
-    "roomNum" : "002"
+    "tier" : "bronze",
+    "number" : "002"
   }, {
-    "Tier" : "bronze",
-    "roomNum" : "003"
+    "tier" : "bronze",
+    "number" : "003"
   }, {
-    "Tier" : "bronze",
-    "roomNum" : "004"
+    "tier" : "bronze",
+    "number" : "004"
   }, {
-    "Tier" : "silver",
-    "roomNum" : "005"
+    "tier" : "silver",
+    "number" : "005"
   }, {
-    "Tier" : "silver",
-    "roomNum" : "006"
+    "tier" : "silver",
+    "number" : "006"
   }, {
-    "Tier" : "gold",
-    "roomNum" : "007"
+    "tier" : "gold",
+    "number" : "007"
+  }, {
+    "tier" : "bronze",
+    "number" : "101"
   } ]
 }
