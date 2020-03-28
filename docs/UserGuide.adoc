@@ -56,6 +56,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 Format: `help`
 
+//tag::addguest[]
 === Adding a guest : `addguest`
 
 Create a guest in the hotel list. +
@@ -64,6 +65,7 @@ Format: `addguest n/NAME i/ID p/PHONE_NUMBER e/EMAIL`
 Examples:
 * `addguest n/John Doe i/G1231322X p/1928310 e/johndoe@gmail.com`
 Add John Doe with his information into the database.
+//end::addguest[]
 
 === Checking in a guest: `checkin`
 

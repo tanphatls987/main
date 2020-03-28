@@ -135,7 +135,8 @@ public class CheckInCommandTest {
             new ModelStubWithBooking();
         CommandResult commandResult = checkInCommand.execute(modelStubWithBooking);
 
-        assertEquals(String.format(CheckInCommand.MESSAGE_SUCCESS, roomId, personId), commandResult.getFeedbackToUser());
+        assertEquals(String.format(CheckInCommand.MESSAGE_SUCCESS, roomId, personId),
+            commandResult.getFeedbackToUser());
     }
 
     private class ModelStub implements Model {
