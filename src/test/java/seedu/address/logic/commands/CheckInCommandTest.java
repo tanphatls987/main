@@ -121,7 +121,7 @@ public class CheckInCommandTest {
             new ModelStubWithBooking();
 
         assertThrows(CommandException.class,
-            String.format(CheckInCommand.MESSAGE_DATE_PASSED, toDate), () ->
+            String.format(CheckInCommand.MESSAGE_ROOM_OCCUPIED, roomId), () ->
             checkInCommand.execute(modelStubWithBooking));
     }
 
@@ -135,7 +135,7 @@ public class CheckInCommandTest {
             new ModelStubWithBooking();
         CommandResult commandResult = checkInCommand.execute(modelStubWithBooking);
 
-        assertEquals(CheckInCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
+        assertEquals(String.format(CheckInCommand.MESSAGE_SUCCESS, roomId, personId), commandResult.getFeedbackToUser());
     }
 
     private class ModelStub implements Model {
@@ -310,19 +310,21 @@ public class CheckInCommandTest {
             this.person = ALICE;
         }
 
-
-        /**
-         * Return a person with matching personId
-         *
-         * @param personId
-         * @return Optional of the person if exist. Optional of empty if it doesn't exist
-         */
         @Override
         public Optional<Person> findPersonWithId(PersonId personId) {
             if (this.person.getPersonId() == personId) {
                 return Optional.of(this.person);
             }
             return Optional.empty();
+        }
+
+        @Override
+        public Optional<Room> findRoom(String roomNum) {
+            requireNonNull(roomNum);
+            return roomList
+                .stream()
+                .filter(u -> u.getRoomNum().equals(roomNum))
+                .findFirst();
         }
     }
 
