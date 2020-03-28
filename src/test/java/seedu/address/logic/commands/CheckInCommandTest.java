@@ -324,15 +324,6 @@ public class CheckInCommandTest {
             }
             return Optional.empty();
         }
-
-        @Override
-        public Optional<Room> findRoom(String roomNum) {
-            requireNonNull(roomNum);
-            return roomList
-                .stream()
-                .filter(u -> u.getRoomNum().equals(roomNum))
-                .findFirst();
-        }
     }
 
     private class ModelStubWithBooking extends ModelStubWithRoomsAndPerson {
