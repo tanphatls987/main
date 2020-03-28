@@ -117,12 +117,12 @@ public class CheckInCommandTest {
         RoomId roomId = BEST_ROOM.getRoomId();
         LocalDateTime toDate = LocalDateTime.now().plusDays(2);
         CheckInCommand checkInCommand = new CheckInCommand(personId, roomId, toDate);
-        ModelStubWithRoomsAndPerson modelStubWithRoomsAndPerson =
-            new ModelStubWithRoomsAndPerson();
+        ModelStubWithBooking modelStubWithBooking =
+            new ModelStubWithBooking();
 
         assertThrows(CommandException.class,
             String.format(CheckInCommand.MESSAGE_DATE_PASSED, toDate), () ->
-            checkInCommand.execute(modelStubWithRoomsAndPerson));
+            checkInCommand.execute(modelStubWithBooking));
     }
 
     @Test
@@ -255,7 +255,9 @@ public class CheckInCommandTest {
 
         @Override
         public boolean isRoomFree(Room room, TimeFrame duration) {
-            return bookingList.stream().anyMatch(u -> u.isClash(room, duration));
+            return !bookingList
+                .stream()
+                .anyMatch(u -> u.isClash(room, duration));
         }
 
         @Override
@@ -338,14 +340,6 @@ public class CheckInCommandTest {
             super();
             Booking booking = new Booking(ALICE, BEST_ROOM, LocalDateTime.now(), LocalDateTime.now().plusDays(1));
             bookingList.add(booking);
-        }
-
-        @Override
-        public boolean isRoomFree(Room room, TimeFrame duration) {
-            ///timeframe create successfully mean no bogus duration
-            return !bookingList
-                .stream()
-                .anyMatch(u -> u.isClash(room, duration));
         }
 
         @Override
