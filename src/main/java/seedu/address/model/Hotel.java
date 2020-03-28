@@ -75,7 +75,10 @@ public class Hotel implements ReadOnlyHotel {
     public Optional<Room> findRoom(String roomNum) {
         requireNonNull(roomNum);
 
-        return roomList.stream().filter(u -> u.getRoomNum().equals(roomNum)).findFirst();
+        return roomList
+            .stream()
+            .filter(u -> u.getRoomNum().equals(roomNum))
+            .findFirst();
     }
 
     /**

@@ -25,6 +25,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.hotel.Room;
+import seedu.address.model.hotel.Tier;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.ids.PersonId;
@@ -265,6 +266,16 @@ public class CheckInCommandTest {
         }
 
         @Override
+        public void fetchBillList(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void fetchBill(Person person, String roomNum) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addRoom(String roomName) {
             throw new AssertionError("This method should not be called.");
         }
@@ -274,6 +285,16 @@ public class CheckInCommandTest {
             requireNonNull(roomNum);
 
             return hotel.hasRoom(roomNum);
+        }
+
+        @Override
+        public boolean hasTier(Tier tier) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTier(Tier tier, ArrayList<String> roomNums) {
+            throw new AssertionError("This method should not be called.");
         }
     }
 
@@ -305,7 +326,10 @@ public class CheckInCommandTest {
         @Override
         public Optional<Room> findRoom(String roomNum) {
             requireNonNull(roomNum);
-            return roomList.stream().filter(u -> u.getRoomNum().equals(roomNum)).findFirst();
+            return roomList
+                .stream()
+                .filter(u -> u.getRoomNum().equals(roomNum))
+                .findFirst();
         }
     }
 
@@ -319,7 +343,9 @@ public class CheckInCommandTest {
         @Override
         public boolean isRoomFree(Room room, TimeFrame duration) {
             ///timeframe create successfully mean no bogus duration
-            return bookingList.stream().anyMatch(u -> u.isClash(room, duration));
+            return !bookingList
+                .stream()
+                .anyMatch(u -> u.isClash(room, duration));
         }
 
         @Override

@@ -208,7 +208,9 @@ public class ModelManager implements Model {
         requireNonNull(duration);
 
         ///timeframe create successfully mean no bogus duration
-        return bookingList.stream().anyMatch(u -> u.isClash(room, duration));
+        return !(bookingList
+            .stream()
+            .anyMatch(u -> u.isClash(room, duration)));
     }
 
     @Override
