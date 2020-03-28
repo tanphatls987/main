@@ -20,7 +20,7 @@ import seedu.address.model.hotel.room.Room;
 public class JsonSerializableHotel {
 
 
-    public static final String MESSAGE_DUPLICATE_ROOM = "Room list contains duplicate room(s).";
+    public static final String MESSAGE_DUPLICATE_ROOMS = "Room list contains duplicate room(s).";
     private final List<JsonAdaptedRoom> rooms = new ArrayList<>();
 
     /**
@@ -37,7 +37,8 @@ public class JsonSerializableHotel {
      * @param sourceHotel future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableHotel(ReadOnlyHotel sourceHotel) {
-        rooms.addAll(sourceHotel.getRoomList().stream().map(JsonAdaptedRoom::new).collect(Collectors.toList()));
+        rooms.addAll(sourceHotel.getRoomList().stream()
+                .map(JsonAdaptedRoom::new).collect(Collectors.toList()));
     }
 
     /**
@@ -50,7 +51,7 @@ public class JsonSerializableHotel {
         for (JsonAdaptedRoom jsonAdaptedRoom : rooms) {
             Room room = jsonAdaptedRoom.toModelType();
             if (hotel.hasRoom(room)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_ROOM);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ROOMS);
             }
             hotel.addRoom(room);
         }

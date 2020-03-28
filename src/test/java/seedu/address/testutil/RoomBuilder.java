@@ -27,17 +27,26 @@ public class RoomBuilder {
     }
 
     /**
+     * Sets the {@code tier} of the {@code Room} that we are building.
+     */
+    public RoomBuilder withTier(String tier) {
+        this.roomTier = new Tier(tier);
+        return this;
+    }
+
+    /**
+     * Sets the {@code roomNum} of the {@code Room} that we are building.
+     */
+    public RoomBuilder withRoomNum(String roomNum) {
+        this.roomNum = roomNum;
+        return this;
+    }
+
+    /**
      * Build a default room.
      */
     public Room build() {
         return new Room(roomNum, roomTier);
-    }
-
-    /**
-     * Build a room with name and tier.
-     */
-    public Room build(String roomNum, Tier tier) {
-        return new Room(roomNum, tier);
     }
 
 }

@@ -65,11 +65,11 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyHotel getSampleHotel() {
-        Hotel sampleH = new Hotel();
+        Hotel sampleHotel = new Hotel();
         for (Room sampleRoom: getSampleRooms()) {
-            sampleH.addRoom(sampleRoom);
+            sampleHotel.addRoom(sampleRoom);
         }
-        return sampleH;
+        return sampleHotel;
     }
 
     /**

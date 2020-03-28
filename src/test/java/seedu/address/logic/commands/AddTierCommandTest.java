@@ -21,8 +21,8 @@ public class AddTierCommandTest {
 
     @Test
     public void equals() {
-        String firstTierName = "Gold";
-        String secondTierName = "Diamond";
+        String firstTierName = "BRONZE";
+        String secondTierName = "GOLD";
         Tier goldTier = new Tier(firstTierName);
         Tier diamondTier = new Tier(secondTierName);
         ArrayList roomList = (ArrayList) TypicalRooms.getTypicalRooms();

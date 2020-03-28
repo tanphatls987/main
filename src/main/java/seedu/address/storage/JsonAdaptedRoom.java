@@ -43,9 +43,7 @@ public class JsonAdaptedRoom {
         if (tier == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Tier.class.getSimpleName()));
         }
-        if (!Tier.isValid(tier)) {
-            throw new IllegalValueException(Tier.MESSAGE_CONSTRAINTS);
-        }
+
         final Tier modelTier = new Tier(tier);
 
         if (number == null) {

@@ -20,24 +20,18 @@ import seedu.address.model.ids.RoomId;
 public class Hotel implements ReadOnlyHotel {
     private final UniqueRoomList roomList;
 
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */
-    {
-        roomList = new UniqueRoomList();
-    }
-
     private final ArrayList<Tier> tierList;
 
     /**
      * Create new empty hotel.
      */
     public Hotel() {
+
         tierList = new ArrayList<>();
+        //non-static initialization block
+        {
+            roomList = new UniqueRoomList();
+        }
     }
 
     /**
@@ -46,13 +40,8 @@ public class Hotel implements ReadOnlyHotel {
     public Hotel(ReadOnlyHotel toBeCopied) {
         this();
         requireNonNull(toBeCopied);
-        resetData(toBeCopied);
-        this.tierList.addAll(toBeCopied.getImmutableTierList());
-    }
-
-    @Override
-    public ObservableList<Room> getImmutableRoomList() {
-        return null;
+        this.roomList.setRooms(toBeCopied.getRoomList());
+        this.tierList.addAll(toBeCopied.getTierList());
     }
 
     /**
@@ -81,7 +70,6 @@ public class Hotel implements ReadOnlyHotel {
      */
     public void setRooms(Room target, Room editedRoom) {
         requireNonNull(editedRoom);
-
         roomList.setRoom(target, editedRoom);
     }
 
@@ -90,8 +78,8 @@ public class Hotel implements ReadOnlyHotel {
      */
     public void resetData(ReadOnlyHotel newData) {
         requireNonNull(newData);
-
         setRooms(newData.getRoomList());
+
     }
 
     //// person-level operations
@@ -117,7 +105,7 @@ public class Hotel implements ReadOnlyHotel {
     }
 
     @Override
-    public ObservableList<Tier> getImmutableTierList() {
+    public ObservableList<Tier> getTierList() {
         return FXCollections.observableArrayList(tierList);
     }
 
@@ -202,14 +190,6 @@ public class Hotel implements ReadOnlyHotel {
         // TODO: refine later
     }
 
-    /**
-     * Populates room list
-     */
-    public void fillRoomList() {
-        for (int i = 0; i < 10; i++) {
-            roomList.add(new Room(Integer.toString(i), new Tier()));
-        }
-    }
     /**
      * adds a new tier.
      */

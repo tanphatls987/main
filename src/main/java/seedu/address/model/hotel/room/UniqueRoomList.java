@@ -12,7 +12,7 @@ import seedu.address.model.hotel.room.exceptions.DuplicateRoomException;
 import seedu.address.model.hotel.room.exceptions.RoomNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
+ * A list of ROOMS that enforces uniqueness between its elements and does not allow nulls.
  * A room is considered unique by comparing using {@code Room#isSameRoom(Room)}. As such, adding and updating of
  * rooms uses Room#isSameRoom(Room) for equality so as to ensure that the room being added or updated is
  * unique in terms of roomnumber in the UniqueRoomList. However, the removal of a room uses Room#equals(Object) so
@@ -68,9 +68,25 @@ public class UniqueRoomList implements Iterable<Room> {
         internalList.set(index, editedRoom);
     }
 
-    public void setRoom(UniqueRoomList replacement) {
+    /**
+     * Replaces the contents of this {@code internalList} with
+     * {@code internalList} of {@code replacement}.
+     */
+    public void setRooms(UniqueRoomList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+    }
+    /**
+     * Replaces the contents of this list with {@code rooms}.
+     * {@code rooms} must not contain duplicate roomss.
+     */
+    public void setRooms(List<Room> rooms) {
+        requireAllNonNull(rooms);
+        if (!roomsAreUnique(rooms)) {
+            throw new DuplicateRoomException();
+        }
+
+        internalList.setAll(rooms);
     }
 
     /**
@@ -84,18 +100,6 @@ public class UniqueRoomList implements Iterable<Room> {
         }
     }
 
-    /**
-     * Replaces the contents of this list with {@code rooms}.
-     * {@code rooms} must not contain duplicate roomss.
-     */
-    public void setRooms(List<Room> rooms) {
-        requireAllNonNull(rooms);
-        if (!roomsAreUnique(rooms)) {
-            throw new DuplicateRoomException();
-        }
-
-        internalList.setAll(rooms);
-    }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.

@@ -57,7 +57,6 @@ public class ReserveCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        //model.fillRoomList();
         Optional<Person> payee = model.findPersonWithId(personId);
         if (payee.isEmpty()) {
             throw new CommandException("No guest with this id");

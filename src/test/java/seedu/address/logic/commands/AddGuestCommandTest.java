@@ -193,11 +193,6 @@ public class AddGuestCommandTest {
         }
 
         @Override
-        public void fillRoomList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public boolean isRoomFree(Room room, TimeFrame duration) {
             throw new AssertionError("This method should not be called.");
         }

@@ -51,7 +51,7 @@ public class AddTierCommandIntegrationTest {
     public void executeAddTier_roomNotFound() {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getHotel());
 
-        Tier validTier = new TierBuilder().withTierName("gold");
+        Tier validTier = new TierBuilder().withTierName("GOLD");
         ArrayList<Room> roomList = TypicalRooms.getTypicalRooms();
         ArrayList<String> roomNums = new ArrayList<>();
         for (Room room: roomList) {

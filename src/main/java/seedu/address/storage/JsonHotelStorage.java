@@ -48,7 +48,7 @@ public class JsonHotelStorage implements HotelStorage {
         Optional<JsonSerializableHotel> jsonHotel = JsonUtil.readJsonFile(
                 filePath, JsonSerializableHotel.class);
         if (!jsonHotel.isPresent()) {
-            System.out.println("hotel empty");
+            logger.warning("Hotel not found");
             return Optional.empty();
         }
 

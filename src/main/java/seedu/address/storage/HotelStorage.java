@@ -8,7 +8,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyHotel;
 
 /**
- * Represents a storage for {@link seedu.address.model.AddressBook}.
+ * Represents a storage for {@link seedu.address.model.Hotel}.
  */
 public interface HotelStorage {
 
@@ -18,7 +18,7 @@ public interface HotelStorage {
     Path getHotelFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyHotel}.
+     * Returns Hotel data as a {@link ReadOnlyHotel}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.

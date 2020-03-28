@@ -91,23 +91,6 @@ public class JsonUtil {
     }
 
     /**
-     * Saves the Json object to the specified file.
-     * Overwrites existing file if it exists, creates a new file if it doesn't.
-     * @param jsonFile cannot be null
-     * @param filePath cannot be null
-     * @throws IOException if there was an error during writing to the file
-     */
-    public static <T> void saveJsonFile(T jsonFile, T jsonFile2, Path filePath) throws IOException {
-        requireNonNull(filePath);
-        requireNonNull(jsonFile);
-        requireNonNull(jsonFile2);
-
-        serializeObjectToJsonFile(filePath, jsonFile);
-        serializeObjectToJsonFile(filePath, jsonFile2);
-    }
-
-
-    /**
      * Converts a given string representation of a JSON data to instance of a class
      * @param <T> The generic type to create an instance of
      * @return The instance of T with the specified values in the JSON string

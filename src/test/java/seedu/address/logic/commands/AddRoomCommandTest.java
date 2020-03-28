@@ -14,7 +14,7 @@ import seedu.address.model.hotel.room.Room;
 public class AddRoomCommandTest {
 
     @Test
-    public void construct_nullRoom_thowsnNullPointerException() {
+    public void construct_nullRoom_throwsnNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddRoomCommand(null));
     }
 

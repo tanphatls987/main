@@ -13,7 +13,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyHotel;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
@@ -30,30 +29,6 @@ public class JsonAddressBookStorage implements AddressBookStorage {
 
     public Path getAddressBookFilePath() {
         return filePath;
-    }
-
-    /**
-     * Similar to {@link #readAddressBook()}.
-     *
-     * @param filePath location of the data. Cannot be null.
-     * @throws DataConversionException if the file is not in the correct format.
-     */
-    public Optional<ReadOnlyHotel> readHotel(Path filePath) throws DataConversionException {
-        requireNonNull(filePath);
-
-        Optional<JsonSerializableHotel> jsonHotel = JsonUtil.readJsonFile(
-                filePath, JsonSerializableHotel.class);
-        if (!jsonHotel.isPresent()) {
-            System.out.println("hotel empty");
-            return Optional.empty();
-        }
-
-        try {
-            return Optional.of(jsonHotel.get().toModelType());
-        } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-            throw new DataConversionException(ive);
-        }
     }
 
     @Override
@@ -73,6 +48,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableAddressBook.class);
         if (!jsonAddressBook.isPresent()) {
+            logger.warning("AddressBook not found.");
             return Optional.empty();
         }
 

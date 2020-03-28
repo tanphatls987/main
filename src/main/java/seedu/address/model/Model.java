@@ -60,7 +60,7 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
-    /**Returns hotel*/
+    /** Returns the Hotel*/
     ReadOnlyHotel getHotel();
 
     /**
@@ -110,9 +110,6 @@ public interface Model {
     ArrayList<Booking> getBookingList();
 
     Optional<Room> findRoom(String roomNum);
-
-    /** Populates room list */
-    void fillRoomList();
 
     /**
      * Check if a room is available during a period.

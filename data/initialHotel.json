@@ -1,24 +1,30 @@
 {
   "rooms" : [ {
-    "tier" : "bronze",
+    "tier" : "BRONZE",
     "number" : "001"
   }, {
-    "tier" : "bronze",
+    "tier" : "BRONZE",
     "number" : "002"
   }, {
-    "tier" : "bronze",
+    "tier" : "BRONZE",
     "number" : "003"
   }, {
-    "tier" : "bronze",
+    "tier" : "BRONZE",
     "number" : "004"
   }, {
-    "tier" : "silver",
+    "tier" : "SILVER",
     "number" : "005"
   }, {
-    "tier" : "silver",
+    "tier" : "SILVER",
     "number" : "006"
   }, {
-    "tier" : "gold",
+    "tier" : "GOLD",
     "number" : "007"
+  }, {
+    "tier" : "BRONZE",
+    "number" : "008"
+  }, {
+    "tier" : "BRONZE",
+    "number" : "009"
   } ]
 }
