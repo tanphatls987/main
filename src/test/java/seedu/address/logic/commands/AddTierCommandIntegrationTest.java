@@ -29,24 +29,6 @@ public class AddTierCommandIntegrationTest {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Hotel());
     }
 
-    /*@Test
-    public void executeAddTier_success() throws CommandException {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getHotel());
-
-        Tier validTier = new TierBuilder().withTierName("gold");
-        ArrayList<Room> roomList = TypicalRooms.getTypicalRooms();
-        ArrayList<String> roomNums = new ArrayList<>();
-        for (Room room: roomList) {
-            roomNums.add(room.getName());
-            expectedModel.addRoom(room.getName());
-            model.addRoom(room.getName());
-        }
-
-        expectedModel.addTier(validTier, roomNums);
-        assertCommandSuccess(new AddTierCommand(validTier, roomNums), model,
-                String.format(AddTierCommand.MESSAGE_SUCCESS, validTier), expectedModel);
-    }*/
-
     @Test
     public void executeAddTier_roomNotFound() {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getHotel());
