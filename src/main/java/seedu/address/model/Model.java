@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.hotel.Room;
+import seedu.address.model.hotel.Tier;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.ids.PersonId;
@@ -100,15 +101,15 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /**Returns list of rooms*/
+    /** Returns list of rooms */
     ArrayList<Room> getRoomList();
 
-    /**returns list of bookings*/
+    /** Returns list of bookings */
     ArrayList<Booking> getBookingList();
 
     Optional<Room> findRoom(String roomNum);
 
-    /** populates room list */
+    /** Populates room list */
     void fillRoomList();
 
     /**
@@ -124,6 +125,13 @@ public interface Model {
      * @param booking
      */
     void bookRoom(Booking booking);
+
+    /** Returns list of bills for specified person*/
+    void fetchBillList(Person person);
+
+    /** Returns bill for specified room of person */
+    void fetchBill(Person person, String roomNum);
+
     /**
      * Add a room with roomName
      * @param roomName
@@ -133,8 +141,16 @@ public interface Model {
 
     /**
      * Check if a room exist
-     * @param roomName
-     * @return a result
      */
     boolean hasRoom(String roomName);
+
+    /**
+     * Check if a tier name exists
+     */
+    boolean hasTier(Tier tier);
+
+    /**
+     * Add a tier with a tiername
+     */
+    void addTier(Tier tier, ArrayList<String> roomNums);
 }

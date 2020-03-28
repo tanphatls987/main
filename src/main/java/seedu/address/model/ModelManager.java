@@ -29,7 +29,6 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final ArrayList<Room> roomList;
     private final ArrayList<Booking> bookingList;
     private final Hotel hotel;
 
@@ -47,7 +46,6 @@ public class ModelManager implements Model {
         this.hotel = new Hotel(hotel);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.bookingList = new ArrayList<Booking>();
-        roomList = this.hotel.getRoomList();
     }
 
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
@@ -183,7 +181,7 @@ public class ModelManager implements Model {
 
     @Override
     public ArrayList<Room> getRoomList() {
-        return roomList;
+        return hotel.getRoomList();
     }
 
     @Override
@@ -195,18 +193,20 @@ public class ModelManager implements Model {
     @Override
     public Optional<Room> findRoom(String roomNum) {
         requireNonNull(roomNum);
-        return roomList.stream().filter(u -> u.getRoomNum().equals(roomNum)).findFirst();
+
+        return hotel.findRoom(roomNum);
     }
 
     @Override
     public void fillRoomList() {
-        for (int i = 0; i < 10; i++) {
-            roomList.add(new Room(Integer.toString(i), new Tier()));
-        }
+        hotel.fillRoomList();
     }
 
     @Override
     public boolean isRoomFree(Room room, TimeFrame duration) {
+        requireNonNull(room);
+        requireNonNull(duration);
+
         ///timeframe create successfully mean no bogus duration
         return bookingList.stream().anyMatch(u -> u.isClash(room, duration));
     }
@@ -216,6 +216,17 @@ public class ModelManager implements Model {
         requireNonNull(booking);
 
         bookingList.add(booking);
+    }
+
+
+    // to update accordingly when implementing billing system.
+    @Override
+    public void fetchBillList(Person person) {
+    }
+
+    // to update accordingly when implementing billing system.
+    @Override
+    public void fetchBill(Person person, String roomNum) {
     }
 
     @Override
@@ -230,5 +241,21 @@ public class ModelManager implements Model {
         requireNonNull(roomNum);
 
         return this.hotel.hasRoom(roomNum);
+
+    }
+
+    @Override
+    public boolean hasTier(Tier tier) {
+        requireNonNull(tier);
+
+        return this.hotel.hasTier(tier);
+    }
+
+    @Override
+    public void addTier(Tier tier, ArrayList<String> roomNums) {
+        requireNonNull(tier);
+        requireNonNull(roomNums);
+
+        this.hotel.addTier(tier, roomNums);
     }
 }
