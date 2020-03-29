@@ -193,7 +193,8 @@ public class ModelManager implements Model {
     @Override
     public Optional<Room> findRoom(String roomNum) {
         requireNonNull(roomNum);
-        return hotel.getRoomList().stream().filter(u -> u.getRoomNum().equals(roomNum)).findFirst();
+        return hotel.getRoomList().stream()
+                .filter(u -> u.getRoomNum().equals(roomNum)).findFirst();
     }
 
     @Override

@@ -73,15 +73,6 @@ public class Hotel implements ReadOnlyHotel {
         roomList.setRoom(target, editedRoom);
     }
 
-    /**
-     * Resets the existing data of this {@code Hotel} with {@code newData}.
-     */
-    public void resetData(ReadOnlyHotel newData) {
-        requireNonNull(newData);
-        setRooms(newData.getRoomList());
-
-    }
-
     //// person-level operations
 
     /**
@@ -112,7 +103,7 @@ public class Hotel implements ReadOnlyHotel {
     /**
      * Return a room with matching room Id
      * @param roomId
-     * @return
+     * @return Room
      */
     public Optional<Room> findRoomWithRoomId(RoomId roomId) {
         return roomList.asUnmodifiableObservableList()
@@ -124,7 +115,7 @@ public class Hotel implements ReadOnlyHotel {
     /**
      * Return a room with matching room number
      * @param roomNum
-     * @return
+     * @return Room
      */
     public Optional<Room> getRoom(String roomNum) {
         return roomList.asUnmodifiableObservableList()
