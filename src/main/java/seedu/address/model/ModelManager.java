@@ -193,8 +193,10 @@ public class ModelManager implements Model {
     @Override
     public Optional<Room> findRoom(String roomNum) {
         requireNonNull(roomNum);
-        return hotel.getRoomList().stream()
-                .filter(u -> u.getRoomNum().equals(roomNum)).findFirst();
+        return hotel.getRoomList()
+            .stream()
+            .filter(u -> u.getRoomNum().equals(roomNum))
+            .findFirst();
     }
 
     @Override
@@ -203,7 +205,9 @@ public class ModelManager implements Model {
         requireNonNull(duration);
 
         ///timeframe create successfully mean no bogus duration
-        return bookingList.stream().anyMatch(u -> u.isClash(room, duration));
+        return bookingList
+            .stream()
+            .anyMatch(u -> u.isClash(room, duration));
     }
 
     @Override
