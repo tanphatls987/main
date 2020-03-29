@@ -2,8 +2,8 @@ package seedu.address.model.hotel.booking;
 
 import java.time.LocalDateTime;
 
-import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.person.Person;
+import seedu.address.model.hotel.room.Room;
 import seedu.address.model.timeframe.TimeFrame;
 import seedu.address.model.timeframe.exception.InvalidTimeFrameException;
 

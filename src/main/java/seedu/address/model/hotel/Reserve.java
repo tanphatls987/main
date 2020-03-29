@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
+import seedu.address.model.hotel.room.Room;
 
 /**
  * Store reservation for future.

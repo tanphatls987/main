@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -19,12 +20,15 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private HotelStorage hotelStorage;
 
 
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage,
+                          HotelStorage hotelStorage, UserPrefsStorage userPrefsStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.hotelStorage = hotelStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -64,6 +68,22 @@ public class StorageManager implements Storage {
     }
 
     @Override
+    public Path getHotelFilePath() {
+        return hotelStorage.getHotelFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyHotel> readHotel() throws DataConversionException, IOException {
+        return readHotel(hotelStorage.getHotelFilePath());
+    }
+
+    @Override
+    public Optional <ReadOnlyHotel> readHotel(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return hotelStorage.readHotel(filePath);
+    }
+
+    @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
         saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
     }
@@ -72,6 +92,17 @@ public class StorageManager implements Storage {
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    @Override
+    public void saveHotel(ReadOnlyHotel hotel) throws IOException {
+        saveHotel(hotel, hotelStorage.getHotelFilePath());
+    }
+
+    @Override
+    public void saveHotel(ReadOnlyHotel hotel, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        hotelStorage.saveHotel(hotel, filePath);
     }
 
 }
