@@ -25,14 +25,14 @@ public class RoomCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label Tier;
+    private Label tier;
     @FXML
     private Label roomNum;
 
     public RoomCard(Room room, int displayedIndex) {
         super(FXML);
         this.room = room;
-        Tier.setText(room.getTier().toString());
+        tier.setText(room.getTier().toString());
         roomNum.setText(room.getRoomNum());
     }
 

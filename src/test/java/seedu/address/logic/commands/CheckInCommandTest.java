@@ -24,10 +24,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.hotel.Room;
-import seedu.address.model.hotel.Tier;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
+import seedu.address.model.hotel.room.Room;
+import seedu.address.model.hotel.room.Tier;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 import seedu.address.model.timeframe.TimeFrame;
@@ -235,7 +235,7 @@ public class CheckInCommandTest {
         }
 
         @Override
-        public ArrayList<Room> getRoomList() {
+        public ObservableList<Room> getRoomList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -246,11 +246,6 @@ public class CheckInCommandTest {
 
         @Override
         public Optional<Room> findRoom(String roomNum) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void fillRoomList() {
             throw new AssertionError("This method should not be called.");
         }
 
