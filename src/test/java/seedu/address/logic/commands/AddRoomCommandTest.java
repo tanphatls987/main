@@ -6,7 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.hotel.Room;
+import seedu.address.model.hotel.room.Room;
 
 /**
  * Test for add room command
@@ -14,7 +14,7 @@ import seedu.address.model.hotel.Room;
 public class AddRoomCommandTest {
 
     @Test
-    public void construct_nullRoom_thowsnNullPointerException() {
+    public void construct_nullRoom_throwsnNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddRoomCommand(null));
     }
 

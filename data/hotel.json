@@ -1,0 +1,33 @@
+{
+  "rooms" : [ {
+    "tier" : "BRONZE",
+    "number" : "001"
+  }, {
+    "tier" : "BRONZE",
+    "number" : "002"
+  }, {
+    "tier" : "BRONZE",
+    "number" : "003"
+  }, {
+    "tier" : "BRONZE",
+    "number" : "004"
+  }, {
+    "tier" : "SILVER",
+    "number" : "005"
+  }, {
+    "tier" : "SILVER",
+    "number" : "006"
+  }, {
+    "tier" : "GOLD",
+    "number" : "007"
+  }, {
+    "tier" : "BRONZE",
+    "number" : "008"
+  }, {
+    "tier" : "BRONZE",
+    "number" : "009"
+  }, {
+    "tier" : "BRONZE",
+    "number" : "010"
+  } ]
+}

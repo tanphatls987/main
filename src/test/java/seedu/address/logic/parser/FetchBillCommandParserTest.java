@@ -9,8 +9,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FetchBillCommand;
-import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.person.Person;
+import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.PersonId;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.RoomBuilder;

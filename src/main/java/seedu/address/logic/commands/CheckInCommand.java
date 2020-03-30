@@ -10,9 +10,9 @@ import java.util.Optional;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.person.Person;
+import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 import seedu.address.model.timeframe.TimeFrame;
