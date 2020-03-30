@@ -54,6 +54,32 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 [[Features]]
 == Features
+====
+*Overview*
+
+Features can be divided into 4 groups of command
+
+* Initialization commands
+** `addroom` command adds a room into hotel.
+** `addguest` command adds a guest.
+
+* Service commands
+
+** `checkin` and `checkout` command receives and returns customers.
+** `service` command charges customers for getting services.
+** `reserve` command makes a reservation.
+
+* Statistical commands
+
+** `list` command shows list of guests
+** `findguest`, `locateroom` quickly looks up for queries of rooms and quests.
+** `clear` command clears previous responses.
+
+* General purpose command
+
+** `help` command shows instructions.
+** `exit` command quits the app.
+====
 
 ====
 *Command Format*
