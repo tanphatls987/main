@@ -169,7 +169,7 @@ Examples:
 * `list` +
 `checkin n/Smith r/101` +
 Checks Smith in to room 101.
-* `bill n/Smith~ +
+* `bill n/Smith` +
 Shows bill incurred by Smith
 
 === Adding a tier: `addtier`
