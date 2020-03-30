@@ -17,9 +17,20 @@ endif::[]
 By: `AY1920S2-CS2103T-W13-2`      Since: `Jan 2020`      Licence: `MIT`
 
 == Introduction
+Hello there!
 
-Morpheus is for receptionists who prefer to use a desktop app for hotel room management. More importantly, Morpheus is optimized for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your hotel room management tasks done faster than traditional GUI apps.
+Morpheus is for hotel receptionists like you who prefer to use a desktop app for hotel room management.
+
+Tired of searching through rows and columns in books or excel spreadsheets? Morpheus has got you covered with our intuitive user interface!
+
+Frustrated with slow and tedious bookkeeping? Morpheus can settle it within a few seconds!
+
+More importantly, Morpheus is optimized for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Morpheus can get your hotel room management tasks done faster than traditional GUI apps.
 Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+
+== About this document
+
+This user guide gives you an overview of the features of Morpheus. With the help of given examples, you will be able to learn how to use the application to help manage the rooms and services in the hotel.
 
 == Quick Start
 
