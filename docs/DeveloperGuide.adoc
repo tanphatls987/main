@@ -178,7 +178,7 @@ The following steps show how to set up a hotel:
 2.  Add tiers using `AddTierCommand`, and attach rooms with tiers.
 
 === Search feature
-===== Implementation
+==== Implementation
 The following steps show how the search feature works:
 
 1.  The command from the user is parsed into a list of pattern contained in the search command.
@@ -189,7 +189,7 @@ The diagram below shows the execution of the command:
 .Activity Diagram of Search Feature
 image::SearchWorkflow.png[]
 
-===== Design Considerations
+==== Design Considerations
 
 === Billing feature
 

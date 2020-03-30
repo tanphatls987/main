@@ -40,6 +40,14 @@ public class Room {
         return this.roomNum;
     }
 
+    /**
+     * RoomId getter.
+     * @return roomId
+     */
+    public RoomId getRoomId() {
+        return this.roomId;
+    }
+
 
     /**
      * Check if this room has some certain name.
@@ -80,10 +88,6 @@ public class Room {
 
         return room != null
                 && room.getRoomNum().equals(getRoomNum());
-    }
-
-    public RoomId getRoomId() {
-        return this.roomId;
     }
 
     @Override
