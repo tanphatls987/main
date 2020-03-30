@@ -90,10 +90,6 @@ public class Room {
                 && room.getRoomNum().equals(getRoomNum());
     }
 
-    public RoomId getRoomId() {
-        return this.roomId;
-    }
-
     @Override
     public String toString() {
         return "Room{"
