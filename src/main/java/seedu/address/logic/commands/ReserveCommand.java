@@ -66,7 +66,11 @@ public class ReserveCommand extends Command {
         if (room.isEmpty()) {
             throw new CommandException("No room with this number");
         }
-        model.bookRoom(new Booking(payee.get(), room.get(), reserveDuration));
+        Booking toBook = new Booking(payee.get(), room.get(), reserveDuration);
+        if (model.hasBooking(toBook)) {
+            throw new CommandException("Room is already booked at this time");
+        }
+        model.bookRoom(toBook);
         return new CommandResult(generateSuccessMessage(payee.get()));
 
     }

@@ -153,6 +153,11 @@ public interface Model {
     boolean hasRoom(String roomName);
 
     /**
+     * check if a booking exists
+     */
+    boolean hasBooking(Booking booking);
+
+    /**
      * Check if a tier name exists
      */
     boolean hasTier(Tier tier);

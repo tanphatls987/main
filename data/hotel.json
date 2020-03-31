@@ -32,18 +32,15 @@
   }, {
     "tier" : "BRONZE",
     "number" : "011"
+  }, {
+    "tier" : "BRONZE",
+    "number" : "012"
   } ],
   "bookings" : [ {
-    "room" : "Room { roomTier=BRONZE, roomNum='Room { roomTier=BRONZE, roomNum='Room{roomTier=BRONZE, roomNum='002', roomId=002}', roomId=Room{roomTier=BRONZE, roomNum='002', roomId=002}}', }}",
-    "payeeName" : "Alex Yeoh",
-    "payeeId" : "A000000",
-    "timeFrom" : "2020-12-12T00:00",
-    "timeTo" : "2020-12-23T00:00"
-  }, {
-    "room" : "Room { roomTier=BRONZE, roomNum='Room { roomTier=SILVER, roomNum='005', roomId=005}', roomId=Room { roomTier=SILVER, roomNum='005', roomId=005}}",
-    "payeeName" : "Bernice Yu",
-    "payeeId" : "B000000",
-    "timeFrom" : "2020-12-12T00:00",
-    "timeTo" : "2020-12-23T00:00"
+    "room" : "003",
+    "payeeName" : "Charlotte Oliveiro",
+    "payeeId" : "C000000",
+    "timeFrom" : "2020-12-12T12:00",
+    "timeTo" : "2020-12-23T12:00"
   } ]
 }

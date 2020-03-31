@@ -196,7 +196,7 @@ public class ModelManager implements Model {
     public Optional<Booking> getCurrentStay(Room room) {
         requireNonNull(room);
 
-        return bookingList
+        return hotel.getBookingList()
             .stream()
             .filter(u -> u.isCorrectRoom(room))
             .filter(u -> u.isCurrentlyClash(room))
@@ -258,7 +258,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteBooking(Booking booking) {
-        bookingList.remove(booking);
+        hotel.getBookingList().remove(booking);
     }
 
     // to update accordingly when implementing billing system.
@@ -284,6 +284,12 @@ public class ModelManager implements Model {
 
         return this.hotel.hasRoom(roomNum);
 
+    }
+
+    @Override
+    public boolean hasBooking(Booking booking) {
+        requireNonNull(booking);
+        return this.hotel.hasBooking(booking);
     }
 
     @Override

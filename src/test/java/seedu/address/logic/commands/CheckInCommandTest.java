@@ -338,6 +338,11 @@ public class CheckInCommandTest {
             return Optional.empty();
         }
 
+        @Override
+        public boolean hasBooking(Booking booking) {
+            return hotel.hasBooking(booking);
+        }
+
     }
 
     private class ModelStubWithBooking extends ModelStubWithRoomsAndPerson {

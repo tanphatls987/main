@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import seedu.address.model.hotel.booking.Booking;
+import seedu.address.model.hotel.booking.exception.RoomBookedException;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.hotel.room.Tier;
 import seedu.address.model.hotel.room.UniqueRoomList;
@@ -104,7 +105,7 @@ public class Hotel implements ReadOnlyHotel {
      */
     public boolean hasBooking(Booking booking) {
         for (Booking b : bookingList) {
-            if (b.equals(booking)) {
+            if (b.isClash(booking)) {
                 return true;
             }
         }
@@ -202,7 +203,11 @@ public class Hotel implements ReadOnlyHotel {
      * Adds booking to booking list
      */
     public void addBooking(Booking booking) {
-        bookingList.add(booking);
+        if (hasBooking(booking)) {
+            throw new RoomBookedException();
+        } else {
+            bookingList.add(booking);
+        }
     }
 
 

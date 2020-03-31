@@ -159,6 +159,11 @@ public class AddGuestCommandTest {
         }
 
         @Override
+        public boolean hasBooking(Booking booking) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addRoom(String roomNum) {
             throw new AssertionError("This method should not be called");
         }
