@@ -9,6 +9,7 @@ import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.hotel.room.Tier;
@@ -197,8 +198,17 @@ public class Hotel implements ReadOnlyHotel {
         roomList.remove(key);
     }
 
-    //// util methods
+    /**
+     * populates room list.
+     */
+    public void fillRoomList() {
+        for (int i = 0; i < 10; i++) {
+            roomList.add(new Room(Integer.toString(i), new Tier(), new RoomCost()));
+        }
+    }
 
+
+    //// util methods
     @Override
     public String toString() {
         return roomList.asUnmodifiableObservableList().size() + " rooms";

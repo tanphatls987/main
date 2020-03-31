@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
@@ -263,16 +264,6 @@ public class ModelManager implements Model {
         bookingList.remove(booking);
     }
 
-    // to update accordingly when implementing billing system.
-    @Override
-    public void fetchBillList(Person person) {
-    }
-
-    // to update accordingly when implementing billing system.
-    @Override
-    public void fetchBill(Person person, RoomId roomId) {
-    }
-
     @Override
     public void addRoom(String roomNum) {
         requireNonNull(roomNum);
@@ -301,5 +292,27 @@ public class ModelManager implements Model {
         requireNonNull(roomNums);
 
         this.hotel.addTier(tier, roomNums);
+
     }
+
+
+
+    @Override
+    public void setRoomCost(Room room, RoomCost roomCost) {
+        requireAllNonNull(room, roomCost);
+        room.setCost(roomCost);
+    }
+
+    // to update accordingly when implementing billing system.
+    @Override
+    public void fetchBillList(Person person) {
+        requireNonNull(person);
+    }
+
+    // to update accordingly when implementing billing system.
+    @Override
+    public void fetchBill(Person person, RoomId roomNum) {
+        requireAllNonNull(person, roomNum);
+    }
+
 }

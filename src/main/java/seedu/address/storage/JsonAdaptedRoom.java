@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.hotel.bill.Cost;
+import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.hotel.room.Tier;
 
@@ -14,15 +16,18 @@ public class JsonAdaptedRoom {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Room's %s field is missing!";
     private final String tier;
     private final String number;
+    private final String cost;
     //private final String Id;
 
     /**
      * Constructs a {@code JsonAdaptedRoom} with the given room details.
      */
     @JsonCreator
-    public JsonAdaptedRoom(@JsonProperty("Tier") String tier, @JsonProperty("roomNum") String number) {
+    public JsonAdaptedRoom(@JsonProperty("Tier") String tier,
+                           @JsonProperty("roomNum") String number, @JsonProperty("Cost") String cost) {
         this.tier = tier;
         this.number = number;
+        this.cost = cost;
     }
 
     /**
@@ -31,6 +36,7 @@ public class JsonAdaptedRoom {
     public JsonAdaptedRoom(Room source) {
         tier = source.getTier().toString();
         number = source.getRoomNum();
+        cost = source.getRoomCost().toString();
     }
 
     /**
@@ -52,6 +58,13 @@ public class JsonAdaptedRoom {
 
         final String modelRoomNumber = number;
 
-        return new Room(modelRoomNumber, modelTier);
+        if (cost == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    RoomCost.class.getSimpleName()));
+        }
+
+        final RoomCost modelRoomCost = new RoomCost(new Cost(cost));
+
+        return new Room(modelRoomNumber, modelTier, modelRoomCost);
     }
 }

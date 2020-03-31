@@ -1,5 +1,6 @@
 package seedu.address.model.hotel.room;
 
+import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.ids.RoomId;
 
 /**
@@ -9,26 +10,29 @@ public class Room {
     private Tier roomTier;
     private String roomNum;
     private RoomId roomId;
+    private RoomCost roomCost;
 
     /**
+     * Create a room with name, tier & cost.
      * Create a room with name and tier.
      *
      * @param roomNum
      * @param roomTier
      */
-    public Room(String roomNum, Tier roomTier) {
+    public Room(String roomNum, Tier roomTier, RoomCost roomCost) {
         this.roomTier = roomTier;
         this.roomNum = roomNum;
         this.roomId = RoomId.generate(roomNum);
+        this.roomCost = roomCost;
     }
 
     /**
+     * Construct a room with just a name, using default tier and an unset cost.
      * Construct a room with just a name and a default tier
-     *
      * @param roomNum
      */
     public Room(String roomNum) {
-        this(roomNum, new Tier());
+        this(roomNum, new Tier(), new RoomCost());
     }
 
     /**
@@ -40,6 +44,7 @@ public class Room {
         return this.roomNum;
     }
 
+
     /**
      * RoomId getter.
      * @return roomId
@@ -47,7 +52,6 @@ public class Room {
     public RoomId getRoomId() {
         return this.roomId;
     }
-
 
     /**
      * Check if this room has some certain name.
@@ -104,5 +108,19 @@ public class Room {
      */
     public void setTier(Tier tier) {
         this.roomTier = tier;
+    }
+
+    /**
+     * Returns the {@code RoomCost} for the room.
+     */
+    public RoomCost getRoomCost() {
+        return roomCost;
+    }
+
+    /**
+     * Sets the cost for this room.
+     */
+    public void setCost(RoomCost roomCost) {
+        this.roomCost = roomCost;
     }
 }
