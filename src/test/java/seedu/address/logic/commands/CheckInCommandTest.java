@@ -24,6 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
@@ -283,16 +284,6 @@ public class CheckInCommandTest {
         }
 
         @Override
-        public void fetchBillList(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void fetchBill(Person person, RoomId roomId) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void addRoom(String roomName) {
             throw new AssertionError("This method should not be called.");
         }
@@ -311,6 +302,23 @@ public class CheckInCommandTest {
 
         @Override
         public void addTier(Tier tier, ArrayList<String> roomNums) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        //=========== Billing System =============================================================================
+
+        @Override
+        public void setRoomCost(Room room, RoomCost roomCost) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void fetchBillList(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void fetchBill(Person person, RoomId roomId) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -337,12 +345,11 @@ public class CheckInCommandTest {
         public Optional<Booking> getCurrentStay(Room room) {
             return Optional.empty();
         }
-
+      
         @Override
         public boolean hasBooking(Booking booking) {
             return hotel.hasBooking(booking);
         }
-
     }
 
     private class ModelStubWithBooking extends ModelStubWithRoomsAndPerson {

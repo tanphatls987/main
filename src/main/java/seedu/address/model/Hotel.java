@@ -9,6 +9,7 @@ import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.booking.exception.RoomBookedException;
 import seedu.address.model.hotel.room.Room;
@@ -210,9 +211,7 @@ public class Hotel implements ReadOnlyHotel {
         }
     }
 
-
     //// util methods
-
     @Override
     public String toString() {
         return roomList.asUnmodifiableObservableList().size() + " rooms";

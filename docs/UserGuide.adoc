@@ -208,6 +208,19 @@ Format: `addtier ti/TIER_NAME rn/ROOM_NUMBERS`
 Examples
 * `addtier ti/Gold rn/12E 12F 12T`.
 
+=== Setting the cost for a room : `setrcost`
+
+Sets the cost for a room (per night). +
+Format: `setrcost rn/ROOM_NUMBER c/COST`
+
+****
+* Sets the cost for `ROOM_NUMBER` as `COST` per night.
+****
+
+Examples:
+
+* `setrcost  rn/101 c/50`
+
 === Clearing all entries : `clear`
 
 Clears all entries from the address book. +
