@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.FetchBillCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ids.PersonId;
+import seedu.address.model.ids.RoomId;
 
 /**
  * Parses input arguments and creates a new FetchBillCommand object
@@ -36,9 +37,9 @@ public class FetchBillCommandParser implements Parser<FetchBillCommand> {
         PersonId personId = ParserUtil.parsePersonId(argMultimap.getValue(PREFIX_ID).get());
 
         if (arePrefixesPresent(argMultimap, PREFIX_ROOMNUMBER)) {
-            String roomNum = argMultimap.getValue(PREFIX_ROOMNUMBER).get();
+            RoomId roomId = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOMNUMBER).get());
 
-            return new FetchBillCommand(personId, roomNum);
+            return new FetchBillCommand(personId, roomId);
         } else {
             return new FetchBillCommand(personId);
         }

@@ -9,9 +9,10 @@ import java.util.Optional;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.bill.RoomCost;
+import seedu.address.model.hotel.room.Room;
+import seedu.address.model.ids.RoomId;
 
 /**
  * Sets the cost of a room.
@@ -30,14 +31,14 @@ public class SetRoomCostCommand extends Command {
     public static final String MESSAGE_SUCCESS = "The cost for room %1$s is set to %2$s per night.";
     public static final String MESSAGE_ROOM_NONEXISTENT = "Room %1$s does not exist in the system.";
 
-    private final String roomNum;
+    private final RoomId roomNum;
     private final Cost cost;
 
     /**
      * @param roomNum to set the cost of
      * @param cost of room per night
      */
-    public SetRoomCostCommand(String roomNum, Cost cost) {
+    public SetRoomCostCommand(RoomId roomNum, Cost cost) {
         requireAllNonNull(roomNum, cost);
 
         this.roomNum = roomNum;

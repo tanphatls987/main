@@ -17,9 +17,20 @@ endif::[]
 By: `AY1920S2-CS2103T-W13-2`      Since: `Jan 2020`      Licence: `MIT`
 
 == Introduction
+Hello there!
 
-Morpheus is for receptionists who prefer to use a desktop app for hotel room management. More importantly, Morpheus is optimized for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your hotel room management tasks done faster than traditional GUI apps.
+Morpheus is for hotel receptionists like you who prefer to use a desktop app for hotel room management.
+
+Tired of searching through rows and columns in books or excel spreadsheets? Morpheus has got you covered with our intuitive user interface!
+
+Frustrated with slow and tedious bookkeeping? Morpheus can settle it within a few seconds!
+
+More importantly, Morpheus is optimized for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Morpheus can get your hotel room management tasks done faster than traditional GUI apps.
 Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+
+== About this document
+
+This user guide gives you an overview of the features of Morpheus. With the help of given examples, you will be able to learn how to use the application to help manage the rooms and services in the hotel.
 
 == Quick Start
 
@@ -43,6 +54,32 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 [[Features]]
 == Features
+====
+*Overview*
+
+Features can be divided into 4 groups of command
+
+* Initialization commands
+** `addroom` command adds a room into hotel.
+** `addguest` command adds a guest.
+
+* Service commands
+
+** `checkin` and `checkout` command receives and returns customers.
+** `service` command charges customers for getting services.
+** `reserve` command makes a reservation.
+
+* Statistical commands
+
+** `list` command shows list of guests
+** `findguest`, `locateroom` quickly looks up for queries of rooms and quests.
+** `clear` command clears previous responses.
+
+* General purpose command
+
+** `help` command shows instructions.
+** `exit` command quits the app.
+====
 
 ====
 *Command Format*
@@ -56,6 +93,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 Format: `help`
 
+//tag::addguest[]
 === Adding a guest : `addguest`
 
 Create a guest in the hotel list. +
@@ -64,6 +102,7 @@ Format: `addguest n/NAME i/ID p/PHONE_NUMBER e/EMAIL`
 Examples:
 * `addguest n/John Doe i/G1231322X p/1928310 e/johndoe@gmail.com`
 Add John Doe with his information into the database.
+//end::addguest[]
 
 === Checking in a guest: `checkin`
 
@@ -158,7 +197,7 @@ Examples:
 * `list` +
 `checkin n/Smith r/101` +
 Checks Smith in to room 101.
-* `bill n/Smith~ +
+* `bill n/Smith` +
 Shows bill incurred by Smith
 
 === Adding a tier: `addtier`

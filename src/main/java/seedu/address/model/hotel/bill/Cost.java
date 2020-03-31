@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Cost {
     public static final String MESSAGE_CONSTRAINTS =
-            "Cost should only contain numbers, and it should have a maximum of 2 decimal places";
+            "Cost should only contain numbers, and it should have 2 decimal places";
     public static final String VALIDATION_REGEX = "[\\d\\.\\d{2}]";
 
     public final double cost;

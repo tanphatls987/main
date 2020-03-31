@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.SetRoomCostCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.hotel.bill.Cost;
+import seedu.address.model.ids.RoomId;
 
 /**
  * Parses input arguments and creates a new SetRoomCostCommand object
@@ -31,7 +32,7 @@ public class SetRoomCostCommandParser implements Parser<SetRoomCostCommand> {
             );
         }
 
-        String roomNum = argMultimap.getValue(PREFIX_ROOMNUMBER).get();
+        RoomId roomNum = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOMNUMBER).get());
         Cost cost = ParserUtil.parseCost(argMultimap.getValue(PREFIX_COST).get());
 
         return new SetRoomCostCommand(roomNum, cost);

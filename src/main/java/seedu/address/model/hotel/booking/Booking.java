@@ -2,8 +2,8 @@ package seedu.address.model.hotel.booking;
 
 import java.time.LocalDateTime;
 
-import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.person.Person;
+import seedu.address.model.hotel.room.Room;
 import seedu.address.model.timeframe.TimeFrame;
 import seedu.address.model.timeframe.exception.InvalidTimeFrameException;
 
@@ -44,9 +44,9 @@ public class Booking {
     }
 
     /**
-     * Check if 2 booking clash each other
-     * @param oth
-     * @return
+     * Check if 2 booking clash each other.
+     * @param oth other object
+     * @return true if the object clash each other
      */
     public boolean isClash(Booking oth) {
         ///different room
@@ -58,15 +58,31 @@ public class Booking {
 
     /**
      * Check if this booking clash with a room during a period of time.
-     * @param room
-     * @param duration
-     * @return
+     * @param room Room object to be checked
+     * @param duration start date and end date
+     * @return true if there exist clash with other
      */
     public boolean isClash(Room room, TimeFrame duration) {
         if (this.room != room) {
             return false;
         }
         return bookDuration.isClash(duration);
+    }
+
+    /**
+     * Check if this booking clash with a room during a period of time.
+     * @param room Room object to be checked
+     * @return true if there exist clash with other
+     */
+    public boolean isCurrentlyClash(Room room) {
+        if (this.room != room) {
+            return false;
+        }
+        return bookDuration.isInside(LocalDateTime.now());
+    }
+
+    public boolean isCorrectRoom(Room room) {
+        return this.room.isSameRoom(room);
     }
 
     @Override
@@ -83,4 +99,19 @@ public class Booking {
             && othBooking.room.equals(room);
     }
 
+    public Room getRoom() {
+        return room;
+    }
+
+    public Person getPayee() {
+        return payee;
+    }
+
+    public LocalDateTime getTimeFrom() {
+        return bookDuration.getStartTime();
+    }
+
+    public LocalDateTime getTimeTo() {
+        return bookDuration.getEndTime();
+    }
 }

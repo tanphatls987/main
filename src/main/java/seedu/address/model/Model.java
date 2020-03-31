@@ -6,13 +6,15 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.hotel.Room;
-import seedu.address.model.hotel.Tier;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
+import seedu.address.model.hotel.room.Room;
+import seedu.address.model.hotel.room.Tier;
 import seedu.address.model.ids.PersonId;
+import seedu.address.model.ids.RoomId;
 import seedu.address.model.timeframe.TimeFrame;
 
 /**
@@ -102,16 +104,16 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /** Returns list of rooms */
-    ArrayList<Room> getRoomList();
+    /**Returns list of rooms
+     * @return*/
+    ObservableList<Room> getRoomList();
 
     /** Returns list of bookings */
     ArrayList<Booking> getBookingList();
 
-    Optional<Room> findRoom(String roomNum);
+    Optional<Booking> getCurrentStay(Room room);
 
-    /** Populates room list */
-    void fillRoomList();
+    Optional<Room> findRoom(RoomId roomNum);
 
     /**
      * Check if a room is available during a period.
@@ -127,11 +129,17 @@ public interface Model {
      */
     void bookRoom(Booking booking);
 
+    void checkIn(Booking booking);
+
+    boolean checkOut(Room room);
+
+    void deleteBooking(Booking booking);
+
     /** Returns list of bills for specified person*/
     void fetchBillList(Person person);
 
     /** Returns bill for specified room of person */
-    void fetchBill(Person person, String roomNum);
+    void fetchBill(Person person, RoomId roomId);
 
     /**
      * Add a room with roomName

@@ -11,10 +11,11 @@ import java.util.Optional;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
+import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.PersonId;
+import seedu.address.model.ids.RoomId;
 import seedu.address.model.timeframe.TimeFrame;
 import seedu.address.model.timeframe.exception.InvalidTimeFrameException;
 
@@ -39,14 +40,14 @@ public class ReserveCommand extends Command {
 
     public static final String MESSAGE_ADD_RESERVE_SUCCESS = "Added booking to Person: %1$s";
 
-    private final String roomNum;
+    private final RoomId roomId;
     private final PersonId personId;
     private final TimeFrame reserveDuration;
 
-    public ReserveCommand(PersonId personId, String roomNum, LocalDateTime fromDate, LocalDateTime toDate)
+    public ReserveCommand(PersonId personId, RoomId roomNum, LocalDateTime fromDate, LocalDateTime toDate)
         throws InvalidTimeFrameException {
         requireAllNonNull(personId, roomNum, fromDate, toDate);
-        this.roomNum = roomNum;
+        this.roomId = roomNum;
         LocalDateTime reserveFrom = fromDate;
         LocalDateTime reserveTo = toDate;
 
@@ -57,12 +58,11 @@ public class ReserveCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        model.fillRoomList();
         Optional<Person> payee = model.findPersonWithId(personId);
         if (payee.isEmpty()) {
             throw new CommandException("No guest with this id");
         }
-        Optional<Room> room = model.findRoom(roomNum);
+        Optional<Room> room = model.findRoom(roomId);
         if (room.isEmpty()) {
             throw new CommandException("No room with this number");
         }

@@ -10,9 +10,9 @@ import java.util.Optional;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.person.Person;
+import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 import seedu.address.model.timeframe.TimeFrame;
@@ -64,7 +64,7 @@ public class CheckInCommand extends Command {
         requireNonNull(model);
 
         Optional<Person> person = model.findPersonWithId(personId);
-        Optional<Room> room = model.findRoom(personId.toString());
+        Optional<Room> room = model.findRoom(roomId);
 
         if (person.isEmpty()) {
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_EXISTS, personId));
@@ -75,8 +75,10 @@ public class CheckInCommand extends Command {
         if (!(toDate.isAfter(LocalDateTime.now()))) {
             throw new CommandException(String.format(MESSAGE_DATE_PASSED, toDate));
         }
-        if (!(model.isRoomFree(room.get(), new TimeFrame(LocalDateTime.now(), toDate)))) {
-            throw new CommandException(MESSAGE_ROOM_OCCUPIED);
+
+        TimeFrame stayTimeFrame = new TimeFrame(LocalDateTime.now(), toDate);
+        if (!(model.isRoomFree(room.get(), stayTimeFrame))) {
+            throw new CommandException(String.format(MESSAGE_ROOM_OCCUPIED, roomId));
         }
 
         Stay stay = new Stay(person.get(), room.get(), LocalDateTime.now(), toDate, "");

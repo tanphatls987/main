@@ -10,8 +10,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddTierCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.hotel.Tier;
-
+import seedu.address.model.hotel.room.Tier;
 
 
 /**

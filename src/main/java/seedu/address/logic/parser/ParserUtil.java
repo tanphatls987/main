@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
@@ -10,11 +11,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.hotel.Tier;
 import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.person.Email;
 import seedu.address.model.hotel.person.Name;
 import seedu.address.model.hotel.person.Phone;
+import seedu.address.model.hotel.room.Tier;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 import seedu.address.model.tag.Tag;
@@ -63,8 +64,8 @@ public class ParserUtil {
     public static LocalDateTime parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        //assume date is always valid
-        return LocalDateTime.parse(trimmedDate);
+        LocalDate localDate = LocalDate.parse(trimmedDate);
+        return localDate.atTime(12, 0, 0);
     }
 
     /**
@@ -151,7 +152,7 @@ public class ParserUtil {
         return new Tier(s);
     }
 
-   /**
+    /**
      * Parses a {@code String cost} into a {@code Cost}.
      * Leading and trailing whitespaces will be trimmed.
      *

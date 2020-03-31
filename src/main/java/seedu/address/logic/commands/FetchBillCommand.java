@@ -9,9 +9,10 @@ import java.util.Optional;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.hotel.Room;
 import seedu.address.model.hotel.person.Person;
+import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.PersonId;
+import seedu.address.model.ids.RoomId;
 
 /**
  * Retrieves the bill of a guest
@@ -36,7 +37,7 @@ public class FetchBillCommand extends Command {
 
     private final PersonId personId;
     private final boolean isSpecific;
-    private final String roomNum;
+    private final RoomId roomId;
 
     /**
      * @param personId to fetch the bills of
@@ -44,18 +45,18 @@ public class FetchBillCommand extends Command {
     public FetchBillCommand(PersonId personId) {
         requireNonNull(personId);
         this.personId = personId;
-        this.roomNum = null;
+        this.roomId = null;
         this.isSpecific = false;
     }
 
     /**
-     * Specifically fetch the bill of room number {@code roomNum} for {@code personId}
+     * Specifically fetch the bill of room number {@code roomId} for {@code personId}
      */
-    public FetchBillCommand(PersonId personId, String roomNum) {
+    public FetchBillCommand(PersonId personId, RoomId roomId) {
         requireNonNull(personId);
-        requireNonNull(roomNum);
+        requireNonNull(roomId);
         this.personId = personId;
-        this.roomNum = roomNum;
+        this.roomId = roomId;
         this.isSpecific = true;
     }
 
@@ -70,14 +71,14 @@ public class FetchBillCommand extends Command {
         }
 
         if (isSpecific) {
-            Optional<Room> room = model.findRoom(roomNum);
+            Optional<Room> room = model.findRoom(roomId);
 
             if (room.isEmpty()) {
-                throw new CommandException(String.format(MESSAGE_ROOM_NONEXISTENT, roomNum));
+                throw new CommandException(String.format(MESSAGE_ROOM_NONEXISTENT, roomId));
             }
 
-            model.fetchBill(person.get(), roomNum);
-            return new CommandResult(String.format(MESSAGE_SUCCESS_SPECIFIC, roomNum,
+            model.fetchBill(person.get(), roomId);
+            return new CommandResult(String.format(MESSAGE_SUCCESS_SPECIFIC, roomId,
                     personId, person.get().getName()));
         } else {
             model.fetchBillList(person.get());

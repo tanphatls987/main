@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.hotel.Tier;
+import seedu.address.model.hotel.room.Tier;
 import seedu.address.testutil.TypicalRooms;
 /**
  * Test for add tier command.
@@ -21,8 +21,8 @@ public class AddTierCommandTest {
 
     @Test
     public void equals() {
-        String firstTierName = "Gold";
-        String secondTierName = "Diamond";
+        String firstTierName = "BRONZE";
+        String secondTierName = "GOLD";
         Tier goldTier = new Tier(firstTierName);
         Tier diamondTier = new Tier(secondTierName);
         ArrayList roomList = (ArrayList) TypicalRooms.getTypicalRooms();

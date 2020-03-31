@@ -1,19 +1,29 @@
-package seedu.address.model.hotel;
+package seedu.address.model.hotel.room;
 
 
 /**
  * Store room tier.
  */
 public class Tier {
-    private String name;
+
+    /**
+     * Enum to show different types of tiers
+     */
+    enum TierName {
+        BRONZE, SILVER, GOLD
+
+    }
+    public static final String MESSAGE_CONSTRAINTS = "Tier must be gold, silver or bronze";
+    public static final String DEFAULT_TIER = "BRONZE";
+    private TierName name;
     private boolean isDefault;
 
     /**
      * Create a tier with name
-     * @param name
+     * @param n
      */
-    public Tier(String name) {
-        this.name = name;
+    public Tier(String n) {
+        this.name = TierName.valueOf(n);
         this.isDefault = false;
     }
 
@@ -21,8 +31,7 @@ public class Tier {
      * Create a default tier
      */
     public Tier() {
-        name = "default";
-        this.isDefault = true;
+        name = TierName.valueOf(DEFAULT_TIER);
     }
 
     /**
@@ -46,6 +55,6 @@ public class Tier {
 
     @Override
     public String toString() {
-        return this.name;
+        return name.toString();
     }
 }

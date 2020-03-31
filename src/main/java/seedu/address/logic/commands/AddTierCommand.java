@@ -10,10 +10,8 @@ import java.util.function.Function;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyHotel;
-import seedu.address.model.hotel.Room;
-import seedu.address.model.hotel.Tier;
-
-
+import seedu.address.model.hotel.room.Room;
+import seedu.address.model.hotel.room.Tier;
 
 
 /**
@@ -66,7 +64,7 @@ public class AddTierCommand extends Command {
         }
 
         Function<String, Room> findRoom = (String s) -> {
-            for (Room room: hotel.getImmutableRoomList()) {
+            for (Room room: hotel.getRoomList()) {
                 if (room.hasName(s)) {
                     return room;
                 }

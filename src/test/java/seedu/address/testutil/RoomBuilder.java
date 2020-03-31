@@ -1,8 +1,9 @@
 package seedu.address.testutil;
 
-import seedu.address.model.hotel.Room;
-import seedu.address.model.hotel.Tier;
+import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.bill.RoomCost;
+import seedu.address.model.hotel.room.Room;
+import seedu.address.model.hotel.room.Tier;
 import seedu.address.model.ids.RoomId;
 
 
@@ -11,7 +12,7 @@ import seedu.address.model.ids.RoomId;
  */
 public class RoomBuilder {
     public static final Tier DEFAULT_TIER = new Tier();
-    public static final String DEFAULT_ROOMNUM = "1";
+    public static final String DEFAULT_ROOMNUM = "001";
     public static final RoomId DEFAULT_ROOMID = RoomId.generate(DEFAULT_ROOMNUM);
     public static final RoomCost DEFAULT_ROOMCOST = new RoomCost();
 
@@ -31,17 +32,31 @@ public class RoomBuilder {
     }
 
     /**
-     * Build a default room.
+     * Sets the {@code tier} of the {@code Room} that we are building.
      */
-    public Room build() {
-        return new Room(roomNum, roomTier, roomCost);
+
+    public RoomBuilder withTier(String tier) {
+        this.roomTier = new Tier(tier);
+        return this;
     }
 
     /**
-     * Build a room with name.
+     * Sets the {@code roomNum} of the {@code Room} that we are building.
      */
-    public Room withRoomNum(String roomNum) {
-        return new Room(roomNum);
+    public RoomBuilder withRoomNum(String roomNum) {
+        this.roomNum = roomNum;
+        return this;
     }
 
+    /**
+     * Sets the {@code roomCost} of the {@code Room} that we are building.
+     */
+    public RoomBuilder withRoomCost(String roomCost) {
+        this.roomCost = new RoomCost(new Cost(roomCost));
+        return this;
+    }
+
+    public Room build() {
+        return new Room(roomNum, roomTier, roomCost);
+    }
 }

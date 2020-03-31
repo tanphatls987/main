@@ -63,6 +63,15 @@ public class TimeFrame {
         return commonLeft.isBefore(commonRight);
     }
 
+    /**
+     * Check if the time is inside the timeframe.
+     * @param time the time that is going to be checked
+     * @return true if the time is between from and to.
+     */
+    public boolean isInside(LocalDateTime time) {
+        return from.isBefore(time) && to.isAfter(time);
+    }
+
     @Override
     public boolean equals(Object oth) {
         if (oth == this) {

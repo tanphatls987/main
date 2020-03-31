@@ -42,7 +42,7 @@ public class ReserveCommandParser implements Parser<ReserveCommand> {
         LocalDateTime fromDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_FROMDATE).get());
         LocalDateTime toDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_TODATE).get());
 
-        return new ReserveCommand(personId, roomNum.toString(), fromDate, toDate);
+        return new ReserveCommand(personId, roomNum, fromDate, toDate);
     }
 
     /**
