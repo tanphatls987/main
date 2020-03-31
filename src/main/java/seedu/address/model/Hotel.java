@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.booking.exception.RoomBookedException;
 import seedu.address.model.hotel.room.Room;
@@ -203,7 +204,7 @@ public class Hotel implements ReadOnlyHotel {
      */
     public void addBooking(Booking booking) {
         if (hasBooking(booking)) {
-            throw new RoomBookedException();
+            throw new RoomBookedException(); //Throws exception if room is already booked
         } else {
             bookingList.add(booking);
         }
