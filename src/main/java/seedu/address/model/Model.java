@@ -144,7 +144,7 @@ public interface Model {
      * Check if a room exist
      */
     boolean hasRoom(String roomName);
-  
+
     /**
      * Check if a tier name exists
      */
