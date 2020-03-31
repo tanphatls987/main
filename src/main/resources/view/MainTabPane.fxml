@@ -29,6 +29,15 @@
                   </AnchorPane>
                </content>
             </Tab>
+            <Tab fx:id="bookingTab" text="Bookings">
+               <content>
+                  <AnchorPane style="-fx-background-color: black;">
+                     <children>
+                        <StackPane fx:id="bookingListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
          </tabs>
       </TabPane>
    </children>

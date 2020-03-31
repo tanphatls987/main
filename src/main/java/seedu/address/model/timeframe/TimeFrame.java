@@ -75,4 +75,9 @@ public class TimeFrame {
         return othTimeFrame.from.equals(from)
             && othTimeFrame.to.equals(to);
     }
+
+    @Override
+    public String toString() {
+        return "From: " + from + " To: " + to + "\n";
+    }
 }

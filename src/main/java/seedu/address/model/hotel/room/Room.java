@@ -92,7 +92,7 @@ public class Room {
 
     @Override
     public String toString() {
-        return "Room{"
+        return "Room { "
                 + "roomTier=" + roomTier.toString()
                 + ", roomNum='" + roomNum + '\''
                 + ", roomId=" + roomId

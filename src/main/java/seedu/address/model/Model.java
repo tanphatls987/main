@@ -107,7 +107,7 @@ public interface Model {
     ObservableList<Room> getRoomList();
 
     /** Returns list of bookings */
-    ArrayList<Booking> getBookingList();
+    ObservableList<Booking> getBookingList();
 
     Optional<Room> findRoom(String roomNum);
 

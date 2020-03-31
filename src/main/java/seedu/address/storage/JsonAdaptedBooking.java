@@ -27,11 +27,11 @@ public class JsonAdaptedBooking {
      * Constructs a {@code JsonAdaptedBooking} with the given booking details.
      */
     @JsonCreator
-    public JsonAdaptedBooking(@JsonProperty("Room") String room,
-                              @JsonProperty("PayeeName") String payeeName,
-                              @JsonProperty("PayeeId") String payeeId,
-                              @JsonProperty("From") String timeFrom,
-                              @JsonProperty("To") String timeTo) {
+    public JsonAdaptedBooking(@JsonProperty("room") String room,
+                              @JsonProperty("payeeName") String payeeName,
+                              @JsonProperty("payeeId") String payeeId,
+                              @JsonProperty("from") String timeFrom,
+                              @JsonProperty("to") String timeTo) {
         this.room = room;
         this.payeeName = payeeName;
         this.payeeId = payeeId;

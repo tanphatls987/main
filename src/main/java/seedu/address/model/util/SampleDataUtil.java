@@ -1,5 +1,6 @@
 package seedu.address.model.util;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -8,6 +9,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Hotel;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyHotel;
+import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Email;
 import seedu.address.model.hotel.person.Name;
 import seedu.address.model.hotel.person.Person;
@@ -56,6 +58,15 @@ public class SampleDataUtil {
         };
     }
 
+    public static Booking[] getSampleBookings() {
+        return new Booking[] {
+            new Booking(getSamplePersons()[0],
+                        getSampleRooms()[0], LocalDateTime.now(),
+                        LocalDateTime.of(2020, 12,
+                                12, 12, 12, 12))
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
@@ -68,6 +79,9 @@ public class SampleDataUtil {
         Hotel sampleHotel = new Hotel();
         for (Room sampleRoom: getSampleRooms()) {
             sampleHotel.addRoom(sampleRoom);
+        }
+        for (Booking sampleBooking: getSampleBookings()) {
+            sampleHotel.addBooking(sampleBooking);
         }
         return sampleHotel;
     }

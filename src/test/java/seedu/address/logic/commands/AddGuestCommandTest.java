@@ -183,7 +183,7 @@ public class AddGuestCommandTest {
         }
 
         @Override
-        public ArrayList<Booking> getBookingList() {
+        public ObservableList<Booking> getBookingList() {
             throw new AssertionError("This method should not be called.");
         }
 

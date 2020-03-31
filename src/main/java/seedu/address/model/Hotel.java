@@ -45,7 +45,10 @@ public class Hotel implements ReadOnlyHotel {
         requireNonNull(toBeCopied);
         this.roomList.setRooms(toBeCopied.getRoomList());
         this.tierList.addAll(toBeCopied.getTierList());
+        this.bookingList.addAll(toBeCopied.getBookingList());
     }
+
+    //// room-level operations
 
     /**
      * Get the room list.
@@ -75,8 +78,6 @@ public class Hotel implements ReadOnlyHotel {
         requireNonNull(editedRoom);
         roomList.setRoom(target, editedRoom);
     }
-
-    //// person-level operations
 
     /**
      * Returns true if a room with the same identity as {@code room} exists in the hotel.
@@ -120,7 +121,7 @@ public class Hotel implements ReadOnlyHotel {
      * @Return observable list of bookings */
     @Override
     public ObservableList<Booking> getBookingList() {
-        return FXCollections.observableArrayList(bookingList);
+        return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList(bookingList));
     }
 
     /**
@@ -196,6 +197,14 @@ public class Hotel implements ReadOnlyHotel {
     public void removeRoom(Room key) {
         roomList.remove(key);
     }
+
+    /**
+     * Adds booking to booking list
+     */
+    public void addBooking(Booking booking) {
+        bookingList.add(booking);
+    }
+
 
     //// util methods
 
