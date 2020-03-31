@@ -9,6 +9,7 @@ import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.hotel.room.Tier;
 import seedu.address.model.hotel.room.UniqueRoomList;
@@ -19,6 +20,7 @@ import seedu.address.model.ids.RoomId;
  */
 public class Hotel implements ReadOnlyHotel {
     private final UniqueRoomList roomList;
+    private final ArrayList<Booking> bookingList;
 
     private final ArrayList<Tier> tierList;
 
@@ -28,6 +30,7 @@ public class Hotel implements ReadOnlyHotel {
     public Hotel() {
 
         tierList = new ArrayList<>();
+        bookingList = new ArrayList<>();
         //non-static initialization block
         {
             roomList = new UniqueRoomList();
@@ -95,9 +98,29 @@ public class Hotel implements ReadOnlyHotel {
         return false;
     }
 
+    /**
+     * Check is booking already exists in the hotel
+     */
+    public boolean hasBooking(Booking booking) {
+        for (Booking b : bookingList) {
+            if (b.equals(booking)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public ObservableList<Tier> getTierList() {
         return FXCollections.observableArrayList(tierList);
+    }
+
+    /**
+     *
+     * @Return observable list of bookings */
+    @Override
+    public ObservableList<Booking> getBookingList() {
+        return FXCollections.observableArrayList(bookingList);
     }
 
     /**
@@ -204,8 +227,10 @@ public class Hotel implements ReadOnlyHotel {
         }
 
         if (other instanceof Hotel) {
-            return this.roomList.equals(((Hotel) other).roomList);
+            return this.roomList.equals(((Hotel) other).roomList)
+                    && this.bookingList.equals(((Hotel) other).bookingList);
         }
+
 
         return false;
     }

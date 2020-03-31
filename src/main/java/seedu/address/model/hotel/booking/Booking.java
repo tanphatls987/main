@@ -83,4 +83,19 @@ public class Booking {
             && othBooking.room.equals(room);
     }
 
+    public Room getRoom() {
+        return room;
+    }
+
+    public Person getPayee() {
+        return payee;
+    }
+
+    public LocalDateTime getTimeFrom() {
+        return bookDuration.getStartTime();
+    }
+
+    public LocalDateTime getTimeTo() {
+        return bookDuration.getEndTime();
+    }
 }
