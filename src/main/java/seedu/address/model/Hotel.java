@@ -206,7 +206,7 @@ public class Hotel implements ReadOnlyHotel {
      */
     public void addBooking(Booking booking) {
         if (hasBooking(booking)) {
-            throw new RoomBookedException(); //Throws exception if room is already booked
+            throw new RoomBookedException(); 
         } else {
             bookingList.add(booking);
         }
