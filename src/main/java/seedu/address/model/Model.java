@@ -138,7 +138,7 @@ public interface Model {
     void fetchBillList(Person person);
 
     /** Returns bill for specified room of person */
-    void fetchBill(Person person, String roomNum);
+    void fetchBill(Person person, RoomId roomId);
 
     /**
      * Add a room with roomName

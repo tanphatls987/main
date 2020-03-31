@@ -201,6 +201,7 @@ public class ModelManager implements Model {
         return bookingList
             .stream()
             .filter(u -> u.isCorrectRoom(room))
+            .filter(u -> u.isCurrentlyClash(room))
             .findFirst();
     }
 
@@ -269,7 +270,7 @@ public class ModelManager implements Model {
 
     // to update accordingly when implementing billing system.
     @Override
-    public void fetchBill(Person person, String roomNum) {
+    public void fetchBill(Person person, RoomId roomId) {
     }
 
     @Override

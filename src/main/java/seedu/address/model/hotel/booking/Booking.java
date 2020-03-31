@@ -69,6 +69,18 @@ public class Booking {
         return bookDuration.isClash(duration);
     }
 
+    /**
+     * Check if this booking clash with a room during a period of time.
+     * @param room Room object to be checked
+     * @return true if there exist clash with other
+     */
+    public boolean isCurrentlyClash(Room room) {
+        if (this.room != room) {
+            return false;
+        }
+        return bookDuration.isInside(LocalDateTime.now());
+    }
+
     public boolean isCorrectRoom(Room room) {
         return this.room.isSameRoom(room);
     }
