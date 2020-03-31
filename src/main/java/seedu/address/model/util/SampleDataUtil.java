@@ -10,9 +10,9 @@ import seedu.address.model.Hotel;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyHotel;
 
-import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.bill.RoomCost;
+import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Email;
 import seedu.address.model.hotel.person.Name;
 import seedu.address.model.hotel.person.Person;
