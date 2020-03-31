@@ -37,7 +37,7 @@ public class JsonSerializableHotel {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressHotel} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyHotel} into this class for Jackson use.
      *
      * @param sourceHotel future changes to this will not affect the created {@code JsonSerializableHotel}.
      */
