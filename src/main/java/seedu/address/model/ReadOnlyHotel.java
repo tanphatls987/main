@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.hotel.room.Tier;
 
@@ -16,4 +17,8 @@ public interface ReadOnlyHotel {
      * @return: a list of tiers;
      */
     ObservableList<Tier> getTierList();
+    /**
+     * @return list of bookings
+     */
+    ObservableList<Booking> getBookingList();
 }
