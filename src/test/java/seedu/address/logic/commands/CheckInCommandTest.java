@@ -345,7 +345,6 @@ public class CheckInCommandTest {
         public Optional<Booking> getCurrentStay(Room room) {
             return Optional.empty();
         }
-      
         @Override
         public boolean hasBooking(Booking booking) {
             return hotel.hasBooking(booking);
