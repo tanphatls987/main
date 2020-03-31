@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Name;
@@ -24,14 +23,14 @@ public class JsonAdaptedBooking {
     private final String timeTo;
 
     /**
-     * Constructs a {@code JsonAdaptedBooking} with the given booking details.
+     * Constructs a {@code JsonAdaptedBooking} with the given room details.
      */
     @JsonCreator
     public JsonAdaptedBooking(@JsonProperty("Room") String room,
                               @JsonProperty("PayeeName") String payeeName,
                               @JsonProperty("PayeeId") String payeeId,
                               @JsonProperty("From") String timeFrom,
-                              @JsonProperty("To") String timeTo) {
+                              @JsonProperty("To") String timeTo{
         this.room = room;
         this.payeeName = payeeName;
         this.payeeId = payeeId;
@@ -51,7 +50,7 @@ public class JsonAdaptedBooking {
     }
 
     /**
-     * Converts this Jackson-friendly adapted booking object into the model's {@code Booking} object.
+     * Converts this Jackson-friendly adapted room object into the model's {@code Booking} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted booking.
      */
