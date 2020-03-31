@@ -64,7 +64,7 @@ public class CheckInCommand extends Command {
         requireNonNull(model);
 
         Optional<Person> person = model.findPersonWithId(personId);
-        Optional<Room> room = model.findRoom(roomId.toString());
+        Optional<Room> room = model.findRoom(roomId);
 
         if (person.isEmpty()) {
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_EXISTS, personId));
@@ -73,13 +73,11 @@ public class CheckInCommand extends Command {
             throw new CommandException(String.format(MESSAGE_ROOM_NOT_EXISTS, roomId));
         }
         if (!(toDate.isAfter(LocalDateTime.now()))) {
-            System.out.println("otto");
             throw new CommandException(String.format(MESSAGE_DATE_PASSED, toDate));
         }
 
         TimeFrame stayTimeFrame = new TimeFrame(LocalDateTime.now(), toDate);
         if (!(model.isRoomFree(room.get(), stayTimeFrame))) {
-            System.out.println("bebong");
             throw new CommandException(String.format(MESSAGE_ROOM_OCCUPIED, roomId));
         }
 

@@ -141,11 +141,11 @@ public class Hotel implements ReadOnlyHotel {
      * @param roomNum
      * @return Room
      */
-    public Optional<Room> getRoom(String roomNum) {
+    public Optional<Room> getRoom(RoomId roomNum) {
         return roomList
             .asUnmodifiableObservableList()
             .stream()
-            .filter(u -> u.getRoomNum().equals(roomNum))
+            .filter(u -> u.getRoomNum().equals(roomNum.toString()))
             .findFirst();
     }
 

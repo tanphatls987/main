@@ -18,6 +18,7 @@ import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.hotel.room.Tier;
 import seedu.address.model.ids.PersonId;
+import seedu.address.model.ids.RoomId;
 import seedu.address.model.timeframe.TimeFrame;
 
 /**
@@ -114,9 +115,8 @@ public class ModelManager implements Model {
 
     /**
      * Return a person with matching personId
-     *
-     * @param personId
-     * @return
+     * @param personId the personID
+     * @return Optional of the person with that PersonID
      */
     @Override
     public Optional<Person> findPersonWithId(PersonId personId) {
@@ -187,14 +187,26 @@ public class ModelManager implements Model {
         return hotel.getBookingList();
     }
 
+    /**
+     * Get the stay in the room in current time.
+     * @param room the room object.
+     * @return The booking if exist, empty otherwise.
+     */
+    @Override
+    public Optional<Booking> getCurrentStay(Room room) {
+        requireNonNull(room);
+
+        return bookingList
+            .stream()
+            .filter(u -> u.isCorrectRoom(room))
+            .filter(u -> u.isCurrentlyClash(room))
+            .findFirst();
+    }
 
     @Override
-    public Optional<Room> findRoom(String roomNum) {
+    public Optional<Room> findRoom(RoomId roomNum) {
         requireNonNull(roomNum);
-        return hotel.getRoomList()
-            .stream()
-            .filter(u -> u.getRoomNum().equals(roomNum))
-            .findFirst();
+        return hotel.findRoomWithRoomId(roomNum);
     }
 
     @Override
@@ -203,16 +215,50 @@ public class ModelManager implements Model {
         requireNonNull(duration);
         ObservableList<Booking> bookingList = hotel.getBookingList();
 
-        ///timeframe create successfully mean no bogus duration
-        return !(bookingList
+        //timeframe create successfully mean no bogus duration
+        return bookingList
             .stream()
-            .anyMatch(u -> u.isClash(room, duration)));
+            .noneMatch(u -> u.isClash(room, duration));
     }
 
     @Override
     public void bookRoom(Booking booking) {
         requireNonNull(booking);
         hotel.addBooking(booking);
+    }
+
+    /**
+     * Checks in a room with the given details from the booking.
+     * @param booking The booking we want to store
+     */
+    @Override
+    public void checkIn(Booking booking) {
+        this.bookRoom(booking);
+    }
+
+    /**
+     * Checks out anyone from the room.
+     * @param room the room that wants to be checked out
+     * @return 1 if checkout successful, 0 if room does not exist
+     */
+    @Override
+    public boolean checkOut(Room room) {
+        requireNonNull(room);
+
+        Optional<Booking> booking = getCurrentStay(room);
+
+        if (booking.isEmpty()) {
+            return false;
+        }
+
+        // Need to add bill after it's created
+        deleteBooking(booking.get());
+        return true;
+    }
+
+    @Override
+    public void deleteBooking(Booking booking) {
+        bookingList.remove(booking);
     }
 
     // to update accordingly when implementing billing system.
@@ -222,7 +268,7 @@ public class ModelManager implements Model {
 
     // to update accordingly when implementing billing system.
     @Override
-    public void fetchBill(Person person, String roomNum) {
+    public void fetchBill(Person person, RoomId roomId) {
     }
 
     @Override

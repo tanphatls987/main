@@ -139,7 +139,7 @@ public class CheckInCommandTest {
             commandResult.getFeedbackToUser());
     }
 
-    private class ModelStub implements Model {
+    private abstract class ModelStub implements Model {
         protected final ArrayList<Room> roomList;
         protected final ArrayList<Booking> bookingList;
         protected final Hotel hotel;
@@ -245,7 +245,21 @@ public class CheckInCommandTest {
         }
 
         @Override
-        public Optional<Room> findRoom(String roomNum) {
+        public Optional<Room> findRoom(RoomId roomNum) {
+            requireNonNull(roomNum);
+            return roomList
+                .stream()
+                .filter(u -> u.getRoomId().equals(roomNum))
+                .findFirst();
+        }
+
+        @Override
+        public void checkIn(Booking booking) {
+            this.bookRoom(booking);
+        }
+
+        @Override
+        public boolean checkOut(Room room) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -264,12 +278,17 @@ public class CheckInCommandTest {
         }
 
         @Override
+        public void deleteBooking(Booking booking) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void fetchBillList(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void fetchBill(Person person, String roomNum) {
+        public void fetchBill(Person person, RoomId roomId) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -315,13 +334,10 @@ public class CheckInCommandTest {
         }
 
         @Override
-        public Optional<Room> findRoom(String roomNum) {
-            requireNonNull(roomNum);
-            return roomList
-                .stream()
-                .filter(u -> u.getRoomNum().equals(roomNum))
-                .findFirst();
+        public Optional<Booking> getCurrentStay(Room room) {
+            return Optional.empty();
         }
+
     }
 
     private class ModelStubWithBooking extends ModelStubWithRoomsAndPerson {
