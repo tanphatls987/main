@@ -36,7 +36,7 @@ public class JsonAdaptedRoom {
     public JsonAdaptedRoom(Room source) {
         tier = source.getTier().toString();
         number = source.getRoomNum();
-        cost = source.getRoomCost().toString();
+        cost = source.getRoomCost().getCost().toString();
     }
 
     /**
