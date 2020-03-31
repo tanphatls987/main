@@ -13,6 +13,7 @@ import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.hotel.room.Tier;
 import seedu.address.model.ids.PersonId;
+import seedu.address.model.ids.RoomId;
 import seedu.address.model.timeframe.TimeFrame;
 
 /**
@@ -109,7 +110,9 @@ public interface Model {
     /** Returns list of bookings */
     ArrayList<Booking> getBookingList();
 
-    Optional<Room> findRoom(String roomNum);
+    Optional<Booking> getCurrentStay(Room room);
+
+    Optional<Room> findRoom(RoomId roomNum);
 
     /**
      * Check if a room is available during a period.
@@ -124,6 +127,12 @@ public interface Model {
      * @param booking
      */
     void bookRoom(Booking booking);
+
+    void checkIn(Booking booking);
+
+    boolean checkOut(Room room);
+
+    void deleteBooking(Booking booking);
 
     /** Returns list of bills for specified person*/
     void fetchBillList(Person person);

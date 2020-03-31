@@ -64,7 +64,7 @@ public class CheckInCommand extends Command {
         requireNonNull(model);
 
         Optional<Person> person = model.findPersonWithId(personId);
-        Optional<Room> room = model.findRoom(roomId.toString());
+        Optional<Room> room = model.findRoom(roomId);
 
         if (person.isEmpty()) {
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_EXISTS, personId));
