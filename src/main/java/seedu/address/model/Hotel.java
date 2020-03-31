@@ -201,6 +201,8 @@ public class Hotel implements ReadOnlyHotel {
 
     /**
      * Adds booking to booking list
+     * @throws RoomBookedException if there is a clash between
+     * @code booking and bookings in booking list
      */
     public void addBooking(Booking booking) {
         if (hasBooking(booking)) {
