@@ -32,6 +32,9 @@ public class RoomCard extends UiPart<Region> {
     public RoomCard(Room room, int displayedIndex) {
         super(FXML);
         this.room = room;
+        if (tier == null) {
+            tier = new Label();
+        }
         tier.setText(room.getTier().toString());
         roomNum.setText(room.getRoomNum());
     }
