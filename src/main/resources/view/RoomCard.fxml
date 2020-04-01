@@ -25,7 +25,7 @@
                 </Label>
                 <Label fx:id="roomNum" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="Tier" styleClass="cell_small_label" text="\$Tier" />
+            <Label fx:id="tier" styleClass="cell_small_label" text="\$Tier" />
         </VBox>
     </GridPane>
 </HBox>
