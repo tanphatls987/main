@@ -27,12 +27,12 @@ public class JsonAdaptedBooking {
      * Constructs a {@code JsonAdaptedBooking} with the given booking details.
      */
     @JsonCreator
-    public JsonAdaptedBooking(@JsonProperty("Room") String room,
-                              @JsonProperty("PayeeName") String payeeName,
-                              @JsonProperty("PayeeId") String payeeId,
-                              @JsonProperty("From") String timeFrom,
-                              @JsonProperty("To") String timeTo) {
-        this.room = room;
+    public JsonAdaptedBooking(@JsonProperty("room") String roomNum,
+                              @JsonProperty("payeeName") String payeeName,
+                              @JsonProperty("payeeId") String payeeId,
+                              @JsonProperty("from") String timeFrom,
+                              @JsonProperty("to") String timeTo) {
+        this.room = roomNum;
         this.payeeName = payeeName;
         this.payeeId = payeeId;
         this.timeFrom = timeFrom;
@@ -43,7 +43,7 @@ public class JsonAdaptedBooking {
      * Converts a given {@code Booking} into this class for Jackson use.
      */
     public JsonAdaptedBooking(Booking source) {
-        room = source.getRoom().toString();
+        room = source.getRoom().getRoomNum();
         payeeName = source.getPayee().getName().toString();
         payeeId = source.getPayee().getPersonId().toString();
         timeFrom = source.getTimeFrom().toString();

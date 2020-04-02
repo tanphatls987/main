@@ -29,6 +29,18 @@
   }, {
     "tier" : "BRONZE",
     "number" : "010"
+  }, {
+    "tier" : "BRONZE",
+    "number" : "011"
+  }, {
+    "tier" : "BRONZE",
+    "number" : "012"
   } ],
-  "bookings" : []
+  "bookings" : [ {
+    "room" : "003",
+    "payeeName" : "Charlotte Oliveiro",
+    "payeeId" : "C000000",
+    "timeFrom" : "2020-12-12T12:00",
+    "timeTo" : "2020-12-23T12:00"
+  } ]
 }

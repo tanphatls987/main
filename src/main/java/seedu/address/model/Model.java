@@ -109,7 +109,7 @@ public interface Model {
     ObservableList<Room> getRoomList();
 
     /** Returns list of bookings */
-    ArrayList<Booking> getBookingList();
+    ObservableList<Booking> getBookingList();
 
     Optional<Booking> getCurrentStay(Room room);
 
@@ -152,6 +152,11 @@ public interface Model {
      * Check if a room exist
      */
     boolean hasRoom(String roomName);
+
+    /**
+     * check if a booking exists
+     */
+    boolean hasBooking(Booking booking);
 
     /**
      * Check if a tier name exists
