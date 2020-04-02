@@ -53,8 +53,8 @@ public class BookingCard extends UiPart<Region> {
 
         // state check
         BookingCard card = (BookingCard) other;
-        return Payee.getText().equals(card.Payee.getText())
-                && Room.equals(card.Room);
+        return payee.getText().equals(card.payee.getText())
+                && room.equals(card.room);
     }
 
 }
