@@ -5,6 +5,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.hotel.bill.RoomCost;
+import seedu.address.model.hotel.room.Tier;
+
 /**
  * Adds a room to hotel
  */
@@ -23,14 +26,20 @@ public class AddRoomCommand extends Command {
     public static final String MESSAGE_ROOM_NAME_NOT_ALLOWED = "This room name is not allowed";
 
     private final String toAdd;
+    private final RoomCost cost;
+    private final Tier tier;
 
     /**
      * Construct a room command with a room name
      * @param roomName: name of the added room.
      */
-    public AddRoomCommand(String roomName) {
+    public AddRoomCommand(String roomName, RoomCost cost, Tier tier) {
         requireNonNull(roomName);
+        requireNonNull(cost);
+        requireNonNull(tier);
         this.toAdd = roomName;
+        this.cost = cost;
+        this.tier = tier;
     }
 
     @Override
@@ -46,7 +55,7 @@ public class AddRoomCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_ROOM);
         }
 
-        model.addRoom(this.toAdd);
+        model.addRoom(this.toAdd, tier, cost);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

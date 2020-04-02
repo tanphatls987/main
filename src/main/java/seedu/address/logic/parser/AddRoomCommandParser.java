@@ -1,13 +1,17 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIER;
 
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddRoomCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
+import seedu.address.model.hotel.bill.Cost;
+import seedu.address.model.hotel.bill.RoomCost;
+import seedu.address.model.hotel.room.Tier;
 
 
 /**
@@ -22,9 +26,9 @@ public class AddRoomCommandParser implements Parser<AddRoomCommand> {
      */
     public AddRoomCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ROOMNUMBER);
+                ArgumentTokenizer.tokenize(args, PREFIX_ROOMNUMBER, PREFIX_COST, PREFIX_TIER);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ROOMNUMBER)
+        if (!arePrefixesPresent(argMultimap, PREFIX_ROOMNUMBER, PREFIX_COST, PREFIX_TIER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -32,7 +36,9 @@ public class AddRoomCommandParser implements Parser<AddRoomCommand> {
             );
         }
         String roomNum = argMultimap.getValue(PREFIX_ROOMNUMBER).get();
-        return new AddRoomCommand(roomNum);
+        Cost cost = ParserUtil.parseCost(argMultimap.getValue(PREFIX_COST).get());
+        Tier tier = ParserUtil.parseTier(argMultimap.getValue(PREFIX_TIER).get());
+        return new AddRoomCommand(roomNum, new RoomCost(cost), tier);
     }
 
     /**
