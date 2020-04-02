@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -18,8 +20,12 @@ public class AddRoomCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a room to the address book. "
             + "Parameters: "
             + PREFIX_ROOMNUMBER + "ROOM_NUM "
+            + PREFIX_TIER + "TIER "
+            + PREFIX_COST + "COST "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ROOMNUMBER + "12E";
+            + PREFIX_ROOMNUMBER + "12E "
+            + PREFIX_TIER + "GOLD "
+            + PREFIX_COST + "150.00";
 
     public static final String MESSAGE_SUCCESS = "New room added: %1s";
     public static final String MESSAGE_DUPLICATE_ROOM = "This room was added before!";
