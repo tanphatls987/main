@@ -39,6 +39,9 @@ public class RoomCard extends UiPart<Region> {
         }
         tier.setText(room.getTier().toString());
         roomNum.setText(room.getRoomNum());
+        if (cost == null) {
+            cost = new Label();
+        }
         cost.setText(room.getRoomCost().getCost().toString());
     }
 
