@@ -29,7 +29,7 @@ Responsibilities: UI
 '''
 
 === Tuan Le
-image::youaremysky99.png[width="150", align="left"]
+image::youaremysky99.jpg[width="150", align="left"]
 {empty}[http://github.com/youaremysky99[github]] [<<youaremysky99#, portfolio>>]
 
 Role: Developer

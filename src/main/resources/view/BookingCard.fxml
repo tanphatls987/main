@@ -23,10 +23,10 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="roomNum" text="\$first" styleClass="cell_big_label" />
+                <Label fx:id="Payee" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="tier" styleClass="cell_small_label" text="\$Tier" />
-            <Label fx:id="cost" styleClass="cell_small_label" text="\$cost" />
+            <Label fx:id="Room" styleClass="cell_small_label" text="\$Room" />
+            <Label fx:id="Duration" styleClass="cell_small_label" text="\$Duration" />
         </VBox>
     </GridPane>
 </HBox>

@@ -4,13 +4,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.hotel.room.Room;
+import seedu.address.model.hotel.booking.Booking;
 
 /**
- * An UI component that displays information of a {@code Room}.
+ * An UI component that displays information of a {@code Booking}.
  */
-public class RoomCard extends UiPart<Region> {
-    private static final String FXML = "RoomCard.fxml";
+public class BookingCard extends UiPart<Region> {
+    private static final String FXML = "BookingCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -19,27 +19,24 @@ public class RoomCard extends UiPart<Region> {
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
-
-    public final Room room;
+    public final Booking booking;
 
     @FXML
     private HBox cardPane;
     @FXML
-    private Label tier;
+    private Label Payee;
     @FXML
-    private Label roomNum;
+    private Label Room;
     @FXML
-    private Label cost;
+    private Label Duration;
 
-    public RoomCard(Room room, int displayedIndex) {
+    public BookingCard(Booking booking) {
         super(FXML);
-        this.room = room;
-        if (tier == null) {
-            tier = new Label();
-        }
-        tier.setText(room.getTier().toString());
-        roomNum.setText(room.getRoomNum());
-        cost.setText(room.getRoomCost().getCost().toString());
+        this.booking = booking;
+        Payee.setText(booking.getPayee().getName().toString() + "  " + booking.getPayee().getPersonId().toString());
+        Room.setText("Room: " + booking.getRoom().getRoomNum());
+        Duration.setText(booking.getBookDuration().toString());
+
     }
 
     @Override
@@ -55,9 +52,9 @@ public class RoomCard extends UiPart<Region> {
         }
 
         // state check
-        RoomCard card = (RoomCard) other;
-        return roomNum.getText().equals(card.roomNum.getText())
-                && room.equals(card.room);
+        BookingCard card = (BookingCard) other;
+        return Payee.getText().equals(card.Payee.getText())
+                && Room.equals(card.Room);
     }
 
 }

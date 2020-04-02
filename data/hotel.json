@@ -1,28 +1,47 @@
 {
   "rooms" : [ {
     "tier" : "GOLD",
-    "number" : "001",
-    "cost" : "150.00"
+    "cost" : "150.00",
+    "number" : "001"
   }, {
     "tier" : "SILVER",
-    "number" : "002",
-    "cost" : "100.00"
+    "cost" : "100.00",
+    "number" : "002"
   }, {
     "tier" : "SILVER",
-    "number" : "003",
-    "cost" : "100.00"
+    "cost" : "100.00",
+    "number" : "003"
   }, {
     "tier" : "BRONZE",
-    "number" : "004",
-    "cost" : "50.00"
+    "cost" : "50.00",
+    "number" : "004"
   }, {
     "tier" : "BRONZE",
-    "number" : "005",
-    "cost" : "50.00"
+    "cost" : "50.00",
+    "number" : "005"
   }, {
     "tier" : "BRONZE",
-    "number" : "006",
-    "cost" : "50.00"
+    "cost" : "50.00",
+    "number" : "006"
   } ],
-  "bookings" : [ ]
+  "bookings" : [ {
+    "room" : "003",
+    "payeeName" : "Charlotte Oliveiro",
+    "payeeId" : "C000000",
+    "timeFrom" : "2020-12-12T12:00",
+    "timeTo" : "2020-12-23T12:00"
+  }, {
+    "room" : "002",
+    "payeeName" : "Roy Balakrishnan",
+    "payeeId" : "R000000",
+    "timeFrom" : "2020-04-03T00:37:07.106832",
+    "timeTo" : "2020-05-04T12:00"
+  }, {
+    "room" : "003",
+    "payeeName" : "Alex Yeoh",
+    "payeeId" : "A000000",
+    "timeFrom" : "2020-04-03T00:52:59.264974",
+    "timeTo" : "2020-04-04T12:00"
+  } ]
 }
+

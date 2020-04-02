@@ -23,8 +23,8 @@ public class JsonAdaptedRoom {
      * Constructs a {@code JsonAdaptedRoom} with the given room details.
      */
     @JsonCreator
-    public JsonAdaptedRoom(@JsonProperty("Tier") String tier,
-                           @JsonProperty("roomNum") String number, @JsonProperty("Cost") String cost) {
+    public JsonAdaptedRoom(@JsonProperty("tier") String tier,
+                           @JsonProperty("roomNum") String number, @JsonProperty("cost") String cost) {
         this.tier = tier;
         this.number = number;
         this.cost = cost;
