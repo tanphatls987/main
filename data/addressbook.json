@@ -41,12 +41,6 @@
     "email" : "royb@example.com",
     "remark" : "",
     "tagged" : [ "colleagues" ]
-  }, {
-    "name" : "Harry",
-    "personId" : "H000000",
-    "phone" : "1234567",
-    "email" : "harry@rmail.com",
-    "remark" : "",
-    "tagged" : [ "prince" ]
   } ]
 }
+

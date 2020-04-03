@@ -24,18 +24,18 @@ public class BookingCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label Payee;
+    private Label payee;
     @FXML
-    private Label Room;
+    private Label room;
     @FXML
-    private Label Duration;
+    private Label duration;
 
     public BookingCard(Booking booking) {
         super(FXML);
         this.booking = booking;
-        Payee.setText(booking.getPayee().getName().toString() + "  " + booking.getPayee().getPersonId().toString());
-        Room.setText("Room: " + booking.getRoom().getRoomNum());
-        Duration.setText(booking.getBookDuration().toString());
+        payee.setText(booking.getPayee().getName().toString() + "  " + booking.getPayee().getPersonId().toString());
+        room.setText("Room: " + booking.getRoom().getRoomNum());
+        duration.setText(booking.getBookDuration().toString());
 
     }
 
@@ -53,8 +53,8 @@ public class BookingCard extends UiPart<Region> {
 
         // state check
         BookingCard card = (BookingCard) other;
-        return Payee.getText().equals(card.Payee.getText())
-                && Room.equals(card.Room);
+        return payee.getText().equals(card.payee.getText())
+                && room.equals(card.room);
     }
 
 }
