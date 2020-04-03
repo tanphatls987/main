@@ -67,8 +67,8 @@ public class ServiceCommand extends Command {
             throw new CommandException(MESSAGE_GUEST_NONEXISTENT);
         }
 
-        if (person.isEmpty()) {
-            throw new CommandException(MESSAGE_GUEST_NONEXISTENT);
+        if (room.isEmpty()) {
+            throw new CommandException(MESSAGE_ROOM_NONEXISTENT);
         }
 
         model.addService(personId, roomId, service);
