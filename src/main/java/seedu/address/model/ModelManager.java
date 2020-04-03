@@ -13,7 +13,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.bill.RoomCost;
+import seedu.address.model.hotel.bill.Service;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
@@ -299,12 +301,24 @@ public class ModelManager implements Model {
 
     }
 
-
+    //=========== Billing System =============================================================================
 
     @Override
     public void setRoomCost(Room room, RoomCost roomCost) {
         requireAllNonNull(room, roomCost);
         room.setCost(roomCost);
+    }
+
+    @Override
+    public void addService(PersonId personId, RoomId roomId, Service service) {
+        requireAllNonNull(personId, roomId, service);
+        ArrayList<Bill> bills = addressBook.findPersonWithId(personId).get().getBills();
+
+        for (Bill bill : bills) {
+            if (bill.getRoomId().equals(roomId)) {
+                bill.addChargeable(service);
+            }
+        }
     }
 
     // to update accordingly when implementing billing system.

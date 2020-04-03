@@ -156,17 +156,15 @@ Shows the bill for guest with ID G1231231X's stay up till present moment.
 === Charging a service : `service`
 
 Adds a service to the guest's tab. +
-Format: `service n/NAME  p/PRICE [d/DESCRIPTION]...`
+Format: `service i/G1231231X rn/ROOM_NUMBER d/DESCRIPTION c/COST`
 
 ****
-* Adds service of `PRICE` and `DESCRIPTION` to `NAME` 's bill.
-* Name and price must be entered as an input
+* Adds service for `ROOM` of `COST` and `DESCRIPTION` to `NAME` 's bill.
 ****
 
 Examples:
 
-* `service  n/Smith p/20.00` +
-* `service n/Smith p/20.00 d/massage`
+* `service n/Smith rn/100 d/massage c/20.00`
 
 === Making a reservation : `reserve`
 
@@ -261,8 +259,8 @@ e.g. `checkout i/G1231231X rn/101`
 e.g. `findguest n/Alice i/A10`
 * *Fetch Bill* : `bill i/ID [rn/ROOM_NUMBER]` +
 e.g. `bill i/G1231231X`
-* *Charge Service* : `service n/NAME p/PRICE [d/DESCRIPTION]...` +
-e.g. `service n/Smith p/20.00 d/massage`
+* *Charge Service* : `service i/ID d/DESCRIPTION c/COST` +
+e.g. `service n/Smith rn/100 d/massage c/20.00`
 * *Make Reservation* : `reserve i/ID rn/ROOM_NUMBER df/FROM_DATE dt/TO_DATE` +
 e.g. `reserve i/G1231231X rn/102 df/ 2020-12-12 dt/ 2020-12-30`
 * *Locate Room* : `getroom n/NAME` +

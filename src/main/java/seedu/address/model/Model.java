@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.hotel.bill.RoomCost;
+import seedu.address.model.hotel.bill.Service;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
@@ -172,4 +173,9 @@ public interface Model {
      * Sets the the room cost for the given room.
      */
     void setRoomCost(Room room, RoomCost roomCost);
+
+    /**
+     * Adds a service to the bill of a guest.
+     */
+    void addService(PersonId personId, RoomId roomId, Service service);
 }

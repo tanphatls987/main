@@ -28,7 +28,7 @@ public class Person {
     //private final Address address;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
-    private final ArrayList<Bill> bills = new ArrayList<>();
+    private ArrayList<Bill> bills = new ArrayList<>();
 
     /**
      * Old constructor
@@ -83,6 +83,10 @@ public class Person {
 
     public PersonId getPersonId() {
         return personId;
+    }
+
+    public ArrayList<Bill> getBills() {
+        return bills;
     }
 
     /*public Address getAddress() {
