@@ -35,7 +35,7 @@ This user guide gives you an overview of the features of Morpheus. With the help
 == Quick Start
 
 .  Ensure you have Java `11` or above installed in your Computer.
-.  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
+.  Download the latest `main.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for Morpheus.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
@@ -45,8 +45,8 @@ image::Ui.png[width="790"]
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* **`checkin`**`checkin i/G1231231X rn/101 td/2020-03-14` : checks in guest `G1231231X` to room `101` in the hotel from current date until `2020-03-14`.
-* **`checkout`**`checkout i/G1231231X rn/101` : checks out guest `G1231231X` from room `101` and removes guest from guest list.
+* *`checkin i/G1231231X rn/101 td/2020-03-14`* : checks in guest `G1231231X` to room `101` in the hotel from current date until `2020-03-14`.
+* *`checkout rn/101`* : checks out the guest staying in room `101` and removes guest from guest list.
 * *`list`* : lists all guests
 * *`exit`* : exits the app
 
@@ -62,23 +62,26 @@ Features can be divided into 4 groups of command
 * Initialization commands
 ** `addroom` command adds a room into hotel.
 ** `addguest` command adds a guest.
+** `addtier` command adds a tier to a room
+** `setrcost` command sets the cost of a room.
 
 * Service commands
 
-** `checkin` and `checkout` command receives and returns customers.
-** `service` command charges customers for getting services.
+** `checkin` and `checkout` commands receives and returns guestss.
+** `service` command charges guests for requesting services.
 ** `reserve` command makes a reservation.
+** `bill` command fetches the bill of a guest.
 
 * Statistical commands
 
 ** `list` command shows list of guests
-** `findguest`, `locateroom` quickly looks up for queries of rooms and quests.
-** `clear` command clears previous responses.
+** `findguest`, `getroom` quickly looks up for queries of rooms and quests.
 
 * General purpose command
 
 ** `help` command shows instructions.
 ** `exit` command quits the app.
+** `clear` command clears all entries.
 ====
 
 ====
@@ -104,6 +107,15 @@ Examples:
 Add John Doe with his information into the database.
 //end::addguest[]
 
+=== Adding a room : `addroom`
+
+Create a room in the hotel list. +
+Format: `addroom rn/ROOM_NUMBER`
+
+Examples:
+* `addroom rn/101`
+Add Room 101 into the database.
+
 === Checking in a guest: `checkin`
 
 Checks in a guest to the hotel from the current date until the TO_DATE +
@@ -116,11 +128,11 @@ Examples:
 === Checking out a guest: `checkout`
 
 Checks out a guest from the hotel +
-Format: `checkout i/ID rn/ROOM_NUMBER`
+Format: `checkout rn/ROOM_NUMBER`
 
 Examples:
 
-* `checkout i/G1231231X rn/101`
+* `checkout rn/101`
 
 === Show a list of all the guests in the hotel: `list`
 Format: `list`
@@ -183,29 +195,26 @@ Examples:
 
 === Locating the room of a guest : `getroom`
 
-Retrieves the room number of the guest who made reservations under their name. +
-Format: `getroom n/NAME`
+Retrieves the room number of the guest. +
+Format: `getroom i/ID`
 
 ****
-* Shows room number of reservations made by `NAME`.
+* Shows room number of reservations made by guest `ID`.
 ****
 
-* `getroom n/ Smith` +
+* `getroom i/ID` +
 
 Examples:
 
-* `list` +
-`checkin n/Smith r/101` +
-Checks Smith in to room 101.
-* `bill n/Smith` +
-Shows bill incurred by Smith
+* `getroom i/G1231231X`
 
 === Adding a tier: `addtier`
 
 Add a tier and set this tier to certain rooms +
 Format: `addtier ti/TIER_NAME rn/ROOM_NUMBERS`
 
-Examples
+Examples:
+
 * `addtier ti/Gold rn/12E 12F 12T`.
 
 === Setting the cost for a room : `setrcost`
@@ -223,7 +232,7 @@ Examples:
 
 === Clearing all entries : `clear`
 
-Clears all entries from the address book. +
+Clears all entries from Morpheus. +
 Format: `clear`
 
 === Exiting the program : `exit`
@@ -233,7 +242,7 @@ Format: `exit`
 
 === Saving the data
 
-Address book data are saved in the hard disk automatically after any command that changes the data. +
+The data of Morpheus is saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
 // tag::dataencryption[]
@@ -252,10 +261,14 @@ _{explain how the user can enable/disable data encryption}_
 * *Help* : `help`
 * *Add Guest* : `addguest n/NAME i/ID p/PHONE_NUMBER e/EMAIL` +
 e.g. `addguest n/John Doe i/G1231322X p/1928310 e/johndoe@gmail.com`
+* `Add Room` : `addroom rn/ROOM_NUMBER` +
+e.g. `addroom rn/101`
+* *Add Tier* : `addtier ti/TIER_NAME rn/ROOM_NUMBERS` +
+e.g. `addtier ti/Gold rn/12E 12F 12T`
 * *Check in* : `checkin i/ID rn/ROOM_NUMBER td/TO_DATE` +
 e.g. `checkin i/G1231231X rn/101 td/2020-03-14`
-* *Check out* : `checkout i/ID rn/ROOM_NUMBER` +
-e.g. `checkout i/G1231231X rn/101`
+* *Check out* : `checkout rn/ROOM_NUMBER` +
+e.g. `checkout rn/101`
 * *List* : `list`
 * *Find Guest* : `findguest n/NAME …​ n/NAME i/ID …​ i/ID` +
 e.g. `findguest n/Alice i/A10`
@@ -265,10 +278,10 @@ e.g. `bill i/G1231231X`
 e.g. `service n/Smith p/20.00 d/massage`
 * *Make Reservation* : `reserve i/ID rn/ROOM_NUMBER df/FROM_DATE dt/TO_DATE` +
 e.g. `reserve i/G1231231X rn/102 df/ 2020-12-12 dt/ 2020-12-30`
-* *Locate Room* : `getroom n/NAME` +
-e.g. `getroom n/ Smith`
-* *Add Tier* : `addtier ti/TIER_NAME rn/ROOM_NUMBERS` +
-e.g. `addtier ti/Gold rn/12E 12F 12T`
+* *Locate Room* : `getroom i/ID` +
+e.g. `getroom i/ID`
+* *Set Room Cost* : `setrcost rn/ROOM_NUMBER c/COST` +
+e.g. `setrcost rn/101 c/50`
 * *Clear* : `clear`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
 e.g. `find James Jake`
