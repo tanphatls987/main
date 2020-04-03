@@ -17,6 +17,9 @@ import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 
+/**
+ * Adds a service to a room in a guest’s tab.
+ */
 public class ServiceCommand extends Command {
 
     public static final String COMMAND_WORD = "service";

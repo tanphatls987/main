@@ -2,7 +2,6 @@ package seedu.address.model.hotel.bill;
 
 import java.util.ArrayList;
 
-import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.RoomId;
 
 /**
@@ -35,7 +34,7 @@ public class Bill {
     }
 
     public RoomId getRoomId() {
-        return  roomId;
+        return roomId;
     }
 }
 

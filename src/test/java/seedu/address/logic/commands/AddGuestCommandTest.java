@@ -24,6 +24,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.hotel.bill.RoomCost;
+import seedu.address.model.hotel.bill.Service;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
@@ -252,6 +253,11 @@ public class AddGuestCommandTest {
 
         @Override
         public void setRoomCost(Room room, RoomCost roomCost) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addService(PersonId personId, RoomId roomId, Service service) {
             throw new AssertionError("This method should not be called.");
         }
     }
