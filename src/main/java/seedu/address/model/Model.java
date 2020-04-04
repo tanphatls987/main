@@ -125,6 +125,11 @@ public interface Model {
     boolean isRoomFree(Room room, TimeFrame duration);
 
     /**
+     * Checks if {@code room} is booked by {@code person}
+     */
+    boolean hasGuestBooked(Person person, Room room);
+
+    /**
      * Book a room with booking details.
      * @param booking
      */

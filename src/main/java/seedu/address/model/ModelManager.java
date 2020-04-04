@@ -225,6 +225,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasGuestBooked(Person person, Room room) {
+        requireAllNonNull(person, room);
+        return hotel.hasGuestBooked(person, room);
+    }
+
+    @Override
     public void bookRoom(Booking booking) {
         requireNonNull(booking);
         hotel.addBooking(booking);
@@ -312,13 +318,7 @@ public class ModelManager implements Model {
     @Override
     public void addService(PersonId personId, RoomId roomId, Service service) {
         requireAllNonNull(personId, roomId, service);
-        ArrayList<Bill> bills = addressBook.findPersonWithId(personId).get().getBills();
-
-        for (Bill bill : bills) {
-            if (bill.getRoomId().equals(roomId)) {
-                bill.addChargeable(service);
-            }
-        }
+        addressBook.findPersonWithId(personId).get().addToBill(roomId, service);
     }
 
     // to update accordingly when implementing billing system.

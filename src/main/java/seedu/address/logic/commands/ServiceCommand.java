@@ -9,9 +9,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 
 import java.util.Optional;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.hotel.bill.Service;
+import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.PersonId;
@@ -36,9 +38,10 @@ public class ServiceCommand extends Command {
             + PREFIX_DESCRIPTION + "massage "
             + PREFIX_COST + "20.00";
 
-    public static final String MESSAGE_SUCCESS = "Added %1 to the bill of guest %2s for room %3s.";
+    public static final String MESSAGE_SUCCESS = "Added %1s to the bill of guest %2s for room %3s.";
     public static final String MESSAGE_GUEST_NONEXISTENT = "Guest %1s does not exist in the system.";
-    public static final String MESSAGE_ROOM_NONEXISTENT = "Room %1$s does not exist in the system.";
+    public static final String MESSAGE_ROOM_NONEXISTENT = "Room %1s does not exist in the system.";
+    public static final String MESSAGE_NO_BOOKING = "Guest %1s has not booked room %2s.";
 
     private final PersonId personId;
     private final RoomId roomId;
@@ -64,11 +67,15 @@ public class ServiceCommand extends Command {
         Optional<Room> room = model.findRoom(roomId);
 
         if (person.isEmpty()) {
-            throw new CommandException(MESSAGE_GUEST_NONEXISTENT);
+            throw new CommandException(String.format(MESSAGE_GUEST_NONEXISTENT, personId));
         }
 
         if (room.isEmpty()) {
-            throw new CommandException(MESSAGE_ROOM_NONEXISTENT);
+            throw new CommandException(String.format(MESSAGE_ROOM_NONEXISTENT, roomId));
+        }
+
+        if (!model.hasGuestBooked(person.get(), room.get())) {
+            throw new CommandException(String.format(MESSAGE_NO_BOOKING, personId, roomId));
         }
 
         model.addService(personId, roomId, service);

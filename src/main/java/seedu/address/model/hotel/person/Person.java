@@ -9,7 +9,9 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.hotel.bill.Bill;
+import seedu.address.model.hotel.bill.Service;
 import seedu.address.model.ids.PersonId;
+import seedu.address.model.ids.RoomId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -87,6 +89,23 @@ public class Person {
 
     public ArrayList<Bill> getBills() {
         return bills;
+    }
+
+    public void addToBill(RoomId roomId, Service service) {
+        boolean billExists = false;
+
+        for (Bill bill : bills) {
+            if (bill.getRoomId().equals(roomId)) {
+                bill.addChargeable(service);
+                billExists = true;
+                break;
+            }
+        }
+
+        if (billExists == false) {
+            Bill newBill = new Bill(roomId);
+            bills.add(newBill);
+        }
     }
 
     /*public Address getAddress() {
