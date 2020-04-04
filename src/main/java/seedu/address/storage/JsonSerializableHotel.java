@@ -67,6 +67,7 @@ public class JsonSerializableHotel {
             if (hotel.hasBooking(booking)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_BOOKINGS);
             }
+            hotel.addBooking(booking);
         }
         return hotel;
     }

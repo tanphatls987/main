@@ -245,7 +245,7 @@ public class CheckInCommandTest {
         }
 
         @Override
-        public ArrayList<Booking> getBookingList() {
+        public ObservableList<Booking> getBookingList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -348,6 +348,11 @@ public class CheckInCommandTest {
         @Override
         public Optional<Booking> getCurrentStay(Room room) {
             return Optional.empty();
+        }
+
+        @Override
+        public boolean hasBooking(Booking booking) {
+            return hotel.hasBooking(booking);
         }
     }
 

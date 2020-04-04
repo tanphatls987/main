@@ -9,8 +9,8 @@ import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
+import seedu.address.model.hotel.booking.exception.RoomBookedException;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.hotel.room.Tier;
 import seedu.address.model.hotel.room.UniqueRoomList;
@@ -46,7 +46,10 @@ public class Hotel implements ReadOnlyHotel {
         requireNonNull(toBeCopied);
         this.roomList.setRooms(toBeCopied.getRoomList());
         this.tierList.addAll(toBeCopied.getTierList());
+        this.bookingList.addAll(toBeCopied.getBookingList());
     }
+
+    //// room-level operations
 
     /**
      * Get the room list.
@@ -77,8 +80,6 @@ public class Hotel implements ReadOnlyHotel {
         roomList.setRoom(target, editedRoom);
     }
 
-    //// person-level operations
-
     /**
      * Returns true if a room with the same identity as {@code room} exists in the hotel.
      */
@@ -104,7 +105,7 @@ public class Hotel implements ReadOnlyHotel {
      */
     public boolean hasBooking(Booking booking) {
         for (Booking b : bookingList) {
-            if (b.equals(booking)) {
+            if (b.isClash(booking)) {
                 return true;
             }
         }
@@ -121,7 +122,7 @@ public class Hotel implements ReadOnlyHotel {
      * @Return observable list of bookings */
     @Override
     public ObservableList<Booking> getBookingList() {
-        return FXCollections.observableArrayList(bookingList);
+        return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList(bookingList));
     }
 
     /**
@@ -199,14 +200,17 @@ public class Hotel implements ReadOnlyHotel {
     }
 
     /**
-     * populates room list.
+     * Adds booking to booking list
+     * @throws RoomBookedException if there is a clash between
+     * @code booking and bookings in booking list
      */
-    public void fillRoomList() {
-        for (int i = 0; i < 10; i++) {
-            roomList.add(new Room(Integer.toString(i), new Tier(), new RoomCost()));
+    public void addBooking(Booking booking) {
+        if (hasBooking(booking)) {
+            throw new RoomBookedException();
+        } else {
+            bookingList.add(booking);
         }
     }
-
 
     //// util methods
     @Override
