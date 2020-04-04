@@ -273,6 +273,11 @@ public class CheckInCommandTest {
         }
 
         @Override
+        public boolean hasGuestBooked(Person person, Room room) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void bookRoom(Booking booking) {
             requireNonNull(booking);
 

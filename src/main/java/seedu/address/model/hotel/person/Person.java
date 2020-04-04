@@ -91,6 +91,9 @@ public class Person {
         return bills;
     }
 
+    /**
+     * Adds {@code service} to bill of room {@code roomID}
+     */
     public void addToBill(RoomId roomId, Service service) {
         boolean billExists = false;
 

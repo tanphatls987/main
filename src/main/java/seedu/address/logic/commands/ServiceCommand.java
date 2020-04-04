@@ -9,11 +9,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 
 import java.util.Optional;
 
-import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.hotel.bill.Service;
-import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.PersonId;
