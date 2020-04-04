@@ -25,9 +25,9 @@ public class AvailableService {
 
     /**
      *
-     * @return
+     * @return cost of this services
      */
     public Cost getCost() {
-
+        return this.cost;
     }
 }

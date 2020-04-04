@@ -1,9 +1,9 @@
 package seedu.address.model.hotel.bill;
 
-import java.util.Optional;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.Optional;
 
 /**
  * Represents a service that a guest has requested for.

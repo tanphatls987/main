@@ -16,6 +16,7 @@ import seedu.address.model.hotel.person.Email;
 import seedu.address.model.hotel.person.Name;
 import seedu.address.model.hotel.person.Phone;
 import seedu.address.model.hotel.room.Tier;
+import seedu.address.model.ids.AvailableServiceId;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 import seedu.address.model.tag.Tag;
@@ -142,6 +143,14 @@ public class ParserUtil {
     public static PersonId parsePersonId(String s) {
         requireNonNull(s);
         return new PersonId(s);
+    }
+
+    /**
+     * Parse {@code Strign s} into a {@code AvailableServiceId}.
+     */
+    public static AvailableServiceId parseAvailableServiceId(String s) {
+        requireNonNull(s);
+        return new AvailableServiceId(s);
     }
 
     /**
