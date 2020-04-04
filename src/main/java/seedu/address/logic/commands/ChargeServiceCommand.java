@@ -20,9 +20,9 @@ import seedu.address.model.ids.RoomId;
 /**
  * Adds a service to a room in a guest’s tab.
  */
-public class ServiceCommand extends Command {
+public class ChargeServiceCommand extends Command {
 
-    public static final String COMMAND_WORD = "service";
+    public static final String COMMAND_WORD = "chargeservice";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a service to the guest's bill. "
             + "Parameters: "
@@ -50,7 +50,7 @@ public class ServiceCommand extends Command {
      * @param roomId that the bill is for
      * @param service service to add
      */
-    public ServiceCommand(PersonId personId, RoomId roomId, Service service) {
+    public ChargeServiceCommand(PersonId personId, RoomId roomId, Service service) {
         requireAllNonNull(personId, roomId, service);
         this.personId = personId;
         this.roomId = roomId;

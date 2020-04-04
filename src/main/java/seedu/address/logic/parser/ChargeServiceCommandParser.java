@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.ServiceCommand;
+import seedu.address.logic.commands.ChargeServiceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.bill.Service;
@@ -18,14 +18,14 @@ import seedu.address.model.ids.RoomId;
 /**
  * Parses input arguments and creates a new ServiceCommand object
  */
-public class ServiceCommandParser implements Parser<ServiceCommand> {
+public class ChargeServiceCommandParser implements Parser<ChargeServiceCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the ServiceCommand
      * and returns an ServiceCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public ServiceCommand parse(String args) throws ParseException {
+    public ChargeServiceCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ID, PREFIX_ROOMNUMBER, PREFIX_DESCRIPTION, PREFIX_COST);
 
@@ -33,7 +33,7 @@ public class ServiceCommandParser implements Parser<ServiceCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            ServiceCommand.MESSAGE_USAGE)
+                            ChargeServiceCommand.MESSAGE_USAGE)
             );
         }
         PersonId personId = ParserUtil.parsePersonId(argMultimap.getValue(PREFIX_ID).get());
@@ -43,7 +43,7 @@ public class ServiceCommandParser implements Parser<ServiceCommand> {
 
         Service service = new Service(description, cost);
 
-        return new ServiceCommand(personId, roomNum, service);
+        return new ChargeServiceCommand(personId, roomNum, service);
 
     }
 
