@@ -1,40 +1,28 @@
 {
   "rooms" : [ {
-    "tier" : "BRONZE",
+    "tier" : "GOLD",
+    "cost" : "150.00",
     "number" : "001"
   }, {
-    "tier" : "BRONZE",
+    "tier" : "SILVER",
+    "cost" : "100.00",
     "number" : "002"
   }, {
-    "tier" : "BRONZE",
+    "tier" : "SILVER",
+    "cost" : "100.00",
     "number" : "003"
   }, {
     "tier" : "BRONZE",
+    "cost" : "50.00",
     "number" : "004"
   }, {
-    "tier" : "SILVER",
+    "tier" : "BRONZE",
+    "cost" : "50.00",
     "number" : "005"
   }, {
-    "tier" : "SILVER",
+    "tier" : "BRONZE",
+    "cost" : "50.00",
     "number" : "006"
-  }, {
-    "tier" : "GOLD",
-    "number" : "007"
-  }, {
-    "tier" : "BRONZE",
-    "number" : "008"
-  }, {
-    "tier" : "BRONZE",
-    "number" : "009"
-  }, {
-    "tier" : "BRONZE",
-    "number" : "010"
-  }, {
-    "tier" : "BRONZE",
-    "number" : "011"
-  }, {
-    "tier" : "BRONZE",
-    "number" : "012"
   } ],
   "bookings" : [ {
     "room" : "003",
@@ -42,5 +30,17 @@
     "payeeId" : "C000000",
     "timeFrom" : "2020-12-12T12:00",
     "timeTo" : "2020-12-23T12:00"
+  }, {
+    "room" : "002",
+    "payeeName" : "Roy Balakrishnan",
+    "payeeId" : "R000000",
+    "timeFrom" : "2020-04-03T00:37:07.106832",
+    "timeTo" : "2020-05-04T12:00"
+  }, {
+    "room" : "003",
+    "payeeName" : "Alex Yeoh",
+    "payeeId" : "A000000",
+    "timeFrom" : "2020-04-03T00:52:59.264974",
+    "timeTo" : "2020-04-04T12:00"
   } ]
 }

@@ -28,12 +28,21 @@ public class RoomCard extends UiPart<Region> {
     private Label tier;
     @FXML
     private Label roomNum;
+    @FXML
+    private Label cost;
 
     public RoomCard(Room room, int displayedIndex) {
         super(FXML);
         this.room = room;
+        if (tier == null) {
+            tier = new Label();
+        }
         tier.setText(room.getTier().toString());
         roomNum.setText(room.getRoomNum());
+        if (cost == null) {
+            cost = new Label();
+        }
+        cost.setText(room.getRoomCost().getCost().toString());
     }
 
     @Override
