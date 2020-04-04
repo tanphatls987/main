@@ -27,7 +27,8 @@ public class AddGuestCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().build();
+        ///avoid same person id
+        Person validPerson = new PersonBuilder().withPersonId("somethingridiculous").build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getHotel());
         expectedModel.addPerson(validPerson);

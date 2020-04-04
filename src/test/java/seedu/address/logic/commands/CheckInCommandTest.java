@@ -204,6 +204,10 @@ public class CheckInCommandTest {
         }
 
         @Override
+        public boolean hasPersonId(PersonId personId) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public Optional<Person> findPersonWithId(PersonId personId) {
             throw new AssertionError("This method should not be called.");
         }

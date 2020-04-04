@@ -70,6 +70,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Return true if there is a person with same id in the guest list.
+     * @param personId
+     * @return
+     */
+    public boolean hasPersonId(PersonId personId) {
+        return findPersonWithId(personId).isPresent();
+    }
+
+    /**
      * Return a person with matching id
      * @param personId
      * @return
