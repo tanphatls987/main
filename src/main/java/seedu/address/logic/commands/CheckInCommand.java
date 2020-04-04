@@ -24,11 +24,11 @@ public class CheckInCommand extends Command {
 
     public static final String COMMAND_WORD = "checkin";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Checks in a guest to the hotel. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Checks in a guest to the hotel.\n"
         + "Parameters: "
         + PREFIX_ID + "ID "
         + PREFIX_ROOMNUMBER + "ROOMNUMBER "
-        + PREFIX_TODATE + "TODATE "
+        + PREFIX_TODATE + "TODATE\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_ID + "G1231231U "
         + PREFIX_ROOMNUMBER + "101 "
@@ -36,8 +36,8 @@ public class CheckInCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Room %1$s is booked by %2$s";
     public static final String MESSAGE_ROOM_OCCUPIED = "Room %1$s is occupied";
-    public static final String MESSAGE_ROOM_NOT_EXISTS = "Room %1$s does not exists";
-    public static final String MESSAGE_PERSON_NOT_EXISTS = "Person %1$s does not exists";
+    public static final String MESSAGE_ROOM_NOT_EXISTS = "Room %1$s does not exist.";
+    public static final String MESSAGE_PERSON_NOT_EXISTS = "Guest (ID: %1$s) does not exist.";
     public static final String MESSAGE_DATE_PASSED = "%1$s has passed";
 
     private final PersonId personId;

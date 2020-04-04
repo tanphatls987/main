@@ -183,7 +183,7 @@ Examples:
 === Making a reservation : `reserve`
 
 Makes a reservation for a guest in the hotel +
-Format: `reserve i/ID rn/ROOM_NUMBER df/FROM_DATE dt/TO_DATE`
+Format: `reserve i/ID rn/ROOM_NUMBER fd/FROM_DATE td/TO_DATE`
 
 ****
 * Makes a reservation for `ID` from `FROM_DATE` to `TO_DATE` at `ROOM_NUMBER`.
@@ -191,7 +191,7 @@ Format: `reserve i/ID rn/ROOM_NUMBER df/FROM_DATE dt/TO_DATE`
 
 Examples:
 
-* `reserve i/G1231231X rn/102 df/ 2020-12-12 dt/ 2020-12-30`
+* `reserve i/G1231231X rn/102 fd/ 2020-12-12 td/ 2020-12-30`
 
 === Locating the room of a guest : `getroom`
 
@@ -276,8 +276,8 @@ e.g. `findguest n/Alice i/A10`
 e.g. `bill i/G1231231X`
 * *Charge Service* : `service n/NAME p/PRICE [d/DESCRIPTION]...` +
 e.g. `service n/Smith p/20.00 d/massage`
-* *Make Reservation* : `reserve i/ID rn/ROOM_NUMBER df/FROM_DATE dt/TO_DATE` +
-e.g. `reserve i/G1231231X rn/102 df/ 2020-12-12 dt/ 2020-12-30`
+* *Make Reservation* : `reserve i/ID rn/ROOM_NUMBER fd/FROM_DATE td/TO_DATE` +
+e.g. `reserve i/G1231231X rn/102 td/ 2020-12-12 td/ 2020-12-30`
 * *Locate Room* : `getroom i/ID` +
 e.g. `getroom i/ID`
 * *Set Room Cost* : `setrcost rn/ROOM_NUMBER c/COST` +

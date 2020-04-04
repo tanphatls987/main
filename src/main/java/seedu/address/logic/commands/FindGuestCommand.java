@@ -22,7 +22,7 @@ public class FindGuestCommand extends Command {
 
     public static final String COMMAND_WORD = "findguest";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": return all people with matching id or matching name"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": return all people with matching id or matching name.\n"
             + "Parameters: [i/ID] ... [i/ID] [n/KEYWORD] ... [n/KEYWORD] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ID + "A0000000" + " "

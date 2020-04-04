@@ -20,17 +20,19 @@ import seedu.address.model.hotel.room.Tier;
 public class AddTierCommand extends Command {
     public static final String COMMAND_WORD = "addtier";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tier name. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tier name.\n"
             + "Parameters: "
-            + PREFIX_TIER + "ROOM_NUM "
-            + PREFIX_ROOMNUMBER
+            + PREFIX_TIER + "TIER_NAME "
+            + PREFIX_ROOMNUMBER + "ROOM_NUM\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TIER + "12E" + PREFIX_ROOMNUMBER + "abc def";
+            + PREFIX_TIER + "Gold "
+            + PREFIX_ROOMNUMBER + "12E 12F 12T";
 
     public static final String MESSAGE_SUCCESS = "New tier added: %1s";
     public static final String MESSAGE_DUPLICATE_TIER = "This tier name was added before!";
-    public static final String MESSAGE_ROOM_NOT_FOUND = "One room does not exist in the hotel!";
-    public static final String MESSAGE_ROOM_HAS_TIER = "Some rooms have tier already, cannot add tiers to them!";
+    public static final String MESSAGE_ROOM_NOT_FOUND = "One of the rooms does not exist in the hotel!";
+    public static final String MESSAGE_ROOM_HAS_TIER = "Some rooms have already have a tier,"
+            + "unable to add tiers to them!";
 
     private final Tier toAdd;
     private final ArrayList<String> roomNums;

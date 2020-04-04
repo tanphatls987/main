@@ -26,11 +26,12 @@ public class ReserveCommand extends Command {
 
     public static final String COMMAND_WORD = "reserve";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Reserves room of the person identified "
-        + "by the index number used in the last person listing. "
-        + "under room number\n"
-        + PREFIX_ROOMNUMBER + "\n"
-        + "Parameters: PERSONID, ROOMNUMBER, FROMDATE, TODATE\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Reserves a room for a guest.\n"
+        + "Parameters: "
+        + PREFIX_ID + "PERSONID "
+        + PREFIX_ROOMNUMBER + "ROOMNUMBER "
+        + PREFIX_FROMDATE + "FROMDATE "
+        + PREFIX_TODATE + "TODATE\n"
         + "Example: "
         + COMMAND_WORD + " "
         + PREFIX_ID + "C0000000 "
@@ -38,7 +39,7 @@ public class ReserveCommand extends Command {
         + PREFIX_FROMDATE + "2020-12-12 "
         + PREFIX_TODATE + "2020-12-23 ";
 
-    public static final String MESSAGE_ADD_RESERVE_SUCCESS = "Added booking to Person: %1$s";
+    public static final String MESSAGE_ADD_RESERVE_SUCCESS = "Booked room %1s for guest %2$s (ID: %3s).";
 
     private final RoomId roomId;
     private final PersonId personId;
@@ -81,6 +82,6 @@ public class ReserveCommand extends Command {
      */
     private String generateSuccessMessage(Person payee) {
         String message = MESSAGE_ADD_RESERVE_SUCCESS;
-        return String.format(message, payee.getName());
+        return String.format(message, roomId, payee.getName(), payee.getPersonId());
     }
 }

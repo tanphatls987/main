@@ -23,16 +23,16 @@ public class FetchBillCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Retrieves the bill of a guest.\n"
-            + "Parameters:"
+            + "Parameters: "
             + PREFIX_ID + "PERSONID "
             + "[" + PREFIX_ROOMNUMBER + "ROOMNUMBER]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ID + "J0000000 "
             + PREFIX_ROOMNUMBER + "101";
 
-    public static final String MESSAGE_SUCCESS_NONSPECIFIC = "These are the bill/s for guest %1$s (%2$s).";
-    public static final String MESSAGE_SUCCESS_SPECIFIC = "This is the bill for room %1$s of guest %2$s (%3$s).";
-    public static final String MESSAGE_GUEST_NONEXISTENT = "Guest %1$s does not exist in the system.";
+    public static final String MESSAGE_SUCCESS_NONSPECIFIC = "These are the bill/s for guest %1$s (ID: %2$s).";
+    public static final String MESSAGE_SUCCESS_SPECIFIC = "This is the bill for room %1$s of guest %2$s (ID: %3$s).";
+    public static final String MESSAGE_GUEST_NONEXISTENT = "Guest (ID: %1$s) does not exist in the system.";
     public static final String MESSAGE_ROOM_NONEXISTENT = "Room %1$s does not exist in the system.";
 
     private final PersonId personId;
@@ -79,10 +79,10 @@ public class FetchBillCommand extends Command {
 
             model.fetchBill(person.get(), roomId);
             return new CommandResult(String.format(MESSAGE_SUCCESS_SPECIFIC, roomId,
-                    personId, person.get().getName()));
+                    person.get().getName(), personId));
         } else {
             model.fetchBillList(person.get());
-            return new CommandResult(String.format(MESSAGE_SUCCESS_NONSPECIFIC, personId, person.get().getName()));
+            return new CommandResult(String.format(MESSAGE_SUCCESS_NONSPECIFIC, person.get().getName(), personId));
         }
     }
 }

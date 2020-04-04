@@ -17,15 +17,15 @@ public class CheckOutCommand extends Command {
 
     public static final String COMMAND_WORD = "checkout";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Checks out a guest to the hotel. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Checks out a guest to the hotel.\n"
         + "Parameters: "
-        + PREFIX_ROOMNUMBER + "ROOM_NUMBER "
+        + PREFIX_ROOMNUMBER + "ROOM_NUMBER\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_ROOMNUMBER + "101 ";
 
     public static final String MESSAGE_SUCCESS = "Room %1$s is successfully checked out!";
-    public static final String MESSAGE_ROOM_NOT_EXISTS = "Room %1$s does not exists";
-    public static final String MESSAGE_ROOM_NOT_OCCUPIED = "Room %1$s is empty";
+    public static final String MESSAGE_ROOM_NOT_EXISTS = "Room %1$s does not exist.";
+    public static final String MESSAGE_ROOM_NOT_OCCUPIED = "Room %1$s is empty.";
 
     private final RoomId roomId;
 
