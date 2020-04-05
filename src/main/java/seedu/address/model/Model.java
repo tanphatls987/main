@@ -72,6 +72,13 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Return true if a person with the same id exists in the address book.
+     * @param personId
+     * @return
+     */
+    boolean hasPersonId(PersonId personId);
+
+    /**
      * Return a person with matching personId
      * @param personId
      * @return
