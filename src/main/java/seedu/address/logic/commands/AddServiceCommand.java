@@ -12,7 +12,7 @@ import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.ids.AvailableServiceId;
 
 /**
- * Adds available services, automatically generate serviceId.
+ * Adds available service.
  */
 public class AddServiceCommand extends Command {
     public static final String COMMAND_WORD = "addservice";
