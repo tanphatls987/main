@@ -75,6 +75,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean hasPersonId(PersonId personId) {
+        throw new AssertionError("This method should not be called");
+    }
+
+    @Override
     public Optional<Person> findPersonWithId(PersonId personId) {
         throw new AssertionError("This method should not be called");
     }
@@ -110,7 +115,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ArrayList<Booking> getBookingList() {
+    public ObservableList<Booking> getBookingList() {
         throw new AssertionError("This method should not be called");
     }
 
@@ -166,6 +171,11 @@ public class ModelStub implements Model {
 
     @Override
     public boolean hasRoom(String roomName) {
+        throw new AssertionError("This method should not be called");
+    }
+
+    @Override
+    public boolean hasBooking(Booking booking) {
         throw new AssertionError("This method should not be called");
     }
 
