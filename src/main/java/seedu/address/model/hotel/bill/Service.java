@@ -44,4 +44,9 @@ public class Service implements Chargeable {
     public Cost getCost() {
         return this.cost;
     }
+
+    @Override
+    public String toString() {
+        return description + " ($" + cost + ")";
+    }
 }

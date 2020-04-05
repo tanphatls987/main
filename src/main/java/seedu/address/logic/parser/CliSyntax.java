@@ -17,5 +17,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_FROMDATE = new Prefix("df/");
     public static final Prefix PREFIX_TODATE = new Prefix("dt/");
     public static final Prefix PREFIX_COST = new Prefix("c/");
+    public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
 
 }

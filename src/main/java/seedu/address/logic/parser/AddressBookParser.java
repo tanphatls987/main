@@ -22,6 +22,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.ReserveCommand;
+import seedu.address.logic.commands.ChargeServiceCommand;
 import seedu.address.logic.commands.SetRoomCostCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -88,6 +89,9 @@ public class AddressBookParser {
 
         case ReserveCommand.COMMAND_WORD:
             return new ReserveCommandParser().parse(arguments);
+
+        case ChargeServiceCommand.COMMAND_WORD:
+            return new ChargeServiceCommandParser().parse(arguments);
 
         case SetRoomCostCommand.COMMAND_WORD:
             return new SetRoomCostCommandParser().parse(arguments);

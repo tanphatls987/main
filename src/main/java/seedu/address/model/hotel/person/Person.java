@@ -9,7 +9,9 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.hotel.bill.Bill;
+import seedu.address.model.hotel.bill.Service;
 import seedu.address.model.ids.PersonId;
+import seedu.address.model.ids.RoomId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,7 +30,7 @@ public class Person {
     //private final Address address;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
-    private final ArrayList<Bill> bills = new ArrayList<>();
+    private ArrayList<Bill> bills = new ArrayList<>();
 
     /**
      * Old constructor
@@ -83,6 +85,30 @@ public class Person {
 
     public PersonId getPersonId() {
         return personId;
+    }
+
+    public ArrayList<Bill> getBills() {
+        return bills;
+    }
+
+    /**
+     * Adds {@code service} to bill of room {@code roomID}
+     */
+    public void addToBill(RoomId roomId, Service service) {
+        boolean billExists = false;
+
+        for (Bill bill : bills) {
+            if (bill.getRoomId().equals(roomId)) {
+                bill.addChargeable(service);
+                billExists = true;
+                break;
+            }
+        }
+
+        if (billExists == false) {
+            Bill newBill = new Bill(roomId);
+            bills.add(newBill);
+        }
     }
 
     /*public Address getAddress() {

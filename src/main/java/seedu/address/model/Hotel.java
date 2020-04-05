@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.booking.exception.RoomBookedException;
+import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.hotel.room.Tier;
 import seedu.address.model.hotel.room.UniqueRoomList;
@@ -109,6 +110,19 @@ public class Hotel implements ReadOnlyHotel {
                 return true;
             }
         }
+        return false;
+    }
+
+    /**
+     * Checks if {@code person} has booked {@code room}.
+     */
+    public boolean hasGuestBooked(Person person, Room room) {
+        for (Booking b : bookingList) {
+            if (b.getPayee().equals(person) && b.getRoom().equals(room)) {
+                return true;
+            }
+        }
+
         return false;
     }
 
