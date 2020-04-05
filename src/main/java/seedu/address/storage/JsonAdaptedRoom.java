@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.hotel.room.Tier;
@@ -63,7 +62,7 @@ public class JsonAdaptedRoom {
                     RoomCost.class.getSimpleName()));
         }
 
-        final RoomCost modelRoomCost = new RoomCost(new Cost(cost));
+        final RoomCost modelRoomCost = new RoomCost(cost);
 
         return new Room(modelRoomNumber, modelTier, modelRoomCost);
     }
