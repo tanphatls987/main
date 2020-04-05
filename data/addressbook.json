@@ -13,7 +13,7 @@
     "email" : "berniceyu@example.com",
     "remark" : "",
     "tagged" : [ "colleagues", "friends" ]
-  }, {
+  },{
     "name" : "Charlotte Oliveiro",
     "personId" : "C000000",
     "phone" : "93210283",
@@ -43,4 +43,3 @@
     "tagged" : [ "colleagues" ]
   } ]
 }
-
