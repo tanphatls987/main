@@ -219,6 +219,14 @@ Examples:
 
 * `addtier ti/Gold rn/12E 12F 12T`.
 
+=== Adding an available service: `addservice`
+
+Add an available service with id, cost, and description
+Format: `addservice i/SERVICE_ID d/DESCRIPTION c/COST`
+
+Examples:
+* `addservice i/WC d/Wash clothes c/100.00`
+
 === Setting the cost for a room : `setrcost`
 
 Sets the cost for a room (per night). +

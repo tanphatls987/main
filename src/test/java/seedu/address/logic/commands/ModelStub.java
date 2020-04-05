@@ -11,6 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
@@ -191,6 +192,11 @@ public class ModelStub implements Model {
 
     @Override
     public void setRoomCost(Room room, RoomCost roomCost) {
+        throw new AssertionError("This method should not be called");
+    }
+
+    @Override
+    public void addAvailableService(AvailableService service) {
         throw new AssertionError("This method should not be called");
     }
 }
