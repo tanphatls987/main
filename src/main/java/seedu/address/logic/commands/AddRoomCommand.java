@@ -12,13 +12,13 @@ public class AddRoomCommand extends Command {
 
     public static final String COMMAND_WORD = "addroom";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a room to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a room to Morpheus.\n"
             + "Parameters: "
-            + PREFIX_ROOMNUMBER + "ROOM_NUM "
+            + PREFIX_ROOMNUMBER + "ROOM_NUM\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ROOMNUMBER + "12E";
 
-    public static final String MESSAGE_SUCCESS = "New room added: %1s";
+    public static final String MESSAGE_SUCCESS = "New room added: %1$s";
     public static final String MESSAGE_DUPLICATE_ROOM = "This room was added before!";
     public static final String MESSAGE_ROOM_NAME_NOT_ALLOWED = "This room name is not allowed";
 
