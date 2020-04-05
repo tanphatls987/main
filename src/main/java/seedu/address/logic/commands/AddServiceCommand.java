@@ -39,6 +39,10 @@ public class AddServiceCommand extends Command {
      * service without proper_id
      */
     public AddServiceCommand(String description, Cost cost, AvailableServiceId id) {
+        requireNonNull(description);
+        requireNonNull(cost);
+        requireNonNull(id);
+
         this.description = description;
         this.cost = cost;
         this.id = id;
