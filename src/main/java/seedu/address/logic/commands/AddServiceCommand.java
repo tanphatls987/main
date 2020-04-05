@@ -1,8 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -19,9 +18,11 @@ public class AddServiceCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": add an available service to hotel"
             + "Parameters: "
+            + PREFIX_ID + "ID "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_COST + "COST "
             + "Example: " + COMMAND_WORD + " "
+            + PREFIX_ID + "1"
             + PREFIX_DESCRIPTION + "Wash clothes"
             + PREFIX_COST + "5";
 
