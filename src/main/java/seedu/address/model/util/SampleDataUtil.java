@@ -9,8 +9,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Hotel;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyHotel;
-
-import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Email;
@@ -59,12 +57,12 @@ public class SampleDataUtil {
 
     public static Room[] getSampleRooms() {
         return new Room[] {
-            new Room("001", new Tier("GOLD"), new RoomCost(new Cost("150.00"))),
-            new Room("002", new Tier("SILVER"), new RoomCost(new Cost("100.00"))),
-            new Room("003", new Tier("SILVER"), new RoomCost(new Cost("100.00"))),
-            new Room("004", new Tier("BRONZE"), new RoomCost(new Cost("50.00"))),
-            new Room("005", new Tier("BRONZE"), new RoomCost(new Cost("50.00"))),
-            new Room("006", new Tier("BRONZE"), new RoomCost(new Cost("50.00")))
+            new Room("001", new Tier("gold"), new RoomCost("150.00")),
+            new Room("002", new Tier("silver"), new RoomCost("100.00")),
+            new Room("003", new Tier("silver"), new RoomCost("100.00")),
+            new Room("004", new Tier("bronze"), new RoomCost("50.00")),
+            new Room("005", new Tier("bronze"), new RoomCost("50.00")),
+            new Room("006", new Tier("bronze"), new RoomCost("50.00"))
         };
     }
 
