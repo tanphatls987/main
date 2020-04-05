@@ -9,8 +9,16 @@ import seedu.address.model.hotel.room.Room;
  * A container of typical rooms for testing.
  */
 public class TypicalRooms {
-    public static final Room BEST_ROOM = new RoomBuilder().withTier("GOLD").withRoomNum("100").build();
-    public static final Room WORST_ROOM = new RoomBuilder().withTier("BRONZE").withRoomNum("013").build();
+    public static final Room BEST_ROOM = new RoomBuilder()
+        .withTier("GOLD")
+        .withRoomNum("100")
+        .withRoomCost("50.00")
+        .build();
+    public static final Room WORST_ROOM = new RoomBuilder()
+        .withTier("BRONZE")
+        .withRoomNum("013")
+        .withRoomCost("10.00")
+        .build();
 
     /**
      * get list of typical rooms.
