@@ -161,9 +161,10 @@ public class ParserUtil {
     public static Cost parseCost(String cost) throws ParseException {
         requireNonNull(cost);
         String trimmedCost = cost.trim();
-        if (!Tag.isValidTagName(trimmedCost)) {
+        if (!Cost.isValidCost(cost)) {
             throw new ParseException(Cost.MESSAGE_CONSTRAINTS);
         }
+
         return new Cost(trimmedCost);
     }
 }
