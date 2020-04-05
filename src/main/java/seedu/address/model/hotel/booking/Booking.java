@@ -114,4 +114,8 @@ public class Booking {
     public LocalDateTime getTimeTo() {
         return bookDuration.getEndTime();
     }
+
+    public TimeFrame getBookDuration() {
+        return bookDuration;
+    }
 }

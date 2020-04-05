@@ -13,7 +13,7 @@
     "email" : "berniceyu@example.com",
     "remark" : "",
     "tagged" : [ "colleagues", "friends" ]
-  }, {
+  },{
     "name" : "Charlotte Oliveiro",
     "personId" : "C000000",
     "phone" : "93210283",
@@ -41,12 +41,5 @@
     "email" : "royb@example.com",
     "remark" : "",
     "tagged" : [ "colleagues" ]
-  }, {
-    "name" : "Harry",
-    "personId" : "H000000",
-    "phone" : "1234567",
-    "email" : "harry@rmail.com",
-    "remark" : "",
-    "tagged" : [ "prince" ]
   } ]
 }

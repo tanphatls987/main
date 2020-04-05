@@ -40,7 +40,7 @@ public class JsonUtil {
                     .addDeserializer(Level.class, new LevelDeserializer(Level.class)));
 
     static <T> void serializeObjectToJsonFile(Path jsonFile, T objectToSerialize) throws IOException {
-        FileUtil.writeToFile(jsonFile, toJsonString(objectToSerialize));
+        FileUtil.writeToFile(jsonFile, toJsonString(objectToSerialize) + "\n");
     }
 
     static <T> T deserializeObjectFromJsonFile(Path jsonFile, Class<T> classOfObjectToDeserialize)
@@ -106,7 +106,7 @@ public class JsonUtil {
      * @return JSON data representation of the given class instance, in string
      */
     public static <T> String toJsonString(T instance) throws JsonProcessingException {
-        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(instance);
+        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(instance) + '\n';
     }
 
     /**

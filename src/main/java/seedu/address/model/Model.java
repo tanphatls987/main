@@ -71,6 +71,13 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Return true if a person with the same id exists in the address book.
+     * @param personId
+     * @return
+     */
+    boolean hasPersonId(PersonId personId);
+
+    /**
      * Return a person with matching personId
      * @param personId
      * @return
@@ -109,7 +116,7 @@ public interface Model {
     ObservableList<Room> getRoomList();
 
     /** Returns list of bookings */
-    ArrayList<Booking> getBookingList();
+    ObservableList<Booking> getBookingList();
 
     Optional<Booking> getCurrentStay(Room room);
 
@@ -152,6 +159,11 @@ public interface Model {
      * Check if a room exist
      */
     boolean hasRoom(String roomName);
+
+    /**
+     * check if a booking exists
+     */
+    boolean hasBooking(Booking booking);
 
     /**
      * Check if a tier name exists

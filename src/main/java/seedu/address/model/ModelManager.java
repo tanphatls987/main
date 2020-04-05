@@ -31,7 +31,6 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final ArrayList<Booking> bookingList;
     private final Hotel hotel;
 
     /**
@@ -47,7 +46,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.hotel = new Hotel(hotel);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        this.bookingList = new ArrayList<Booking>();
     }
 
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
@@ -114,6 +112,12 @@ public class ModelManager implements Model {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
+    }
+
+    @Override
+    public boolean hasPersonId(PersonId personId) {
+        requireNonNull(personId);
+        return addressBook.hasPersonId(personId);
     }
 
     /**
@@ -186,8 +190,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ArrayList<Booking> getBookingList() {
-        return bookingList;
+    public ObservableList<Booking> getBookingList() {
+        return hotel.getBookingList();
     }
 
     /**
@@ -199,7 +203,7 @@ public class ModelManager implements Model {
     public Optional<Booking> getCurrentStay(Room room) {
         requireNonNull(room);
 
-        return bookingList
+        return hotel.getBookingList()
             .stream()
             .filter(u -> u.isCorrectRoom(room))
             .filter(u -> u.isCurrentlyClash(room))
@@ -216,6 +220,7 @@ public class ModelManager implements Model {
     public boolean isRoomFree(Room room, TimeFrame duration) {
         requireNonNull(room);
         requireNonNull(duration);
+        ObservableList<Booking> bookingList = hotel.getBookingList();
 
         //timeframe create successfully mean no bogus duration
         return bookingList
@@ -226,8 +231,7 @@ public class ModelManager implements Model {
     @Override
     public void bookRoom(Booking booking) {
         requireNonNull(booking);
-
-        bookingList.add(booking);
+        hotel.addBooking(booking);
     }
 
     /**
@@ -261,7 +265,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteBooking(Booking booking) {
-        bookingList.remove(booking);
+        hotel.getBookingList().remove(booking);
     }
 
     @Override
@@ -277,6 +281,12 @@ public class ModelManager implements Model {
 
         return this.hotel.hasRoom(roomNum);
 
+    }
+
+    @Override
+    public boolean hasBooking(Booking booking) {
+        requireNonNull(booking);
+        return this.hotel.hasBooking(booking);
     }
 
     @Override
