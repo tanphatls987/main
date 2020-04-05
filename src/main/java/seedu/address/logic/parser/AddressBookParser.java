@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddGuestCommand;
 import seedu.address.logic.commands.AddRoomCommand;
 import seedu.address.logic.commands.AddTierCommand;
+import seedu.address.logic.commands.ChargeServiceCommand;
 import seedu.address.logic.commands.CheckInCommand;
 import seedu.address.logic.commands.CheckOutCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -22,7 +23,6 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.ReserveCommand;
-import seedu.address.logic.commands.ChargeServiceCommand;
 import seedu.address.logic.commands.SetRoomCostCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
