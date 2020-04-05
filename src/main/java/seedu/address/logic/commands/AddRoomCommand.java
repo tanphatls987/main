@@ -18,7 +18,7 @@ public class AddRoomCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ROOMNUMBER + "12E";
 
-    public static final String MESSAGE_SUCCESS = "New room added: %1s";
+    public static final String MESSAGE_SUCCESS = "New room added: %1$s";
     public static final String MESSAGE_DUPLICATE_ROOM = "This room was added before!";
     public static final String MESSAGE_ROOM_NAME_NOT_ALLOWED = "This room name is not allowed";
 

@@ -39,7 +39,10 @@ public class ReserveCommand extends Command {
         + PREFIX_FROMDATE + "2020-12-12 "
         + PREFIX_TODATE + "2020-12-23 ";
 
-    public static final String MESSAGE_ADD_RESERVE_SUCCESS = "Booked room %1s for guest %2$s (ID: %3s).";
+    public static final String MESSAGE_ADD_RESERVE_SUCCESS = "Booked room %1$s for guest %2$s (ID: %3$s).";
+    public static final String MESSAGE_GUEST_NONEXISTENT = "Guest (ID: %1$s) does not exist in the system.";
+    public static final String MESSAGE_ROOM_NONEXISTENT = "Room %1$s does not exist in the system.";
+    public static final String MESSAGE_ROOM_BOOKED = "Room %1$s is already booked at this time.";
 
     private final RoomId roomId;
     private final PersonId personId;
@@ -61,15 +64,15 @@ public class ReserveCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         Optional<Person> payee = model.findPersonWithId(personId);
         if (payee.isEmpty()) {
-            throw new CommandException("No guest with this id");
+            throw new CommandException(String.format(MESSAGE_GUEST_NONEXISTENT, personId));
         }
         Optional<Room> room = model.findRoom(roomId);
         if (room.isEmpty()) {
-            throw new CommandException("No room with this number");
+            throw new CommandException(String.format(MESSAGE_ROOM_NONEXISTENT, roomId));
         }
         Booking toBook = new Booking(payee.get(), room.get(), reserveDuration);
         if (model.hasBooking(toBook)) {
-            throw new CommandException("Room is already booked at this time");
+            throw new CommandException(String.format(MESSAGE_ROOM_BOOKED, roomId));
         }
         model.bookRoom(toBook);
         return new CommandResult(generateSuccessMessage(payee.get()));
@@ -81,7 +84,6 @@ public class ReserveCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person payee) {
-        String message = MESSAGE_ADD_RESERVE_SUCCESS;
-        return String.format(message, roomId, payee.getName(), payee.getPersonId());
+        return String.format(MESSAGE_ADD_RESERVE_SUCCESS, roomId, payee.getName(), personId);
     }
 }

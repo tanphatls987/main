@@ -100,11 +100,13 @@ Format: `help`
 === Adding a guest : `addguest`
 
 Create a guest in the hotel list. +
-Format: `addguest n/NAME i/ID p/PHONE_NUMBER e/EMAIL`
+Format: `addguest n/NAME i/ID p/PHONE_NUMBER e/EMAIL [t/TAG]...`
 
 Examples:
-* `addguest n/John Doe i/G1231322X p/1928310 e/johndoe@gmail.com`
+* `addguest n/John Doe i/G1231231X p/1928310 e/johndoe@gmail.com`
 Add John Doe with his information into the database.
+
+* `addguest n/Sallly Smith i/G1231232X p/512685123 e/sallysmith@gmail.com t/VIP`
 //end::addguest[]
 
 === Adding a room : `addroom`
@@ -260,7 +262,7 @@ _{explain how the user can enable/disable data encryption}_
 
 * *Help* : `help`
 * *Add Guest* : `addguest n/NAME i/ID p/PHONE_NUMBER e/EMAIL` +
-e.g. `addguest n/John Doe i/G1231322X p/1928310 e/johndoe@gmail.com`
+e.g. `addguest n/John Doe i/G1231231X p/1928310 e/johndoe@gmail.com`
 * `Add Room` : `addroom rn/ROOM_NUMBER` +
 e.g. `addroom rn/101`
 * *Add Tier* : `addtier ti/TIER_NAME rn/ROOM_NUMBERS` +

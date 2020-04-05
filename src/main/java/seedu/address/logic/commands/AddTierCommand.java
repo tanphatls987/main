@@ -28,7 +28,7 @@ public class AddTierCommand extends Command {
             + PREFIX_TIER + "Gold "
             + PREFIX_ROOMNUMBER + "12E 12F 12T";
 
-    public static final String MESSAGE_SUCCESS = "New tier added: %1s";
+    public static final String MESSAGE_SUCCESS = "New tier added: %1$s";
     public static final String MESSAGE_DUPLICATE_TIER = "This tier name was added before!";
     public static final String MESSAGE_ROOM_NOT_FOUND = "One of the rooms does not exist in the hotel!";
     public static final String MESSAGE_ROOM_HAS_TIER = "Some rooms have already have a tier,"
