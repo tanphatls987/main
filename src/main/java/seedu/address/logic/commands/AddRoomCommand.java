@@ -12,7 +12,7 @@ public class AddRoomCommand extends Command {
 
     public static final String COMMAND_WORD = "addroom";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a room to the address book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a room to Morpheus.\n"
             + "Parameters: "
             + PREFIX_ROOMNUMBER + "ROOM_NUM\n"
             + "Example: " + COMMAND_WORD + " "
