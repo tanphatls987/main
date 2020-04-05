@@ -146,6 +146,11 @@ public class AddGuestCommandTest {
         }
 
         @Override
+        public boolean hasPersonId(PersonId personId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Optional<Person> findPersonWithId(PersonId personId) {
             throw new AssertionError("This method should not be called.");
         }
@@ -295,6 +300,12 @@ public class AddGuestCommandTest {
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return personsAdded.stream().anyMatch(person::isSamePerson);
+        }
+
+        @Override
+        public boolean hasPersonId(PersonId personId) {
+            requireNonNull(personId);
+            return personsAdded.stream().anyMatch(personId::equals);
         }
 
         @Override

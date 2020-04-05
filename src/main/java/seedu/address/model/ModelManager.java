@@ -115,6 +115,12 @@ public class ModelManager implements Model {
         return addressBook.hasPerson(person);
     }
 
+    @Override
+    public boolean hasPersonId(PersonId personId) {
+        requireNonNull(personId);
+        return addressBook.hasPersonId(personId);
+    }
+
     /**
      * Return a person with matching personId
      * @param personId the personID
