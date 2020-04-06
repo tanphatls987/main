@@ -6,6 +6,40 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <Label fx:id="WelcomeCard" VBox.vgrow="ALWAYS" style="-fx-text-fill: white;"/>
+<?import javafx.scene.text.TextFlow?>
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" styleClass="pane-with-border">
+    <TextFlow textAlignment="CENTER">
+        <Label text="Morpheus, Hotel Management System" styleClass="welcomeTitle" alignment="TOP_RIGHT"></Label>
+    </TextFlow>
+    <TextFlow textAlignment="CENTER">
+        <Label text="Welcome to Morpheus." styleClass="welcome-heading"></Label>
+    </TextFlow>
+    <TextFlow textAlignment="LEFT">
+        <Label text="1. To Get Started " styleClass="welcome-subheading"></Label>
+    </TextFlow>
+    <TextFlow textAlignment="LEFT">
+        <Label text="Click on " styleClass="welcome-body"></Label>
+        <Label text="Guests" styleClass="markup"></Label>
+        <Label text=" " styleClass="welcome-body"></Label>
+        <Label text="Rooms" styleClass="markup"></Label>
+        <Label text=" " styleClass="welcome-body"></Label>
+        <Label text="Bookings" styleClass="markup"></Label>
+    </TextFlow>
+    <TextFlow>
+        <Label text="             "></Label>
+    </TextFlow>
+    <TextFlow textAlignment="LEFT">
+        <Label text="2. To View Help " styleClass="welcome-subheading"></Label>
+    </TextFlow>
+    <TextFlow textAlignment="LEFT">
+        <Label text="Click on " styleClass="welcome-body"></Label>
+        <Label text="Help" styleClass="markup"></Label>
+    </TextFlow>
+    <TextFlow>
+        <Label text="          "></Label>
+    </TextFlow>
+    <TextFlow textAlignment="LEFT">
+        <Label text="3. Enter A Command Below!" styleClass="welcome-subheading"></Label>
+    </TextFlow>
+
 </VBox>

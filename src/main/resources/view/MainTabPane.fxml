@@ -11,7 +11,7 @@
    <children>
       <TabPane id="mainTabFrame" fx:id="mainTabPane" stylesheets="@DarkTheme.css" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
          <tabs>
-            <Tab fx:id="welcomeTab" text="Welcome" style="-fx-background-color: grey; -fx-font-family: Courier New;">
+            <Tab fx:id="welcomeTab" text="About" styleClass="tab">
                <content>
                   <AnchorPane style="-fx-background-color: black;">
                      <children>
@@ -20,7 +20,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab fx:id="guestTab" text="Guests" style="-fx-background-color: grey; -fx-font-family: Courier New;">
+            <Tab fx:id="guestTab" text="Guests" styleClass="tab" style="-fx-text-fill: white;">
                <content>
                   <AnchorPane style="-fx-background-color: black;">
                      <children>
@@ -29,7 +29,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab fx:id="roomTab" text="Rooms" style="-fx-background-color: grey; -fx-font-family: Courier New;">
+            <Tab fx:id="roomTab" text="Rooms" styleClass="tab">
                <content>
                   <AnchorPane style="-fx-background-color: black;">
                   <children>
@@ -38,7 +38,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab fx:id="bookingTab" text="Bookings" style="-fx-background-color: grey; -fx-font-family: Courier New;">
+            <Tab fx:id="bookingTab" text="Bookings" styleClass="tab">
                <content>
                   <AnchorPane style="-fx-background-color: black;">
                      <children>
