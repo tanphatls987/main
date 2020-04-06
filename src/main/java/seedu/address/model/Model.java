@@ -206,4 +206,10 @@ public interface Model {
      * Charges a service to the bill of a guest.
      */
     void chargeService(PersonId personId, RoomId roomId, AvailableService service);
+
+    /**
+     * deletes a room from hotel
+     */
+    void deleteRoom(String roomNum);
+
 }

@@ -356,4 +356,16 @@ public class ModelManager implements Model {
         requireAllNonNull(person, roomNum);
     }
 
+    @Override
+    public void addAvailableService(AvailableService service) {
+        requireNonNull(service);
+        hotel.addAvailableService(service);
+    }
+
+    @Override
+    public void deleteRoom(String roomNum) {
+        requireNonNull(roomNum);
+        hotel.deleteRoom(roomNum);
+    }
+
 }
