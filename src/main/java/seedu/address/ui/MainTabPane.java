@@ -19,6 +19,7 @@ public class MainTabPane extends UiPart<Region> {
     private PersonListPanel personListPanel;
     private RoomListPanel roomListPanel;
     private BookingListPanel bookingListPanel;
+    private AvailableServiceListPanel availableServiceListPanel;
     private MainWindow mainWindow;
 
     @FXML
@@ -39,6 +40,8 @@ public class MainTabPane extends UiPart<Region> {
     private StackPane roomListPanelPlaceholder;
     @FXML
     private StackPane bookingListPanelPlaceholder;
+    @FXML
+    private StackPane availableServiceListPanelPlaceholder;
 
     /**
      * Create a mainTabPane
@@ -54,6 +57,7 @@ public class MainTabPane extends UiPart<Region> {
         setPersonListPanel();
         setRoomListPanel();
         setBookingListPanel();
+        setAvailableServiceListPanel();
         mainTabPane.getStyleClass().add("floating");
     }
 
@@ -74,5 +78,10 @@ public class MainTabPane extends UiPart<Region> {
     private void setBookingListPanel() {
         bookingListPanel = new BookingListPanel(logic.getBookingList());
         bookingListPanelPlaceholder.getChildren().add(bookingListPanel.getRoot());
+    }
+
+    private void setAvailableServiceListPanel() {
+        availableServiceListPanel = new AvailableServiceListPanel(logic.getHotel().getAvailableServices());
+        availableServiceListPanelPlaceholder.getChildren().add(availableServiceListPanel.getRoot());
     }
 }
