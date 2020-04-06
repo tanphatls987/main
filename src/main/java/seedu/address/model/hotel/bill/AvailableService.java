@@ -11,7 +11,7 @@ import seedu.address.model.ids.AvailableServiceId;
 public class AvailableService implements Chargeable {
     private String description;
     private Cost cost;
-    private AvailableServiceId serviceId;
+    private AvailableServiceId id;
 
     /**
      *
@@ -23,7 +23,7 @@ public class AvailableService implements Chargeable {
         requireAllNonNull(desc, cost, serviceId);
         this.description = desc;
         this.cost = cost;
-        this.serviceId = serviceId;
+        this.id = serviceId;
     }
 
     /***
@@ -35,7 +35,23 @@ public class AvailableService implements Chargeable {
         }
 
         return service != null
-                && service.getServiceId().equals(getServiceId());
+                && service.getId().equals(getId());
+    }
+
+    /**
+     *
+     * @return its own id.
+     */
+    public AvailableServiceId getId() {
+        return this.id;
+    }
+
+    /**
+     *
+     * @return its own description.
+     */
+    public String getDescription() {
+        return description;
     }
 
     /**
@@ -46,20 +62,12 @@ public class AvailableService implements Chargeable {
         return this.cost;
     }
 
-    public AvailableServiceId getServiceId() {
-        return this.serviceId;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDescription())
                 .append(" ServiceId: ")
-                .append(getServiceId())
+                .append(getId())
                 .append(" Cost: ")
                 .append(getCost());
         return builder.toString();

@@ -15,13 +15,17 @@ public class MainTabPane extends UiPart<Region> {
     private static final String FXML = "MainTabPane.fxml";
 
     private Logic logic;
+    private WelcomePanel welcomePanel;
     private PersonListPanel personListPanel;
     private RoomListPanel roomListPanel;
     private BookingListPanel bookingListPanel;
+    private AvailableServiceListPanel availableServiceListPanel;
     private MainWindow mainWindow;
 
     @FXML
     private TabPane mainTabPane;
+    @FXML
+    private Tab welcomeTab;
     @FXML
     private Tab roomTab;
     @FXML
@@ -29,11 +33,15 @@ public class MainTabPane extends UiPart<Region> {
     @FXML
     private Tab bookingTab;
     @FXML
+    private StackPane welcomePlaceholder;
+    @FXML
     private StackPane personListPlaceholder;
     @FXML
     private StackPane roomListPanelPlaceholder;
     @FXML
     private StackPane bookingListPanelPlaceholder;
+    @FXML
+    private StackPane availableServiceListPanelPlaceholder;
 
     /**
      * Create a mainTabPane
@@ -45,12 +53,18 @@ public class MainTabPane extends UiPart<Region> {
 
 
         ///set up personListPanel and roomListPanel
+        setWelcomePlaceholder();
         setPersonListPanel();
         setRoomListPanel();
         setBookingListPanel();
+        setAvailableServiceListPanel();
         mainTabPane.getStyleClass().add("floating");
     }
 
+    private void setWelcomePlaceholder() {
+        welcomePanel = new WelcomePanel();
+        welcomePlaceholder.getChildren().add(welcomePanel.getRoot());
+    }
     private void setPersonListPanel() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -64,5 +78,10 @@ public class MainTabPane extends UiPart<Region> {
     private void setBookingListPanel() {
         bookingListPanel = new BookingListPanel(logic.getBookingList());
         bookingListPanelPlaceholder.getChildren().add(bookingListPanel.getRoot());
+    }
+
+    private void setAvailableServiceListPanel() {
+        availableServiceListPanel = new AvailableServiceListPanel(logic.getHotel().getAvailableServiceList());
+        availableServiceListPanelPlaceholder.getChildren().add(availableServiceListPanel.getRoot());
     }
 }

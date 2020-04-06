@@ -219,7 +219,10 @@ public class Hotel implements ReadOnlyHotel {
         return false;
     }
 
-    void addAvailableService(AvailableService service) {
+    /**
+     * adds an available service
+     */
+    public void addAvailableService(AvailableService service) {
         availableServiceList.add(service);
     }
 
@@ -266,7 +269,7 @@ public class Hotel implements ReadOnlyHotel {
     public Optional<AvailableService> findServiceWithId(AvailableServiceId serviceId) {
         return availableServiceList.asUnmodifiableObservableList()
                 .stream()
-                .filter(u -> u.getServiceId().equals(serviceId))
+                .filter(u -> u.getId().equals(serviceId))
                 .findFirst();
     }
 
