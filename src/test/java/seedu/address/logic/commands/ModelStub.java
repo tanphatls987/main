@@ -204,4 +204,9 @@ public class ModelStub implements Model {
     public void addAvailableService(AvailableService service) {
         throw new AssertionError("This method should not be called");
     }
+
+    @Override
+    public void deleteRoom(String roomNum) {
+        throw new AssertionError("This method should not be called.");
+    }
 }

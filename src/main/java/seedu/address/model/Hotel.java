@@ -231,6 +231,14 @@ public class Hotel implements ReadOnlyHotel {
         }
     }
 
+    /**
+     * Deletes a room with room number
+     */
+    public void deleteRoom(String roomNum) {
+        ///passed the checks for existence
+        roomList.remove(this.findSureRoom(roomNum));
+    }
+
     //// util methods
     @Override
     public String toString() {

@@ -190,4 +190,9 @@ public interface Model {
      * adds a service to hotel
      */
     void addAvailableService(AvailableService service);
+
+    /**
+     * deletes a room from hotel
+     */
+    void deleteRoom(String roomNum);
 }

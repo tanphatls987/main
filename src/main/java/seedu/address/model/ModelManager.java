@@ -335,4 +335,10 @@ public class ModelManager implements Model {
         hotel.addAvailableService(service);
     }
 
+    @Override
+    public void deleteRoom(String roomNum) {
+        requireNonNull(roomNum);
+        hotel.deleteRoom(roomNum);
+    }
+
 }
