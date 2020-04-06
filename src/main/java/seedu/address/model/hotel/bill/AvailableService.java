@@ -25,6 +25,14 @@ public class AvailableService {
 
     /**
      *
+     * @return its own id.
+     */
+    public AvailableServiceId getId() {
+        return this.id;
+    }
+
+    /**
+     *
      * @return cost of this services
      */
     public Cost getCost() {
