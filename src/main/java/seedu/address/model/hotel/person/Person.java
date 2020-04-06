@@ -8,8 +8,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.Bill;
-import seedu.address.model.hotel.bill.Service;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 import seedu.address.model.tag.Tag;
@@ -94,7 +94,7 @@ public class Person {
     /**
      * Adds {@code service} to bill of room {@code roomID}
      */
-    public void addToBill(RoomId roomId, Service service) {
+    public void addToBill(RoomId roomId, AvailableService service) {
         boolean billExists = false;
 
         for (Bill bill : bills) {

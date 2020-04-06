@@ -10,12 +10,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import seedu.address.model.hotel.bill.AvailableService;
+import seedu.address.model.hotel.bill.UniqueAvailableServiceList;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.booking.exception.RoomBookedException;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.hotel.room.Tier;
 import seedu.address.model.hotel.room.UniqueRoomList;
+import seedu.address.model.ids.AvailableServiceId;
 import seedu.address.model.ids.RoomId;
 
 /**
@@ -25,7 +27,7 @@ public class Hotel implements ReadOnlyHotel {
     private final UniqueRoomList roomList;
     private final ArrayList<Booking> bookingList;
     private final ArrayList<Tier> tierList;
-    private final ArrayList<AvailableService> availableServices;
+    private final UniqueAvailableServiceList availableServiceList;
 
     /**
      * Create new empty hotel.
@@ -37,8 +39,8 @@ public class Hotel implements ReadOnlyHotel {
         //non-static initialization block
         {
             roomList = new UniqueRoomList();
+            availableServiceList = new UniqueAvailableServiceList();
         }
-        availableServices = new ArrayList<>();
     }
 
     /**
@@ -50,7 +52,7 @@ public class Hotel implements ReadOnlyHotel {
         this.roomList.setRooms(toBeCopied.getRoomList());
         this.tierList.addAll(toBeCopied.getTierList());
         this.bookingList.addAll(toBeCopied.getBookingList());
-        this.availableServices.addAll(toBeCopied.getAvailableServices());
+        this.availableServiceList.setServices(toBeCopied.getAvailableServiceList());
     }
 
     //// room-level operations
@@ -147,8 +149,8 @@ public class Hotel implements ReadOnlyHotel {
      * @return observable list of available services.
      */
     @Override
-    public ObservableList<AvailableService> getAvailableServices() {
-        return FXCollections.observableArrayList(availableServices);
+    public ObservableList<AvailableService> getAvailableServiceList() {
+        return availableServiceList.asUnmodifiableObservableList();
     }
 
     /**
@@ -218,7 +220,7 @@ public class Hotel implements ReadOnlyHotel {
     }
 
     void addAvailableService(AvailableService service) {
-        availableServices.add(service);
+        availableServiceList.add(service);
     }
 
     /**
@@ -242,13 +244,6 @@ public class Hotel implements ReadOnlyHotel {
         }
     }
 
-    //// util methods
-    @Override
-    public String toString() {
-        return roomList.asUnmodifiableObservableList().size() + " rooms";
-        // TODO: refine later
-    }
-
     /**
      * adds a new tier.
      */
@@ -262,6 +257,24 @@ public class Hotel implements ReadOnlyHotel {
                 current.setTier(tier);
             }
         }
+    }
+
+    /**
+     * Return a service with matching serviceId
+     * @return
+     */
+    public Optional<AvailableService> findServiceWithId(AvailableServiceId serviceId) {
+        return availableServiceList.asUnmodifiableObservableList()
+                .stream()
+                .filter(u -> u.getServiceId().equals(serviceId))
+                .findFirst();
+    }
+
+    //// util methods
+    @Override
+    public String toString() {
+        return roomList.asUnmodifiableObservableList().size() + " rooms";
+        // TODO: refine later
     }
 
     @Override

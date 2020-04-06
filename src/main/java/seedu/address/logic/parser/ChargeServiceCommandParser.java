@@ -1,17 +1,15 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICEID;
 
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.ChargeServiceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.hotel.bill.Cost;
-import seedu.address.model.hotel.bill.Service;
+import seedu.address.model.ids.AvailableServiceId;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 
@@ -27,9 +25,9 @@ public class ChargeServiceCommandParser implements Parser<ChargeServiceCommand> 
      */
     public ChargeServiceCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ID, PREFIX_ROOMNUMBER, PREFIX_DESCRIPTION, PREFIX_COST);
+                ArgumentTokenizer.tokenize(args, PREFIX_ID, PREFIX_ROOMNUMBER, PREFIX_SERVICEID);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ID, PREFIX_ROOMNUMBER, PREFIX_DESCRIPTION, PREFIX_COST)
+        if (!arePrefixesPresent(argMultimap, PREFIX_ID, PREFIX_ROOMNUMBER, PREFIX_SERVICEID)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -38,12 +36,9 @@ public class ChargeServiceCommandParser implements Parser<ChargeServiceCommand> 
         }
         PersonId personId = ParserUtil.parsePersonId(argMultimap.getValue(PREFIX_ID).get());
         RoomId roomNum = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOMNUMBER).get());
-        String description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
-        Cost cost = ParserUtil.parseCost(argMultimap.getValue(PREFIX_COST).get());
+        AvailableServiceId serviceId = ParserUtil.parseAvailableServiceId(argMultimap.getValue(PREFIX_SERVICEID).get());
 
-        Service service = new Service(description, cost);
-
-        return new ChargeServiceCommand(personId, roomNum, service);
+        return new ChargeServiceCommand(personId, roomNum, serviceId);
 
     }
 

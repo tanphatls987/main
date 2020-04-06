@@ -10,11 +10,11 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.RoomCost;
-import seedu.address.model.hotel.bill.Service;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.hotel.room.Tier;
+import seedu.address.model.ids.AvailableServiceId;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 import seedu.address.model.timeframe.TimeFrame;
@@ -188,12 +188,17 @@ public interface Model {
     void setRoomCost(Room room, RoomCost roomCost);
 
     /**
-     * Adds a service to hotel
+     * Adds a service to hotel.
      */
     void addAvailableService(AvailableService service);
 
     /**
+     * Returns a service with matching serviceId.
+     */
+    Optional<AvailableService> findService(AvailableServiceId serviceId);
+
+    /**
      * Charges a service to the bill of a guest.
      */
-    void addService(PersonId personId, RoomId roomId, Service service);
+    void chargeService(PersonId personId, RoomId roomId, AvailableService service);
 }

@@ -171,7 +171,7 @@ Shows the bill for guest with ID G1231231X's stay up till present moment.
 === Charging a service : `chargeservice`
 
 Charges a service to the guest's tab. +
-Format: `chargeservice i/ID rn/ROOM_NUMBER d/DESCRIPTION c/COST`
+Format: `chargeservice i/PERSON_ID rn/ROOM_NUMBER si/SERVICE_ID`
 
 ****
 * Charges service for `ROOM` with `COST` and `DESCRIPTION` to `NAME` 's bill.
@@ -179,7 +179,7 @@ Format: `chargeservice i/ID rn/ROOM_NUMBER d/DESCRIPTION c/COST`
 
 Examples:
 
-* `chargeservice i/G1231231X rn/100 d/massage c/20.00`
+* `chargeservice i/G1231231X rn/100 si/WC`
 
 === Making a reservation : `reserve`
 
@@ -221,10 +221,10 @@ Examples:
 === Adding an available service: `addservice`
 
 Add an available service with id, cost, and description
-Format: `addservice i/SERVICE_ID d/DESCRIPTION c/COST`
+Format: `addservice si/SERVICE_ID d/DESCRIPTION c/COST`
 
 Examples:
-* `addservice i/WC d/Wash clothes c/100.00`
+* `addservice si/WC d/Wash clothes c/100.00`
 
 === Setting the cost for a room : `setrcost`
 
@@ -274,6 +274,8 @@ e.g. `addguest n/John Doe i/G1231231X p/1928310 e/johndoe@gmail.com`
 e.g. `addroom rn/101`
 * *Add Tier* : `addtier ti/TIER_NAME rn/ROOM_NUMBERS` +
 e.g. `addtier ti/Gold rn/12E 12F 12T`
+* *Add Service* : `addservice si/SERVICE_ID d/DESCRIPTION c/COST` +
+e.g. `addservice si/WC d/Wash clothes c/100.00`
 * *Check in* : `checkin i/ID rn/ROOM_NUMBER td/TO_DATE` +
 e.g. `checkin i/G1231231X rn/101 td/2020-03-14`
 * *Check out* : `checkout rn/ROOM_NUMBER` +
@@ -283,8 +285,8 @@ e.g. `checkout rn/101`
 e.g. `findguest n/Alice i/A10`
 * *Fetch Bill* : `bill i/ID [rn/ROOM_NUMBER]` +
 e.g. `bill i/G1231231X`
-* *Charge Service* : `service i/ID d/DESCRIPTION c/COST` +
-e.g. `chargeservice n/Smith rn/100 d/massage c/20.00`
+* *Charge Service* : `chargeservice i/PERSON_ID rn/ROOM_NUMBER si/SERVICE_ID` +
+e.g. `chargeservice i/G1231231X rn/100 si/WC`
 * *Make Reservation* : `reserve i/ID rn/ROOM_NUMBER df/FROM_DATE dt/TO_DATE` +
 e.g. `reserve i/G1231231X rn/102 df/ 2020-12-12 dt/ 2020-12-30`
 * *Locate Room* : `getroom i/ID` +

@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICEID;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -18,18 +18,18 @@ import seedu.address.model.ids.AvailableServiceId;
 public class AddServiceCommand extends Command {
     public static final String COMMAND_WORD = "addservice";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": add an available service to hotel"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": add a service to hotel\n"
             + "Parameters: "
-            + PREFIX_ID + "ID "
+            + PREFIX_SERVICEID + "ID "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_COST + "COST "
+            + PREFIX_COST + "COST\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ID + "1"
-            + PREFIX_DESCRIPTION + "Wash clothes"
+            + PREFIX_SERVICEID + "WC "
+            + PREFIX_DESCRIPTION + "Wash clothes "
             + PREFIX_COST + "5";
 
-    public static final String MESSAGE_SUCCESS = "New available services added";
-    public static final String DUPLICATED_MESSAGE = "This id has been used. Please choose other id";
+    public static final String MESSAGE_SUCCESS = "New available service added: %1$s (ID: %2$s)";
+    public static final String DUPLICATED_MESSAGE = "This ID has been used. Please choose other ID.";
 
     private String description;
     private Cost cost;
@@ -50,11 +50,12 @@ public class AddServiceCommand extends Command {
 
         ReadOnlyHotel hotel = model.getHotel();
         AvailableService toAdd = new AvailableService(description, cost, id);
-        if (hotel.getAvailableServices().contains(toAdd)) {
+
+        if (hotel.getAvailableServiceList().contains(toAdd)) {
             throw new CommandException(DUPLICATED_MESSAGE);
         }
 
         model.addAvailableService(toAdd);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, description, id));
     }
 }

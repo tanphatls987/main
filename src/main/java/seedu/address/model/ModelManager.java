@@ -15,11 +15,11 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.RoomCost;
-import seedu.address.model.hotel.bill.Service;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.hotel.room.Tier;
+import seedu.address.model.ids.AvailableServiceId;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 import seedu.address.model.timeframe.TimeFrame;
@@ -322,7 +322,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addService(PersonId personId, RoomId roomId, Service service) {
+    public void addAvailableService(AvailableService service) {
+        requireNonNull(service);
+        hotel.addAvailableService(service);
+    }
+
+    @Override
+    public Optional<AvailableService> findService(AvailableServiceId serviceId) {
+        requireNonNull(serviceId);
+        return hotel.findServiceWithId(serviceId);
+    }
+
+    @Override
+    public void chargeService(PersonId personId, RoomId roomId, AvailableService service) {
         requireAllNonNull(personId, roomId, service);
         addressBook.findPersonWithId(personId).get().addToBill(roomId, service);
     }
@@ -337,12 +349,6 @@ public class ModelManager implements Model {
     @Override
     public void fetchBill(Person person, RoomId roomNum) {
         requireAllNonNull(person, roomNum);
-    }
-
-    @Override
-    public void addAvailableService(AvailableService service) {
-        requireNonNull(service);
-        hotel.addAvailableService(service);
     }
 
 }

@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICEID;
 
 import java.util.stream.Stream;
 
@@ -23,9 +23,9 @@ public class AddServiceCommandParser {
      */
     public AddServiceCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_COST, PREFIX_ID);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_COST, PREFIX_SERVICEID);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_COST, PREFIX_ID)
+        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_COST, PREFIX_SERVICEID)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -34,7 +34,7 @@ public class AddServiceCommandParser {
         }
         Cost cost = ParserUtil.parseCost(argMultimap.getValue(PREFIX_COST).get());
         String description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
-        AvailableServiceId id = ParserUtil.parseAvailableServiceId(argMultimap.getValue(PREFIX_ID).get());
+        AvailableServiceId id = ParserUtil.parseAvailableServiceId(argMultimap.getValue(PREFIX_SERVICEID).get());
 
         return new AddServiceCommand(description, cost, id);
     }
