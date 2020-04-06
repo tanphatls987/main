@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.bill.Service;
 import seedu.address.model.hotel.booking.Booking;
@@ -187,7 +188,12 @@ public interface Model {
     void setRoomCost(Room room, RoomCost roomCost);
 
     /**
-     * Adds a service to the bill of a guest.
+     * Adds a service to hotel
+     */
+    void addAvailableService(AvailableService service);
+
+    /**
+     * Charges a service to the bill of a guest.
      */
     void addService(PersonId personId, RoomId roomId, Service service);
 }

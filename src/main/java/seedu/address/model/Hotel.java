@@ -9,6 +9,7 @@ import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.booking.exception.RoomBookedException;
 import seedu.address.model.hotel.person.Person;
@@ -23,8 +24,8 @@ import seedu.address.model.ids.RoomId;
 public class Hotel implements ReadOnlyHotel {
     private final UniqueRoomList roomList;
     private final ArrayList<Booking> bookingList;
-
     private final ArrayList<Tier> tierList;
+    private final ArrayList<AvailableService> availableServices;
 
     /**
      * Create new empty hotel.
@@ -37,6 +38,7 @@ public class Hotel implements ReadOnlyHotel {
         {
             roomList = new UniqueRoomList();
         }
+        availableServices = new ArrayList<>();
     }
 
     /**
@@ -48,6 +50,7 @@ public class Hotel implements ReadOnlyHotel {
         this.roomList.setRooms(toBeCopied.getRoomList());
         this.tierList.addAll(toBeCopied.getTierList());
         this.bookingList.addAll(toBeCopied.getBookingList());
+        this.availableServices.addAll(toBeCopied.getAvailableServices());
     }
 
     //// room-level operations
@@ -140,6 +143,15 @@ public class Hotel implements ReadOnlyHotel {
     }
 
     /**
+     *
+     * @return observable list of available services.
+     */
+    @Override
+    public ObservableList<AvailableService> getAvailableServices() {
+        return FXCollections.observableArrayList(availableServices);
+    }
+
+    /**
      * Return a room with matching room Id
      * @param roomId
      * @return Room
@@ -203,6 +215,10 @@ public class Hotel implements ReadOnlyHotel {
             }
         }
         return false;
+    }
+
+    void addAvailableService(AvailableService service) {
+        availableServices.add(service);
     }
 
     /**

@@ -24,6 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.bill.Service;
 import seedu.address.model.hotel.booking.Booking;
@@ -366,6 +367,11 @@ public class CheckInCommandTest {
         @Override
         public boolean hasBooking(Booking booking) {
             return hotel.hasBooking(booking);
+        }
+
+        @Override
+        public void addAvailableService(AvailableService service) {
+            throw new AssertionError("This method should not be called.");
         }
     }
 

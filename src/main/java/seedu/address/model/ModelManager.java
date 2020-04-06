@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.bill.Service;
 import seedu.address.model.hotel.booking.Booking;
@@ -336,6 +337,12 @@ public class ModelManager implements Model {
     @Override
     public void fetchBill(Person person, RoomId roomNum) {
         requireAllNonNull(person, roomNum);
+    }
+
+    @Override
+    public void addAvailableService(AvailableService service) {
+        requireNonNull(service);
+        hotel.addAvailableService(service);
     }
 
 }
