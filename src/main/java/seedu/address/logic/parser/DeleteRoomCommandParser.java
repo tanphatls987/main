@@ -8,9 +8,6 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.DeleteRoomCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-
-
-
 /**
  * Parses input arguments and creates a new DeleteRoomCommand object.
  */
