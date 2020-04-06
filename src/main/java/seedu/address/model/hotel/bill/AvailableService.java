@@ -33,6 +33,14 @@ public class AvailableService {
 
     /**
      *
+     * @return its own description.
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     *
      * @return cost of this services
      */
     public Cost getCost() {

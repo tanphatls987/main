@@ -203,7 +203,10 @@ public class Hotel implements ReadOnlyHotel {
         return false;
     }
 
-    void addAvailableService(AvailableService service) {
+    /**
+     * adds an available service
+     */
+    public void addAvailableService(AvailableService service) {
         availableServices.add(service);
     }
 

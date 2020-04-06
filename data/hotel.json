@@ -60,6 +60,11 @@
     "payeeId" : "B000000",
     "timeFrom" : "2020-12-13T12:00",
     "timeTo" : "2020-12-13T12:00"
+  } ],
+  "availableServices" : [ {
+    "description" : "Wash clothes",
+    "id" : "WC",
+    "cost" : "100.00"
   } ]
 }
 
