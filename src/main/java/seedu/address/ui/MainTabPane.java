@@ -15,6 +15,7 @@ public class MainTabPane extends UiPart<Region> {
     private static final String FXML = "MainTabPane.fxml";
 
     private Logic logic;
+    private WelcomePanel welcomePanel;
     private PersonListPanel personListPanel;
     private RoomListPanel roomListPanel;
     private BookingListPanel bookingListPanel;
@@ -23,11 +24,15 @@ public class MainTabPane extends UiPart<Region> {
     @FXML
     private TabPane mainTabPane;
     @FXML
+    private Tab welcomeTab;
+    @FXML
     private Tab roomTab;
     @FXML
     private Tab guestTab;
     @FXML
     private Tab bookingTab;
+    @FXML
+    private StackPane welcomePlaceholder;
     @FXML
     private StackPane personListPlaceholder;
     @FXML
@@ -45,12 +50,17 @@ public class MainTabPane extends UiPart<Region> {
 
 
         ///set up personListPanel and roomListPanel
+        setWelcomePlaceholder();
         setPersonListPanel();
         setRoomListPanel();
         setBookingListPanel();
         mainTabPane.getStyleClass().add("floating");
     }
 
+    private void setWelcomePlaceholder() {
+        welcomePanel = new WelcomePanel();
+        welcomePlaceholder.getChildren().add(welcomePanel.getRoot());
+    }
     private void setPersonListPanel() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPlaceholder.getChildren().add(personListPanel.getRoot());
