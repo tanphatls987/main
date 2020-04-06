@@ -256,12 +256,6 @@ public class Hotel implements ReadOnlyHotel {
     }
 
     //// util methods
-    @Override
-    public String toString() {
-        return roomList.asUnmodifiableObservableList().size() + " rooms";
-        // TODO: refine later
-    }
-
     /**
      * adds a new tier.
      */

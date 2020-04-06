@@ -212,7 +212,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-<<<<<<< HEAD
     public Optional<AvailableService> findService(AvailableServiceId service) {
         throw new AssertionError("This method should not be called.");
     }
