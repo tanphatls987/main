@@ -10,22 +10,21 @@
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="75" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" minHeight="75" GridPane.columnIndex="0">
             <padding>
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
             <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="id" styleClass="cell_big_label">
+                <Label fx:id="room" styleClass="cell_big_label" text="\$Room">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="payee" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="room" styleClass="cell_small_label" text="\$Room" />
+            <Label fx:id="payee" text="\$first" styleClass="cell_big_label" />
             <Label fx:id="duration" styleClass="cell_small_label" text="\$Duration" />
         </VBox>
     </GridPane>

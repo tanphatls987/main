@@ -42,5 +42,24 @@
     "payeeId" : "A000000",
     "timeFrom" : "2020-04-03T00:52:59.264974",
     "timeTo" : "2020-04-04T12:00"
+  }, {
+    "room" : "004",
+    "payeeName" : "Irfan Ibrahim",
+    "payeeId" : "I000000",
+    "timeFrom" : "2020-12-12T12:00",
+    "timeTo" : "2020-12-13T12:00"
+  }, {
+    "room" : "004",
+    "payeeName" : "Alex Yeoh",
+    "payeeId" : "A000000",
+    "timeFrom" : "2020-12-12T12:00",
+    "timeTo" : "2020-12-13T12:00"
+  }, {
+    "room" : "003",
+    "payeeName" : "Bernice Yu",
+    "payeeId" : "B000000",
+    "timeFrom" : "2020-12-13T12:00",
+    "timeTo" : "2020-12-13T12:00"
   } ]
 }
+
