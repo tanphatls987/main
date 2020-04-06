@@ -54,7 +54,8 @@ public class AddServiceCommand extends Command {
 
         ReadOnlyHotel hotel = model.getHotel();
         AvailableService toAdd = new AvailableService(description, cost, id);
-        if (hotel.getAvailableServices().contains(toAdd)) {
+        if (hotel.getAvailableServices().stream().anyMatch(availableService -> availableService.getId()
+                .equals(toAdd.getId()))) {
             throw new CommandException(DUPLICATED_MESSAGE);
         }
 
