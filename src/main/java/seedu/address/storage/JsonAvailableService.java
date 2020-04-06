@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.Cost;
-import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.AvailableServiceId;
 
 
@@ -63,5 +62,7 @@ public class JsonAvailableService {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Cost.class.getSimpleName())
             );
         }
+
+        return new AvailableService(description, new Cost(cost), new AvailableServiceId(id));
     }
 }
