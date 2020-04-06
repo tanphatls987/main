@@ -16,6 +16,7 @@ import seedu.address.model.hotel.person.Email;
 import seedu.address.model.hotel.person.Name;
 import seedu.address.model.hotel.person.Phone;
 import seedu.address.model.hotel.room.Tier;
+import seedu.address.model.ids.AvailableServiceId;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 import seedu.address.model.tag.Tag;
@@ -145,6 +146,14 @@ public class ParserUtil {
     }
 
     /**
+     * Parse {@code Strign s} into a {@code AvailableServiceId}.
+     */
+    public static AvailableServiceId parseAvailableServiceId(String s) {
+        requireNonNull(s);
+        return new AvailableServiceId(s);
+    }
+
+    /**
      * Parse {@code String s} into a {@code Tier}
      */
     public static Tier parseTier(String s) {
@@ -161,7 +170,7 @@ public class ParserUtil {
     public static Cost parseCost(String cost) throws ParseException {
         requireNonNull(cost);
         String trimmedCost = cost.trim();
-        if (!Tag.isValidTagName(trimmedCost)) {
+        if (!Cost.isValidCost(trimmedCost)) {
             throw new ParseException(Cost.MESSAGE_CONSTRAINTS);
         }
         return new Cost(trimmedCost);

@@ -9,7 +9,6 @@ import java.util.Optional;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.RoomId;
@@ -30,15 +29,16 @@ public class SetRoomCostCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "The cost for room %1$s is set to %2$s per night.";
     public static final String MESSAGE_ROOM_NONEXISTENT = "Room %1$s does not exist in the system.";
+    public static final String MESSAGE_ROOM_COST_INVALID = "Room cost must be a non-negative number";
 
     private final RoomId roomNum;
-    private final Cost cost;
+    private final RoomCost cost;
 
     /**
      * @param roomNum to set the cost of
      * @param cost of room per night
      */
-    public SetRoomCostCommand(RoomId roomNum, Cost cost) {
+    public SetRoomCostCommand(RoomId roomNum, RoomCost cost) {
         requireAllNonNull(roomNum, cost);
 
         this.roomNum = roomNum;
@@ -54,7 +54,11 @@ public class SetRoomCostCommand extends Command {
             throw new CommandException(String.format(MESSAGE_ROOM_NONEXISTENT, roomNum));
         }
 
-        model.setRoomCost(room.get(), new RoomCost(cost));
+        if (cost.isNegative()) {
+            throw new CommandException(MESSAGE_ROOM_COST_INVALID);
+        }
+
+        model.setRoomCost(room.get(), cost);
         return new CommandResult(String.format(MESSAGE_SUCCESS, roomNum, cost));
     }
 }

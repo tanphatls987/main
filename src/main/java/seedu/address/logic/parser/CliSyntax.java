@@ -14,8 +14,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_REMARK = new Prefix("r/");
     public static final Prefix PREFIX_ROOMNUMBER = new Prefix("rn/");
     public static final Prefix PREFIX_TIER = new Prefix("ti/");
-    public static final Prefix PREFIX_FROMDATE = new Prefix("df/");
+    public static final Prefix PREFIX_FROMDATE = new Prefix("fd/");
     public static final Prefix PREFIX_TODATE = new Prefix("td/");
     public static final Prefix PREFIX_COST = new Prefix("c/");
+    public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
 
 }

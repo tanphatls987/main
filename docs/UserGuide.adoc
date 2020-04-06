@@ -100,11 +100,13 @@ Format: `help`
 === Adding a guest : `addguest`
 
 Create a guest in the hotel list. +
-Format: `addguest n/NAME i/ID p/PHONE_NUMBER e/EMAIL`
+Format: `addguest n/NAME i/ID p/PHONE_NUMBER e/EMAIL [t/TAG]...`
 
 Examples:
-* `addguest n/John Doe i/G1231322X p/1928310 e/johndoe@gmail.com`
+* `addguest n/John Doe i/G1231231X p/1928310 e/johndoe@gmail.com`
 Add John Doe with his information into the database.
+
+* `addguest n/Sallly Smith i/G1231232X p/512685123 e/sallysmith@gmail.com t/VIP`
 //end::addguest[]
 
 === Adding a room : `addroom`
@@ -183,7 +185,7 @@ Examples:
 === Making a reservation : `reserve`
 
 Makes a reservation for a guest in the hotel +
-Format: `reserve i/ID rn/ROOM_NUMBER df/FROM_DATE dt/TO_DATE`
+Format: `reserve i/ID rn/ROOM_NUMBER fd/FROM_DATE td/TO_DATE`
 
 ****
 * Makes a reservation for `ID` from `FROM_DATE` to `TO_DATE` at `ROOM_NUMBER`.
@@ -191,7 +193,7 @@ Format: `reserve i/ID rn/ROOM_NUMBER df/FROM_DATE dt/TO_DATE`
 
 Examples:
 
-* `reserve i/G1231231X rn/102 df/ 2020-12-12 dt/ 2020-12-30`
+* `reserve i/G1231231X rn/102 fd/ 2020-12-12 td/ 2020-12-30`
 
 === Locating the room of a guest : `getroom`
 
@@ -216,6 +218,14 @@ Format: `addtier ti/TIER_NAME rn/ROOM_NUMBERS`
 Examples:
 
 * `addtier ti/Gold rn/12E 12F 12T`.
+
+=== Adding an available service: `addservice`
+
+Add an available service with id, cost, and description
+Format: `addservice i/SERVICE_ID d/DESCRIPTION c/COST`
+
+Examples:
+* `addservice i/WC d/Wash clothes c/100.00`
 
 === Setting the cost for a room : `setrcost`
 
@@ -260,7 +270,7 @@ _{explain how the user can enable/disable data encryption}_
 
 * *Help* : `help`
 * *Add Guest* : `addguest n/NAME i/ID p/PHONE_NUMBER e/EMAIL` +
-e.g. `addguest n/John Doe i/G1231322X p/1928310 e/johndoe@gmail.com`
+e.g. `addguest n/John Doe i/G1231231X p/1928310 e/johndoe@gmail.com`
 * `Add Room` : `addroom rn/ROOM_NUMBER` +
 e.g. `addroom rn/101`
 * *Add Tier* : `addtier ti/TIER_NAME rn/ROOM_NUMBERS` +
@@ -276,8 +286,8 @@ e.g. `findguest n/Alice i/A10`
 e.g. `bill i/G1231231X`
 * *Charge Service* : `service n/NAME p/PRICE [d/DESCRIPTION]...` +
 e.g. `service n/Smith p/20.00 d/massage`
-* *Make Reservation* : `reserve i/ID rn/ROOM_NUMBER df/FROM_DATE dt/TO_DATE` +
-e.g. `reserve i/G1231231X rn/102 df/ 2020-12-12 dt/ 2020-12-30`
+* *Make Reservation* : `reserve i/ID rn/ROOM_NUMBER fd/FROM_DATE td/TO_DATE` +
+e.g. `reserve i/G1231231X rn/102 td/ 2020-12-12 td/ 2020-12-30`
 * *Locate Room* : `getroom i/ID` +
 e.g. `getroom i/ID`
 * *Set Room Cost* : `setrcost rn/ROOM_NUMBER c/COST` +
