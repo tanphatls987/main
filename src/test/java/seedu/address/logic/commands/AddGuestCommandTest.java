@@ -116,6 +116,11 @@ public class AddGuestCommandTest {
         }
 
         @Override
+        public Path getHotelFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
