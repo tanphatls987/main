@@ -37,9 +37,9 @@ public class ChargeServiceCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Added service (ID: %1$s) to the bill of "
             + "guest (ID: %2$s) for room %3$s.";
     public static final String MESSAGE_GUEST_NONEXISTENT = "Guest (ID: %1$s) does not exist in the system.";
-    public static final String MESSAGE_ROOM_NONEXISTENT = "Room %1s does not exist in the system.";
+    public static final String MESSAGE_ROOM_NONEXISTENT = "Room %1$s does not exist in the system.";
     public static final String MESSAGE_SERVICE_NONEXISTENT = "Service (ID: %1$s) does not exist in the system.";
-    public static final String MESSAGE_NO_BOOKING = "Guest (ID: %1$s) has not booked room %2$s.";
+    public static final String MESSAGE_NO_BOOKING = "Guest (ID: %1$s) is not checked into room %2$s.";
 
     private final PersonId personId;
     private final RoomId roomId;
@@ -77,7 +77,7 @@ public class ChargeServiceCommand extends Command {
             throw new CommandException(String.format(MESSAGE_SERVICE_NONEXISTENT, serviceId));
         }
 
-        if (!model.hasGuestBooked(person.get(), room.get())) {
+        if (!model.isGuestCheckedIn(person.get(), room.get())) {
             throw new CommandException(String.format(MESSAGE_NO_BOOKING, personId, roomId));
         }
 

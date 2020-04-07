@@ -222,7 +222,7 @@ public class AddGuestCommandTest {
         }
 
         @Override
-        public boolean hasGuestBooked(Person person, Room room) {
+        public boolean isGuestCheckedIn(Person person, Room room) {
             throw new AssertionError("This method should not be called.");
         }
 

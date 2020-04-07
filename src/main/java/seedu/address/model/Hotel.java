@@ -9,6 +9,7 @@ import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.UniqueAvailableServiceList;
 import seedu.address.model.hotel.booking.Booking;
@@ -119,11 +120,11 @@ public class Hotel implements ReadOnlyHotel {
     }
 
     /**
-     * Checks if {@code person} has booked {@code room}.
+     * Checks if {@code person} is checked into {@code room}.
      */
-    public boolean hasGuestBooked(Person person, Room room) {
+    public boolean isGuestCheckedIn(Person person, Room room) {
         for (Booking b : bookingList) {
-            if (b.getPayee().equals(person) && b.getRoom().equals(room)) {
+            if (b instanceof Stay && b.getPayee().equals(person) && b.getRoom().equals(room)) {
                 return true;
             }
         }

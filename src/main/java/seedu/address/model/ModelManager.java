@@ -236,9 +236,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasGuestBooked(Person person, Room room) {
+    public boolean isGuestCheckedIn(Person person, Room room) {
         requireAllNonNull(person, room);
-        return hotel.hasGuestBooked(person, room);
+        return hotel.isGuestCheckedIn(person, room);
     }
 
     @Override
