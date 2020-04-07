@@ -14,6 +14,7 @@ import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.hotel.room.Tier;
+import seedu.address.model.ids.AvailableServiceId;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 import seedu.address.model.timeframe.TimeFrame;
@@ -137,6 +138,11 @@ public interface Model {
     boolean isRoomFree(Room room, TimeFrame duration);
 
     /**
+     * Checks if {@code person} is checked into {@code room}
+     */
+    boolean isGuestCheckedIn(Person person, Room room);
+
+    /**
      * Book a room with booking details.
      * @param booking
      */
@@ -187,12 +193,23 @@ public interface Model {
     void setRoomCost(Room room, RoomCost roomCost);
 
     /**
-     * adds a service to hotel
+     * Adds a service to hotel.
      */
     void addAvailableService(AvailableService service);
+
+    /**
+     * Returns a service with matching serviceId.
+     */
+    Optional<AvailableService> findService(AvailableServiceId serviceId);
+
+    /**
+     * Charges a service to the bill of a guest.
+     */
+    void chargeService(PersonId personId, RoomId roomId, AvailableService service);
 
     /**
      * deletes a room from hotel
      */
     void deleteRoom(String roomNum);
+
 }

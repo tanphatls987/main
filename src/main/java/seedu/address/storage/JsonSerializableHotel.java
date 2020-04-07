@@ -51,7 +51,7 @@ public class JsonSerializableHotel {
                 .map(JsonAdaptedRoom::new).collect(Collectors.toList()));
         bookings.addAll(sourceHotel.getBookingList().stream()
                 .map(JsonAdaptedBooking::new).collect(Collectors.toList()));
-        availableServices.addAll(sourceHotel.getAvailableServices().stream()
+        availableServices.addAll(sourceHotel.getAvailableServiceList().stream()
                 .map(JsonAvailableService::new).collect(Collectors.toList()));
     }
 
@@ -78,7 +78,7 @@ public class JsonSerializableHotel {
         }
         for (JsonAvailableService jsonAvailableService : availableServices) {
             AvailableService service = jsonAvailableService.toModelType();
-            if (hotel.getAvailableServices().stream().anyMatch(other -> other.getId().equals(service.getId()))) {
+            if (hotel.getAvailableServiceList().stream().anyMatch(other -> other.getId().equals(service.getId()))) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_SERVICES);
             }
             hotel.addAvailableService(service);

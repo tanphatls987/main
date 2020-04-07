@@ -67,8 +67,9 @@ Features can be divided into 4 groups of command
 
 * Service commands
 
-** `checkin` and `checkout` commands receives and returns guestss.
-** `service` command charges guests for requesting services.
+
+** `checkin` and `checkout` command receives and returns customers.
+** `chargeservice` command charges customers for getting services.
 ** `reserve` command makes a reservation.
 ** `bill` command fetches the bill of a guest.
 
@@ -167,20 +168,18 @@ Examples:
 * `bill  i/G1231231X` +
 Shows the bill for guest with ID G1231231X's stay up till present moment.
 
-=== Charging a service : `service`
+=== Charging a service : `chargeservice`
 
-Adds a service to the guest's tab. +
-Format: `service n/NAME  p/PRICE [d/DESCRIPTION]...`
+Charges a service to the guest's tab. +
+Format: `chargeservice i/PERSON_ID rn/ROOM_NUMBER si/SERVICE_ID`
 
 ****
-* Adds service of `PRICE` and `DESCRIPTION` to `NAME` 's bill.
-* Name and price must be entered as an input
+* Charges service for `ROOM` with `COST` and `DESCRIPTION` to `NAME` 's bill.
 ****
 
 Examples:
 
-* `service  n/Smith p/20.00` +
-* `service n/Smith p/20.00 d/massage`
+* `chargeservice i/G1231231X rn/100 si/WC`
 
 === Making a reservation : `reserve`
 
@@ -222,10 +221,10 @@ Examples:
 === Adding an available service: `addservice`
 
 Add an available service with id, cost, and description
-Format: `addservice i/SERVICE_ID d/DESCRIPTION c/COST`
+Format: `addservice si/SERVICE_ID d/DESCRIPTION c/COST`
 
 Examples:
-* `addservice i/WC d/Wash clothes c/100.00`
+* `addservice si/WC d/Wash clothes c/100.00`
 
 === Setting the cost for a room : `setrcost`
 
@@ -275,6 +274,8 @@ e.g. `addguest n/John Doe i/G1231231X p/1928310 e/johndoe@gmail.com`
 e.g. `addroom rn/101`
 * *Add Tier* : `addtier ti/TIER_NAME rn/ROOM_NUMBERS` +
 e.g. `addtier ti/Gold rn/12E 12F 12T`
+* *Add Service* : `addservice si/SERVICE_ID d/DESCRIPTION c/COST` +
+e.g. `addservice si/WC d/Wash clothes c/100.00`
 * *Check in* : `checkin i/ID rn/ROOM_NUMBER td/TO_DATE` +
 e.g. `checkin i/G1231231X rn/101 td/2020-03-14`
 * *Check out* : `checkout rn/ROOM_NUMBER` +
@@ -284,10 +285,10 @@ e.g. `checkout rn/101`
 e.g. `findguest n/Alice i/A10`
 * *Fetch Bill* : `bill i/ID [rn/ROOM_NUMBER]` +
 e.g. `bill i/G1231231X`
-* *Charge Service* : `service n/NAME p/PRICE [d/DESCRIPTION]...` +
-e.g. `service n/Smith p/20.00 d/massage`
-* *Make Reservation* : `reserve i/ID rn/ROOM_NUMBER fd/FROM_DATE td/TO_DATE` +
-e.g. `reserve i/G1231231X rn/102 td/ 2020-12-12 td/ 2020-12-30`
+* *Charge Service* : `chargeservice i/PERSON_ID rn/ROOM_NUMBER si/SERVICE_ID` +
+e.g. `chargeservice i/G1231231X rn/100 si/WC`
+* *Make Reservation* : `reserve i/ID rn/ROOM_NUMBER df/FROM_DATE dt/TO_DATE` +
+e.g. `reserve i/G1231231X rn/102 df/ 2020-12-12 dt/ 2020-12-30`
 * *Locate Room* : `getroom i/ID` +
 e.g. `getroom i/ID`
 * *Set Room Cost* : `setrcost rn/ROOM_NUMBER c/COST` +

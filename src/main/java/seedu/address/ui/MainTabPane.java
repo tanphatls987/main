@@ -81,7 +81,7 @@ public class MainTabPane extends UiPart<Region> {
     }
 
     private void setAvailableServiceListPanel() {
-        availableServiceListPanel = new AvailableServiceListPanel(logic.getHotel().getAvailableServices());
+        availableServiceListPanel = new AvailableServiceListPanel(logic.getHotel().getAvailableServiceList());
         availableServiceListPanelPlaceholder.getChildren().add(availableServiceListPanel.getRoot());
     }
 }

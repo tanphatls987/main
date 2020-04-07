@@ -10,6 +10,7 @@ import seedu.address.logic.commands.AddGuestCommand;
 import seedu.address.logic.commands.AddRoomCommand;
 import seedu.address.logic.commands.AddServiceCommand;
 import seedu.address.logic.commands.AddTierCommand;
+import seedu.address.logic.commands.ChargeServiceCommand;
 import seedu.address.logic.commands.CheckInCommand;
 import seedu.address.logic.commands.CheckOutCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -96,6 +97,9 @@ public class AddressBookParser {
 
         case ReserveCommand.COMMAND_WORD:
             return new ReserveCommandParser().parse(arguments);
+
+        case ChargeServiceCommand.COMMAND_WORD:
+            return new ChargeServiceCommandParser().parse(arguments);
 
         case SetRoomCostCommand.COMMAND_WORD:
             return new SetRoomCostCommandParser().parse(arguments);

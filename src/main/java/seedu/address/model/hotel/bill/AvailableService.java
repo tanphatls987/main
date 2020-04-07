@@ -1,12 +1,14 @@
 package seedu.address.model.hotel.bill;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import seedu.address.model.ids.AvailableServiceId;
 
 /**
  * Available services, to be added when initialization.
  * Stores: description, cost, id of the service.
  */
-public class AvailableService {
+public class AvailableService implements Chargeable {
     private String description;
     private Cost cost;
     private AvailableServiceId id;
@@ -15,12 +17,25 @@ public class AvailableService {
      *
      * @param desc: a short description of the service
      * @param cost: amount
-     * @param id: for reference
+     * @param serviceId: for reference
      */
-    public AvailableService(String desc, Cost cost, AvailableServiceId id) {
+    public AvailableService(String desc, Cost cost, AvailableServiceId serviceId) {
+        requireAllNonNull(desc, cost, serviceId);
         this.description = desc;
         this.cost = cost;
-        this.id = id;
+        this.id = serviceId;
+    }
+
+    /***
+     * Checks if service is same as {@code room}
+     */
+    public boolean isSameService(AvailableService service) {
+        if (service == this) {
+            return true;
+        }
+
+        return service != null
+                && service.getId().equals(getId());
     }
 
     /**
@@ -45,5 +60,16 @@ public class AvailableService {
      */
     public Cost getCost() {
         return this.cost;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getDescription())
+                .append(" ServiceId: ")
+                .append(getId())
+                .append(" Cost: ")
+                .append(getCost());
+        return builder.toString();
     }
 }
