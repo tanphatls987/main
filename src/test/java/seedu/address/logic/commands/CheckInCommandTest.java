@@ -393,6 +393,11 @@ public class CheckInCommandTest {
         public void deleteRoom(String roomNum) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void deleteAvailableService(AvailableServiceId id) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     private class ModelStubWithBooking extends ModelStubWithRoomsAndPerson {

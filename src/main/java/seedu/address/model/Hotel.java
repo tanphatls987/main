@@ -180,6 +180,17 @@ public class Hotel implements ReadOnlyHotel {
     }
 
     /**
+     * Find an available service from hotel with given AvailableServiceId.
+     */
+    public Optional<AvailableService> getAvailableService(AvailableServiceId id) {
+        return availableServiceList
+            .asUnmodifiableObservableList()
+            .stream()
+            .filter(service -> service.getId().equals(id))
+            .findFirst();
+    }
+
+    /**
      * Adds a room to the hotel.
      * The room must not already exist in the address book.
      */
@@ -262,6 +273,14 @@ public class Hotel implements ReadOnlyHotel {
     public void deleteRoom(String roomNum) {
         ///passed the checks for existence
         roomList.remove(this.findSureRoom(roomNum));
+    }
+
+    /**
+     * Deletes an availableService from id.
+     */
+    public void deleteAvailableService(AvailableServiceId id) {
+        Optional<AvailableService> serviceOptional = findServiceWithId(id);
+        serviceOptional.ifPresent(service -> availableServiceList.remove(service));
     }
 
     //// util methods

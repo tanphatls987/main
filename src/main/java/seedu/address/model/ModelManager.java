@@ -371,4 +371,10 @@ public class ModelManager implements Model {
         hotel.deleteRoom(roomNum);
     }
 
+    @Override
+    public void deleteAvailableService(AvailableServiceId id) {
+        requireNonNull(id);
+        hotel.deleteAvailableService(id);
+    }
+
 }
