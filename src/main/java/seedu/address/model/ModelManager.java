@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
@@ -86,6 +87,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Path getHotelFilePath() {
+        return userPrefs.getHotelFilePath();
+    }
+
+    @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
@@ -112,6 +118,12 @@ public class ModelManager implements Model {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
+    }
+
+    @Override
+    public boolean hasPersonId(PersonId personId) {
+        requireNonNull(personId);
+        return addressBook.hasPersonId(personId);
     }
 
     /**
@@ -308,8 +320,6 @@ public class ModelManager implements Model {
 
     }
 
-
-
     @Override
     public void setRoomCost(Room room, RoomCost roomCost) {
         requireAllNonNull(room, roomCost);
@@ -326,6 +336,12 @@ public class ModelManager implements Model {
     @Override
     public void fetchBill(Person person, RoomId roomNum) {
         requireAllNonNull(person, roomNum);
+    }
+
+    @Override
+    public void addAvailableService(AvailableService service) {
+        requireNonNull(service);
+        hotel.addAvailableService(service);
     }
 
 }

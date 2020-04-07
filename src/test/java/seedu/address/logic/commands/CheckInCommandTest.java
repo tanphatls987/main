@@ -24,6 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
@@ -204,6 +205,10 @@ public class CheckInCommandTest {
         }
 
         @Override
+        public boolean hasPersonId(PersonId personId) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public Optional<Person> findPersonWithId(PersonId personId) {
             throw new AssertionError("This method should not be called.");
         }
@@ -334,6 +339,11 @@ public class CheckInCommandTest {
         }
 
         @Override
+        public Path getHotelFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Optional<Person> findPersonWithId(PersonId personId) {
             if (this.person.getPersonId() == personId) {
                 return Optional.of(this.person);
@@ -349,6 +359,11 @@ public class CheckInCommandTest {
         @Override
         public boolean hasBooking(Booking booking) {
             return hotel.hasBooking(booking);
+        }
+
+        @Override
+        public void addAvailableService(AvailableService service) {
+            throw new AssertionError("This method should not be called.");
         }
     }
 

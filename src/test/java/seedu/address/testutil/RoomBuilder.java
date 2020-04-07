@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.hotel.room.Tier;
@@ -52,7 +51,7 @@ public class RoomBuilder {
      * Sets the {@code roomCost} of the {@code Room} that we are building.
      */
     public RoomBuilder withRoomCost(String roomCost) {
-        this.roomCost = new RoomCost(new Cost(roomCost));
+        this.roomCost = new RoomCost(roomCost);
         return this;
     }
 

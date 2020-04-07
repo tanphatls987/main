@@ -309,6 +309,49 @@
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 8 1 8 1;
 }
+
+.tab{
+    -fx-background-color: grey;
+    -fx-font-family: 'Courier New';
+    -fx-pref-width: 355px;
+    -fx-text-fill: white;
+}
+
+.welcomeTitle {
+    -fx-font-size: 36px;
+    -fx-font-family: 'Georgia', serif;
+    -fx-font-weight: normal;
+    -fx-line-height: 42px;
+    -fx-text-shadow: 0 2px white, 0 3px #777;
+    -fx-text-fill: #FFFFF0;
+}
+
+.welcome-heading {
+    -fx-font-size: 30px;
+    -fx-text-fill: #FFFAFA;
+    -fx-font-family: 'Times New Roman', serif;
+}
+
+.welcome-subheading{
+    -fx-font-size: 26px;
+    -fx-text-fill: black;
+    -fx-font-family: 'Times New Roman', serif;
+    -fx-background-color: #DCDCDC;
+}
+
+.welcome-body{
+    -fx-font-size: 18px;
+    -fx-text-fill: #FFFAFA;
+    -fx-font-family: 'Times New Roman', serif;
+}
+
+.markup {
+    -fx-font-family: "Courier New";
+    -fx-font-size: 15px;
+    -fx-text-fill: white;
+    -fx-background-color: #515658;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;

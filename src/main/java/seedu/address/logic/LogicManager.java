@@ -86,6 +86,12 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public Path getHotelFilePath() {
+        return model.getHotelFilePath();
+    }
+
+
+    @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
     }

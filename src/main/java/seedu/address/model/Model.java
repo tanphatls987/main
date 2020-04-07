@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
@@ -50,6 +51,11 @@ public interface Model {
     Path getAddressBookFilePath();
 
     /**
+     * Returns the user prefs' hotel file path
+     */
+    Path getHotelFilePath();
+
+    /**
      * Sets the user prefs' address book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
@@ -69,6 +75,13 @@ public interface Model {
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
+
+    /**
+     * Return true if a person with the same id exists in the address book.
+     * @param personId
+     * @return
+     */
+    boolean hasPersonId(PersonId personId);
 
     /**
      * Return a person with matching personId
@@ -180,4 +193,9 @@ public interface Model {
      * Sets the the room cost for the given room.
      */
     void setRoomCost(Room room, RoomCost roomCost);
+
+    /**
+     * adds a service to hotel
+     */
+    void addAvailableService(AvailableService service);
 }

@@ -11,7 +11,16 @@
    <children>
       <TabPane id="mainTabFrame" fx:id="mainTabPane" stylesheets="@DarkTheme.css" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
          <tabs>
-            <Tab fx:id="guestTab" text="Guests">
+            <Tab fx:id="welcomeTab" text="About" styleClass="tab">
+               <content>
+                  <AnchorPane style="-fx-background-color: black;">
+                     <children>
+                        <StackPane fx:id="welcomePlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="guestTab" text="Guests" styleClass="tab" style="-fx-text-fill: white;">
                <content>
                   <AnchorPane style="-fx-background-color: black;">
                      <children>
@@ -20,7 +29,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab fx:id="roomTab" text="Rooms">
+            <Tab fx:id="roomTab" text="Rooms" styleClass="tab">
                <content>
                   <AnchorPane style="-fx-background-color: black;">
                   <children>
@@ -29,7 +38,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab fx:id="bookingTab" text="Bookings">
+            <Tab fx:id="bookingTab" text="Bookings" styleClass="tab">
                <content>
                   <AnchorPane style="-fx-background-color: black;">
                      <children>

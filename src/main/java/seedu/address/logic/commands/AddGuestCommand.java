@@ -18,7 +18,7 @@ public class AddGuestCommand extends Command {
 
     public static final String COMMAND_WORD = "addguest";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to Morpheus.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_ID + "ID "
@@ -34,7 +34,9 @@ public class AddGuestCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in Morpheus";
+    public static final String MESSAGE_DUPLICATE_PERSON_ID = "There is a person with this id";
 
     private final Person toAdd;
 
@@ -52,6 +54,9 @@ public class AddGuestCommand extends Command {
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+        if (model.hasPersonId(toAdd.getPersonId())) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON_ID);
         }
 
         model.addPerson(toAdd);
