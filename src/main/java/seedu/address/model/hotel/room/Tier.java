@@ -1,8 +1,5 @@
 package seedu.address.model.hotel.room;
 
-
-import java.awt.Choice;
-
 /**
  * Store room tier.
  */
@@ -32,6 +29,13 @@ public class Tier {
     }
 
     /**
+     * Create a default tier
+     */
+    public Tier() {
+        name = TierName.valueOf(DEFAULT_TIER);
+    }
+
+    /**
      * Check whether s is a valid tier option.
      * @param s compared string
      * @return true if valid
@@ -44,13 +48,6 @@ public class Tier {
         }
 
         return false;
-    }
-
-    /**
-     * Create a default tier
-     */
-    public Tier() {
-        name = TierName.valueOf(DEFAULT_TIER);
     }
 
     /**

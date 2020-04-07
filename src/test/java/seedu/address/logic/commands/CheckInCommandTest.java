@@ -375,6 +375,11 @@ public class CheckInCommandTest {
         }
 
         @Override
+        public void addRoom(String roomName, Tier tier, RoomCost cost) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasBooking(Booking booking) {
             return hotel.hasBooking(booking);
         }
