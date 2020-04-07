@@ -209,6 +209,16 @@ Examples:
 
 * `getroom i/G1231231X`
 
+=== Add a new room : `addroom`
+
+Add a new room with the corresponding tier and cost. +
+Format: `addroom rn/ROOM_NUMBER c/COST t/Tier`
+
+Examples:
+
+* `addroom rn/101 c/150.00 t/GOLD` +
+Add a gold tier room 101 with the price of $150.00
+
 === Adding a tier: `addtier`
 
 Add a tier and set this tier to certain rooms +

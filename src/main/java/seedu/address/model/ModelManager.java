@@ -289,6 +289,15 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addRoom(String roomNum, Tier tier, RoomCost cost) {
+        requireNonNull(roomNum);
+        requireNonNull(tier);
+        requireNonNull(cost);
+
+        hotel.addRoom(roomNum, tier, cost);
+    }
+
+    @Override
     public boolean hasRoom(String roomNum) {
         requireNonNull(roomNum);
 

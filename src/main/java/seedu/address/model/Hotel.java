@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import seedu.address.model.hotel.bill.AvailableService;
+import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.bill.UniqueAvailableServiceList;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.booking.exception.RoomBookedException;
@@ -191,6 +192,14 @@ public class Hotel implements ReadOnlyHotel {
      */
     public void addRoom(String roomNum) {
         Room newRoom = new Room(roomNum);
+        roomList.add(newRoom);
+    }
+
+    /**
+     * add a new room with tier and cost
+     */
+    public void addRoom(String roomNum, Tier tier, RoomCost cost) {
+        Room newRoom = new Room(roomNum, tier, cost);
         roomList.add(newRoom);
     }
 

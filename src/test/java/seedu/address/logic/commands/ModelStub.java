@@ -182,6 +182,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void addRoom(String roomName, Tier tier, RoomCost cost) {
+        throw new AssertionError("This method should not be called");
+    }
+
+    @Override
     public boolean hasRoom(String roomName) {
         throw new AssertionError("This method should not be called");
     }

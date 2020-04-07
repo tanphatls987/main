@@ -168,6 +168,14 @@ public interface Model {
     void addRoom(String roomName);
 
     /**
+     * Add a room with roomName, tier, and cost
+     * @param roomName
+     * @param tier
+     * @param cost
+     */
+    void addRoom(String roomName, Tier tier, RoomCost cost);
+
+    /**
      * Check if a room exist
      */
     boolean hasRoom(String roomName);
