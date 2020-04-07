@@ -53,7 +53,7 @@ public class AddRoomCommand extends Command {
         requireNonNull(model);
 
         // Room name cannot contain space
-        if (this.toAdd.contains(" ")) {
+        if (this.toAdd.contains(" ") || this.toAdd.equals("")) {
             throw new CommandException(MESSAGE_ROOM_NAME_NOT_ALLOWED);
         }
 

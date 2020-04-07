@@ -35,10 +35,14 @@ public class AddRoomCommandParser implements Parser<AddRoomCommand> {
                             AddRoomCommand.MESSAGE_USAGE)
             );
         }
+        if (!Tier.isTierOption(argMultimap.getValue(PREFIX_TIER).get())) {
+            throw new ParseException(Tier.MESSAGE_INVALID_TIER);
+        }
+
         String roomNum = argMultimap.getValue(PREFIX_ROOMNUMBER).get();
-        Cost cost = ParserUtil.parseCost(argMultimap.getValue(PREFIX_COST).get());
+        RoomCost cost = new RoomCost(ParserUtil.parseCost(argMultimap.getValue(PREFIX_COST).get()).toString());
         Tier tier = ParserUtil.parseTier(argMultimap.getValue(PREFIX_TIER).get());
-        return new AddRoomCommand(roomNum, new RoomCost(cost), tier);
+        return new AddRoomCommand(roomNum, cost, tier);
     }
 
     /**

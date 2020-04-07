@@ -11,7 +11,7 @@ public class Cost {
     public static final String MESSAGE_CONSTRAINTS =
             "Cost should only contain numbers, and it should have a maximum of 2 decimal places";
 
-    public static final String VALIDATION_REGEX = "[-+]?\\d{1,}\\.\\d{1,2}";
+    public static final String VALIDATION_REGEX = "[-+]?\\d{1,}(\\.\\d{1,2})?";
 
     public final double cost;
 

@@ -42,7 +42,7 @@ public class RoomCard extends UiPart<Region> {
         if (cost == null) {
             cost = new Label();
         }
-        cost.setText(room.getRoomCost().getCost().toString());
+        cost.setText(room.getRoomCost().getCost().toString()); //getCost probably could be deleted
     }
 
     @Override

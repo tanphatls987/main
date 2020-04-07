@@ -1,6 +1,8 @@
 package seedu.address.model.hotel.room;
 
 
+import java.awt.Choice;
+
 /**
  * Store room tier.
  */
@@ -11,9 +13,11 @@ public class Tier {
      */
     enum TierName {
         BRONZE, SILVER, GOLD
-
     }
-    public static final String MESSAGE_CONSTRAINTS = "Tier must be gold, silver or bronze";
+
+    /* MESSAGE_CONSTRAINTS should be generated from TierName */
+    public static final String MESSAGE_CONSTRAINTS = "Tier must be GOLD, SILVER or BRONZE";
+    public static final String MESSAGE_INVALID_TIER = "Invalid Tier format\n" + MESSAGE_CONSTRAINTS;
     public static final String DEFAULT_TIER = "BRONZE";
     private TierName name;
     private boolean isDefault;
@@ -25,6 +29,21 @@ public class Tier {
     public Tier(String n) {
         this.name = TierName.valueOf(n);
         this.isDefault = false;
+    }
+
+    /**
+     * Check whether s is a valid tier option.
+     * @param s compared string
+     * @return true if valid
+     */
+    public static boolean isTierOption(String s) {
+        for (TierName tn: TierName.values()) {
+            if (tn.name().equals(s)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
