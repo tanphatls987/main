@@ -173,6 +173,7 @@ public class ParserUtil {
         if (!Cost.isValidCost(trimmedCost)) {
             throw new ParseException(Cost.MESSAGE_CONSTRAINTS);
         }
+
         return new Cost(trimmedCost);
     }
 }

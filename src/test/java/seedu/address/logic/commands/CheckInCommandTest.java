@@ -30,6 +30,7 @@ import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.hotel.room.Tier;
+import seedu.address.model.ids.AvailableServiceId;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 import seedu.address.model.timeframe.TimeFrame;
@@ -277,6 +278,11 @@ public class CheckInCommandTest {
         }
 
         @Override
+        public boolean isGuestCheckedIn(Person person, Room room) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void bookRoom(Booking booking) {
             requireNonNull(booking);
 
@@ -318,6 +324,16 @@ public class CheckInCommandTest {
         }
 
         @Override
+        public Optional<AvailableService> findService(AvailableServiceId service) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void chargeService(PersonId personId, RoomId roomId, AvailableService service) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void fetchBillList(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -326,6 +342,8 @@ public class CheckInCommandTest {
         public void fetchBill(Person person, RoomId roomId) {
             throw new AssertionError("This method should not be called.");
         }
+
+
     }
 
     private class ModelStubWithRoomsAndPerson extends ModelStub {
@@ -363,6 +381,11 @@ public class CheckInCommandTest {
 
         @Override
         public void addAvailableService(AvailableService service) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteRoom(String roomNum) {
             throw new AssertionError("This method should not be called.");
         }
     }

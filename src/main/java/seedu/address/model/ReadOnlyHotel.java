@@ -26,5 +26,5 @@ public interface ReadOnlyHotel {
     /**
      * @return list of available services
      */
-    ObservableList<AvailableService> getAvailableServices();
+    ObservableList<AvailableService> getAvailableServiceList();
 }

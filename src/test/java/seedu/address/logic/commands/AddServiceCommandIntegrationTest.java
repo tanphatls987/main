@@ -37,7 +37,7 @@ public class AddServiceCommandIntegrationTest {
         expectedModel.addAvailableService(new AvailableService(description, cost, id));
 
         assertCommandSuccess(new AddServiceCommand(description, cost, id), model,
-                AddServiceCommand.MESSAGE_SUCCESS, expectedModel);
+                String.format(AddServiceCommand.MESSAGE_SUCCESS, description, id), expectedModel);
     }
 
     @Test

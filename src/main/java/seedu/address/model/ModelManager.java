@@ -19,6 +19,7 @@ import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.hotel.room.Tier;
+import seedu.address.model.ids.AvailableServiceId;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 import seedu.address.model.timeframe.TimeFrame;
@@ -235,6 +236,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isGuestCheckedIn(Person person, Room room) {
+        requireAllNonNull(person, room);
+        return hotel.isGuestCheckedIn(person, room);
+    }
+
+    @Override
     public void bookRoom(Booking booking) {
         requireNonNull(booking);
         hotel.addBooking(booking);
@@ -320,10 +327,30 @@ public class ModelManager implements Model {
 
     }
 
+    //=========== Billing System =============================================================================
+
     @Override
     public void setRoomCost(Room room, RoomCost roomCost) {
         requireAllNonNull(room, roomCost);
         room.setCost(roomCost);
+    }
+
+    @Override
+    public void addAvailableService(AvailableService service) {
+        requireNonNull(service);
+        hotel.addAvailableService(service);
+    }
+
+    @Override
+    public Optional<AvailableService> findService(AvailableServiceId serviceId) {
+        requireNonNull(serviceId);
+        return hotel.findServiceWithId(serviceId);
+    }
+
+    @Override
+    public void chargeService(PersonId personId, RoomId roomId, AvailableService service) {
+        requireAllNonNull(personId, roomId, service);
+        addressBook.findPersonWithId(personId).get().addToBill(roomId, service);
     }
 
     // to update accordingly when implementing billing system.
@@ -339,9 +366,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addAvailableService(AvailableService service) {
-        requireNonNull(service);
-        hotel.addAvailableService(service);
+    public void deleteRoom(String roomNum) {
+        requireNonNull(roomNum);
+        hotel.deleteRoom(roomNum);
     }
 
 }
