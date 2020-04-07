@@ -124,7 +124,7 @@ public class Hotel implements ReadOnlyHotel {
      */
     public boolean isGuestCheckedIn(Person person, Room room) {
         for (Booking b : bookingList) {
-            if (b instanceof Stay && b.getPayee().equals(person) && b.getRoom().equals(room)) {
+            if (b.getPayee().equals(person) && b.getRoom().equals(room)) {
                 return true;
             }
         }
