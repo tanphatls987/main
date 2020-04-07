@@ -9,7 +9,6 @@ import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.UniqueAvailableServiceList;
 import seedu.address.model.hotel.booking.Booking;
