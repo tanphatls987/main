@@ -19,13 +19,9 @@ public class AddRoomCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a room to Morpheus.\n"
             + "Parameters: "
-<<<<<<< HEAD
             + PREFIX_ROOMNUMBER + "ROOM_NUM "
             + PREFIX_TIER + "TIER "
             + PREFIX_COST + "COST "
-=======
-            + PREFIX_ROOMNUMBER + "ROOM_NUM\n"
->>>>>>> 6a3f13ad8c298a93cda2268431ee0e5ccc14b07f
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ROOMNUMBER + "12E "
             + PREFIX_TIER + "GOLD "
