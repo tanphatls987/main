@@ -220,4 +220,9 @@ public interface Model {
      */
     void deleteRoom(String roomNum);
 
+    /**
+     * deletes an available service from hotel
+     */
+    void deleteAvailableService(AvailableServiceId id);
+
 }
