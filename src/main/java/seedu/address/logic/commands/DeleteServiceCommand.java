@@ -53,4 +53,18 @@ public class DeleteServiceCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, id.toString()));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof DeleteServiceCommand)) {
+            return false;
+        }
+
+        DeleteServiceCommand otherCommand = (DeleteServiceCommand) other;
+        return this.id.equals(otherCommand.id);
+    }
+
 }
