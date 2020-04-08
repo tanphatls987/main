@@ -21,13 +21,6 @@
     "remark" : "",
     "tagged" : [ "neighbours" ]
   }, {
-    "name" : "David Li",
-    "personId" : "D000000",
-    "phone" : "91031282",
-    "email" : "lidavid@example.com",
-    "remark" : "",
-    "tagged" : [ "family" ]
-  }, {
     "name" : "Irfan Ibrahim",
     "personId" : "I000000",
     "phone" : "92492021",
