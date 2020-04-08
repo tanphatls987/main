@@ -46,7 +46,7 @@ public class DeleteServiceCommand extends Command {
 
         if (hotel.getAvailableServiceList().stream().noneMatch(availableService -> availableService.getId()
                 .equals(this.id))) {
-            throw new CommandException(MESSAGE_SERVICE_NOT_FOUND);
+            throw new CommandException(String.format(MESSAGE_SERVICE_NOT_FOUND, id.toString()));
         }
 
         model.deleteAvailableService(id);
