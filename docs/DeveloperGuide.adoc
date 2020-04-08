@@ -42,7 +42,7 @@ Refer to the guide <<SettingUp#, here>>.
 === Architecture
 
 .Architecture Diagram
-image::ArchitectureDiagram.png[]
+image::OverallArchitecture.png[]
 
 The *_Architecture Diagram_* given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -82,7 +82,7 @@ The sections below give more details of each component.
 === UI component
 
 .Structure of the UI Component
-image::UiComponent.png[]
+image::UiDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
 
@@ -121,7 +121,7 @@ image::LogicSequenceDiagram.png[]
 === Model component
 
 .Structure of the Model Component
-image::ModelClassDiagram.png[]
+image::ModelDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model.java`]
 
@@ -143,7 +143,7 @@ image:BetterModelClassDiagram.png[]
 === Storage component
 
 .Structure of the Storage Component
-image::StorageClassDiagram.png[]
+image::StorageDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/storage/Storage.java[`Storage.java`]
 
@@ -550,7 +550,7 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Download the jar file and copy into an empty folder
 .. Double-click the jar file +
-   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   Expected: Shows the GUI with a set of sample data. The window size may not be optimum.
 
 . Saving window preferences
 
@@ -572,12 +572,27 @@ _{ more test cases ... }_
 .. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +
    Expected: Similar to previous.
 
-_{ more test cases ... }_
 
 === Saving data
 
 . Dealing with missing/corrupted data files
 
-.. _{explain how to simulate a missing/corrupted file and the expected behavior}_
+.. Prerequisites: Get access to the data files.
+.. Test case: Delete hotel.json +
+   Expected: Morpheus will load addressbook and hotel with sample data.
+.. Other tests to try: Delete some '{}' in hotel.json +
+    Expected: Morpheus will restart with an empty addressbook and hotel.
 
-_{ more test cases ... }_
+=== Reserving a room
+
+. Dealing with clashes in bookings
+
+.. Prerequisites: List all the bookings by clicking on booking tab. Multiple bookings.
+.. Test case: `reserve i/i000000 rn/001 fd/2020-12-12 td/2020-12-24` +
+    Expected: Room number `001` is reserved by person `I000000` from `2020-12-12` to `2020-12-24`
+.. Test case: `reserve i/B000000 rn/001 fd/2020-12-13 td/2020-12-23` +
+    Expected: There is a clash in booking dates for the same room. Error details shown in the status message.
+.. Test case: `reserve i/Bzagda rn/001 fd/2020-12-13 td/2020-12-23`
+    Expected: No such person found. No booking made. Error details shown in the status message.
+
+
