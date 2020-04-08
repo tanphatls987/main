@@ -35,7 +35,7 @@
     "tier" : "BRONZE",
     "cost" : "50.00",
     "number" : "123"
-  }],
+  } ],
   "bookings" : [ {
     "room" : "001",
     "payeeName" : "Alex Yeoh",

@@ -9,6 +9,7 @@ import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.bill.UniqueAvailableServiceList;
@@ -20,6 +21,7 @@ import seedu.address.model.hotel.room.Tier;
 import seedu.address.model.hotel.room.UniqueRoomList;
 import seedu.address.model.ids.AvailableServiceId;
 import seedu.address.model.ids.RoomId;
+import seedu.address.model.timeframe.TimeFrame;
 
 /**
  * Storing hotel's details: rooms, booking
@@ -27,6 +29,7 @@ import seedu.address.model.ids.RoomId;
 public class Hotel implements ReadOnlyHotel {
     private final UniqueRoomList roomList;
     private final ArrayList<Booking> bookingList;
+    private final ArrayList<Stay> stayList;
     private final ArrayList<Tier> tierList;
     private final UniqueAvailableServiceList availableServiceList;
 
@@ -37,6 +40,7 @@ public class Hotel implements ReadOnlyHotel {
 
         tierList = new ArrayList<>();
         bookingList = new ArrayList<>();
+        stayList = new ArrayList<>();
         //non-static initialization block
         {
             roomList = new UniqueRoomList();
@@ -53,6 +57,7 @@ public class Hotel implements ReadOnlyHotel {
         this.roomList.setRooms(toBeCopied.getRoomList());
         this.tierList.addAll(toBeCopied.getTierList());
         this.bookingList.addAll(toBeCopied.getBookingList());
+        this.stayList.addAll(toBeCopied.getStayList());
         this.availableServiceList.setServices(toBeCopied.getAvailableServiceList());
     }
 
@@ -60,6 +65,7 @@ public class Hotel implements ReadOnlyHotel {
 
     /**
      * Get the room list.
+     *
      * @return a room list.
      */
     public ObservableList<Room> getRoomList() {
@@ -99,7 +105,7 @@ public class Hotel implements ReadOnlyHotel {
      * check room num exists.
      */
     public boolean hasRoom(String roomNum) {
-        for (Room room: roomList) {
+        for (Room room : roomList) {
             if (room.hasName(roomNum)) {
                 return true;
             }
@@ -117,6 +123,22 @@ public class Hotel implements ReadOnlyHotel {
             }
         }
         return false;
+    }
+
+    /**
+     * Get the stay in the room in current time.
+     *
+     * @param room the room object.
+     * @return The booking if exist, empty otherwise.
+     */
+    public Optional<Stay> getCurrentStay(Room room) {
+        requireNonNull(room);
+
+        return stayList
+            .stream()
+            .filter(u -> u.isCorrectRoom(room))
+            .filter(u -> u.isCurrentlyClash(room))
+            .findFirst();
     }
 
     /**
@@ -138,15 +160,14 @@ public class Hotel implements ReadOnlyHotel {
     }
 
     /**
-     *
-     * @Return observable list of bookings */
+     * @Return observable list of bookings
+     */
     @Override
     public ObservableList<Booking> getBookingList() {
         return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList(bookingList));
     }
 
     /**
-     *
      * @return observable list of available services.
      */
     @Override
@@ -154,20 +175,27 @@ public class Hotel implements ReadOnlyHotel {
         return availableServiceList.asUnmodifiableObservableList();
     }
 
+    @Override
+    public ObservableList<Stay> getStayList() {
+        return FXCollections.observableList(stayList);
+    }
+
     /**
      * Return a room with matching room Id
+     *
      * @param roomId
      * @return Room
      */
     public Optional<Room> findRoomWithRoomId(RoomId roomId) {
         return roomList.asUnmodifiableObservableList()
-                .stream()
-                .filter(u -> u.getRoomId().equals(roomId))
-                .findFirst();
+            .stream()
+            .filter(u -> u.getRoomId().equals(roomId))
+            .findFirst();
     }
 
     /**
      * Return a room with matching room number
+     *
      * @param roomNum
      * @return Room
      */
@@ -218,7 +246,7 @@ public class Hotel implements ReadOnlyHotel {
      * find a room
      */
     private Room findSureRoom(String roomNum) {
-        for (Room room: roomList) {
+        for (Room room : roomList) {
             if (room.hasName(roomNum)) {
                 return room;
             }
@@ -231,7 +259,7 @@ public class Hotel implements ReadOnlyHotel {
      * check a if a tier exists
      */
     public boolean hasTier(Tier otherTier) {
-        for (Tier tier: tierList) {
+        for (Tier tier : tierList) {
             if (tier.equals(otherTier)) {
                 return true;
             }
@@ -256,6 +284,7 @@ public class Hotel implements ReadOnlyHotel {
 
     /**
      * Adds booking to booking list
+     *
      * @throws RoomBookedException if there is a clash between
      * @code booking and bookings in booking list
      */
@@ -284,13 +313,14 @@ public class Hotel implements ReadOnlyHotel {
     }
 
     //// util methods
+
     /**
      * adds a new tier.
      */
     public void addTier(Tier tier, ArrayList<String> roomNums) {
         tierList.add(tier);
 
-        for (String roomNum: roomNums) {
+        for (String roomNum : roomNums) {
             if (hasRoom(roomNum)) {
                 Room current = findSureRoom(roomNum);
                 assert current != null;
@@ -301,13 +331,14 @@ public class Hotel implements ReadOnlyHotel {
 
     /**
      * Return a service with matching serviceId
+     *
      * @return
      */
     public Optional<AvailableService> findServiceWithId(AvailableServiceId serviceId) {
         return availableServiceList.asUnmodifiableObservableList()
-                .stream()
-                .filter(u -> u.getId().equals(serviceId))
-                .findFirst();
+            .stream()
+            .filter(u -> u.getId().equals(serviceId))
+            .findFirst();
     }
 
     //// util methods
@@ -325,7 +356,7 @@ public class Hotel implements ReadOnlyHotel {
 
         if (other instanceof Hotel) {
             return this.roomList.equals(((Hotel) other).roomList)
-                    && this.bookingList.equals(((Hotel) other).bookingList);
+                && this.bookingList.equals(((Hotel) other).bookingList);
         }
 
 
@@ -335,5 +366,68 @@ public class Hotel implements ReadOnlyHotel {
     @Override
     public int hashCode() {
         return roomList.hashCode();
+    }
+
+    /**
+     * Check in to the hotel according to the stay details.
+     * @param stay
+     */
+    public void checkIn(Stay stay) {
+        bookingList.removeIf(stay::isInside);
+        addStay(stay);
+    }
+
+    /**
+     * Check out the current room
+     * @param room the room that wants to be checked out
+     * @return
+     */
+    public boolean checkOut(Room room) {
+        Optional<Stay> stay = getCurrentStay(room);
+
+        if (stay.isEmpty()) {
+            return false;
+        }
+
+        deleteStay(stay.get());
+        return true;
+    }
+
+    /**
+     * Delete stay from hotel stay list.
+     * @param stay
+     */
+    private void deleteStay(Stay stay) {
+        stayList.remove(stay);
+    }
+
+    /**
+     * Check if room wants to be booked by this person is empty during the duration
+     * @param person person who wants to checked
+     * @param room the room that is checked
+     * @param duration the duration of the booking
+     * @return
+     */
+    public boolean isRoomFree(Person person, Room room, TimeFrame duration) {
+        requireNonNull(person);
+        requireNonNull(room);
+        requireNonNull(duration);
+
+        //timeframe create successfully mean no bogus duration
+
+        boolean isRoomCurrentlyEmpty = stayList
+            .stream()
+            .noneMatch(u -> u.isClash(room, duration));
+
+        boolean isBookingNotClash = bookingList
+            .stream()
+            .filter(u -> u.getPayee() != person)
+            .noneMatch(u -> u.isClash(room, duration));
+
+        return isRoomCurrentlyEmpty && isBookingNotClash;
+    }
+
+    public void addStay(Stay stay) {
+        stayList.add(stay);
     }
 }

@@ -77,12 +77,12 @@ public class CheckInCommand extends Command {
         }
 
         TimeFrame stayTimeFrame = new TimeFrame(LocalDateTime.now(), toDate);
-        if (!(model.isRoomFree(room.get(), stayTimeFrame))) {
+        if (!(model.isRoomFree(person.get(), room.get(), stayTimeFrame))) {
             throw new CommandException(String.format(MESSAGE_ROOM_OCCUPIED, roomId));
         }
 
         Stay stay = new Stay(person.get(), room.get(), LocalDateTime.now(), toDate, "");
-        model.bookRoom(stay);
+        model.checkIn(stay);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, roomId, personId));
     }

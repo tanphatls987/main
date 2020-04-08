@@ -23,6 +23,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
@@ -222,7 +223,7 @@ public class AddGuestCommandTest {
         }
 
         @Override
-        public boolean isRoomFree(Room room, TimeFrame duration) {
+        public boolean isRoomFree(Person person, Room room, TimeFrame duration) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -237,9 +238,8 @@ public class AddGuestCommandTest {
         }
 
         @Override
-        public void checkIn(Booking booking) {
+        public void checkIn(Stay stay) {
             throw new AssertionError("This method should not be called.");
-
         }
 
         @Override
