@@ -46,11 +46,25 @@ public class DeleteServiceCommand extends Command {
 
         if (hotel.getAvailableServiceList().stream().noneMatch(availableService -> availableService.getId()
                 .equals(this.id))) {
-            throw new CommandException(MESSAGE_SERVICE_NOT_FOUND);
+            throw new CommandException(String.format(MESSAGE_SERVICE_NOT_FOUND, id.toString()));
         }
 
         model.deleteAvailableService(id);
         return new CommandResult(String.format(MESSAGE_SUCCESS, id.toString()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof DeleteServiceCommand)) {
+            return false;
+        }
+
+        DeleteServiceCommand otherCommand = (DeleteServiceCommand) other;
+        return this.id.equals(otherCommand.id);
     }
 
 }
