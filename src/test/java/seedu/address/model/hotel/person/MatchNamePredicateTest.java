@@ -24,8 +24,8 @@ class MatchNamePredicateTest {
 
         MatchNamePredicate pred2 = new MatchNamePredicate(nameList);
 
-        assertFalse(pred1.test(alice));
-        assertTrue(pred1.test(BENSON));
-        assertTrue(pred2.test(alice));
+        assertFalse(pred1.test(alice.getName()));
+        assertTrue(pred1.test(BENSON.getName()));
+        assertTrue(pred2.test(alice.getName()));
     }
 }

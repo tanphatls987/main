@@ -1,13 +1,19 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 
 import java.util.HashSet;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.hotel.booking.MatchBookingPredicate;
+import seedu.address.model.hotel.person.MatchNamePredicate;
+import seedu.address.model.hotel.person.MatchPersonIdPredicate;
 import seedu.address.model.hotel.person.Name;
+import seedu.address.model.hotel.room.MatchRoomPredicate;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 
@@ -23,6 +29,7 @@ public class FindBookingCommand extends Command {
             + "Parameters: [i/ID] ... [i/ID] [n/NAME] ... [n/NAME] [rn/ROOM_ID] ... [rn/ROOM_ID]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ID + "A000000 "
+            + PREFIX_NAME + "Tuan Le"
             + PREFIX_ROOMNUMBER + "001";
 
     private final HashSet<Name> names;
@@ -50,7 +57,12 @@ public class FindBookingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        MatchBookingPredicate predicate = new MatchBookingPredicate();
+        predicate.setNamePredicate(new MatchNamePredicate(names));
+        predicate.setPersonIdPredicate(new MatchPersonIdPredicate(personIds));
+        predicate.setRoomPredicate(new MatchRoomPredicate(roomIds));
 
+        return null;
     }
 
     @Override

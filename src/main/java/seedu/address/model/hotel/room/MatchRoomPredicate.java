@@ -1,10 +1,9 @@
-package seedu.address.model.hotel.person;
+package seedu.address.model.hotel.room;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.RoomId;
 
 /**
@@ -30,8 +29,7 @@ public class MatchRoomPredicate implements Predicate<Room> {
     }
 
     /**
-     *
-     * @param room: a room
+     * Test a predicate with some input.
      * @return {@code true} if the input argument matches the predicate,
      * {@code false} otherwise.
      */
