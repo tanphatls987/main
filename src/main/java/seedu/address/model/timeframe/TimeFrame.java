@@ -2,7 +2,6 @@ package seedu.address.model.timeframe;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.sql.Time;
 import java.time.LocalDateTime;
 
 import seedu.address.model.timeframe.exception.InvalidTimeFrameException;

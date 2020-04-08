@@ -368,11 +368,20 @@ public class Hotel implements ReadOnlyHotel {
         return roomList.hashCode();
     }
 
+    /**
+     * Check in to the hotel according to the stay details.
+     * @param stay
+     */
     public void checkIn(Stay stay) {
         bookingList.removeIf(stay::isInside);
         addStay(stay);
     }
 
+    /**
+     * Check out the current room
+     * @param room the room that wants to be checked out
+     * @return
+     */
     public boolean checkOut(Room room) {
         Optional<Stay> stay = getCurrentStay(room);
 
@@ -384,11 +393,23 @@ public class Hotel implements ReadOnlyHotel {
         return true;
     }
 
+    /**
+     * Delete stay from hotel stay list.
+     * @param stay
+     */
     private void deleteStay(Stay stay) {
         stayList.remove(stay);
     }
 
+    /**
+     * Check if room wants to be booked by this person is empty during the duration
+     * @param person person who wants to checked
+     * @param room the room that is checked
+     * @param duration the duration of the booking
+     * @return
+     */
     public boolean isRoomFree(Person person, Room room, TimeFrame duration) {
+        requireNonNull(person);
         requireNonNull(room);
         requireNonNull(duration);
 

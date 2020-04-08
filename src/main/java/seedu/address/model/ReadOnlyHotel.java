@@ -7,8 +7,6 @@ import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.hotel.room.Tier;
 
-import java.util.Collection;
-
 /**
  * Unmodifiable hotel
  */
