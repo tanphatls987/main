@@ -76,7 +76,7 @@ public class MainTabPane extends UiPart<Region> {
     }
 
     private void setBookingListPanel() {
-        bookingListPanel = new BookingListPanel(logic.getBookingList());
+        bookingListPanel = new BookingListPanel(logic.getFilteredBookingList());
         bookingListPanelPlaceholder.getChildren().add(bookingListPanel.getRoot());
     }
 

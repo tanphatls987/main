@@ -43,6 +43,11 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
+    /**
+     * Returns an unmodifiable view of the filtered list of bookings
+     */
+    ObservableList<Booking> getFilteredBookingList();
+
     /** Returns an unmodifiable view of the room list */
     ObservableList<Room> getRoomList();
 
