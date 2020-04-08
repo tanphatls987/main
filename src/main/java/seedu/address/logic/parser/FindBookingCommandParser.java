@@ -38,7 +38,7 @@ public class FindBookingCommandParser implements Parser<FindBookingCommand> {
         if (!isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_ID, PREFIX_ROOMNUMBER)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            FindGuestCommand.MESSAGE_USAGE)
+                            FindBookingCommand.MESSAGE_USAGE)
             );
         }
 
