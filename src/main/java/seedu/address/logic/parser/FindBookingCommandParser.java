@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindBookingCommand;
-import seedu.address.logic.commands.FindGuestCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.hotel.person.Name;
 import seedu.address.model.ids.PersonId;
@@ -38,7 +37,7 @@ public class FindBookingCommandParser implements Parser<FindBookingCommand> {
         if (!isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_ID, PREFIX_ROOMNUMBER)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            FindGuestCommand.MESSAGE_USAGE)
+                            FindBookingCommand.MESSAGE_USAGE)
             );
         }
 
