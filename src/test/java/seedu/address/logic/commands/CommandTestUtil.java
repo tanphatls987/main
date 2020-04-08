@@ -18,6 +18,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.hotel.person.MatchPersonIdPredicate;
+import seedu.address.model.hotel.person.MatchPersonPredicate;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -122,9 +123,11 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        model.updateFilteredPersonList(new MatchPersonIdPredicate(
-            new HashSet<>(List.of(person.getPersonId())))
+        MatchPersonPredicate predicate = new MatchPersonPredicate();
+        predicate.setPersonIdPredicate(new MatchPersonIdPredicate(
+                new HashSet<>(List.of(person.getPersonId())))
         );
+        model.updateFilteredPersonList(predicate);
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

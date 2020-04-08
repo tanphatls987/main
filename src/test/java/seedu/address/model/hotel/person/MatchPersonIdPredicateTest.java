@@ -25,7 +25,7 @@ class MatchPersonIdPredicateTest {
         personIdList.add(alice.getPersonId());
         MatchPersonIdPredicate pred2 = new MatchPersonIdPredicate(personIdList);
 
-        assertFalse(pred1.test(alice));
-        assertTrue(pred2.test(alice));
+        assertFalse(pred1.test(alice.getPersonId()));
+        assertTrue(pred2.test(alice.getPersonId()));
     }
 }

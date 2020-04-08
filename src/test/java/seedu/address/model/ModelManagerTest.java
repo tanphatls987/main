@@ -18,7 +18,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.hotel.person.MatchPersonIdPredicate;
+import seedu.address.model.hotel.person.MatchPersonPredicate;
 import seedu.address.testutil.AddressBookBuilder;
+
 
 public class ModelManagerTest {
 
@@ -137,7 +139,9 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
         // different filteredList -> returns false
-        modelManager.updateFilteredPersonList(new MatchPersonIdPredicate(List.of(ALICE.getPersonId())));
+        MatchPersonPredicate predicate = new MatchPersonPredicate();
+        predicate.setPersonIdPredicate(new MatchPersonIdPredicate(List.of(ALICE.getPersonId())));
+        modelManager.updateFilteredPersonList(predicate);
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

@@ -9,7 +9,7 @@ import seedu.address.model.ids.PersonId;
 /**
  * Check if person have personId in a predetermine list.
  */
-public class MatchPersonIdPredicate implements Predicate<Person> {
+public class MatchPersonIdPredicate implements Predicate<PersonId> {
     private final HashSet<PersonId> personIdList;
 
     /**
@@ -30,9 +30,10 @@ public class MatchPersonIdPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
-        return personIdList.contains(person.getPersonId());
+    public boolean test(PersonId personId) {
+        return personIdList.contains(personId);
     }
+
     @Override
     public boolean equals(Object oth) {
         if (this == oth) {
