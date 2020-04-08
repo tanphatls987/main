@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 
 import java.util.HashSet;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.hotel.booking.MatchBookingPredicate;
@@ -62,7 +63,10 @@ public class FindBookingCommand extends Command {
         predicate.setPersonIdPredicate(new MatchPersonIdPredicate(personIds));
         predicate.setRoomPredicate(new MatchRoomPredicate(roomIds));
 
-        return null;
+        model.updateFilteredBookingList(predicate);
+        return new CommandResult(
+                String.format(Messages.MESSAGE_BOOKINGS_LISTED_OVERVIEW, model.getFilteredBookingList().size())
+        );
     }
 
     @Override

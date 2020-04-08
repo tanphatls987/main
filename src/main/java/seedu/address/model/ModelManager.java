@@ -34,6 +34,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Booking> filteredBookings;
     private final Hotel hotel;
 
     /**
@@ -49,6 +50,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.hotel = new Hotel(hotel);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredBookings = new FilteredList<>(this.hotel.getBookingList());
     }
 
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
@@ -160,17 +162,32 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     *      * {@code versionedAddressBook}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Booking> getFilteredBookingList() {
+        return filteredBookings;
+    }
+
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredBookingList(Predicate<Booking> predicate) {
+        requireNonNull(predicate);
+        filteredBookings.setPredicate(predicate);
     }
 
     @Override
@@ -244,6 +261,7 @@ public class ModelManager implements Model {
     public void bookRoom(Booking booking) {
         requireNonNull(booking);
         hotel.addBooking(booking);
+        updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
     }
 
     /**
@@ -269,6 +287,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteBooking(Booking booking) {
         hotel.getBookingList().remove(booking);
+        updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
     }
 
     @Override
