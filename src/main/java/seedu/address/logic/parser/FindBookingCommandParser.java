@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindBookingCommand;
-import seedu.address.logic.commands.FindGuestCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.hotel.person.Name;
 import seedu.address.model.ids.PersonId;
