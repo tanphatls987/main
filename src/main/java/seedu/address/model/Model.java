@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
@@ -131,11 +132,12 @@ public interface Model {
 
     /**
      * Check if a room is available during a period.
+     * @param person
      * @param room
      * @param duration
      * @return
      */
-    boolean isRoomFree(Room room, TimeFrame duration);
+    boolean isRoomFree(Person person, Room room, TimeFrame duration);
 
     /**
      * Checks if {@code person} is checked into {@code room}
@@ -148,7 +150,7 @@ public interface Model {
      */
     void bookRoom(Booking booking);
 
-    void checkIn(Booking booking);
+    void checkIn(Stay stay);
 
     boolean checkOut(Room room);
 
@@ -224,5 +226,4 @@ public interface Model {
      * deletes an available service from hotel
      */
     void deleteAvailableService(AvailableServiceId id);
-
 }

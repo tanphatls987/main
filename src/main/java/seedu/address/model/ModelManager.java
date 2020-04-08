@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
@@ -210,6 +211,8 @@ public class ModelManager implements Model {
     public Optional<Booking> getCurrentStay(Room room) {
         requireNonNull(room);
 
+        hotel.getCurrentStay(room);
+
         return hotel.getBookingList()
             .stream()
             .filter(u -> u.isCorrectRoom(room))
@@ -224,15 +227,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isRoomFree(Room room, TimeFrame duration) {
+    public boolean isRoomFree(Person person, Room room, TimeFrame duration) {
+        requireNonNull(person);
         requireNonNull(room);
         requireNonNull(duration);
-        ObservableList<Booking> bookingList = hotel.getBookingList();
-
-        //timeframe create successfully mean no bogus duration
-        return bookingList
-            .stream()
-            .noneMatch(u -> u.isClash(room, duration));
+        return hotel.isRoomFree(person, room, duration);
     }
 
     @Override
@@ -249,11 +248,11 @@ public class ModelManager implements Model {
 
     /**
      * Checks in a room with the given details from the booking.
-     * @param booking The booking we want to store
+     * @param stay The booking we want to store
      */
     @Override
-    public void checkIn(Booking booking) {
-        this.bookRoom(booking);
+    public void checkIn(Stay stay) {
+        hotel.checkIn(stay);
     }
 
     /**
@@ -264,16 +263,7 @@ public class ModelManager implements Model {
     @Override
     public boolean checkOut(Room room) {
         requireNonNull(room);
-
-        Optional<Booking> booking = getCurrentStay(room);
-
-        if (booking.isEmpty()) {
-            return false;
-        }
-
-        // Need to add bill after it's created
-        deleteBooking(booking.get());
-        return true;
+        return hotel.checkOut(room);
     }
 
     @Override
