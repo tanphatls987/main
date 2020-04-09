@@ -15,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
+import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
@@ -35,7 +36,9 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Booking> filteredBookings;
-    private final FilteredList<Room> filterRooms;
+    private final FilteredList<Room> filteredRooms;
+    private final FilteredList<AvailableService> filteredServices;
+    private final FilteredList<Bill> filteredBills;
     private final Hotel hotel;
 
     /**
@@ -52,7 +55,9 @@ public class ModelManager implements Model {
         this.hotel = new Hotel(hotel);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredBookings = new FilteredList<>(this.hotel.getBookingList());
-        filterRooms = new FilteredList<>(this.hotel.getRoomList());
+        filteredRooms = new FilteredList<>(this.hotel.getRoomList());
+        filteredServices = new FilteredList<>(this.hotel.getAvailableServiceList());
+        filteredBills = null;
     }
 
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
@@ -182,7 +187,17 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Room> getFilteredRoomList() {
-        return this.filterRooms;
+        return filteredRooms;
+    }
+
+    @Override
+    public ObservableList<AvailableService> getFilteredServiceList() {
+        return filteredServices;
+    }
+
+    @Override
+    public ObservableList<Bill> getFilteredBillList() {
+        return filteredBills;
     }
 
     @Override
@@ -198,10 +213,23 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredServiceList(Predicate<AvailableService> predicate) {
+        requireNonNull(predicate);
+        filteredServices.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredBillList(Predicate<Bill> predicate) {
+        requireNonNull(predicate);
+        filteredBills.setPredicate(predicate);
+    }
+
+    @Override
     public void updateFilteredRoomList(Predicate<Room> predicate) {
         requireNonNull(predicate);
-        filterRooms.setPredicate(predicate);
+        filteredRooms.setPredicate(predicate);
     }
+
 
     @Override
     public boolean equals(Object obj) {

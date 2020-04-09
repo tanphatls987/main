@@ -27,6 +27,7 @@ import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
+import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
@@ -335,6 +336,20 @@ public class CheckInCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public ObservableList<Room> getFilteredRoomList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<AvailableService> getFilteredServiceList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Bill> getFilteredBillList() {
+            throw new AssertionError("This method should not be called.");
+        }
 
     }
 
@@ -368,6 +383,8 @@ public class CheckInCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+
+
         @Override
         public ObservableList<Room> getFilteredRoomList() {
             throw new AssertionError("This method should not be called.");
@@ -375,6 +392,16 @@ public class CheckInCommandTest {
 
         @Override
         public void updateFilteredBookingList(Predicate<Booking> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredServiceList(Predicate<AvailableService> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredBillList(Predicate<Bill> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

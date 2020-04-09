@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
+import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
@@ -129,6 +130,16 @@ public interface Model {
     ObservableList<Room> getFilteredRoomList();
 
     /**
+     * Returns an unmodifiable view of the filtered service list.
+     */
+    ObservableList<AvailableService> getFilteredServiceList();
+
+    /**
+     * Returns an unmodifiable view of the filtered bill list.
+     */
+    ObservableList<Bill> getFilteredBillList();
+
+    /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
@@ -141,7 +152,20 @@ public interface Model {
     void updateFilteredBookingList(Predicate<Booking> predicate);
 
     /**
-     * Updates the filter of the filtered room list to filter by the given {@code predicate}
+     * Updates the filter of the filtered service list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredServiceList(Predicate<AvailableService> predicate);
+
+    /**
+     * Updates the filter of the filtered bill list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredBillList(Predicate<Bill> predicate);
+
+    /**
+     * Updates the filter of the filtered room list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRoomList(Predicate<Room> predicate);
 
@@ -151,6 +175,9 @@ public interface Model {
 
     /** Returns list of bookings */
     ObservableList<Booking> getBookingList();
+
+
+
 
     Optional<Booking> getCurrentStay(Room room);
 

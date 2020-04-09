@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -186,12 +187,27 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-
+            switchTab(commandResult.getUiView());
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        }
+    }
+
+    /**
+     * Switch tab view.
+     * @param uiView
+     * @throws CommandException
+     */
+    private void switchTab(Optional<String> uiView) throws CommandException {
+        if (uiView.isEmpty()) {
+            return;
+        }
+        boolean setTabResult = mainTabPane.setCurrentTab(uiView.get());
+        if (!setTabResult) {
+            throw new CommandException("Not a valid tab name");
         }
     }
 }

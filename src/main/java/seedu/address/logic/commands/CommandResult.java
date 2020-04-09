@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Represents the result of a command execution.
@@ -17,6 +18,9 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /**String to switch between view.*/
+    private final Optional<String> uiView;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -24,6 +28,21 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.uiView = Optional.empty();
+    }
+
+    /**
+     * Construct command result with view attach to it.
+     * @param feedbackToUser
+     * @param showHelp
+     * @param exit
+     * @param uiView
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, String uiView) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.uiView = Optional.of(uiView);
     }
 
     /**
@@ -44,6 +63,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public Optional<String> getUiView() {
+        return uiView;
     }
 
     @Override
