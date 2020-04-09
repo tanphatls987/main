@@ -308,6 +308,7 @@ public class ModelManager implements Model {
         requireNonNull(roomNum);
 
         hotel.addRoom(roomNum);
+        updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
     }
 
     @Override
@@ -317,6 +318,7 @@ public class ModelManager implements Model {
         requireNonNull(cost);
 
         hotel.addRoom(roomNum, tier, cost);
+        updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
     }
 
     @Override
@@ -391,6 +393,7 @@ public class ModelManager implements Model {
     public void deleteRoom(String roomNum) {
         requireNonNull(roomNum);
         hotel.deleteRoom(roomNum);
+        updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
     }
 
     @Override

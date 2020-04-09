@@ -55,6 +55,11 @@ public interface Logic {
     ObservableList<Booking> getBookingList();
 
     /**
+     * Returns an unmodifiable view of the room list.
+     */
+    ObservableList<Room> getFilteredRoomList();
+
+    /**
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
