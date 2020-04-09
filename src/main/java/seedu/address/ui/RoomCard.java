@@ -32,10 +32,6 @@ public class RoomCard extends UiPart<Region> {
     private Label roomNum;
     @FXML
     private Label cost;
-    @FXML
-    private Label stay;
-    @FXML
-    private Circle circle;
 
     public RoomCard(Room room, int displayedIndex) {
         super(FXML);
@@ -49,19 +45,6 @@ public class RoomCard extends UiPart<Region> {
             cost = new Label();
         }
         cost.setText(room.getRoomCost().getCost().toString()); //getCost probably could be deleted
-        if (stay == null) {
-            stay = new Label();
-        }
-        if (circle == null) {
-            circle = new Circle(11);
-        }
-        if (room.getStay() == null) {
-            stay.setText("No current stay");
-            circle.setFill(Color.GREEN);
-        } else {
-            stay.setText("Current stay until: " + room.getStay().getTimeTo().toString());
-            circle.setFill(Color.RED);
-        }
     }
 
     @Override

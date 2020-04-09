@@ -12,8 +12,6 @@ public class Room {
     private String roomNum;
     private RoomId roomId;
     private RoomCost roomCost;
-    private Stay stay;
-
     /**
      * Create a room with name, tier & cost.
      * Create a room with name and tier.
@@ -35,16 +33,6 @@ public class Room {
      */
     public Room(String roomNum) {
         this(roomNum, new Tier(), new RoomCost());
-    }
-
-    /**
-     * Construct a room with attributes of @param other
-     */
-    public Room(Room room) {
-        this.roomTier = room.getTier();
-        this.roomNum = room.getRoomNum();
-        this.roomId = room.getRoomId();
-        this.roomCost = room.getRoomCost();
     }
 
     /**
@@ -120,20 +108,6 @@ public class Room {
      */
     public void setTier(Tier tier) {
         this.roomTier = tier;
-    }
-
-    /**
-     * Sets the stay for this room
-     */
-    public void setStay(Stay stay) {
-        this.stay = stay;
-    }
-
-    /**
-     * Gets the current stay of the room
-     */
-    public Stay getStay() {
-        return stay;
     }
 
     /**

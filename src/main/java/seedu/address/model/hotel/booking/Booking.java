@@ -50,7 +50,7 @@ public class Booking {
      */
     public boolean isClash(Booking oth) {
         ///different room
-        if (this.room != oth.room) {
+        if (!this.room.getRoomNum().equals(oth.room.getRoomNum())) {
             return false;
         }
         return bookDuration.isClash(oth.bookDuration);
@@ -63,7 +63,7 @@ public class Booking {
      * @return true if there exist clash with other
      */
     public boolean isClash(Room room, TimeFrame duration) {
-        if (this.room != room) {
+        if (!this.room.getRoomNum().equals(room.getRoomNum())) {
             return false;
         }
         return bookDuration.isClash(duration);
@@ -84,7 +84,7 @@ public class Booking {
      * @return true if there exist clash with other
      */
     public boolean isCurrentlyClash(Room room) {
-        if (this.room != room) {
+        if (!this.room.getRoomNum().equals(room.getRoomNum())) {
             return false;
         }
         return bookDuration.isInside(LocalDateTime.now());
