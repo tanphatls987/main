@@ -1,6 +1,5 @@
 package seedu.address.model.hotel.room;
 
-import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.ids.RoomId;
 
