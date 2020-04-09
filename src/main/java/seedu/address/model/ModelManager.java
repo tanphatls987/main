@@ -35,6 +35,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Booking> filteredBookings;
+    private final FilteredList<Room> filterRooms;
     private final Hotel hotel;
 
     /**
@@ -51,6 +52,7 @@ public class ModelManager implements Model {
         this.hotel = new Hotel(hotel);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredBookings = new FilteredList<>(this.hotel.getBookingList());
+        filterRooms = new FilteredList<>(this.hotel.getRoomList());
     }
 
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
@@ -179,6 +181,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Room> getFilteredRoomList() {
+        return this.filterRooms;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
@@ -188,6 +195,12 @@ public class ModelManager implements Model {
     public void updateFilteredBookingList(Predicate<Booking> predicate) {
         requireNonNull(predicate);
         filteredBookings.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredRoomList(Predicate<Room> predicate) {
+        requireNonNull(predicate);
+        filterRooms.setPredicate(predicate);
     }
 
     @Override

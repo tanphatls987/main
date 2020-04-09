@@ -124,6 +124,11 @@ public interface Model {
     ObservableList<Booking> getFilteredBookingList();
 
     /**
+     * Returns an unmodifiable view of the filtered room list.
+     */
+    ObservableList<Room> getFilteredRoomList();
+
+    /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
@@ -135,6 +140,11 @@ public interface Model {
      */
     void updateFilteredBookingList(Predicate<Booking> predicate);
 
+    /**
+     * Updates the filter of the filtered room list to filter by the given {@code predicate}
+     */
+    void updateFilteredRoomList(Predicate<Room> predicate);
+
     /**Returns list of rooms
      * @return*/
     ObservableList<Room> getRoomList();
@@ -145,6 +155,7 @@ public interface Model {
     Optional<Booking> getCurrentStay(Room room);
 
     Optional<Room> findRoom(RoomId roomNum);
+
 
     /**
      * Check if a room is available during a period.
