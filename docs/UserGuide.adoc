@@ -166,7 +166,7 @@ Return person with name Alice or id A10
 
 === Finding bookings by name, id or room number: `findbooking`
 Finds bookings whose names, id or roomnumber match.
-Format: `findguest n/NAME ... n/NAME i/ID ... i/ID rn/ROOM_NUMBER ... rn/ROOM_NUMBER`
+Format: `findbooking n/NAME ... n/NAME i/ID ... i/ID rn/ROOM_NUMBER ... rn/ROOM_NUMBER`
 
 ****
 * The order of the keywords does not matter. e.g. `n/Alice i/A10` is same as`i/A10 n/Alice`
