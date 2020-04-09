@@ -20,51 +20,11 @@
     "payeeId" : "J000000",
     "timeFrom" : "2020-06-06T12:00",
     "timeTo" : "2020-07-07T12:00"
-  }, {
-    "room" : "002",
-    "payeeName" : "John Doe",
-    "payeeId" : "J000000",
-    "timeFrom" : "2020-04-08T19:33:26.203492700",
-    "timeTo" : "2020-05-05T12:00"
-  }, {
-    "room" : "002",
-    "payeeName" : "John Doe",
-    "payeeId" : "J000000",
-    "timeFrom" : "2020-04-08T19:36:50.980863200",
-    "timeTo" : "2020-05-05T12:00"
-  }, {
-    "room" : "002",
-    "payeeName" : "John Doe",
-    "payeeId" : "J000000",
-    "timeFrom" : "2020-04-08T19:38:29.845548100",
-    "timeTo" : "2020-05-05T12:00"
-  }, {
-    "room" : "002",
-    "payeeName" : "John Doe",
-    "payeeId" : "J000000",
-    "timeFrom" : "2020-04-08T19:39:47.956613800",
-    "timeTo" : "2020-05-05T12:00"
-  }, {
-    "room" : "002",
-    "payeeName" : "John Doe",
-    "payeeId" : "J000000",
-    "timeFrom" : "2020-04-08T19:53:11.357273900",
-    "timeTo" : "2020-05-05T12:00"
-  }, {
-    "room" : "002",
-    "payeeName" : "John Doe",
-    "payeeId" : "J000000",
-    "timeFrom" : "2020-04-09T02:49:47.307646800",
-    "timeTo" : "2020-05-05T12:00"
-  } ],
+    } ],
   "availableServices" : [ {
     "description" : "Wash clothes",
     "id" : "WC",
     "cost" : "5.00"
-  }, {
-    "description" : "test",
-    "id" : "t",
-    "cost" : "50.00"
-  } ]
+   } ]
 }
 
