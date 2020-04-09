@@ -23,7 +23,7 @@ import seedu.address.model.ids.RoomId;
  */
 public class FindRoomCommand extends Command {
 
-    private static final String COMMAND_WORD = "findroom";
+    public static final String COMMAND_WORD = "findroom";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": returns all rooms with matching Room ID"
             + "or the person who stay in this room.\n"
