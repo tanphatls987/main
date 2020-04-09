@@ -13,6 +13,7 @@ import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
+import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
@@ -123,6 +124,19 @@ public class ModelStub implements Model {
     }
 
     @Override
+<<<<<<< f57e8bed8e3e82168b269727434988c2c8391881
+=======
+    public ObservableList<AvailableService> getFilteredServiceList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Bill> getFilteredBillList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+>>>>>>> Add command to switch between tabs.
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         throw new AssertionError("This method should not be called");
     }
@@ -133,6 +147,19 @@ public class ModelStub implements Model {
     }
 
     @Override
+<<<<<<< f57e8bed8e3e82168b269727434988c2c8391881
+=======
+    public void updateFilteredServiceList(Predicate<AvailableService> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateFilteredBillList(Predicate<Bill> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+>>>>>>> Add command to switch between tabs.
     public void updateFilteredRoomList(Predicate<Room> predicate) {
         throw new AssertionError("This method should not be called.");
     }

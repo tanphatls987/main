@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.HashMap;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -22,6 +24,8 @@ public class MainTabPane extends UiPart<Region> {
     private AvailableServiceListPanel availableServiceListPanel;
     private MainWindow mainWindow;
 
+    private HashMap<String, Tab> tabMapping;
+
     @FXML
     private TabPane mainTabPane;
     @FXML
@@ -32,6 +36,8 @@ public class MainTabPane extends UiPart<Region> {
     private Tab guestTab;
     @FXML
     private Tab bookingTab;
+    @FXML
+    private Tab availableServiceTab;
     @FXML
     private StackPane welcomePlaceholder;
     @FXML
@@ -59,6 +65,22 @@ public class MainTabPane extends UiPart<Region> {
         setBookingListPanel();
         setAvailableServiceListPanel();
         mainTabPane.getStyleClass().add("floating");
+
+
+
+        initializeMapping();
+    }
+
+    /**
+     * Create mapping between name and tab.
+     */
+    private void initializeMapping() {
+        tabMapping = new HashMap<>();
+        tabMapping.put("welcome", welcomeTab);
+        tabMapping.put("room", roomTab);
+        tabMapping.put("guest", guestTab);
+        tabMapping.put("booking", bookingTab);
+        tabMapping.put("service", availableServiceTab);
     }
 
     private void setWelcomePlaceholder() {
@@ -83,5 +105,19 @@ public class MainTabPane extends UiPart<Region> {
     private void setAvailableServiceListPanel() {
         availableServiceListPanel = new AvailableServiceListPanel(logic.getHotel().getAvailableServiceList());
         availableServiceListPanelPlaceholder.getChildren().add(availableServiceListPanel.getRoot());
+    }
+
+    /**
+     * Set to corresponding tab with tab name specified.
+     * @param tabName
+     * @return
+     */
+    public boolean setCurrentTab(String tabName) {
+        if (!tabMapping.containsKey(tabName)) {
+            return false;
+        }
+        Tab selectTab = tabMapping.get(tabName);
+        mainTabPane.getSelectionModel().select(selectTab);
+        return true;
     }
 }

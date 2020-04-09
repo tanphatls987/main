@@ -25,6 +25,7 @@ import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
+import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
@@ -208,6 +209,16 @@ public class AddGuestCommandTest {
         }
 
         @Override
+        public ObservableList<AvailableService> getFilteredServiceList() {
+            return null;
+        }
+
+        @Override
+        public ObservableList<Bill> getFilteredBillList() {
+            return null;
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -220,6 +231,16 @@ public class AddGuestCommandTest {
         @Override
         public void updateFilteredRoomList(Predicate<Room> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredServiceList(Predicate<AvailableService> predicate) {
+
+        }
+
+        @Override
+        public void updateFilteredBillList(Predicate<Bill> predicate) {
+
         }
 
         @Override
