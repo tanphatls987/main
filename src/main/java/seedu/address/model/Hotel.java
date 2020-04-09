@@ -309,7 +309,7 @@ public class Hotel implements ReadOnlyHotel {
      */
     public void deleteAvailableService(AvailableServiceId id) {
         Optional<AvailableService> serviceOptional = findServiceWithId(id);
-        serviceOptional.ifPresent(service -> availableServiceList.remove(service));
+        serviceOptional.ifPresent(availableServiceList::remove);
     }
 
     //// util methods

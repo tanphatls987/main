@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.FindBookingCommand;
+import seedu.address.logic.commands.FindRoomCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.hotel.person.Name;
 import seedu.address.model.ids.PersonId;
@@ -19,30 +19,30 @@ import seedu.address.model.ids.RoomId;
 /**
  * Parsers input arguments and creates a new FindBookingCommand
  */
-public class FindBookingCommandParser implements Parser<FindBookingCommand> {
+public class FindRoomCommandParser implements Parser<FindRoomCommand> {
 
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindBookingCommand
-     * and returns a FindBookingCoomand object for execution.
+     * Parses the given {@code String} of arguments in the context of the FindRoomCommand
+     * and returns a FindRoomCoomand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
-    public FindBookingCommand parse(String args) throws ParseException {
+    public FindRoomCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID, PREFIX_ROOMNUMBER);
 
         if (!isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_ID, PREFIX_ROOMNUMBER)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            FindBookingCommand.MESSAGE_USAGE)
+                            FindRoomCommand.MESSAGE_USAGE)
             );
         }
 
         HashSet<PersonId> personIdList = getPersonIdList(argMultimap);
         HashSet<Name> nameList = getNameList(argMultimap);
         HashSet<RoomId> roomIdList = getRoomIdList(argMultimap);
-        return new FindBookingCommand(nameList, personIdList, roomIdList);
+        return new FindRoomCommand(nameList, roomIdList, personIdList);
     }
 
     private HashSet<PersonId> getPersonIdList(ArgumentMultimap argMultimap) {
