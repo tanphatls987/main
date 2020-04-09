@@ -27,6 +27,7 @@ public class Cost {
     }
 
     public Cost(double cost) {
+        requireNonNull(cost);
         this.cost = cost;
     }
 

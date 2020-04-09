@@ -16,9 +16,9 @@ import seedu.address.model.hotel.room.UniqueRoomList;
  * A list of AVAILABLESERVICES that enforces uniqueness between its elements and does not allow nulls.
  * A room is considered unique by comparing using {@code AvailableService#isSameService(AvailableService)}. As such,
  * adding and updating of services uses AvailableService#isSameService(AvailableService) for equality so as to ensure
- * that the room being added or updated is unique in terms of serviceId in the UniqueRoomList. However, the removal
- * of a service uses AvailableService#equals(Object) so as to ensure that the person with exactly the same fields
- * will be removed.
+ * that the service being added or updated is unique in terms of serviceId in the UniqueAvailableServiceList. However,
+ * the removal of a service uses AvailableService#equals(Object) so as to ensure that the person with exactly the same
+ * fields will be removed.
  *
  * Supports a minimal set of list operations.
  *

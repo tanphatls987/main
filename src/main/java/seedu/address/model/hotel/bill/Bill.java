@@ -10,6 +10,7 @@ import seedu.address.model.ids.RoomId;
 public class Bill {
     private RoomId roomId;
     private ArrayList<Chargeable> charges;
+    private double totalExpenses;
 
     /**
      * Creates an empty {@code bill}.
@@ -24,6 +25,7 @@ public class Bill {
      */
     public void addChargeable(Chargeable chargeable) {
         charges.add(chargeable);
+        totalExpenses += chargeable.getCost().getCostAsDouble();
     }
 
     /**
@@ -35,6 +37,10 @@ public class Bill {
 
     public RoomId getRoomId() {
         return roomId;
+    }
+
+    public double getTotalExpenses() {
+        return totalExpenses;
     }
 }
 
