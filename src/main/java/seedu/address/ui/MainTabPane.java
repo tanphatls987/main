@@ -93,7 +93,7 @@ public class MainTabPane extends UiPart<Region> {
     }
 
     private void setRoomListPanel() {
-        roomListPanel = new RoomListPanel(logic.getRoomList());
+        roomListPanel = new RoomListPanel(logic.getFilteredRoomList());
         roomListPanelPlaceholder.getChildren().add(roomListPanel.getRoot());
     }
 
