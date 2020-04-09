@@ -68,7 +68,7 @@ public class FindRoomCommand extends Command {
                 if (names.contains(booking.getPayee().getName())) {
                     return true;
                 }
-                if (personIds.contains(booking.getPayee().getName())) {
+                if (personIds.contains(booking.getPayee().getPersonId())) {
                     return true;
                 }
             }
