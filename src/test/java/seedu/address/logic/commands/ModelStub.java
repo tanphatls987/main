@@ -124,8 +124,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-<<<<<<< f57e8bed8e3e82168b269727434988c2c8391881
-=======
     public ObservableList<AvailableService> getFilteredServiceList() {
         throw new AssertionError("This method should not be called.");
     }
@@ -136,7 +134,6 @@ public class ModelStub implements Model {
     }
 
     @Override
->>>>>>> Add command to switch between tabs.
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         throw new AssertionError("This method should not be called");
     }
@@ -147,8 +144,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-<<<<<<< f57e8bed8e3e82168b269727434988c2c8391881
-=======
     public void updateFilteredServiceList(Predicate<AvailableService> predicate) {
         throw new AssertionError("This method should not be called.");
     }
@@ -159,7 +154,6 @@ public class ModelStub implements Model {
     }
 
     @Override
->>>>>>> Add command to switch between tabs.
     public void updateFilteredRoomList(Predicate<Room> predicate) {
         throw new AssertionError("This method should not be called.");
     }
