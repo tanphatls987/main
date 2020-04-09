@@ -6,8 +6,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.ids.PersonId;
@@ -87,8 +90,25 @@ public class Person {
         return personId;
     }
 
-    public ArrayList<Bill> getBills() {
-        return bills;
+    public Optional<Bill> getBill(RoomId roomId) {
+        return bills
+            .stream()
+            .filter(u -> u.getRoomId().equals(roomId))
+            .findFirst();
+    }
+
+    public ObservableList<Bill> getBills() {
+        return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList(bills));
+    }
+
+    public double getAllBillsTotal() {
+        double total = 0;
+
+        for (Bill bill : bills) {
+            total += bill.getTotalExpenses();
+        }
+
+         return total;
     }
 
     /**

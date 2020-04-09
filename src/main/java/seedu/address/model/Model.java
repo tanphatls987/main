@@ -9,6 +9,8 @@ import javafx.collections.ObservableList;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.hotel.bill.AvailableService;
+import seedu.address.model.hotel.bill.Bill;
+import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
@@ -154,11 +156,11 @@ public interface Model {
 
     void deleteBooking(Booking booking);
 
-    /** Returns list of bills for specified person*/
-    void fetchBillList(Person person);
+    /** Returns the list of bill for specified person*/
+    ObservableList<Bill> findBillList(Person person);
 
-    /** Returns bill for specified room of person */
-    void fetchBill(Person person, RoomId roomId);
+    /** Returns the bill with matching roomId for specified person*/
+    Optional<Bill> findBill(Person person, RoomId roomId);
 
     /**
      * Add a room with roomName

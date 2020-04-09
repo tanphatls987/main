@@ -9,11 +9,15 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javax.swing.text.html.Option;
+
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.hotel.bill.AvailableService;
+import seedu.address.model.hotel.bill.Bill;
+import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
@@ -346,14 +350,16 @@ public class ModelManager implements Model {
 
     // to update accordingly when implementing billing system.
     @Override
-    public void fetchBillList(Person person) {
+    public ObservableList<Bill> findBillList(Person person) {
         requireNonNull(person);
+        return person.getBills();
     }
 
     // to update accordingly when implementing billing system.
     @Override
-    public void fetchBill(Person person, RoomId roomNum) {
-        requireAllNonNull(person, roomNum);
+    public Optional<Bill> findBill(Person person, RoomId roomId) {
+        requireAllNonNull(person, roomId);
+        return person.getBill(roomId);
     }
 
     @Override
