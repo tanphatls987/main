@@ -259,6 +259,16 @@ Format: `addservice si/SERVICE_ID d/DESCRIPTION c/COST`
 
 Examples:
 * `addservice si/WC d/Wash clothes c/100.00`
+Adds a service with id WC, description Wash clothes and costs 100.00.
+
+=== Adding an available service: `deleteservice`
+
+Delete an available service with id
+Format: `deleteservice si/SERVICE_ID`
+
+Examples:
+* `deleteservice si/WC`
+Deletes a service with service id WC.
 
 === Setting the cost for a room : `setrcost`
 
