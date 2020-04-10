@@ -11,7 +11,6 @@ public class Room {
     private String roomNum;
     private RoomId roomId;
     private RoomCost roomCost;
-
     /**
      * Create a room with name, tier & cost.
      * Create a room with name and tier.
