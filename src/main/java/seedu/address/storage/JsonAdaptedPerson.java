@@ -42,8 +42,7 @@ class JsonAdaptedPerson {
             @JsonProperty("phone") String phone,
             @JsonProperty("email") String email,
             @JsonProperty("remark") String remark,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("billed") List<JsonAdaptedBill> billed) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -51,9 +50,6 @@ class JsonAdaptedPerson {
         this.remark = remark;
         if (tagged != null) {
             this.tagged.addAll(tagged);
-        }
-        if (billed != null) {
-            this.billed.addAll(billed);
         }
     }
 
@@ -68,9 +64,6 @@ class JsonAdaptedPerson {
         remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
-        billed.addAll(source.getBills().stream()
-                .map(JsonAdaptedBill::new)
                 .collect(Collectors.toList()));
     }
 
@@ -123,11 +116,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        final ArrayList<Bill> modelBills = new ArrayList<>();
-        for (JsonAdaptedBill bill : billed) {
-            modelBills.add(bill.toModelType());
-        }
-        return new Person(modelName, modelPersonId, modelPhone, modelEmail, modelRemark, modelTags, modelBills);
+        return new Person(modelName, modelPersonId, modelPhone, modelEmail, modelRemark, modelTags);
     }
 
 }

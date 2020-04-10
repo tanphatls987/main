@@ -80,7 +80,7 @@ public class FetchBillCommand extends Command {
         Cost total;
 
         Optional<Person> person = model.findPersonWithId(personId);
-        ObservableList<Bill> bills = model.findBillList(person.get());
+        ObservableList<Bill> bills = model.findBillList(personId);
 
         if (person.isEmpty()) {
             throw new CommandException(MESSAGE_GUEST_NONEXISTENT);
@@ -92,7 +92,7 @@ public class FetchBillCommand extends Command {
 
         if (isSpecific) {
             Optional<Room> room = model.findRoom(roomId);
-            Optional<Bill> bill = model.findBill(person.get(), roomId);
+            Optional<Bill> bill = model.findBill(roomId);
 
             if (room.isEmpty()) {
                 throw new CommandException(String.format(MESSAGE_ROOM_NONEXISTENT, roomId));
@@ -103,17 +103,17 @@ public class FetchBillCommand extends Command {
             }
 
 
-            total = new Cost(bill.get().getTotalExpenses());
+            total = bill.get().getBillTotal();
 
-            model.updateFilteredBillList(bills, new MatchBillPredicate(roomId));
+            model.updateFilteredBillList(new MatchBillPredicate(roomId));
 
             return new CommandResult(String.format(MESSAGE_SUCCESS_SPECIFIC,
                     roomId, person.get().getName(), personId, total));
         } else {
 
-            total = new Cost(person.get().getAllBillsTotal());
+            total = model.getGuestBillsTotal(personId);
 
-            model.updateFilteredBillList(bills, PREDICATE_SHOW_ALL_BILLS);
+            model.updateFilteredBillList(PREDICATE_SHOW_ALL_BILLS);
 
             return new CommandResult(String.format(MESSAGE_SUCCESS_NONSPECIFIC,
                     person.get().getName(), personId, total));

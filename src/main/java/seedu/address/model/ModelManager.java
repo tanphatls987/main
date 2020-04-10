@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -43,14 +44,15 @@ public class ModelManager implements Model {
     private final FilteredList<Booking> filteredBookings;
     private final FilteredList<Room> filteredRooms;
     private final FilteredList<AvailableService> filteredServices;
+    private final FilteredList<Bill> filteredBills;
     private final Hotel hotel;
-
-    private FilteredList<Bill> filteredBills;
+    private final BookKeeper bookKeeper;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyHotel hotel) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyHotel hotel, ReadOnlyBookKeeper bookKeeper) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -59,19 +61,20 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.hotel = new Hotel(hotel);
+        this.bookKeeper = new BookKeeper(bookKeeper);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredBookings = new FilteredList<>(this.hotel.getBookingList());
         filteredRooms = new FilteredList<>(this.hotel.getRoomList());
         filteredServices = new FilteredList<>(this.hotel.getAvailableServiceList());
-        filteredBills = new FilteredList<>(FXCollections.observableArrayList());
+        filteredBills = new FilteredList<>(this.bookKeeper.getBillList());
     }
 
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        this(addressBook, userPrefs, new Hotel());
+        this(addressBook, userPrefs, new Hotel(), new BookKeeper());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new Hotel());
+        this(new AddressBook(), new UserPrefs(), new Hotel(), new BookKeeper());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -225,9 +228,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredBillList(ObservableList<Bill> billList, Predicate<Bill> predicate) {
-        requireNonNull(predicate);
-        filteredBills = new FilteredList<>(billList);
+    public void updateFilteredBillList(Predicate<Bill> predicate) {
+        requireAllNonNull(predicate);
         filteredBills.setPredicate(predicate);
     }
 
@@ -407,21 +409,39 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void chargeService(PersonId personId, RoomId roomId, Chargeable service) {
-        requireAllNonNull(personId, roomId, service);
-        addressBook.findPersonWithId(personId).get().addToBill(roomId, service);
+    public void chargeService(RoomId roomId, Chargeable service) {
+        requireAllNonNull(roomId, service);
+        bookKeeper.chargeServiceToBill(roomId, service);
     }
 
     @Override
-    public ObservableList<Bill> findBillList(Person person) {
-        requireNonNull(person);
-        return person.getBills();
+    public void addBill(Bill bill) {
+        requireNonNull(bill);
+        bookKeeper.addBill(bill);
     }
 
     @Override
-    public Optional<Bill> findBill(Person person, RoomId roomId) {
-        requireAllNonNull(person, roomId);
-        return person.getBill(roomId);
+    public void deleteBill(RoomId roomId) {
+        requireNonNull(roomId);
+        bookKeeper.deleteBill(roomId);
+    }
+
+    @Override
+    public ObservableList<Bill> findBillList(PersonId personId) {
+        requireNonNull(personId);
+        return bookKeeper.getBills(personId);
+    }
+
+    @Override
+    public Optional<Bill> findBill(RoomId roomId) {
+        requireNonNull(roomId);
+        return bookKeeper.getBill(roomId);
+    }
+
+    @Override
+    public Cost getGuestBillsTotal(PersonId personId) {
+        requireNonNull(personId);
+        return bookKeeper.getGuestBillsTotal(personId);
     }
 
     @Override

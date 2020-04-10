@@ -102,10 +102,8 @@ public class EditCommand extends Command {
         PersonId updatedPersonId = editPersonDescriptor.getPersonId().orElse(personToEdit.getPersonId());
         Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        ArrayList<Bill> bills = new ArrayList<>();
-        bills.addAll(personToEdit.getBills());
 
-        return new Person(updatedName, updatedPersonId, updatedPhone, updatedEmail, updatedRemark, updatedTags, bills);
+        return new Person(updatedName, updatedPersonId, updatedPhone, updatedEmail, updatedRemark, updatedTags);
     }
 
     @Override

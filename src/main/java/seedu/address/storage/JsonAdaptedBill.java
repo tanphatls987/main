@@ -13,7 +13,9 @@ import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.bill.Chargeable;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.person.Name;
+import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
+import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 
 /**
@@ -23,7 +25,8 @@ public class JsonAdaptedBill {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Bill's %s field is missing!";
 
-    private final String room;
+    private final String personId;
+    private final String roomId;
     private final String roomCost;
     private final String total;
     private final List<JsonAvailableService> charged = new ArrayList<>();
@@ -32,11 +35,13 @@ public class JsonAdaptedBill {
      * Constructs a {@code JsonAdaptedBill} with the given bill details.
      */
     @JsonCreator
-    public JsonAdaptedBill(@JsonProperty("room") String room,
+    public JsonAdaptedBill(@JsonProperty("personId") String personId,
+                           @JsonProperty("roomId") String roomId,
                            @JsonProperty("total") String total,
-                           @JsonProperty("room cost:") String roomCost,
+                           @JsonProperty("room cost") String roomCost,
                            @JsonProperty("charged") List<JsonAvailableService> charged) {
-        this.room = room;
+        this.personId = personId;
+        this.roomId = roomId;
         this.roomCost = roomCost;
         this.total = total;
 
@@ -49,11 +54,12 @@ public class JsonAdaptedBill {
      * Converts a given {@code Bill} into this class for Jackson use.
      */
     public JsonAdaptedBill(Bill source) {
-        room = source.getRoomId().toString();
+        personId = source.getPersonId().toString();
+        roomId = source.getRoomId().toString();
         roomCost = String.valueOf(source.getCharges().stream()
                 .filter(c -> c instanceof RoomCost)
                 .findFirst().get());
-        total = Double.toString(source.getTotalExpenses());
+        total = source.getBillTotal().toString();
         charged.addAll(source.getCharges().stream()
                 .filter(c -> c instanceof AvailableService)
                 .map(s -> new JsonAvailableService((AvailableService) s))
@@ -66,7 +72,11 @@ public class JsonAdaptedBill {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Bill toModelType() throws IllegalValueException {
-        if (room == null) {
+        if (personId == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PersonId.class.getSimpleName()));
+        }
+
+        if (roomId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, RoomId.class.getSimpleName()));
         }
 
@@ -75,11 +85,12 @@ public class JsonAdaptedBill {
         }
 
         if (total == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "total expenses"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "bill total"));
         }
 
-        final RoomId modelRoomId = new RoomId(room);
-        final double modelTotalExpenses = Double.valueOf(total);
+        final PersonId modelPersonId = new PersonId(personId);
+        final RoomId modelRoomId = new RoomId(roomId);
+        final double modelTotalExpenses = Double.parseDouble(total);
         final ArrayList<Chargeable> modelCharges = new ArrayList<>();
 
         modelCharges.add(new RoomCost(roomCost));
@@ -88,6 +99,6 @@ public class JsonAdaptedBill {
             modelCharges.add(service.toModelType());
         }
 
-        return new Bill(modelRoomId, modelCharges, modelTotalExpenses);
+        return new Bill(modelPersonId, modelRoomId, modelCharges, modelTotalExpenses);
     }
 }

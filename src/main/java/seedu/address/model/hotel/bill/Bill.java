@@ -6,20 +6,23 @@ import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 
 /**
  * Contains a list of chargeable objects that a guest has requested for a specific room.
  */
 public class Bill {
+    private PersonId personId;
     private RoomId roomId;
     private ArrayList<Chargeable> charges;
-    private double totalExpenses;
+    private double billTotal;
 
     /**
      * Creates an empty {@code bill}.
      */
-    public Bill(RoomId roomId) {
+    public Bill(PersonId personId, RoomId roomId) {
+        this.personId = personId;
         this.roomId = roomId;
         this.charges = new ArrayList<>();
     }
@@ -27,11 +30,12 @@ public class Bill {
     /**
      * Creates a {@code bill} with all fields present. For storage purposes.
      */
-    public Bill(RoomId roomId, ArrayList<Chargeable> charges, double totalExpenses) {
-        requireAllNonNull(roomId, charges, totalExpenses);
+    public Bill(PersonId personId, RoomId roomId, ArrayList<Chargeable> charges, double totalExpenses) {
+        requireAllNonNull(personId, roomId, charges, totalExpenses);
+        this.personId = personId;
         this.roomId = roomId;
         this.charges = charges;
-        this.totalExpenses = totalExpenses;
+        this.billTotal = totalExpenses;
     }
 
     /**
@@ -39,7 +43,7 @@ public class Bill {
      */
     public void addChargeable(Chargeable chargeable) {
         charges.add(chargeable);
-        totalExpenses += chargeable.getCost().getCostAsDouble();
+        billTotal += chargeable.getCost().getCostAsDouble();
     }
 
     /**
@@ -47,6 +51,10 @@ public class Bill {
      */
     public boolean isEmpty() {
         return charges.isEmpty();
+    }
+
+    public PersonId getPersonId() {
+        return personId;
     }
 
     public RoomId getRoomId() {
@@ -57,8 +65,21 @@ public class Bill {
         return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList(charges));
     }
 
-    public double getTotalExpenses() {
-        return totalExpenses;
+    public Cost getBillTotal() {
+        return new Cost(billTotal);
+    }
+
+    /***
+     * Checks if bill is same as {@code bill}
+     */
+    public boolean isSameBill(Bill bill) {
+        if (bill == this) {
+            return true;
+        }
+
+        return bill != null
+                && bill.getPersonId().equals(getPersonId())
+                && bill.getRoomId().equals(getRoomId());
     }
 
     @Override
@@ -69,7 +90,7 @@ public class Bill {
             builder.append(charge);
         }
 
-        builder.append("Total payable: $" + Double.toString(totalExpenses));
+        builder.append("Total payable: $" + Double.toString(billTotal));
 
         return builder.toString();
     }

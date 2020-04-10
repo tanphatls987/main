@@ -170,9 +170,9 @@ public interface Model {
     void updateFilteredServiceList(Predicate<AvailableService> predicate);
 
     /**
-     * Updates the filtered bill list and filters by the given {@code predicate}.
+     * Updates the filter of the filtered service list to filter by the given {@code predicate}.
      */
-    void updateFilteredBillList(ObservableList<Bill> billList, Predicate<Bill> predicate);
+    void updateFilteredBillList(Predicate<Bill> predicate);
 
     /**
      * Updates the filter of the filtered room list to filter by the given {@code predicate}.
@@ -186,9 +186,6 @@ public interface Model {
 
     /** Returns list of bookings */
     ObservableList<Booking> getBookingList();
-
-
-
 
     Optional<Booking> getCurrentStay(Room room);
 
@@ -222,14 +219,29 @@ public interface Model {
     void deleteBooking(Booking booking);
 
     /**
-     * Returns the list of bill for specified person
+     * Adds {@code bill} to the bookkeeper.
      */
-    ObservableList<Bill> findBillList(Person person);
+    void addBill(Bill bill);
 
     /**
-     * Returns the bill with matching roomId for specified person
+     * Deletes {@code bill} from the bookkeeper.
      */
-    Optional<Bill> findBill(Person person, RoomId roomId);
+    void deleteBill(RoomId roomId);
+
+    /**
+     * Returns the list of bills for specified personId.
+     */
+    ObservableList<Bill> findBillList(PersonId personId);
+
+    /**
+     * Returns the bill for the specified roomId.
+     */
+    Optional<Bill> findBill(RoomId roomId);
+
+    /**
+     * Returns the total cost of all bills belonging to specified personId.
+     */
+    Cost getGuestBillsTotal(PersonId personId);
 
     /**
      * Add a room with roomName
@@ -282,9 +294,9 @@ public interface Model {
     Optional<AvailableService> findService(AvailableServiceId serviceId);
 
     /**
-     * Charges a service to the bill of a guest.
+     * Charges a service to the bill of the corresponding room number.
      */
-    void chargeService(PersonId personId, RoomId roomId, Chargeable service);
+    void chargeService(RoomId roomId, Chargeable service);
 
     /**
      * deletes a room from hotel

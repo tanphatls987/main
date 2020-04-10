@@ -11,6 +11,7 @@ import java.util.Optional;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.hotel.Stay;
+import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.PersonId;
@@ -83,7 +84,8 @@ public class CheckInCommand extends Command {
 
         Stay stay = new Stay(person.get(), room.get(), LocalDateTime.now(), toDate, "");
         model.checkIn(stay);
-        model.chargeService(personId, roomId, room.get().getRoomCost());
+        model.addBill(new Bill(personId, roomId));
+        model.chargeService(roomId, room.get().getRoomCost());
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, roomId, personId));
     }

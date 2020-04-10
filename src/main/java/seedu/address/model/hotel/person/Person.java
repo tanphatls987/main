@@ -2,20 +2,12 @@ package seedu.address.model.hotel.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.hotel.bill.AvailableService;
-import seedu.address.model.hotel.bill.Bill;
-import seedu.address.model.hotel.bill.Chargeable;
 import seedu.address.model.ids.PersonId;
-import seedu.address.model.ids.RoomId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,7 +26,6 @@ public class Person {
     //private final Address address;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
-    private ArrayList<Bill> bills = new ArrayList<>();
 
     /**
      * Old constructor
@@ -52,7 +43,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, PersonId personId, Phone phone, Email email, Remark remark,
-                  Set<Tag> tags, ArrayList<Bill> bills) {
+                  Set<Tag> tags) {
         requireAllNonNull(name, personId, phone, email, tags);
         this.name = name;
         this.personId = personId;
@@ -60,7 +51,6 @@ public class Person {
         this.email = email;
         this.remark = remark;
         this.tags.addAll(tags);
-        this.bills.addAll(bills);
     }
 
 
@@ -91,48 +81,6 @@ public class Person {
 
     public PersonId getPersonId() {
         return personId;
-    }
-
-    public Optional<Bill> getBill(RoomId roomId) {
-        return bills
-            .stream()
-            .filter(u -> u.getRoomId().equals(roomId))
-            .findFirst();
-    }
-
-    public ObservableList<Bill> getBills() {
-        return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList(bills));
-    }
-
-    public double getAllBillsTotal() {
-        double total = 0;
-
-        for (Bill bill : bills) {
-            total += bill.getTotalExpenses();
-        }
-
-         return total;
-    }
-
-    /**
-     * Adds {@code service} to bill of room {@code roomID}
-     */
-    public void addToBill(RoomId roomId, Chargeable chargeable) {
-        boolean billExists = false;
-
-        for (Bill bill : bills) {
-            if (bill.getRoomId().equals(roomId)) {
-                bill.addChargeable(chargeable);
-                billExists = true;
-                break;
-            }
-        }
-
-        if (billExists == false) {
-            Bill newBill = new Bill(roomId);
-            newBill.addChargeable(chargeable);
-            bills.add(newBill);
-        }
     }
 
     /*public Address getAddress() {

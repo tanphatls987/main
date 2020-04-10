@@ -14,4 +14,6 @@ public interface ReadOnlyUserPrefs {
     Path getAddressBookFilePath();
 
     Path getHotelFilePath();
+
+    Path getBookKeeperFilePath();
 }
