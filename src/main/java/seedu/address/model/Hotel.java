@@ -437,4 +437,5 @@ public class Hotel implements ReadOnlyHotel {
     public void addStay(Stay stay) {
         stayList.add(stay);
     }
+
 }
