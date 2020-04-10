@@ -342,6 +342,11 @@ public class AddGuestCommandTest {
         public void deleteAvailableService(AvailableServiceId id) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Optional<Booking> findBookingById(String bookingId) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

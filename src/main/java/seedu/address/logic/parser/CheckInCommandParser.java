@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKINGID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TODATE;
@@ -8,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TODATE;
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
+import seedu.address.logic.commands.CheckInByIdCommand;
 import seedu.address.logic.commands.CheckInCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ids.PersonId;
@@ -25,14 +27,20 @@ public class CheckInCommandParser implements Parser<CheckInCommand> {
      */
     public CheckInCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_ID, PREFIX_ROOMNUMBER, PREFIX_TODATE);
+            ArgumentTokenizer.tokenize(args, PREFIX_ID, PREFIX_ROOMNUMBER, PREFIX_TODATE, PREFIX_BOOKINGID);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ID, PREFIX_ROOMNUMBER, PREFIX_TODATE)
+        if ((!arePrefixesPresent(argMultimap, PREFIX_ID, PREFIX_ROOMNUMBER, PREFIX_TODATE)
+            && !arePrefixesPresent(argMultimap, PREFIX_BOOKINGID))
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     CheckInCommand.MESSAGE_USAGE)
             );
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_BOOKINGID)) {
+            String bookingId = argMultimap.getValue(PREFIX_BOOKINGID).get();
+            return new CheckInByIdCommand(bookingId);
         }
 
         PersonId personId = ParserUtil.parsePersonId(argMultimap.getValue(PREFIX_ID).get());

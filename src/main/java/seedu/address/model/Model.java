@@ -285,4 +285,9 @@ public interface Model {
      * deletes an available service from hotel
      */
     void deleteAvailableService(AvailableServiceId id);
+
+    /**
+     * Returns a Booking with matching bookingId.
+     */
+    Optional<Booking> findBookingById(String bookingId);
 }
