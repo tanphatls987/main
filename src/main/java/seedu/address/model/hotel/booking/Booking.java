@@ -94,6 +94,19 @@ public class Booking {
         return this.room.isSameRoom(room);
     }
 
+    /***
+     * Checks if booking is same as @code booking
+     * @param booking
+     */
+    public boolean isSameBooking(Booking booking) {
+        if (booking == this) {
+            return true;
+        }
+        return booking != null
+                && booking.getRoom().equals(getRoom())
+                && booking.getBookDuration().equals(getBookDuration());
+    }
+
     @Override
     public boolean equals(Object oth) {
         if (oth == this) {
