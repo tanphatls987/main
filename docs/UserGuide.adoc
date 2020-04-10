@@ -119,6 +119,16 @@ Examples:
 * `addroom rn/101`
 Add Room 101 into the database.
 
+
+=== Deleting a room : `deleteroom`
+
+Deletes a room in the hotel list. +
+Format: `deleteroom rn/ROOM_NUMBER`
+
+Examples:
+* `deleteroom rn/101`
+Deletes Room 101 into the database.
+
 === Checking in a guest: `checkin`
 
 Checks in a guest to the hotel from the current date until the TO_DATE +
@@ -153,6 +163,20 @@ Examples:
 
 * `findguest n/Alice i/A10`
 Return person with name Alice or id A10
+
+=== Finding bookings by name, id or room number: `findbooking`
+Finds bookings whose names, id or roomnumber match.
+Format: `findbooking n/NAME ... n/NAME i/ID ... i/ID rn/ROOM_NUMBER ... rn/ROOM_NUMBER`
+
+****
+* The order of the keywords does not matter. e.g. `n/Alice i/A10` is same as`i/A10 n/Alice`
+* Booking matching at least one keyword will be returned
+****
+
+Examples:
+
+* `findbooking n/Alice rn/001`
+Returns booking of ALICE or at room 001.
 
 === Fetching the bill of a guest : `fetchbill`
 
@@ -209,6 +233,16 @@ Examples:
 
 * `getroom i/G1231231X`
 
+=== Add a new room : `addroom`
+
+Add a new room with the corresponding tier and cost. +
+Format: `addroom rn/ROOM_NUMBER c/COST t/Tier`
+
+Examples:
+
+* `addroom rn/101 c/150.00 t/GOLD` +
+Add a gold tier room 101 with the price of $150.00
+
 === Adding a tier: `addtier`
 
 Add a tier and set this tier to certain rooms +
@@ -225,6 +259,16 @@ Format: `addservice si/SERVICE_ID d/DESCRIPTION c/COST`
 
 Examples:
 * `addservice si/WC d/Wash clothes c/100.00`
+Adds a service with id WC, description Wash clothes and costs 100.00.
+
+=== Adding an available service: `deleteservice`
+
+Delete an available service with id
+Format: `deleteservice si/SERVICE_ID`
+
+Examples:
+* `deleteservice si/WC`
+Deletes a service with service id WC.
 
 === Setting the cost for a room : `setrcost`
 

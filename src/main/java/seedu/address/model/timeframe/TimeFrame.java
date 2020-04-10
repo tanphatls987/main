@@ -64,12 +64,21 @@ public class TimeFrame {
     }
 
     /**
+     * Check if oth is inside current timeframe.
+     * @param oth other timeframe
+     * @return true if is inside
+     */
+    public boolean isInside(TimeFrame oth) {
+        return isInside(oth.from) && isInside(oth.to);
+    }
+
+    /**
      * Check if the time is inside the timeframe.
      * @param time the time that is going to be checked
      * @return true if the time is between from and to.
      */
     public boolean isInside(LocalDateTime time) {
-        return from.isBefore(time) && to.isAfter(time);
+        return !from.isAfter(time) && !to.isBefore(time);
     }
 
     @Override

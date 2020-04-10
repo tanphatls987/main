@@ -43,11 +43,21 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
+    /**
+     * Returns an unmodifiable view of the filtered list of bookings
+     */
+    ObservableList<Booking> getFilteredBookingList();
+
     /** Returns an unmodifiable view of the room list */
     ObservableList<Room> getRoomList();
 
     /** Returns an unmodifiable view of the booking list*/
     ObservableList<Booking> getBookingList();
+
+    /**
+     * Returns an unmodifiable view of the room list.
+     */
+    ObservableList<Room> getFilteredRoomList();
 
     /**
      * Returns the user prefs' address book file path.

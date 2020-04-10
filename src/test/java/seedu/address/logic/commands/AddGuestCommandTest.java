@@ -23,7 +23,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
+import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
@@ -182,6 +184,11 @@ public class AddGuestCommandTest {
         }
 
         @Override
+        public void addRoom(String roomName, Tier tier, RoomCost cost) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -192,8 +199,48 @@ public class AddGuestCommandTest {
         }
 
         @Override
+        public ObservableList<Booking> getFilteredBookingList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Room> getFilteredRoomList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<AvailableService> getFilteredServiceList() {
+            return null;
+        }
+
+        @Override
+        public ObservableList<Bill> getFilteredBillList() {
+            return null;
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredBookingList(Predicate<Booking> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredRoomList(Predicate<Room> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredServiceList(Predicate<AvailableService> predicate) {
+
+        }
+
+        @Override
+        public void updateFilteredBillList(Predicate<Bill> predicate) {
+
         }
 
         @Override
@@ -217,7 +264,7 @@ public class AddGuestCommandTest {
         }
 
         @Override
-        public boolean isRoomFree(Room room, TimeFrame duration) {
+        public boolean isRoomFree(Person person, Room room, TimeFrame duration) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -232,9 +279,8 @@ public class AddGuestCommandTest {
         }
 
         @Override
-        public void checkIn(Booking booking) {
+        public void checkIn(Stay stay) {
             throw new AssertionError("This method should not be called.");
-
         }
 
         @Override
@@ -289,6 +335,11 @@ public class AddGuestCommandTest {
 
         @Override
         public void deleteRoom(String roomNum) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteAvailableService(AvailableServiceId id) {
             throw new AssertionError("This method should not be called.");
         }
     }

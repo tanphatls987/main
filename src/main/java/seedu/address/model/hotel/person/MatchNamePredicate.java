@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 /**
  * Check if the person name is in a predetermine list.
  */
-public class MatchNamePredicate implements Predicate<Person> {
+public class MatchNamePredicate implements Predicate<Name> {
     private final HashSet<Name> nameList;
 
     /**
@@ -30,13 +30,12 @@ public class MatchNamePredicate implements Predicate<Person> {
     /**
      * Evaluates this predicate on the given argument.
      *
-     * @param person the input argument
      * @return {@code true} if the input argument matches the predicate,
      * otherwise {@code false}
      */
     @Override
-    public boolean test(Person person) {
-        return nameList.contains(person.getName());
+    public boolean test(Name name) {
+        return nameList.contains(name);
     }
     @Override
     public boolean equals(Object oth) {

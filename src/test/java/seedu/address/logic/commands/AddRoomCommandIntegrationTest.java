@@ -23,7 +23,10 @@ public class AddRoomCommandIntegrationTest {
 
     @Test
     public void executeAddRoom_success() throws CommandException {
-        AddRoomCommand command = new AddRoomCommand(DEFAULT_ROOM.getName());
+        AddRoomCommand command = new AddRoomCommand(
+            DEFAULT_ROOM.getName(),
+            DEFAULT_ROOM.getRoomCost(),
+            DEFAULT_ROOM.getTier());
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getHotel());
         model.addRoom(DEFAULT_ROOM.getName());

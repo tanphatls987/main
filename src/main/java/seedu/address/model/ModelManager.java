@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.bill.Cost;
@@ -37,6 +38,10 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Booking> filteredBookings;
+    private final FilteredList<Room> filteredRooms;
+    private final FilteredList<AvailableService> filteredServices;
+    private final FilteredList<Bill> filteredBills;
     private final Hotel hotel;
 
     /**
@@ -52,6 +57,10 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.hotel = new Hotel(hotel);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredBookings = new FilteredList<>(this.hotel.getBookingList());
+        filteredRooms = new FilteredList<>(this.hotel.getRoomList());
+        filteredServices = new FilteredList<>(this.hotel.getAvailableServiceList());
+        filteredBills = null;
     }
 
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
@@ -163,11 +172,35 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     *      * {@code versionedAddressBook}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Booking> getFilteredBookingList() {
+        return filteredBookings;
+    }
+
+    @Override
+    public ObservableList<Room> getFilteredRoomList() {
+        return filteredRooms;
+    }
+
+    @Override
+    public ObservableList<AvailableService> getFilteredServiceList() {
+        return filteredServices;
+    }
+
+    @Override
+    public ObservableList<Bill> getFilteredBillList() {
+        return filteredBills;
     }
 
     @Override
@@ -175,6 +208,31 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+    @Override
+    public void updateFilteredBookingList(Predicate<Booking> predicate) {
+        requireNonNull(predicate);
+        filteredBookings.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredServiceList(Predicate<AvailableService> predicate) {
+        requireNonNull(predicate);
+        filteredServices.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredBillList(Predicate<Bill> predicate) {
+        requireNonNull(predicate);
+        filteredBills.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredRoomList(Predicate<Room> predicate) {
+        requireNonNull(predicate);
+        filteredRooms.setPredicate(predicate);
+    }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -214,6 +272,8 @@ public class ModelManager implements Model {
     public Optional<Booking> getCurrentStay(Room room) {
         requireNonNull(room);
 
+        hotel.getCurrentStay(room);
+
         return hotel.getBookingList()
             .stream()
             .filter(u -> u.isCorrectRoom(room))
@@ -228,15 +288,17 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isRoomFree(Room room, TimeFrame duration) {
+    public boolean isRoomFree(Person person, Room room, TimeFrame duration) {
+        requireNonNull(person);
         requireNonNull(room);
         requireNonNull(duration);
-        ObservableList<Booking> bookingList = hotel.getBookingList();
+        return hotel.isRoomFree(person, room, duration);
+    }
 
-        //timeframe create successfully mean no bogus duration
-        return bookingList
-            .stream()
-            .noneMatch(u -> u.isClash(room, duration));
+    @Override
+    public boolean isGuestCheckedIn(Person person, Room room) {
+        requireAllNonNull(person, room);
+        return hotel.isGuestCheckedIn(person, room);
     }
 
     @Override
@@ -249,15 +311,16 @@ public class ModelManager implements Model {
     public void bookRoom(Booking booking) {
         requireNonNull(booking);
         hotel.addBooking(booking);
+        updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
     }
 
     /**
      * Checks in a room with the given details from the booking.
-     * @param booking The booking we want to store
+     * @param stay The booking we want to store
      */
     @Override
-    public void checkIn(Booking booking) {
-        this.bookRoom(booking);
+    public void checkIn(Stay stay) {
+        hotel.checkIn(stay);
     }
 
     /**
@@ -268,21 +331,13 @@ public class ModelManager implements Model {
     @Override
     public boolean checkOut(Room room) {
         requireNonNull(room);
-
-        Optional<Booking> booking = getCurrentStay(room);
-
-        if (booking.isEmpty()) {
-            return false;
-        }
-
-        // Need to add bill after it's created
-        deleteBooking(booking.get());
-        return true;
+        return hotel.checkOut(room);
     }
 
     @Override
     public void deleteBooking(Booking booking) {
         hotel.getBookingList().remove(booking);
+        updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
     }
 
     @Override
@@ -290,6 +345,17 @@ public class ModelManager implements Model {
         requireNonNull(roomNum);
 
         hotel.addRoom(roomNum);
+        updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
+    }
+
+    @Override
+    public void addRoom(String roomNum, Tier tier, RoomCost cost) {
+        requireNonNull(roomNum);
+        requireNonNull(tier);
+        requireNonNull(cost);
+
+        hotel.addRoom(roomNum, tier, cost);
+        updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
     }
 
     @Override
@@ -366,6 +432,13 @@ public class ModelManager implements Model {
     public void deleteRoom(String roomNum) {
         requireNonNull(roomNum);
         hotel.deleteRoom(roomNum);
+        updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
+    }
+
+    @Override
+    public void deleteAvailableService(AvailableServiceId id) {
+        requireNonNull(id);
+        hotel.deleteAvailableService(id);
     }
 
 }

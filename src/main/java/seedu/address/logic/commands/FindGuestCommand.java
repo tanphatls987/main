@@ -5,14 +5,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.HashSet;
-import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.hotel.person.MatchNamePredicate;
 import seedu.address.model.hotel.person.MatchPersonIdPredicate;
+import seedu.address.model.hotel.person.MatchPersonPredicate;
 import seedu.address.model.hotel.person.Name;
-import seedu.address.model.hotel.person.Person;
 import seedu.address.model.ids.PersonId;
 
 /**
@@ -46,9 +45,10 @@ public class FindGuestCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        Predicate<Person> predicate = new MatchNamePredicate(nameList).or(
-            new MatchPersonIdPredicate(personIdList)
-        );
+        MatchPersonPredicate predicate = new MatchPersonPredicate();
+        predicate.setNamePredicate(new MatchNamePredicate(nameList));
+        predicate.setPersonIdPredicate(new MatchPersonIdPredicate(personIdList));
+
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalRooms.BEST_ROOM;
 import static seedu.address.testutil.TypicalRooms.WORST_ROOM;
 
@@ -24,7 +25,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
+import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
@@ -102,7 +105,7 @@ public class CheckInCommandTest {
 
     @Test
     public void execute_roomOccupied_throwsCommandException() {
-        PersonId personId = ALICE.getPersonId();
+        PersonId personId = BOB.getPersonId();
         RoomId roomId = BEST_ROOM.getRoomId();
         LocalDateTime toDate = LocalDateTime.now().plusDays(2);
         CheckInCommand checkInCommand = new CheckInCommand(personId, roomId, toDate);
@@ -116,7 +119,7 @@ public class CheckInCommandTest {
 
     @Test
     public void execute_checkInClash_throwsCommandException() {
-        PersonId personId = ALICE.getPersonId();
+        PersonId personId = BOB.getPersonId();
         RoomId roomId = BEST_ROOM.getRoomId();
         LocalDateTime toDate = LocalDateTime.now().plusDays(2);
         CheckInCommand checkInCommand = new CheckInCommand(personId, roomId, toDate);
@@ -130,7 +133,7 @@ public class CheckInCommandTest {
 
     @Test
     public void execute_successfulBooking() throws CommandException {
-        PersonId personId = ALICE.getPersonId();
+        PersonId personId = BOB.getPersonId();
         RoomId roomId = WORST_ROOM.getRoomId();
         LocalDateTime toDate = LocalDateTime.now().plusDays(2);
         CheckInCommand checkInCommand = new CheckInCommand(personId, roomId, toDate);
@@ -145,11 +148,13 @@ public class CheckInCommandTest {
     private abstract class ModelStub implements Model {
         protected final ArrayList<Room> roomList;
         protected final ArrayList<Booking> bookingList;
+        protected final ArrayList<Stay> stayList;
         protected final Hotel hotel;
 
         public ModelStub() {
             roomList = new ArrayList<>();
             bookingList = new ArrayList<>();
+            stayList = new ArrayList<>();
             hotel = new Hotel();
         }
 
@@ -261,20 +266,13 @@ public class CheckInCommandTest {
         }
 
         @Override
-        public void checkIn(Booking booking) {
-            this.bookRoom(booking);
-        }
-
-        @Override
         public boolean checkOut(Room room) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean isRoomFree(Room room, TimeFrame duration) {
-            return !bookingList
-                .stream()
-                .anyMatch(u -> u.isClash(room, duration));
+        public boolean isGuestCheckedIn(Person person, Room room) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -334,26 +332,31 @@ public class CheckInCommandTest {
         }
 
         @Override
-        public void fetchBillList(Person person) {
+        public ObservableList<Room> getFilteredRoomList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void fetchBill(Person person, RoomId roomId) {
+        public ObservableList<AvailableService> getFilteredServiceList() {
             throw new AssertionError("This method should not be called.");
         }
 
-
+        @Override
+        public ObservableList<Bill> getFilteredBillList() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     private class ModelStubWithRoomsAndPerson extends ModelStub {
-        protected Person person;
+        protected ArrayList<Person> personList;
 
         ModelStubWithRoomsAndPerson() {
             super();
             this.roomList.add(BEST_ROOM);
             this.roomList.add(WORST_ROOM);
-            this.person = ALICE;
+            this.personList = new ArrayList<>();
+            this.personList.add(ALICE);
+            this.personList.add(BOB);
         }
 
         @Override
@@ -363,15 +366,75 @@ public class CheckInCommandTest {
 
         @Override
         public Optional<Person> findPersonWithId(PersonId personId) {
-            if (this.person.getPersonId() == personId) {
-                return Optional.of(this.person);
-            }
-            return Optional.empty();
+            return personList
+                .stream()
+                .filter(u -> u.getPersonId() == personId)
+                .findFirst();
+        }
+
+        @Override
+        public ObservableList<Booking> getFilteredBookingList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
+
+        @Override
+        public ObservableList<Room> getFilteredRoomList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredBookingList(Predicate<Booking> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredServiceList(Predicate<AvailableService> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredBillList(Predicate<Bill> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredRoomList(Predicate<Room> predicate) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public Optional<Booking> getCurrentStay(Room room) {
             return Optional.empty();
+        }
+
+        @Override
+        public boolean isRoomFree(Person person, Room room, TimeFrame duration) {
+            requireNonNull(person);
+            requireNonNull(room);
+            requireNonNull(duration);
+
+            //timeframe create successfully mean no bogus duration
+
+            boolean isRoomCurrentlyEmpty = stayList
+                .stream()
+                .noneMatch(u -> u.isClash(room, duration));
+
+            boolean isBookingNotClash = bookingList
+                .stream()
+                .filter(u -> u.getPayee() != person)
+                .noneMatch(u -> u.isClash(room, duration));
+
+            return isRoomCurrentlyEmpty && isBookingNotClash;
+        }
+
+        @Override
+        public void checkIn(Stay stay) { }
+
+        @Override
+        public void addRoom(String roomName, Tier tier, RoomCost cost) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -386,6 +449,11 @@ public class CheckInCommandTest {
 
         @Override
         public void deleteRoom(String roomNum) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteAvailableService(AvailableServiceId id) {
             throw new AssertionError("This method should not be called.");
         }
     }

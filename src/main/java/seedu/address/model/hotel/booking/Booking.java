@@ -70,6 +70,15 @@ public class Booking {
     }
 
     /**
+     * check if other booking is inside current booking timeframe.
+     * @param oth other booking
+     * @return true if other booking is within the current booking timeframe.
+     */
+    public boolean isInside(Booking oth) {
+        return bookDuration.isInside(oth.bookDuration);
+    }
+
+    /**
      * Check if this booking clash with a room during a period of time.
      * @param room Room object to be checked
      * @return true if there exist clash with other

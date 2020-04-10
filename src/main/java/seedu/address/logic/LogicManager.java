@@ -71,6 +71,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Booking> getFilteredBookingList() {
+        return model.getFilteredBookingList();
+    }
+
+    @Override
     public ObservableList<Room> getRoomList() {
         return model.getRoomList();
     }
@@ -78,6 +83,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Booking> getBookingList() {
         return model.getBookingList();
+    }
+
+    @Override
+    public ObservableList<Room> getFilteredRoomList() {
+        return model.getFilteredRoomList();
     }
 
     @Override

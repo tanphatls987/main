@@ -5,7 +5,35 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "remark" : "",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Bernice Yu",
+    "personId" : "B000000",
+    "phone" : "99272758",
+    "email" : "berniceyu@example.com",
+    "remark" : "",
+    "tagged" : [ "colleagues", "friends" ]
+  }, {
+    "name" : "Charlotte Oliveiro",
+    "personId" : "C000000",
+    "phone" : "93210283",
+    "email" : "charlotte@example.com",
+    "remark" : "",
+    "tagged" : [ "neighbours" ]
+  }, {
+    "name" : "Irfan Ibrahim",
+    "personId" : "I000000",
+    "phone" : "92492021",
+    "email" : "irfan@example.com",
+    "remark" : "",
+    "tagged" : [ "classmates" ]
+  }, {
+    "name" : "Roy Balakrishnan",
+    "personId" : "R000000",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "remark" : "",
+    "tagged" : [ "colleagues" ]
   } ]
 }
 

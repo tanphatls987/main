@@ -127,6 +127,7 @@ public class Person {
 
         if (billExists == false) {
             Bill newBill = new Bill(roomId);
+            newBill.addChargeable(service);
             bills.add(newBill);
         }
     }

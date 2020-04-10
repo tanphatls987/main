@@ -5,26 +5,28 @@
     "number" : "001"
   }, {
     "tier" : "BRONZE",
-    "cost" : "10.00",
-    "number" : "002"
+    "cost" : "50.00",
+    "number" : "006"
+  }, {
+    "tier" : "GOLD",
+    "cost" : "150.00",
+    "number" : "101"
+  }, {
+    "tier" : "SILVER",
+    "cost" : "100.00",
+    "number" : "111"
+  }, {
+    "tier" : "BRONZE",
+    "cost" : "50.00",
+    "number" : "123"
   } ],
   "bookings" : [ {
     "room" : "001",
-    "payeeName" : "John Doe",
-    "payeeId" : "J000000",
-    "timeFrom" : "2020-04-07T13:35:20.755568100",
-    "timeTo" : "2020-05-05T12:00"
-  }, {
-    "room" : "002",
-    "payeeName" : "John Doe",
-    "payeeId" : "J000000",
-    "timeFrom" : "2020-06-06T12:00",
-    "timeTo" : "2020-07-07T12:00"
-    } ],
-  "availableServices" : [ {
-    "description" : "Wash clothes",
-    "id" : "WC",
-    "cost" : "5.00"
-   } ]
+    "payeeName" : "Alex Yeoh",
+    "payeeId" : "A000000",
+    "timeFrom" : "2020-04-07T18:19:10.169542",
+    "timeTo" : "2020-12-12T12:12:12"
+  } ],
+  "availableServices" : [ ]
 }
 

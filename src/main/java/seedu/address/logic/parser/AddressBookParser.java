@@ -17,15 +17,20 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteRoomCommand;
+import seedu.address.logic.commands.DeleteServiceCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FetchBillCommand;
+import seedu.address.logic.commands.FindBookingCommand;
+import seedu.address.logic.commands.FindEmptyRoomCommand;
 import seedu.address.logic.commands.FindGuestCommand;
+import seedu.address.logic.commands.FindRoomCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.ReserveCommand;
 import seedu.address.logic.commands.SetRoomCostCommand;
+import seedu.address.logic.commands.SwitchViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -80,6 +85,9 @@ public class AddressBookParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
+        case DeleteServiceCommand.COMMAND_WORD:
+            return new DeleteServiceCommandParser().parse(arguments);
+
         case DeleteRoomCommand.COMMAND_WORD:
             return new DeleteRoomCommandParser().parse(arguments);
 
@@ -91,6 +99,12 @@ public class AddressBookParser {
 
         case FindGuestCommand.COMMAND_WORD:
             return new FindGuestCommandParser().parse(arguments);
+
+        case FindBookingCommand.COMMAND_WORD:
+            return new FindBookingCommandParser().parse(arguments);
+
+        case FindRoomCommand.COMMAND_WORD:
+            return new FindRoomCommandParser().parse(arguments);
 
         case RemarkCommand.COMMAND_WORD:
             return new RemarkCommandParser().parse(arguments);
@@ -112,6 +126,12 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case SwitchViewCommand.COMMAND_WORD:
+            return new SwitchViewCommandParser().parse(arguments);
+
+        case FindEmptyRoomCommand.COMMAND_WORD:
+            return new FindEmptyRoomCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
