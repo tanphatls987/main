@@ -13,8 +13,7 @@ import seedu.address.model.ids.AvailableServiceId;
 /**
  * Deletes an available services
  */
-public class DeleteServiceCommand extends Command {
-    public static final String COMMAND_WORD = "deleteservice";
+public class DeleteServiceCommand extends Command { public static final String COMMAND_WORD = "deleteservice";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": delete an available service from hotel"
             + "Parameters: "
@@ -50,7 +49,7 @@ public class DeleteServiceCommand extends Command {
         }
 
         model.deleteAvailableService(id);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, id.toString()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, id.toString()), "service");
     }
 
     @Override

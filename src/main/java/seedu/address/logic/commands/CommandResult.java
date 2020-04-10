@@ -53,6 +53,14 @@ public class CommandResult {
         this(feedbackToUser, false, false);
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * {@code uiView} and other fields set to their default values.
+     */
+    public CommandResult(String feedbackToUser, String uiView) {
+        this(feedbackToUser, false, false, uiView);
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
