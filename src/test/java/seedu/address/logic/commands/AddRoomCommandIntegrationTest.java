@@ -5,6 +5,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.BookKeeper;
 import seedu.address.model.Hotel;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -17,7 +18,7 @@ import seedu.address.testutil.RoomBuilder;
  */
 public class AddRoomCommandIntegrationTest {
     private static final Room DEFAULT_ROOM = new RoomBuilder().build();
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Hotel());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Hotel(), new BookKeeper());
 
 
 
@@ -28,7 +29,8 @@ public class AddRoomCommandIntegrationTest {
             DEFAULT_ROOM.getRoomCost(),
             DEFAULT_ROOM.getTier());
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getHotel());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+                model.getHotel(), model.getBookKeeper());
         model.addRoom(DEFAULT_ROOM.getName());
     }
 }

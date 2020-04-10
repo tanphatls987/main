@@ -2,19 +2,16 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.awt.print.Book;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.bill.Chargeable;
 import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.bill.UniqueBillList;
-import seedu.address.model.hotel.person.Person;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 

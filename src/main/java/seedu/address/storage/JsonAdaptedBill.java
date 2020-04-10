@@ -12,9 +12,6 @@ import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.bill.Chargeable;
 import seedu.address.model.hotel.bill.RoomCost;
-import seedu.address.model.hotel.person.Name;
-import seedu.address.model.hotel.person.Person;
-import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 
@@ -73,7 +70,8 @@ public class JsonAdaptedBill {
      */
     public Bill toModelType() throws IllegalValueException {
         if (personId == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PersonId.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PersonId.class.getSimpleName()));
         }
 
         if (roomId == null) {

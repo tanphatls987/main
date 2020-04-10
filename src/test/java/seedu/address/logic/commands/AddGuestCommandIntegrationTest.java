@@ -30,7 +30,8 @@ public class AddGuestCommandIntegrationTest {
         ///avoid same person id
         Person validPerson = new PersonBuilder().withPersonId("somethingridiculous").build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getHotel());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+                model.getHotel(), model.getBookKeeper());
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new AddGuestCommand(validPerson), model,

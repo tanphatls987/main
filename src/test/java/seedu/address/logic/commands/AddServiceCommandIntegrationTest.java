@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.BookKeeper;
 import seedu.address.model.Hotel;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -24,7 +25,7 @@ public class AddServiceCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Hotel());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Hotel(), new BookKeeper());
     }
 
     @Test
@@ -33,7 +34,8 @@ public class AddServiceCommandIntegrationTest {
         AvailableServiceId id = new AvailableServiceId("WC");
         Cost cost = new Cost("100.00");
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getHotel());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+                model.getHotel(), model.getBookKeeper());
         expectedModel.addAvailableService(new AvailableService(description, cost, id));
 
         assertCommandSuccess(new AddServiceCommand(description, cost, id), model,
@@ -46,7 +48,8 @@ public class AddServiceCommandIntegrationTest {
         AvailableServiceId id = new AvailableServiceId("WC");
         Cost cost = new Cost("100.00");
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getHotel());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+                model.getHotel(), model.getBookKeeper());
         expectedModel.addAvailableService(new AvailableService(description, cost, id));
         model.addAvailableService(new AvailableService(description, cost, id));
 

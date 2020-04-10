@@ -23,11 +23,14 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Hotel;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyBookKeeper;
 import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.Bill;
+import seedu.address.model.hotel.bill.Chargeable;
+import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
@@ -184,6 +187,11 @@ public class CheckInCommandTest {
         }
 
         @Override
+        public Path getBookKeeperFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
@@ -275,10 +283,6 @@ public class CheckInCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public boolean isGuestCheckedIn(Person person, Room room) {
-            throw new AssertionError("This method should not be called.");
-        }
 
         @Override
         public void bookRoom(Booking booking) {
@@ -317,6 +321,11 @@ public class CheckInCommandTest {
         //=========== Billing System =============================================================================
 
         @Override
+        public ReadOnlyBookKeeper getBookKeeper() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setRoomCost(Room room, RoomCost roomCost) {
             throw new AssertionError("This method should not be called.");
         }
@@ -327,8 +336,28 @@ public class CheckInCommandTest {
         }
 
         @Override
-        public void chargeService(PersonId personId, RoomId roomId, AvailableService service) {
+        public void chargeService(RoomId roomId, Chargeable service) {
+
+        }
+
+        @Override
+        public void addBill(Bill bill) {
+
+        }
+
+        @Override
+        public void deleteBill(RoomId roomId) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Bill> findBillList(PersonId personId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Bill> findBill(RoomId roomId) {
+            return Optional.empty();
         }
 
         @Override
@@ -343,6 +372,11 @@ public class CheckInCommandTest {
 
         @Override
         public ObservableList<Bill> getFilteredBillList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Cost getGuestBillsTotal(PersonId personId) {
             throw new AssertionError("This method should not be called.");
         }
     }
