@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.awt.print.Book;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -39,6 +40,7 @@ public class BookKeeper implements ReadOnlyBookKeeper {
     public BookKeeper(ReadOnlyBookKeeper toBeCopied) {
         this();
         requireNonNull(toBeCopied);
+        setBills(toBeCopied.getBillList());
     }
 
     /**
@@ -105,11 +107,6 @@ public class BookKeeper implements ReadOnlyBookKeeper {
         return new Cost(total);
     }
 
-    @Override
-    public ObservableList<Bill> getBillList() {
-        return bills.asUnmodifiableObservableList();
-    }
-
     /**
      * Returns the list of bills for {@code personId}.
      */
@@ -128,5 +125,29 @@ public class BookKeeper implements ReadOnlyBookKeeper {
             .stream()
             .filter(b -> b.getRoomId().equals(roomId))
             .findFirst();
+    }
+
+    // util methods
+
+    @Override
+    public ObservableList<Bill> getBillList() {
+        return bills.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public String toString() {
+        return bills.asUnmodifiableObservableList().size() + " bills";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof BookKeeper // instanceof handles nulls
+                && bills.equals(((BookKeeper) other).bills));
+    }
+
+    @Override
+    public int hashCode() {
+        return bills.hashCode();
     }
 }

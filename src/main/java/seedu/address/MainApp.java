@@ -94,7 +94,7 @@ public class MainApp extends Application {
             addressBookOptional = storage.readAddressBook();
             hotelOptional = storage.readHotel();
             bookKeeperOptional = storage.readBookKeeper();
-            if (!addressBookOptional.isPresent() || !hotelOptional.isPresent()) {
+            if (!addressBookOptional.isPresent() || !hotelOptional.isPresent() || !bookKeeperOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Hotel");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);

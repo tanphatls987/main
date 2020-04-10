@@ -84,7 +84,13 @@ public class CheckInCommand extends Command {
 
         Stay stay = new Stay(person.get(), room.get(), LocalDateTime.now(), toDate, "");
         model.checkIn(stay);
-        model.addBill(new Bill(personId, roomId));
+
+        Optional<Bill> bill = model.findBill(roomId);
+
+        if (bill.isEmpty()) {
+            model.addBill(new Bill(personId, roomId));
+        }
+
         model.chargeService(roomId, room.get().getRoomCost());
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, roomId, personId));

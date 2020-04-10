@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BILLS;
 
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -14,7 +13,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.bill.Cost;
-import seedu.address.model.hotel.bill.MatchBillPredicate;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.PersonId;
@@ -105,7 +103,14 @@ public class FetchBillCommand extends Command {
 
             total = bill.get().getBillTotal();
 
-            model.updateFilteredBillList(new MatchBillPredicate(roomId));
+            Predicate<Bill> predicate = b -> {
+                if (b.getRoomId().equals(roomId)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            };
+            model.updateFilteredBillList(predicate);
 
             return new CommandResult(String.format(MESSAGE_SUCCESS_SPECIFIC,
                     roomId, person.get().getName(), personId, total));
@@ -113,7 +118,14 @@ public class FetchBillCommand extends Command {
 
             total = model.getGuestBillsTotal(personId);
 
-            model.updateFilteredBillList(PREDICATE_SHOW_ALL_BILLS);
+            Predicate<Bill> predicate = b -> {
+                if (b.getPersonId().equals(personId)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            };
+            model.updateFilteredBillList(predicate);
 
             return new CommandResult(String.format(MESSAGE_SUCCESS_NONSPECIFIC,
                     person.get().getName(), personId, total));

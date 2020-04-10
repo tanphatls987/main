@@ -14,6 +14,7 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyBookKeeper;
 import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.booking.Booking;
@@ -49,6 +50,7 @@ public class LogicManager implements Logic {
         try {
             storage.saveAddressBook(model.getAddressBook());
             storage.saveHotel(model.getHotel());
+            storage.saveBookKeeper(model.getBookKeeper());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -64,6 +66,11 @@ public class LogicManager implements Logic {
     @Override
     public ReadOnlyHotel getHotel() {
         return model.getHotel();
+    }
+
+    @Override
+    public ReadOnlyBookKeeper getBookKeeper() {
+        return model.getBookKeeper();
     }
 
     @Override

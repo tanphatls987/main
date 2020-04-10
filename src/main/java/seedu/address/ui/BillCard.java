@@ -26,6 +26,8 @@ public class BillCard extends UiPart<Region> {
     @FXML
     private Label roomNum;
     @FXML
+    private Label personId;
+    @FXML
     private Label details;
 
     /**
@@ -35,7 +37,8 @@ public class BillCard extends UiPart<Region> {
         super(FXML);
         this.bill = bill;
 
-        roomNum.setText(bill.getRoomId().toString());
+        roomNum.setText("Room: " + bill.getRoomId().toString());
+        personId.setText("Guest: " + bill.getPersonId().toString());
         details.setText(bill.toString());
     }
 

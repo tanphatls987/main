@@ -32,7 +32,7 @@ public class JsonBookKeeperStorage implements BookKeeperStorage {
     }
 
     @Override
-    public Optional<ReadOnlyBookKeeper> readBookKeeper() throws DataConversionException, IOException {
+    public Optional<ReadOnlyBookKeeper> readBookKeeper() throws DataConversionException {
         return readBookKeeper(filePath);
     }
 

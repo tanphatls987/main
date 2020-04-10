@@ -47,6 +47,7 @@ class JsonSerializableBookKeeper {
      */
     public BookKeeper toModelType() throws IllegalValueException {
         BookKeeper bookKeeper = new BookKeeper();
+
         for (JsonAdaptedBill jsonAdaptedBill : bills) {
             Bill bill = jsonAdaptedBill.toModelType();
             if (bookKeeper.hasBill(bill)) {
@@ -54,6 +55,7 @@ class JsonSerializableBookKeeper {
             }
             bookKeeper.addBill(bill);
         }
+
         return bookKeeper;
     }
 }

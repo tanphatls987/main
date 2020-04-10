@@ -112,6 +112,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Path getBookKeeperFilePath() {
+        return userPrefs.getBookKeeperFilePath();
+    }
+
+    @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
@@ -389,6 +394,11 @@ public class ModelManager implements Model {
     }
 
     //=========== Billing System =============================================================================
+
+    @Override
+    public ReadOnlyBookKeeper getBookKeeper() {
+        return bookKeeper;
+    }
 
     @Override
     public void setRoomCost(Room room, RoomCost roomCost) {

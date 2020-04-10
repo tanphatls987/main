@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 
@@ -87,7 +88,11 @@ public class Bill {
         final StringBuilder builder = new StringBuilder();
 
         for (Chargeable charge : charges) {
-            builder.append(charge);
+            if (charge instanceof RoomCost) {
+                builder.append("- Room Cost ($" + charge + ")\n");
+            } else {
+                builder.append("- " + charge + "\n");
+            }
         }
 
         builder.append("Total payable: $" + Double.toString(billTotal));

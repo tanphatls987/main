@@ -91,12 +91,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         return guiSettings.equals(o.guiSettings)
                 && addressBookFilePath.equals(o.addressBookFilePath)
-                && hotelFilePath.equals(o.hotelFilePath);
+                && hotelFilePath.equals(o.hotelFilePath)
+                && bookKeeperFilePath.equals(o.bookKeeperFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath, hotelFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, hotelFilePath, bookKeeperFilePath);
     }
 
     @Override
@@ -105,6 +106,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nAddressBook data file location : " + addressBookFilePath);
         sb.append("\nHotel data file location 2 : " + hotelFilePath);
+        sb.append("\nBook Keeper data file location 3 : " + bookKeeperFilePath);
         return sb.toString();
     }
 

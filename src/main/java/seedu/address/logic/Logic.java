@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyBookKeeper;
 import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.booking.Booking;
@@ -40,6 +41,13 @@ public interface Logic {
      * @see seedu.address.model.Model#getHotel()
      */
     ReadOnlyHotel getHotel();
+
+    /**
+     * Returns the BookKeeper.
+     *
+     * @see seedu.address.model.Model#getBookKeeper()
+     */
+    ReadOnlyBookKeeper getBookKeeper();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();

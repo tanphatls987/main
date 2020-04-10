@@ -76,6 +76,11 @@ public interface Model {
     Path getHotelFilePath();
 
     /**
+     * Returns the user prefs' book keeper file path
+     */
+    Path getBookKeeperFilePath();
+
+    /**
      * Sets the user prefs' address book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
@@ -90,6 +95,9 @@ public interface Model {
 
     /** Returns the Hotel*/
     ReadOnlyHotel getHotel();
+
+    /** Returns the BookKeeper*/
+    ReadOnlyBookKeeper getBookKeeper();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
