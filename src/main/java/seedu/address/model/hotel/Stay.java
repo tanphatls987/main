@@ -21,4 +21,7 @@ public class Stay extends Booking {
         this.description = description;
     }
 
+    public String getDescription() {
+        return description;
+    }
 }

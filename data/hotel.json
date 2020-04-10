@@ -43,6 +43,7 @@
     "timeFrom" : "2020-12-12T12:00",
     "timeTo" : "2020-12-24T12:00"
   } ],
-  "availableServices" : [ ]
+  "availableServices" : [ ],
+  "stays" : []
 }
 
