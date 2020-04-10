@@ -162,6 +162,12 @@ public class Booking {
         return bookDuration;
     }
 
+    /**
+     * return if the booking has the same ID.
+     * Could be checked by the first 8 characters as well.
+     * @param booking
+     * @return
+     */
     public boolean isMatchId(String booking) {
         int len = booking.length();
         return uuid.toString().substring(0, len).equals(booking);

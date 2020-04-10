@@ -3,7 +3,6 @@ package seedu.address.model.hotel.booking;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.awt.print.Book;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -108,6 +107,10 @@ public class UniqueBookingList implements Iterable<Booking> {
         return internalList.hashCode();
     }
 
+    /**
+     * Remove element from internal list if match with Predicate p
+     * @param p
+     */
     public void removeIf(Predicate<Booking> p) {
         for (Booking booking: internalList) {
             if (p.test(booking)) {
@@ -130,6 +133,11 @@ public class UniqueBookingList implements Iterable<Booking> {
         return true;
     }
 
+    /**
+     * Return the booking that match with the booking ID.
+     * @param booking
+     * @return
+     */
     public Optional<Booking> findBookingById(String booking) {
         return internalList
             .stream()
