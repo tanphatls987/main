@@ -17,11 +17,11 @@ import seedu.address.model.ids.PersonId;
  */
 public class JsonAdaptedBooking {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Booking's %s field is missing!";
-    private final String room;
-    private final String payeeName;
-    private final String payeeId;
-    private final String timeFrom;
-    private final String timeTo;
+    protected final String room;
+    protected final String payeeName;
+    protected final String payeeId;
+    protected final String timeFrom;
+    protected final String timeTo;
 
     /**
      * Constructs a {@code JsonAdaptedBooking} with the given booking details.
