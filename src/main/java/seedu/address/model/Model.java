@@ -40,6 +40,11 @@ public interface Model {
     Predicate<Room> PREDICATE_SHOW_ALL_ROOMS = unused -> true;
 
     /**
+     * {@code Predicate} that always evaluate to true
+     */
+    Predicate<Bill> PREDICATE_SHOW_ALL_BILLS = unused -> true;
+
+    /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
@@ -164,10 +169,9 @@ public interface Model {
     void updateFilteredServiceList(Predicate<AvailableService> predicate);
 
     /**
-     * Updates the filter of the filtered bill list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
+     * Updates the filtered bill list and filters by the given {@code predicate}.
      */
-    void updateFilteredBillList(Predicate<Bill> predicate);
+    void updateFilteredBillList(ObservableList<Bill> billList, Predicate<Bill> predicate);
 
     /**
      * Updates the filter of the filtered room list to filter by the given {@code predicate}.
@@ -216,10 +220,14 @@ public interface Model {
 
     void deleteBooking(Booking booking);
 
-    /** Returns the list of bill for specified person*/
+    /**
+     * Returns the list of bill for specified person
+     */
     ObservableList<Bill> findBillList(Person person);
 
-    /** Returns the bill with matching roomId for specified person*/
+    /**
+     * Returns the bill with matching roomId for specified person
+     */
     Optional<Bill> findBill(Person person, RoomId roomId);
 
     /**

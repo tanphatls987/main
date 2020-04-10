@@ -48,6 +48,6 @@ public class Cost {
 
     @Override
     public String toString() {
-        return String.format("%.2f", cost);
+        return String.format("$%.2f", cost);
     }
 }

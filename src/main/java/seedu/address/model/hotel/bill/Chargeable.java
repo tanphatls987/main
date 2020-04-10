@@ -8,4 +8,7 @@ public interface Chargeable {
      * Returns the cost of the chargeable item/service
      */
     public Cost getCost();
+
+    @Override
+    public String toString();
 }

@@ -15,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyHotel;
+import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
@@ -88,6 +89,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Room> getFilteredRoomList() {
         return model.getFilteredRoomList();
+    }
+
+    @Override
+    public ObservableList<Bill> getFilteredBillList() {
+        return model.getFilteredBillList();
     }
 
     @Override

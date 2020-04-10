@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyHotel;
+import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
@@ -58,6 +59,11 @@ public interface Logic {
      * Returns an unmodifiable view of the room list.
      */
     ObservableList<Room> getFilteredRoomList();
+
+    /**
+     * Returns an unmodifiable view of the bill list.
+     */
+    ObservableList<Bill> getFilteredBillList();
 
     /**
      * Returns the user prefs' address book file path.

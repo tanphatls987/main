@@ -22,6 +22,7 @@ public class MainTabPane extends UiPart<Region> {
     private RoomListPanel roomListPanel;
     private BookingListPanel bookingListPanel;
     private AvailableServiceListPanel availableServiceListPanel;
+    private BillListPanel billListPanel;
     private MainWindow mainWindow;
 
     private HashMap<String, Tab> tabMapping;
@@ -39,6 +40,8 @@ public class MainTabPane extends UiPart<Region> {
     @FXML
     private Tab availableServiceTab;
     @FXML
+    private Tab billTab;
+    @FXML
     private StackPane welcomePlaceholder;
     @FXML
     private StackPane personListPlaceholder;
@@ -48,6 +51,8 @@ public class MainTabPane extends UiPart<Region> {
     private StackPane bookingListPanelPlaceholder;
     @FXML
     private StackPane availableServiceListPanelPlaceholder;
+    @FXML
+    private StackPane billListPanelPlaceholder;
 
     /**
      * Create a mainTabPane
@@ -64,6 +69,7 @@ public class MainTabPane extends UiPart<Region> {
         setRoomListPanel();
         setBookingListPanel();
         setAvailableServiceListPanel();
+        setBillListPanel();
         mainTabPane.getStyleClass().add("floating");
 
 
@@ -105,6 +111,11 @@ public class MainTabPane extends UiPart<Region> {
     private void setAvailableServiceListPanel() {
         availableServiceListPanel = new AvailableServiceListPanel(logic.getHotel().getAvailableServiceList());
         availableServiceListPanelPlaceholder.getChildren().add(availableServiceListPanel.getRoot());
+    }
+
+    private void setBillListPanel() {
+        billListPanel = new BillListPanel(logic.getFilteredBillList());
+        billListPanelPlaceholder.getChildren().add(billListPanel.getRoot());
     }
 
     /**

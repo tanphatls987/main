@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 import javax.swing.text.html.Option;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -41,8 +42,9 @@ public class ModelManager implements Model {
     private final FilteredList<Booking> filteredBookings;
     private final FilteredList<Room> filteredRooms;
     private final FilteredList<AvailableService> filteredServices;
-    private final FilteredList<Bill> filteredBills;
     private final Hotel hotel;
+
+    private FilteredList<Bill> filteredBills;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -60,7 +62,7 @@ public class ModelManager implements Model {
         filteredBookings = new FilteredList<>(this.hotel.getBookingList());
         filteredRooms = new FilteredList<>(this.hotel.getRoomList());
         filteredServices = new FilteredList<>(this.hotel.getAvailableServiceList());
-        filteredBills = null;
+        filteredBills = new FilteredList<>(this.hotel.getRoomList());
     }
 
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
@@ -222,8 +224,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredBillList(Predicate<Bill> predicate) {
+    public void updateFilteredBillList(ObservableList<Bill> billList, Predicate<Bill> predicate) {
         requireNonNull(predicate);
+        filteredBills = new FilteredList<>(billList);
         filteredBills.setPredicate(predicate);
     }
 
@@ -408,14 +411,12 @@ public class ModelManager implements Model {
         addressBook.findPersonWithId(personId).get().addToBill(roomId, service);
     }
 
-    // to update accordingly when implementing billing system.
     @Override
     public ObservableList<Bill> findBillList(Person person) {
         requireNonNull(person);
         return person.getBills();
     }
 
-    // to update accordingly when implementing billing system.
     @Override
     public Optional<Bill> findBill(Person person, RoomId roomId) {
         requireAllNonNull(person, roomId);

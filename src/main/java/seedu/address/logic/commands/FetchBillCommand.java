@@ -4,14 +4,17 @@ import static java.util.Objects.requireNonNull;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BILLS;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.bill.Cost;
+import seedu.address.model.hotel.bill.MatchBillPredicate;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.PersonId;
@@ -34,9 +37,11 @@ public class FetchBillCommand extends Command {
             + PREFIX_ROOMNUMBER + "101";
 
     public static final String MESSAGE_SUCCESS_NONSPECIFIC = "The total amount payable for all bill/s of "
-            + "guest %1$s (ID: %2$s) is: $%3$s.";
+            + "guest %1$s (ID: %2$s) is: %3$s.\n"
+            + "For more details, check the bill tab.";
     public static final String MESSAGE_SUCCESS_SPECIFIC = "The total amount payable for the bill of "
-            + "room %1$s of guest %2$s (ID: %3$s) is: $%4$s.";
+            + "room %1$s of guest %2$s (ID: %3$s) is: %4$s.\n"
+            + "For more details, check the bill tab.";
     public static final String MESSAGE_GUEST_NONEXISTENT = "Guest (ID: %1$s) does not exist in the system.";
     public static final String MESSAGE_ROOM_NONEXISTENT = "Room %1$s does not exist in the system.";
 
@@ -75,9 +80,14 @@ public class FetchBillCommand extends Command {
         Cost total;
 
         Optional<Person> person = model.findPersonWithId(personId);
+        ObservableList<Bill> bills = model.findBillList(person.get());
 
         if (person.isEmpty()) {
             throw new CommandException(MESSAGE_GUEST_NONEXISTENT);
+        }
+
+        if (bills.isEmpty()) {
+            throw new CommandException(String.format(MESSAGE_BILL_NONEXISTENT, personId));
         }
 
         if (isSpecific) {
@@ -92,23 +102,18 @@ public class FetchBillCommand extends Command {
                 throw new CommandException(String.format(MESSAGE_SPECIFIC_BILL_NONEXISTENT, personId, roomId));
             }
 
-            //update bill card
 
             total = new Cost(bill.get().getTotalExpenses());
+
+            model.updateFilteredBillList(bills, new MatchBillPredicate(roomId));
 
             return new CommandResult(String.format(MESSAGE_SUCCESS_SPECIFIC,
                     roomId, person.get().getName(), personId, total));
         } else {
 
-            ObservableList<Bill> bills = model.findBillList(person.get());
-
-            if (bills.isEmpty()) {
-                throw new CommandException(String.format(MESSAGE_BILL_NONEXISTENT, personId));
-            }
-
-            //update bill card
-
             total = new Cost(person.get().getAllBillsTotal());
+
+            model.updateFilteredBillList(bills, PREDICATE_SHOW_ALL_BILLS);
 
             return new CommandResult(String.format(MESSAGE_SUCCESS_NONSPECIFIC,
                     person.get().getName(), personId, total));

@@ -42,5 +42,18 @@ public class Bill {
     public double getTotalExpenses() {
         return totalExpenses;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+
+        for (Chargeable charge : charges) {
+            builder.append(charge);
+        }
+
+        builder.append("Total payable: " + Double.toString(totalExpenses));
+
+        return builder.toString();
+    }
 }
 
