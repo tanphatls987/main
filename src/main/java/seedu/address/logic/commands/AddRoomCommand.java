@@ -62,7 +62,7 @@ public class AddRoomCommand extends Command {
         }
 
         model.addRoom(this.toAdd, tier, cost);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), "room");
     }
 
     @Override

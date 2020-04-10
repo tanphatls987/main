@@ -43,7 +43,7 @@ public class DeleteRoomCommand extends Command {
         }
 
         model.deleteRoom(toDelete);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete), "room");
     }
 
     @Override
