@@ -40,32 +40,8 @@
     "room" : "001",
     "payeeName" : "Alex Yeoh",
     "payeeId" : "A000000",
-    "timeFrom" : "2020-04-07T18:19:10.169542",
-    "timeTo" : "2020-12-12T12:12:12"
-  }, {
-    "room" : "001",
-    "payeeName" : "Charlotte Oliveiro",
-    "payeeId" : "C000000",
     "timeFrom" : "2020-12-12T12:00",
     "timeTo" : "2020-12-24T12:00"
-  }, {
-    "room" : "001",
-    "payeeName" : "Bernice Yu",
-    "payeeId" : "B000000",
-    "timeFrom" : "2020-12-13T12:00",
-    "timeTo" : "2020-12-20T12:00"
-  }, {
-    "room" : "001",
-    "payeeName" : "Alex Yeoh",
-    "payeeId" : "A000000",
-    "timeFrom" : "2020-10-10T12:00",
-    "timeTo" : "2020-10-20T12:00"
-  }, {
-    "room" : "001",
-    "payeeName" : "Alex Yeoh",
-    "payeeId" : "A000000",
-    "timeFrom" : "2020-10-10T12:00",
-    "timeTo" : "2020-12-20T12:00"
   } ],
   "availableServices" : [ ]
 }

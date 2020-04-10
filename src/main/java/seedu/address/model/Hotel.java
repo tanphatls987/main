@@ -381,7 +381,6 @@ public class Hotel implements ReadOnlyHotel {
             }
         }
         addStay(stay);
-        getRoomStay(); //update stays for each room
     }
 
     /**
@@ -439,19 +438,4 @@ public class Hotel implements ReadOnlyHotel {
         stayList.add(stay);
     }
 
-    /**
-     * Goes through stay list and sets
-     * the current stay for each room
-     */
-    public void getRoomStay() {
-        for (Stay stay : stayList) {
-            for (Room room : roomList) {
-                if (stay.getRoom().equals(room)) {
-                    Room newRoom = new Room(room);
-                    newRoom.setStay(stay);
-                    roomList.setRoom(room, newRoom);
-                }
-            }
-        }
-    }
 }
