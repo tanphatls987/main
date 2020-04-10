@@ -411,11 +411,6 @@ public class CheckInCommandTest {
         }
 
         @Override
-        public void updateStayList() {
-            hotel.getRoomStay();
-        }
-
-        @Override
         public Optional<Booking> getCurrentStay(Room room) {
             return Optional.empty();
         }

@@ -260,11 +260,6 @@ public class ModelManager implements Model {
         return hotel.getBookingList();
     }
 
-    @Override
-    public void updateStayList() {
-        hotel.getRoomStay();
-    }
-
     /**
      * Get the stay in the room in current time.
      * @param room the room object.

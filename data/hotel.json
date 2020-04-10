@@ -36,7 +36,19 @@
     "cost" : "50.00",
     "number" : "123"
   } ],
-  "bookings" : [ ],
+  "bookings" : [ {
+    "room" : "002",
+    "payeeName" : "Bernice Yu",
+    "payeeId" : "B000000",
+    "timeFrom" : "2020-12-12T12:00",
+    "timeTo" : "2020-12-13T12:00"
+  }, {
+    "room" : "003",
+    "payeeName" : "Alex Yeoh",
+    "payeeId" : "A000000",
+    "timeFrom" : "2020-12-12T12:00",
+    "timeTo" : "2020-12-13T12:00"
+  } ],
   "availableServices" : [ ]
 }
 

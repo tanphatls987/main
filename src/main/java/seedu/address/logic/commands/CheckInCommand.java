@@ -83,7 +83,6 @@ public class CheckInCommand extends Command {
 
         Stay stay = new Stay(person.get(), room.get(), LocalDateTime.now(), toDate, "");
         model.checkIn(stay);
-        model.updateStayList();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, roomId, personId));
     }

@@ -137,10 +137,10 @@ public class Hotel implements ReadOnlyHotel {
         requireNonNull(room);
 
         return stayList
-            .stream()
-            .filter(u -> u.isCorrectRoom(room))
-            .filter(u -> u.isCurrentlyClash(room))
-            .findFirst();
+                .stream()
+                .filter(u -> u.isCorrectRoom(room))
+                .filter(u -> u.isCurrentlyClash(room))
+                .findFirst();
     }
 
     /**
@@ -190,9 +190,9 @@ public class Hotel implements ReadOnlyHotel {
      */
     public Optional<Room> findRoomWithRoomId(RoomId roomId) {
         return roomList.asUnmodifiableObservableList()
-            .stream()
-            .filter(u -> u.getRoomId().equals(roomId))
-            .findFirst();
+                .stream()
+                .filter(u -> u.getRoomId().equals(roomId))
+                .findFirst();
     }
 
     /**
@@ -203,10 +203,10 @@ public class Hotel implements ReadOnlyHotel {
      */
     public Optional<Room> getRoom(RoomId roomNum) {
         return roomList
-            .asUnmodifiableObservableList()
-            .stream()
-            .filter(u -> u.getRoomNum().equals(roomNum.toString()))
-            .findFirst();
+                .asUnmodifiableObservableList()
+                .stream()
+                .filter(u -> u.getRoomNum().equals(roomNum.toString()))
+                .findFirst();
     }
 
     /**
@@ -214,10 +214,10 @@ public class Hotel implements ReadOnlyHotel {
      */
     public Optional<AvailableService> getAvailableService(AvailableServiceId id) {
         return availableServiceList
-            .asUnmodifiableObservableList()
-            .stream()
-            .filter(service -> service.getId().equals(id))
-            .findFirst();
+                .asUnmodifiableObservableList()
+                .stream()
+                .filter(service -> service.getId().equals(id))
+                .findFirst();
     }
 
     /**
@@ -338,9 +338,9 @@ public class Hotel implements ReadOnlyHotel {
      */
     public Optional<AvailableService> findServiceWithId(AvailableServiceId serviceId) {
         return availableServiceList.asUnmodifiableObservableList()
-            .stream()
-            .filter(u -> u.getId().equals(serviceId))
-            .findFirst();
+                .stream()
+                .filter(u -> u.getId().equals(serviceId))
+                .findFirst();
     }
 
     //// util methods
@@ -358,7 +358,7 @@ public class Hotel implements ReadOnlyHotel {
 
         if (other instanceof Hotel) {
             return this.roomList.equals(((Hotel) other).roomList)
-                && this.bookingList.equals(((Hotel) other).bookingList);
+                    && this.bookingList.equals(((Hotel) other).bookingList);
         }
 
 
@@ -376,12 +376,13 @@ public class Hotel implements ReadOnlyHotel {
      */
     public void checkIn(Stay stay) {
         for (Booking booking : bookingList) {
-            if (stay.isInside(booking)) {
+            if (stay.getRoom().equals(booking.getRoom())
+                    && stay.getTimeTo().equals(booking.getTimeTo())) {
+                addStay(stay);
                 bookingList.remove(booking);
+                updateRoomStays();
             }
         }
-        addStay(stay);
-        getRoomStay(); //update stays for each room
     }
 
     /**
@@ -423,14 +424,14 @@ public class Hotel implements ReadOnlyHotel {
         //timeframe create successfully mean no bogus duration
 
         boolean isRoomCurrentlyEmpty = stayList
-            .stream()
-            .noneMatch(u -> u.isClash(room, duration));
+                .stream()
+                .noneMatch(u -> u.isClash(room, duration));
 
         boolean isBookingNotClash = bookingList
-            .asUnmodifiableObservableList()
-            .stream()
-            .filter(u -> u.getPayee() != person)
-            .noneMatch(u -> u.isClash(room, duration));
+                .asUnmodifiableObservableList()
+                .stream()
+                .filter(u -> u.getPayee() != person)
+                .noneMatch(u -> u.isClash(room, duration));
 
         return isRoomCurrentlyEmpty && isBookingNotClash;
     }
@@ -438,12 +439,12 @@ public class Hotel implements ReadOnlyHotel {
     public void addStay(Stay stay) {
         stayList.add(stay);
     }
-  
+
     /**
      * Goes through stay list and sets
      * the current stay for each room
      */
-    public void getRoomStay() {
+    public void updateRoomStays() {
         for (Stay stay : stayList) {
             for (Room room : roomList) {
                 if (stay.getRoom().equals(room)) {
