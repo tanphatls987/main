@@ -205,11 +205,6 @@ public interface Model {
     boolean isGuestCheckedIn(Person person, Room room);
 
     /**
-     * Checks if {@code person} is checked into {@code room}
-     */
-    boolean isGuestCheckedIn(Person person, Room room);
-
-    /**
      * Book a room with booking details.
      * @param booking
      */

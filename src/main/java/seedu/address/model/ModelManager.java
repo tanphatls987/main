@@ -302,12 +302,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isGuestCheckedIn(Person person, Room room) {
-        requireAllNonNull(person, room);
-        return hotel.isGuestCheckedIn(person, room);
-    }
-
-    @Override
     public void bookRoom(Booking booking) {
         requireNonNull(booking);
         hotel.addBooking(booking);
