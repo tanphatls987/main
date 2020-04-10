@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TODATE;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -75,6 +76,7 @@ public class ReserveCommand extends Command {
             throw new CommandException(String.format(MESSAGE_ROOM_BOOKED, roomId));
         }
         model.bookRoom(toBook);
+
         return new CommandResult(generateSuccessMessage(payee.get()));
 
     }
