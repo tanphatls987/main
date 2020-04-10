@@ -35,6 +35,10 @@
     "tier" : "BRONZE",
     "cost" : "50.00",
     "number" : "123"
+  }, {
+    "tier" : "GOLD",
+    "cost" : "100.00",
+    "number" : "100"
   } ],
   "bookings" : [ {
     "room" : "001",
@@ -44,6 +48,6 @@
     "timeTo" : "2020-12-24T12:00"
   } ],
   "availableServices" : [ ],
-  "stays" : []
+  "stays" : [ ]
 }
 
