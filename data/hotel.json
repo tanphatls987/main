@@ -40,9 +40,9 @@
     "room" : "001",
     "payeeName" : "Alex Yeoh",
     "payeeId" : "A000000",
+    "uuid" : "71c2cd59-c5ef-4053-827f-74e102a02237",
     "timeFrom" : "2020-04-07T18:19:10.169542",
-    "timeTo" : "2020-12-12T12:12:12",
-    "uuid" : "71c2cd59-c5ef-4053-827f-74e102a02237"
+    "timeTo" : "2020-12-12T12:12:12"
   } ],
   "availableServices" : [ ]
 }
