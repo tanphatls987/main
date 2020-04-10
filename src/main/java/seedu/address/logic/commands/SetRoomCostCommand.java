@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -59,6 +60,9 @@ public class SetRoomCostCommand extends Command {
         }
 
         model.setRoomCost(room.get(), cost);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, roomNum, cost));
+        Predicate<Room> predicate = thisRoom -> thisRoom.isSameRoom(room.get());
+        model.updateFilteredRoomList(predicate);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, roomNum, cost), "room");
     }
 }
