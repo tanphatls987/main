@@ -54,6 +54,18 @@
     "payeeId" : "B000000",
     "timeFrom" : "2020-12-13T12:00",
     "timeTo" : "2020-12-20T12:00"
+  }, {
+    "room" : "001",
+    "payeeName" : "Alex Yeoh",
+    "payeeId" : "A000000",
+    "timeFrom" : "2020-10-10T12:00",
+    "timeTo" : "2020-10-20T12:00"
+  }, {
+    "room" : "001",
+    "payeeName" : "Alex Yeoh",
+    "payeeId" : "A000000",
+    "timeFrom" : "2020-10-10T12:00",
+    "timeTo" : "2020-12-20T12:00"
   } ],
   "availableServices" : [ ]
 }
