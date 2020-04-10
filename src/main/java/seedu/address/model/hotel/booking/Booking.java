@@ -75,6 +75,9 @@ public class Booking {
      * @return true if other booking is within the current booking timeframe.
      */
     public boolean isInside(Booking oth) {
+        if (!this.room.getRoomNum().equals(room.getRoomNum())) {
+            return false;
+        }
         return bookDuration.isInside(oth.bookDuration);
     }
 

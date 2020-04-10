@@ -376,13 +376,12 @@ public class Hotel implements ReadOnlyHotel {
      */
     public void checkIn(Stay stay) {
         for (Booking booking : bookingList) {
-            if (stay.getRoom().equals(booking.getRoom())
-                    && stay.getTimeTo().equals(booking.getTimeTo())) {
-                addStay(stay);
+            if (stay.isInside(booking)) {
                 bookingList.remove(booking);
-                updateRoomStays();
             }
         }
+        addStay(stay);
+        updateRoomStays();
     }
 
     /**
