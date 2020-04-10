@@ -430,4 +430,11 @@ public class Hotel implements ReadOnlyHotel {
     public void addStay(Stay stay) {
         stayList.add(stay);
     }
+
+    public Optional<Booking> findBookingById(String booking) {
+        return bookingList
+            .stream()
+            .filter(u -> u.isMatchId(booking))
+            .findFirst();
+    }
 }

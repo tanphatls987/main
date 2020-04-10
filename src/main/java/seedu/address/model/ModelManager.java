@@ -364,6 +364,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Optional<Booking> findBookingById(String booking) {
+        requireNonNull(booking);
+        return hotel.findBookingById(booking);
+    }
+
+    @Override
     public boolean hasTier(Tier tier) {
         requireNonNull(tier);
 

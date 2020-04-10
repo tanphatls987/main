@@ -29,6 +29,8 @@ public class BookingCard extends UiPart<Region> {
     private Label room;
     @FXML
     private Label duration;
+    @FXML
+    private Label bookingId;
 
     public BookingCard(Booking booking) {
         super(FXML);
@@ -36,6 +38,7 @@ public class BookingCard extends UiPart<Region> {
         payee.setText(booking.getPayee().getName().toString() + "  " + booking.getPayee().getPersonId().toString());
         room.setText("Room: " + booking.getRoom().getRoomNum());
         duration.setText(booking.getBookDuration().toString());
+        bookingId.setText(booking.getReadableBookingId());
 
     }
 
