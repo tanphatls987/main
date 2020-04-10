@@ -34,7 +34,7 @@ public class CheckInCommand extends Command {
         + PREFIX_ROOMNUMBER + "101 "
         + PREFIX_TODATE + "2020-03-14";
 
-    public static final String MESSAGE_SUCCESS = "Room %1$s is booked by %2$s";
+    public static final String MESSAGE_SUCCESS = "Checked in %2$s into room %1$s";
     public static final String MESSAGE_ROOM_OCCUPIED = "Room %1$s is occupied";
     public static final String MESSAGE_ROOM_NOT_EXISTS = "Room %1$s does not exist.";
     public static final String MESSAGE_PERSON_NOT_EXISTS = "Guest (ID: %1$s) does not exist.";
@@ -83,6 +83,7 @@ public class CheckInCommand extends Command {
 
         Stay stay = new Stay(person.get(), room.get(), LocalDateTime.now(), toDate, "");
         model.checkIn(stay);
+        model.updateStayList();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, roomId, personId));
     }

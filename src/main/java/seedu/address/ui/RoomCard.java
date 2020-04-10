@@ -4,8 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import seedu.address.model.hotel.room.Room;
 
 /**
@@ -35,7 +33,7 @@ public class RoomCard extends UiPart<Region> {
     @FXML
     private Label stay;
     @FXML
-    private Circle circle;
+    private Label occupancy;
 
     public RoomCard(Room room, int displayedIndex) {
         super(FXML);
@@ -52,15 +50,17 @@ public class RoomCard extends UiPart<Region> {
         if (stay == null) {
             stay = new Label();
         }
-        if (circle == null) {
-            circle = new Circle(11);
+        if (occupancy == null) {
+            occupancy = new Label();
         }
         if (room.getStay() == null) {
             stay.setText("No current stay");
-            circle.setFill(Color.GREEN);
+            occupancy.setText("free");
+            occupancy.setStyle("-fx-background-color:GREEN");
         } else {
             stay.setText("Current stay until: " + room.getStay().getTimeTo().toString());
-            circle.setFill(Color.RED);
+            occupancy.setText("occupied");
+            occupancy.setStyle("-fx-background-color:RED");
         }
     }
 

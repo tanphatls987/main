@@ -181,7 +181,8 @@ public interface Model {
     /** Returns list of bookings */
     ObservableList<Booking> getBookingList();
 
-
+    /**Updates the stays in each room*/
+    void updateStayList();
 
 
     Optional<Booking> getCurrentStay(Room room);

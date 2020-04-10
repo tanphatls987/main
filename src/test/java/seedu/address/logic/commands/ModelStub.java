@@ -169,6 +169,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void updateStayList() {
+        throw new AssertionError("This method should not be called");
+    }
+
+    @Override
     public Optional<Booking> getCurrentStay(Room room) {
         throw new AssertionError("This method should not be called");
     }
