@@ -22,6 +22,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FetchBillCommand;
 import seedu.address.logic.commands.FindBookingCommand;
+import seedu.address.logic.commands.FindEmptyRoomCommand;
 import seedu.address.logic.commands.FindGuestCommand;
 import seedu.address.logic.commands.FindRoomCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -128,6 +129,9 @@ public class AddressBookParser {
 
         case SwitchViewCommand.COMMAND_WORD:
             return new SwitchViewCommandParser().parse(arguments);
+
+        case FindEmptyRoomCommand.COMMAND_WORD:
+            return new FindEmptyRoomCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
