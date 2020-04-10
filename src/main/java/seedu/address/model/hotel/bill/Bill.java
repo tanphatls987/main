@@ -51,7 +51,7 @@ public class Bill {
             builder.append(charge);
         }
 
-        builder.append("Total payable: " + Double.toString(totalExpenses));
+        builder.append("Total payable: $" + Double.toString(totalExpenses));
 
         return builder.toString();
     }

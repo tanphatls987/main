@@ -63,7 +63,7 @@ public class MainTabPane extends UiPart<Region> {
         this.logic = logic;
 
 
-        ///set up personListPanel and roomListPanel
+        ///set up panels
         setWelcomePlaceholder();
         setPersonListPanel();
         setRoomListPanel();
@@ -87,6 +87,7 @@ public class MainTabPane extends UiPart<Region> {
         tabMapping.put("guest", guestTab);
         tabMapping.put("booking", bookingTab);
         tabMapping.put("service", availableServiceTab);
+        tabMapping.put("bill", billTab);
     }
 
     private void setWelcomePlaceholder() {

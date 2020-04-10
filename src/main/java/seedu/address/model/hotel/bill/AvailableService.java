@@ -68,7 +68,7 @@ public class AvailableService implements Chargeable {
         builder.append(getDescription())
                 .append(" ServiceId: ")
                 .append(getId())
-                .append(" Cost: ")
+                .append(" Cost: $")
                 .append(getCost());
         return builder.toString();
     }

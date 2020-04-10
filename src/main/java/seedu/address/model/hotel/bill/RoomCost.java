@@ -27,13 +27,4 @@ public class RoomCost extends Cost implements Chargeable {
     public Cost getCost() {
         return this;
     }
-
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("Room Cost: ")
-               .append(super.toString());
-
-        return builder.toString();
-    }
 }

@@ -62,7 +62,7 @@ public class ModelManager implements Model {
         filteredBookings = new FilteredList<>(this.hotel.getBookingList());
         filteredRooms = new FilteredList<>(this.hotel.getRoomList());
         filteredServices = new FilteredList<>(this.hotel.getAvailableServiceList());
-        filteredBills = new FilteredList<>(this.hotel.getRoomList());
+        filteredBills = new FilteredList<>(FXCollections.observableArrayList());
     }
 
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {

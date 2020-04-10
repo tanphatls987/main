@@ -37,10 +37,10 @@ public class FetchBillCommand extends Command {
             + PREFIX_ROOMNUMBER + "101";
 
     public static final String MESSAGE_SUCCESS_NONSPECIFIC = "The total amount payable for all bill/s of "
-            + "guest %1$s (ID: %2$s) is: %3$s.\n"
+            + "guest %1$s (ID: %2$s) is: $%3$s.\n"
             + "For more details, check the bill tab.";
     public static final String MESSAGE_SUCCESS_SPECIFIC = "The total amount payable for the bill of "
-            + "room %1$s of guest %2$s (ID: %3$s) is: %4$s.\n"
+            + "room %1$s of guest %2$s (ID: %3$s) is: $%4$s.\n"
             + "For more details, check the bill tab.";
     public static final String MESSAGE_GUEST_NONEXISTENT = "Guest (ID: %1$s) does not exist in the system.";
     public static final String MESSAGE_ROOM_NONEXISTENT = "Room %1$s does not exist in the system.";
