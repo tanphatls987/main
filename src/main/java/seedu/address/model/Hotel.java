@@ -438,7 +438,7 @@ public class Hotel implements ReadOnlyHotel {
     public void addStay(Stay stay) {
         stayList.add(stay);
     }
-
+  
     /**
      * Goes through stay list and sets
      * the current stay for each room
