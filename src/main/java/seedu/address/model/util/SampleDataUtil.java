@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -12,6 +13,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyBookKeeper;
 import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.hotel.bill.Bill;
+import seedu.address.model.hotel.bill.Chargeable;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Email;
@@ -81,7 +83,9 @@ public class SampleDataUtil {
     private static Bill[] getSampleBills() {
         return new Bill[] {
             new Bill(getSampleBookings()[0].getPayee().getPersonId(),
-                    getSampleBookings()[0].getRoom().getRoomId()),
+                    getSampleBookings()[0].getRoom().getRoomId(),
+                    new ArrayList<>(Arrays.asList(getSampleBookings()[0].getRoom().getRoomCost())),
+                    getSampleBookings()[0].getRoom().getRoomCost().getCostAsDouble()),
         };
     }
 
