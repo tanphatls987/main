@@ -75,9 +75,12 @@ public class ReserveCommand extends Command {
         if (model.hasBooking(toBook)) {
             throw new CommandException(String.format(MESSAGE_ROOM_BOOKED, roomId));
         }
-        model.bookRoom(toBook);
 
-        return new CommandResult(generateSuccessMessage(payee.get()));
+        model.bookRoom(toBook);
+        Predicate<Booking> predicate = booking -> booking.getBookingId().equals(toBook.getBookingId());
+        model.updateFilteredBookingList(predicate);
+
+        return new CommandResult(generateSuccessMessage(payee.get()), "booking");
 
     }
 

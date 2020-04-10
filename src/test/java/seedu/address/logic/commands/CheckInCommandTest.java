@@ -407,7 +407,6 @@ public class CheckInCommandTest {
 
         @Override
         public void updateFilteredRoomList(Predicate<Room> predicate) {
-            throw new AssertionError("This method should not be called.");
         }
 
         @Override
