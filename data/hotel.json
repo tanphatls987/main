@@ -35,8 +35,19 @@
     "tier" : "BRONZE",
     "cost" : "50.00",
     "number" : "123"
+  }, {
+    "tier" : "GOLD",
+    "cost" : "100.00",
+    "number" : "100"
   } ],
-  "bookings" : [ ],
-  "availableServices" : [ ]
+  "bookings" : [ {
+    "room" : "001",
+    "payeeName" : "Alex Yeoh",
+    "payeeId" : "A000000",
+    "timeFrom" : "2020-12-12T12:00",
+    "timeTo" : "2020-12-24T12:00"
+  } ],
+  "availableServices" : [ ],
+  "stays" : [ ]
 }
 
