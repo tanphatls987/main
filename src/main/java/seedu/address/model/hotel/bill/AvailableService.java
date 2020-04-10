@@ -27,7 +27,7 @@ public class AvailableService implements Chargeable {
     }
 
     /***
-     * Checks if service is same as {@code room}
+     * Checks if service is same as {@code service}
      */
     public boolean isSameService(AvailableService service) {
         if (service == this) {

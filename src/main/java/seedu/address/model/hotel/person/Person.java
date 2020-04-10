@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.Bill;
+import seedu.address.model.hotel.bill.Chargeable;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 import seedu.address.model.tag.Tag;
@@ -50,7 +51,8 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, PersonId personId, Phone phone, Email email, Remark remark, Set<Tag> tags) {
+    public Person(Name name, PersonId personId, Phone phone, Email email, Remark remark,
+                  Set<Tag> tags, ArrayList<Bill> bills) {
         requireAllNonNull(name, personId, phone, email, tags);
         this.name = name;
         this.personId = personId;
@@ -58,6 +60,7 @@ public class Person {
         this.email = email;
         this.remark = remark;
         this.tags.addAll(tags);
+        this.bills.addAll(bills);
     }
 
 
@@ -114,12 +117,12 @@ public class Person {
     /**
      * Adds {@code service} to bill of room {@code roomID}
      */
-    public void addToBill(RoomId roomId, AvailableService service) {
+    public void addToBill(RoomId roomId, Chargeable chargeable) {
         boolean billExists = false;
 
         for (Bill bill : bills) {
             if (bill.getRoomId().equals(roomId)) {
-                bill.addChargeable(service);
+                bill.addChargeable(chargeable);
                 billExists = true;
                 break;
             }
@@ -127,7 +130,7 @@ public class Person {
 
         if (billExists == false) {
             Bill newBill = new Bill(roomId);
-            newBill.addChargeable(service);
+            newBill.addChargeable(chargeable);
             bills.add(newBill);
         }
     }

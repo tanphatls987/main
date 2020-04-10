@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.person.Email;
 import seedu.address.model.hotel.person.Name;
 import seedu.address.model.hotel.person.Person;
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     private final String personId;
     private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedBill> billed = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -39,7 +41,9 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("personId") String personId,
             @JsonProperty("phone") String phone,
             @JsonProperty("email") String email,
-            @JsonProperty("remark") String remark, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("remark") String remark,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("billed") List<JsonAdaptedBill> billed) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -47,6 +51,9 @@ class JsonAdaptedPerson {
         this.remark = remark;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (billed != null) {
+            this.billed.addAll(billed);
         }
     }
 
@@ -61,6 +68,9 @@ class JsonAdaptedPerson {
         remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        billed.addAll(source.getBills().stream()
+                .map(JsonAdaptedBill::new)
                 .collect(Collectors.toList()));
     }
 
@@ -112,7 +122,12 @@ class JsonAdaptedPerson {
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPersonId, modelPhone, modelEmail, modelRemark, modelTags);
+
+        final ArrayList<Bill> modelBills = new ArrayList<>();
+        for (JsonAdaptedBill bill : billed) {
+            modelBills.add(bill.toModelType());
+        }
+        return new Person(modelName, modelPersonId, modelPhone, modelEmail, modelRemark, modelTags, modelBills);
     }
 
 }

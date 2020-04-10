@@ -19,6 +19,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.Bill;
+import seedu.address.model.hotel.bill.Chargeable;
 import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
@@ -406,7 +407,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void chargeService(PersonId personId, RoomId roomId, AvailableService service) {
+    public void chargeService(PersonId personId, RoomId roomId, Chargeable service) {
         requireAllNonNull(personId, roomId, service);
         addressBook.findPersonWithId(personId).get().addToBill(roomId, service);
     }

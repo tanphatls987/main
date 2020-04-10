@@ -7,11 +7,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddGuestCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.person.Email;
 import seedu.address.model.hotel.person.Name;
 import seedu.address.model.hotel.person.Person;
@@ -51,7 +53,7 @@ public class AddGuestCommandParser implements Parser<AddGuestCommand> {
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, personId, phone, email, remark, tagList);
+        Person person = new Person(name, personId, phone, email, remark, tagList, new ArrayList<Bill>());
 
         return new AddGuestCommand(person);
     }

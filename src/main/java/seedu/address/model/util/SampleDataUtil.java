@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -9,6 +10,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Hotel;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyHotel;
+import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Email;
@@ -31,27 +33,27 @@ public class SampleDataUtil {
             new Person(new Name("Alex Yeoh"), new PersonId("A000000"),
                 new Phone("87438807"), new Email("alexyeoh@example.com"),
                     EMPTY_REMARK,
-                getTagSet("friends")),
+                getTagSet("friends"), new ArrayList<Bill>()),
             new Person(new Name("Bernice Yu"), new PersonId("B000000"),
                 new Phone("99272758"), new Email("berniceyu@example.com"),
                     EMPTY_REMARK,
-                getTagSet("colleagues", "friends")),
+                getTagSet("colleagues", "friends"), new ArrayList<Bill>()),
             new Person(new Name("Charlotte Oliveiro"), new PersonId("C000000"),
                 new Phone("93210283"), new Email("charlotte@example.com"),
                     EMPTY_REMARK,
-                getTagSet("neighbours")),
+                getTagSet("neighbours"), new ArrayList<Bill>()),
             new Person(new Name("David Li"), new PersonId("D000000"),
                 new Phone("91031282"), new Email("lidavid@example.com"),
                     EMPTY_REMARK,
-                getTagSet("family")),
+                getTagSet("family"), new ArrayList<Bill>()),
             new Person(new Name("Irfan Ibrahim"), new PersonId("I000000"),
                 new Phone("92492021"), new Email("irfan@example.com"),
                     EMPTY_REMARK,
-                getTagSet("classmates")),
+                getTagSet("classmates"), new ArrayList<Bill>()),
             new Person(new Name("Roy Balakrishnan"), new PersonId("R000000"),
                 new Phone("92624417"), new Email("royb@example.com"),
                     EMPTY_REMARK,
-                getTagSet("colleagues"))
+                getTagSet("colleagues"), new ArrayList<Bill>())
         };
     }
 
