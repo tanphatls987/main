@@ -29,14 +29,14 @@ public class CheckInCommand extends Command {
         + "Parameters: \n"
         + PREFIX_ID + "ID "
         + PREFIX_ROOMNUMBER + "ROOMNUMBER "
-        + PREFIX_TODATE + "TODATE\n"
-        + "or: "
+        + PREFIX_TODATE + "TODATE "
+        + "or "
         + PREFIX_BOOKINGID + "BOOKING_ID\n"
         + "Example: \n" + COMMAND_WORD + " "
         + PREFIX_ID + "G1231231U "
         + PREFIX_ROOMNUMBER + "101 "
-        + PREFIX_TODATE + "2020-03-14\n"
-        + "or: "
+        + PREFIX_TODATE + "2020-03-14"
+        + "or "
         + PREFIX_BOOKINGID + "BOOKING_ID";
 
     public static final String MESSAGE_SUCCESS = "Room %1$s is booked by %2$s";

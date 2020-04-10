@@ -30,7 +30,7 @@ public class CheckInByIdCommand extends CheckInCommand {
             throw new CommandException(String.format(MESSAGE_BOOKING_NOT_EXISTS, bookingId));
         }
 
-        model.checkIn((Stay) booking.get());
+        model.checkIn(new Stay(booking.get(), ""));
 
         return null;
     }

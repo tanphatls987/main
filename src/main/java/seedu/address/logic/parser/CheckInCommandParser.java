@@ -27,7 +27,7 @@ public class CheckInCommandParser implements Parser<CheckInCommand> {
      */
     public CheckInCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_ID, PREFIX_ROOMNUMBER, PREFIX_TODATE);
+            ArgumentTokenizer.tokenize(args, PREFIX_ID, PREFIX_ROOMNUMBER, PREFIX_TODATE, PREFIX_BOOKINGID);
 
         if ((!arePrefixesPresent(argMultimap, PREFIX_ID, PREFIX_ROOMNUMBER, PREFIX_TODATE)
             && !arePrefixesPresent(argMultimap, PREFIX_BOOKINGID))

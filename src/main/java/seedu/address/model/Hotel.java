@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,7 @@ import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.bill.UniqueAvailableServiceList;
 import seedu.address.model.hotel.booking.Booking;
+import seedu.address.model.hotel.booking.UniqueBookingList;
 import seedu.address.model.hotel.booking.exception.RoomBookedException;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
@@ -28,10 +30,10 @@ import seedu.address.model.timeframe.TimeFrame;
  */
 public class Hotel implements ReadOnlyHotel {
     private final UniqueRoomList roomList;
-    private final ArrayList<Booking> bookingList;
     private final ArrayList<Stay> stayList;
     private final ArrayList<Tier> tierList;
     private final UniqueAvailableServiceList availableServiceList;
+    private final UniqueBookingList bookingList;
 
     /**
      * Create new empty hotel.
@@ -39,12 +41,13 @@ public class Hotel implements ReadOnlyHotel {
     public Hotel() {
 
         tierList = new ArrayList<>();
-        bookingList = new ArrayList<>();
         stayList = new ArrayList<>();
         //non-static initialization block
         {
             roomList = new UniqueRoomList();
             availableServiceList = new UniqueAvailableServiceList();
+            bookingList = new UniqueBookingList();
+
         }
     }
 
@@ -56,7 +59,7 @@ public class Hotel implements ReadOnlyHotel {
         requireNonNull(toBeCopied);
         this.roomList.setRooms(toBeCopied.getRoomList());
         this.tierList.addAll(toBeCopied.getTierList());
-        this.bookingList.addAll(toBeCopied.getBookingList());
+        this.bookingList.setBookings(toBeCopied.getBookingList());
         this.stayList.addAll(toBeCopied.getStayList());
         this.availableServiceList.setServices(toBeCopied.getAvailableServiceList());
     }
@@ -145,7 +148,7 @@ public class Hotel implements ReadOnlyHotel {
      * Checks if {@code person} is checked into {@code room}.
      */
     public boolean isGuestCheckedIn(Person person, Room room) {
-        for (Booking b : bookingList) {
+        for (Stay b : stayList) {
             if (b.getPayee().equals(person) && b.getRoom().equals(room)) {
                 return true;
             }
@@ -164,7 +167,7 @@ public class Hotel implements ReadOnlyHotel {
      */
     @Override
     public ObservableList<Booking> getBookingList() {
-        return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList(bookingList));
+        return bookingList.asUnmodifiableObservableList();
     }
 
     /**
@@ -373,7 +376,11 @@ public class Hotel implements ReadOnlyHotel {
      * @param stay
      */
     public void checkIn(Stay stay) {
-        bookingList.removeIf(stay::isInside);
+
+        bookingList.removeIf(booking -> (
+            stay.getRoom() == booking.getRoom()
+                && stay.isInside(booking)));
+
         addStay(stay);
     }
 
@@ -420,6 +427,7 @@ public class Hotel implements ReadOnlyHotel {
             .noneMatch(u -> u.isClash(room, duration));
 
         boolean isBookingNotClash = bookingList
+            .asUnmodifiableObservableList()
             .stream()
             .filter(u -> u.getPayee() != person)
             .noneMatch(u -> u.isClash(room, duration));
@@ -432,9 +440,6 @@ public class Hotel implements ReadOnlyHotel {
     }
 
     public Optional<Booking> findBookingById(String booking) {
-        return bookingList
-            .stream()
-            .filter(u -> u.isMatchId(booking))
-            .findFirst();
+        return bookingList.findBookingById(booking);
     }
 }

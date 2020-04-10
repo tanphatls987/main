@@ -48,20 +48,30 @@
     "timeFrom" : "2020-04-07T18:19:10.169542",
     "timeTo" : "2020-12-12T12:12:12"
   }, {
+    "room" : "101",
+    "payeeName" : "Alex Yeoh",
+    "payeeId" : "A000000",
+    "uuid" : "355298ba-c97a-4f0d-9926-20680107dd7d",
+    "timeFrom" : "2020-04-11T12:00",
+    "timeTo" : "2020-04-13T12:00"
+  } ],
+  "availableServices" : [ ],
+  "stays" : [ {
     "room" : "002",
     "payeeName" : "Bernice Yu",
     "payeeId" : "B000000",
-    "uuid" : "3d80817b-359f-4e2d-80fb-a34f50428315",
+    "uuid" : "a4c85278-979b-4a84-b26e-13915ad8392d",
+    "description" : "",
     "timeFrom" : "2020-04-10T12:00",
     "timeTo" : "2020-04-12T12:00"
   }, {
-    "room" : "313",
-    "payeeName" : "Charlotte Oliveiro",
-    "payeeId" : "C000000",
-    "uuid" : "f6c14d85-8037-4a77-8eb8-118e266402e8",
-    "timeFrom" : "2020-04-10T12:00",
-    "timeTo" : "2020-04-20T12:00"
-  } ],
-  "availableServices" : [ ]
+    "room" : "006",
+    "payeeName" : "Alex Yeoh",
+    "payeeId" : "A000000",
+    "uuid" : "47ce40f4-49b8-45b1-8a51-4ad011ed3967",
+    "description" : "",
+    "timeFrom" : "2020-04-11T12:00",
+    "timeTo" : "2020-04-13T12:00"
+  } ]
 }
 
