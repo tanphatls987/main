@@ -5,10 +5,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIER;
 
+import java.util.function.Predicate;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.hotel.bill.RoomCost;
+import seedu.address.model.hotel.room.Room;
 import seedu.address.model.hotel.room.Tier;
+
+
 
 /**
  * Adds a room to hotel
@@ -62,6 +67,9 @@ public class AddRoomCommand extends Command {
         }
 
         model.addRoom(this.toAdd, tier, cost);
+        Predicate<Room> predicate = room -> room.hasName(this.toAdd);
+        model.updateFilteredRoomList(predicate);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), "room");
     }
 

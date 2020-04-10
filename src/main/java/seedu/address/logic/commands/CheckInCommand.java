@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TODATE;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -90,7 +91,9 @@ public class CheckInCommand extends Command {
 
         Stay stay = new Stay(person.get(), room.get(), LocalDateTime.now(), toDate, "");
         model.checkIn(stay);
+        Predicate<Room> predicate = thisRoom -> stay.getRoom().isSameRoom(thisRoom);
+        model.updateFilteredRoomList(predicate);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, roomId, personId));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, roomId, personId), "room");
     }
 }
