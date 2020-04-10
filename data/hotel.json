@@ -42,6 +42,12 @@
     "payeeId" : "A000000",
     "timeFrom" : "2020-12-12T12:00",
     "timeTo" : "2020-12-24T12:00"
+  }, {
+    "room" : "002",
+    "payeeName" : "Bernice Yu",
+    "payeeId" : "B000000",
+    "timeFrom" : "2020-12-12T12:00",
+    "timeTo" : "2020-12-13T12:00"
   } ],
   "availableServices" : [ ]
 }
