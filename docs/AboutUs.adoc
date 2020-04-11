@@ -42,7 +42,7 @@ image::sancharib-git.png[width="150", align="left"]
 {empty}[http://github.com/sancharib-git[github]] [<<sancharib-git#, portfolio>>]
 
 Role: Developer
-Responsibilities: Dev Ops + Threading
+Responsibilities: UI, Data
 
 '''
 
