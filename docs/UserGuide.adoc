@@ -83,6 +83,7 @@ Features can be divided into 4 groups of command
 ** `help` command shows instructions.
 ** `exit` command quits the app.
 ** `clear` command clears all entries.
+** `switch` command navigate between tabs.
 ====
 
 ====
@@ -96,6 +97,22 @@ Features can be divided into 4 groups of command
 === Viewing help : `help`
 
 Format: `help`
+
+//tag::switch[]
+=== Switch tab : `switch'
+
+Switch to and reset all filter on specified tab.
+
+Format: `switch TAB_NAME`
+
+****
+*`TAB_NAME` must be one of `welcome`, `guest`, `room`, `booking`, `service`, `bill`
+****
+
+Examples:
+* `switch guest` Switch to and reset filter on guest tab.
+
+//end::switch[]
 
 //tag::addguest[]
 === Adding a guest : `addguest`
@@ -150,19 +167,22 @@ Examples:
 === Show a list of all the guests in the hotel: `list`
 Format: `list`
 
+//tag::findguest[]
 === Locating guests by name or id: `findguest`
 Finds persons whose names or id match.
-Format: `findguest n/NAME ... n/NAME i/ID ... i/ID`
+Format: `findguest [n/NAME] ... [n/NAME] [i/ID] ... [i/ID]`
 
 ****
+* Name must be exact match
 * The order of the keywords does not matter. e.g. `n/Alice i/A10` is same as`i/A10 n/Alice`
 * Persons matching at least one keyword will be returned
 ****
 
 Examples:
 
-* `findguest n/Alice i/A10`
-Return person with name Alice or id A10
+* `findguest n/John Doe i/A10`
+Return person with name John Doe or id A10
+//end::findguest[]
 
 === Finding bookings by name, id or room number: `findbooking`
 Finds bookings whose names, id or roomnumber match.
@@ -312,6 +332,7 @@ _{explain how the user can enable/disable data encryption}_
 == Command Summary
 
 * *Help* : `help`
+* *Switch tab*: `switch TAB_NAME`
 * *Add Guest* : `addguest n/NAME i/ID p/PHONE_NUMBER e/EMAIL` +
 e.g. `addguest n/John Doe i/G1231231X p/1928310 e/johndoe@gmail.com`
 * `Add Room` : `addroom rn/ROOM_NUMBER` +

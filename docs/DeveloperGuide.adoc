@@ -93,6 +93,8 @@ image::ArchitectureComponentDiagram.png[]
 The sections below give more details of each component.
 
 [[Design-Ui]]
+
+//tag::UiCompJohnny[]
 === UI component
 
 .Structure of the UI Component
@@ -109,6 +111,14 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+* Receive command result to change view accordingly.
+
+Below is diagram for how UI extract command result for changing view.
+
+.Command work flow for MainWindow
+image::commandSwitchUi.png[]
+
+//end::UiCompJohnny[]
 [[Design-Logic]]
 === Logic component
 
@@ -183,18 +193,36 @@ The following steps show how to set up a hotel:
 2.  Add tiers using `AddTierCommand`, and attach rooms with tiers.
 
 === Search feature
-==== Implementation
-The following steps show how the search feature works:
 
-1.  The command from the user is parsed into a list of pattern contained in the search command.
-2.  The command executes and filters the guest list based on the stored given pattern.
+//tag::findguest[]
+==== FindGuestCommand
+===== Implementation
+Currently this command only support searching for full name or/and id number.
+
+The following steps show how the search guest feature works:
+
+1.  The search command from the user is parsed into a list of pattern contained in the search command.
+
+2.  The command then executes and filters the guest list based on the patterns.
+
+The diagram below show how the search command store its pattern.
+
+.Class diagram for FindGuestCommand
+image::FindGuestCommand.png[]
 
 The diagram below shows the execution of the command:
 
 .Activity Diagram of Search Feature
 image::SearchWorkflow.png[]
 
-==== Design Considerations
+===== Design Considerations
+* **Alternative 1 (current choice):** Store pattern as list of name and id.
+** Pros: Simpler to test and understand.
+** Cons: Difficult to extend the implementation.
+* **Alternative 2:** Store pattern as a combination of Predicate.
+** Pros: Easy to implement and add more complicated pattern.
+** Cons: Harder to test, more prone to error.
+//end::findguest[]
 
 === Billing feature
 
