@@ -1,0 +1,53 @@
+{
+  "rooms" : [ {
+    "tier" : "GOLD",
+    "cost" : "150.00",
+    "number" : "001"
+  }, {
+    "tier" : "SILVER",
+    "cost" : "150.00",
+    "number" : "002"
+  }, {
+    "tier" : "BRONZE",
+    "cost" : "140.00",
+    "number" : "003"
+  }, {
+    "tier" : "BRONZE",
+    "cost" : "130.00",
+    "number" : "004"
+  } ],
+  "bookings" : [ {
+    "room" : "001",
+    "payeeName" : "Alex Yeoh",
+    "payeeId" : "A000000",
+    "uuid" : "9d9a442d-bd1a-46d0-bf97-68e24e04816f",
+    "timeFrom" : "2020-12-12T12:00",
+    "timeTo" : "2020-12-12T12:00"
+  }, {
+    "room" : "002",
+    "payeeName" : "Alex Yeoh",
+    "payeeId" : "A000000",
+    "uuid" : "522dee69-32eb-4105-9eb4-181dd653ccfe",
+    "timeFrom" : "2020-12-12T12:00",
+    "timeTo" : "2020-12-13T12:00"
+  } ],
+  "availableServices" : [ ],
+  "stays" : [ {
+    "room" : "003",
+    "payeeName" : "Alex Yeoh",
+    "payeeId" : "A000000",
+    "uuid" : "ed3c424e-8301-47fa-bbe0-6ac51e88f762",
+    "description" : "",
+    "timeFrom" : "2020-04-11T19:16:12.318540",
+    "timeTo" : "2020-12-12T12:00"
+  }, {
+    "room" : "004",
+    "payeeName" : "Bernice Yu",
+    "payeeId" : "B000000",
+    "uuid" : "f4c648ba-8f84-4435-8344-adb1630d826f",
+    "description" : "",
+    "timeFrom" : "2020-04-11T20:05:41.650522",
+    "timeTo" : "2020-12-13T12:00"
+  } ]
+}
+

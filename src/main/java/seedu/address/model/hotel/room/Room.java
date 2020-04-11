@@ -1,6 +1,5 @@
 package seedu.address.model.hotel.room;
 
-import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.ids.RoomId;
 
@@ -12,8 +11,6 @@ public class Room {
     private String roomNum;
     private RoomId roomId;
     private RoomCost roomCost;
-    private Stay stay;
-
     /**
      * Create a room with name, tier & cost.
      * Create a room with name and tier.
@@ -36,7 +33,6 @@ public class Room {
     public Room(String roomNum) {
         this(roomNum, new Tier(), new RoomCost());
     }
-
 
     /**
      * RoomNum getter.
@@ -111,20 +107,6 @@ public class Room {
      */
     public void setTier(Tier tier) {
         this.roomTier = tier;
-    }
-
-    /**
-     * Sets the stay for this room
-     */
-    public void setStay(Stay stay) {
-        this.stay = stay;
-    }
-
-    /**
-     * Gets the current stay of the room
-     */
-    public Stay getStay() {
-        return stay;
     }
 
     /**
