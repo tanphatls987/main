@@ -81,7 +81,7 @@ public class ChargeServiceCommand extends Command {
             throw new CommandException(String.format(MESSAGE_NO_BOOKING, personId, roomId));
         }
 
-        model.chargeService(personId, roomId, service.get());
+        model.chargeService(roomId, service.get());
         return new CommandResult(String.format(MESSAGE_SUCCESS, serviceId, personId, roomId));
     }
 }

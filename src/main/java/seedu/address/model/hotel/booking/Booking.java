@@ -1,6 +1,7 @@
 package seedu.address.model.hotel.booking;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
@@ -14,6 +15,7 @@ public class Booking {
     protected Person payee;
     protected Room room;
     protected TimeFrame bookDuration;
+    protected UUID uuid;
 
 
     /**
@@ -26,6 +28,7 @@ public class Booking {
         this.payee = payee;
         this.room = room;
         this.bookDuration = bookDuration;
+        this.uuid = UUID.randomUUID();
     }
 
     /**
@@ -41,6 +44,24 @@ public class Booking {
         this.payee = payee;
         this.room = room;
         this.bookDuration = new TimeFrame(from, to);
+        uuid = UUID.randomUUID();
+    }
+
+    /**
+     * Create a booking with full detail.
+     * @param payee
+     * @param room
+     * @param from
+     * @param to
+     * @param uuid
+     * @throws InvalidTimeFrameException
+     */
+    public Booking(Person payee, Room room, LocalDateTime from, LocalDateTime to, String uuid)
+        throws InvalidTimeFrameException {
+        this.payee = payee;
+        this.room = room;
+        this.bookDuration = new TimeFrame(from, to);
+        this.uuid = UUID.fromString(uuid);
     }
 
     /**
@@ -142,5 +163,24 @@ public class Booking {
 
     public TimeFrame getBookDuration() {
         return bookDuration;
+    }
+
+    /**
+     * return if the booking has the same ID.
+     * Could be checked by the first 8 characters as well.
+     * @param booking
+     * @return
+     */
+    public boolean isMatchId(String booking) {
+        int len = booking.length();
+        return uuid.toString().substring(0, len).equals(booking);
+    }
+
+    public String getReadableBookingId() {
+        return uuid.toString().substring(0, 8);
+    }
+
+    public String getBookingId() {
+        return uuid.toString();
     }
 }

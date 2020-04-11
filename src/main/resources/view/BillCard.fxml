@@ -17,16 +17,15 @@
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
             <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="room" styleClass="cell_big_label" text="\$Room">
+                <Label fx:id="roomNum" styleClass="cell_big_label" text="\$room">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
             </HBox>
-            <Label fx:id="bookingId" styleClass="cell_small_label" text="\$bookingId" />
-            <Label fx:id="payee" text="\$first" styleClass="cell_big_label" />
-            <Label fx:id="duration" styleClass="cell_small_label" text="\$Duration" />
+            <Label fx:id="personId" styleClass="cell_small_label" text="\$personId"/>
+            <Label fx:id="details" styleClass="cell_small_label" text="\$details" />
         </VBox>
     </GridPane>
 </HBox>

@@ -6,9 +6,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.BookKeeper;
 import seedu.address.model.Hotel;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyBookKeeper;
 import seedu.address.model.ReadOnlyHotel;
+import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Email;
@@ -22,7 +25,7 @@ import seedu.address.model.ids.PersonId;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Morpheus} with sample data.
  */
 public class SampleDataUtil {
     public static final Remark EMPTY_REMARK = new Remark("");
@@ -75,6 +78,12 @@ public class SampleDataUtil {
         };
     }
 
+    private static Bill[] getSampleBills() {
+        return new Bill[] {
+
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
@@ -94,6 +103,14 @@ public class SampleDataUtil {
         return sampleHotel;
     }
 
+    public static ReadOnlyBookKeeper getSampleBookKeeper() {
+        BookKeeper sampleBookKeeper = new BookKeeper();
+        for (Bill samepleBill : getSampleBills()) {
+            sampleBookKeeper.addBill(samepleBill);
+        }
+        return sampleBookKeeper;
+    }
+
     /**
      * Returns a tag set containing the list of strings given.
      */
@@ -102,5 +119,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }

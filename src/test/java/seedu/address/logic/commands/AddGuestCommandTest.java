@@ -1,14 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -21,11 +19,13 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyBookKeeper;
 import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.Bill;
+import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
@@ -42,17 +42,6 @@ public class AddGuestCommandTest {
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddGuestCommand(null));
-    }
-
-    @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
-
-        CommandResult commandResult = new AddGuestCommand(validPerson).execute(modelStub);
-
-        assertEquals(String.format(AddGuestCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
 
     @Test
@@ -124,6 +113,11 @@ public class AddGuestCommandTest {
         }
 
         @Override
+        public Path getBookKeeperFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
@@ -145,6 +139,11 @@ public class AddGuestCommandTest {
 
         @Override
         public ReadOnlyHotel getHotel() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyBookKeeper getBookKeeper() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -235,12 +234,12 @@ public class AddGuestCommandTest {
 
         @Override
         public void updateFilteredServiceList(Predicate<AvailableService> predicate) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredBillList(Predicate<Bill> predicate) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -289,18 +288,8 @@ public class AddGuestCommandTest {
         }
 
         @Override
-        public void fetchBillList(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void addTier(Tier tier, ArrayList<String> roomNums) {
             throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void fetchBill(Person person, RoomId roomId) {
-            throw new AssertionError("this method should not be called.");
         }
 
         @Override
@@ -329,7 +318,12 @@ public class AddGuestCommandTest {
         }
 
         @Override
-        public void chargeService(PersonId personId, RoomId roomId, AvailableService service) {
+        public void chargeRoomCost(RoomId roomId, RoomCost roomCost, Stay stay) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void chargeService(RoomId roomId, AvailableService service) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -340,6 +334,36 @@ public class AddGuestCommandTest {
 
         @Override
         public void deleteAvailableService(AvailableServiceId id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addBill(Bill bill) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteBill(RoomId roomId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Bill> findBillList(PersonId personId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Bill> findBill(RoomId roomId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Cost getGuestBillsTotal(PersonId personId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Booking> findBookingById(String bookingId) {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -5,6 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -106,6 +108,18 @@ public class UniqueBookingList implements Iterable<Booking> {
     }
 
     /**
+     * Remove element from internal list if match with Predicate p
+     * @param p
+     */
+    public void removeIf(Predicate<Booking> p) {
+        for (Booking booking: internalList) {
+            if (p.test(booking)) {
+                internalList.remove(booking);
+            }
+        }
+    }
+
+    /**
      * Returns true if {@code bookings} contains only unique bookings.
      */
     private boolean bookingsAreUnique(List<Booking> bookings) {
@@ -117,5 +131,17 @@ public class UniqueBookingList implements Iterable<Booking> {
             }
         }
         return true;
+    }
+
+    /**
+     * Return the booking that match with the booking ID.
+     * @param booking
+     * @return
+     */
+    public Optional<Booking> findBookingById(String booking) {
+        return internalList
+            .stream()
+            .filter(u -> u.isMatchId(booking))
+            .findFirst();
     }
 }

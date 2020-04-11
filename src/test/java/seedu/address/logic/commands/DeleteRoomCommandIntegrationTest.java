@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.BookKeeper;
 import seedu.address.model.Hotel;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -21,13 +22,14 @@ public class DeleteRoomCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Hotel());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Hotel(), new BookKeeper());
     }
 
     @Test
     public void execute_success() {
         String roomName = "13E";
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getHotel());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+                model.getHotel(), model.getBookKeeper());
         expectedModel.addRoom(roomName);
         expectedModel.deleteRoom(roomName);
         model.addRoom(roomName);
@@ -39,7 +41,8 @@ public class DeleteRoomCommandIntegrationTest {
     @Test
     public void execute_roomNotFound() {
         String roomName = "13E";
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getHotel());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+                model.getHotel(), model.getBookKeeper());
 
         assertCommandFailure(new DeleteRoomCommand(roomName), model, DeleteRoomCommand.MESSAGE_ROOM_NOT_FOUND);
     }

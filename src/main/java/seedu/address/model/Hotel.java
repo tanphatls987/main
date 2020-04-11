@@ -314,8 +314,6 @@ public class Hotel implements ReadOnlyHotel {
         serviceOptional.ifPresent(availableServiceList::remove);
     }
 
-    //// util methods
-
     /**
      * adds a new tier.
      */
@@ -372,20 +370,22 @@ public class Hotel implements ReadOnlyHotel {
 
     /**
      * Check in to the hotel according to the stay details.
+     *
      * @param stay
      */
     public void checkIn(Stay stay) {
-        for (Booking booking : bookingList) {
-            if (stay.isInside(booking)) {
-                bookingList.remove(booking);
-            }
-        }
+
+        bookingList.removeIf(booking -> (
+                stay.getRoom() == booking.getRoom()
+                        && stay.isInside(booking)));
+
         addStay(stay);
         updateRoomStays();
     }
 
     /**
      * Check out the current room
+     *
      * @param room the room that wants to be checked out
      * @return
      */
@@ -402,6 +402,7 @@ public class Hotel implements ReadOnlyHotel {
 
     /**
      * Delete stay from hotel stay list.
+     *
      * @param stay
      */
     private void deleteStay(Stay stay) {
@@ -410,8 +411,9 @@ public class Hotel implements ReadOnlyHotel {
 
     /**
      * Check if room wants to be booked by this person is empty during the duration
-     * @param person person who wants to checked
-     * @param room the room that is checked
+     *
+     * @param person   person who wants to checked
+     * @param room     the room that is checked
      * @param duration the duration of the booking
      * @return
      */
@@ -454,4 +456,10 @@ public class Hotel implements ReadOnlyHotel {
             }
         }
     }
+
+    public Optional<Booking> findBookingById(String booking) {
+        return bookingList.findBookingById(booking);
+    }
 }
+
+

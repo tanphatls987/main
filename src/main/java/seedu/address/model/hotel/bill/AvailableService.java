@@ -27,7 +27,7 @@ public class AvailableService implements Chargeable {
     }
 
     /***
-     * Checks if service is same as {@code room}
+     * Checks if service is same as {@code service}
      */
     public boolean isSameService(AvailableService service) {
         if (service == this) {
@@ -65,11 +65,12 @@ public class AvailableService implements Chargeable {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getDescription())
-                .append(" ServiceId: ")
-                .append(getId())
-                .append(" Cost: ")
-                .append(getCost());
+        builder.append(getId())
+                .append(": ")
+                .append(getDescription())
+                .append(" ($")
+                .append(getCost())
+                .append(")");
         return builder.toString();
     }
 }

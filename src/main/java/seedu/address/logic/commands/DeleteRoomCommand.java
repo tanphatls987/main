@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+
+
 /**
  * Deletes a room from hotel
  */
@@ -43,7 +45,8 @@ public class DeleteRoomCommand extends Command {
         }
 
         model.deleteRoom(toDelete);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete));
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete), "room");
     }
 
     @Override

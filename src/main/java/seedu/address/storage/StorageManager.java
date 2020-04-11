@@ -8,12 +8,13 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyBookKeeper;
 import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of Morpheus data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -21,14 +22,18 @@ public class StorageManager implements Storage {
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
     private HotelStorage hotelStorage;
+    private BookKeeperStorage bookKeeperStorage;
 
 
     public StorageManager(AddressBookStorage addressBookStorage,
-                          HotelStorage hotelStorage, UserPrefsStorage userPrefsStorage) {
+                          HotelStorage hotelStorage,
+                          BookKeeperStorage bookKeeperStorage,
+                          UserPrefsStorage userPrefsStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.hotelStorage = hotelStorage;
+        this.bookKeeperStorage = bookKeeperStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -49,7 +54,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ Morpheus methods ==============================
 
     @Override
     public Path getAddressBookFilePath() {
@@ -84,6 +89,22 @@ public class StorageManager implements Storage {
     }
 
     @Override
+    public Path getBookKeeperFilePath() {
+        return bookKeeperStorage.getBookKeeperFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyBookKeeper> readBookKeeper() throws DataConversionException, IOException {
+        return readBookKeeper(bookKeeperStorage.getBookKeeperFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyBookKeeper> readBookKeeper(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return bookKeeperStorage.readBookKeeper(filePath);
+    }
+
+    @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
         saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
     }
@@ -103,6 +124,17 @@ public class StorageManager implements Storage {
     public void saveHotel(ReadOnlyHotel hotel, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         hotelStorage.saveHotel(hotel, filePath);
+    }
+
+    @Override
+    public void saveBookKeeper(ReadOnlyBookKeeper bookKeeper) throws IOException {
+        saveBookKeeper(bookKeeper, bookKeeperStorage.getBookKeeperFilePath());
+    }
+
+    @Override
+    public void saveBookKeeper(ReadOnlyBookKeeper bookKeeper, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        bookKeeperStorage.saveBookKeeper(bookKeeper, filePath);
     }
 
 }

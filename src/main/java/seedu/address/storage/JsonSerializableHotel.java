@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Hotel;
 import seedu.address.model.ReadOnlyHotel;
+import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.room.Room;
@@ -28,6 +29,7 @@ public class JsonSerializableHotel {
     private final List<JsonAdaptedRoom> rooms = new ArrayList<>();
     private final List<JsonAdaptedBooking> bookings = new ArrayList<>();
     private final List<JsonAvailableService> availableServices = new ArrayList<>();
+    private final List<JsonAdaptedStay> stays = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableHotel} with the given rooms and bookings.
@@ -35,10 +37,13 @@ public class JsonSerializableHotel {
     @JsonCreator
     public JsonSerializableHotel(@JsonProperty("rooms") List<JsonAdaptedRoom> rooms,
                                  @JsonProperty("bookings") List<JsonAdaptedBooking> bookings,
-                                 @JsonProperty("availableServices") List<JsonAvailableService> availableServices) {
+                                 @JsonProperty("availableServices") List<JsonAvailableService> availableServices,
+                                 @JsonProperty("stays") List<JsonAdaptedStay> stays) {
         this.rooms.addAll(rooms);
         this.bookings.addAll(bookings);
         this.availableServices.addAll(availableServices);
+        this.stays.addAll(stays);
+
     }
 
     /**
@@ -53,6 +58,8 @@ public class JsonSerializableHotel {
                 .map(JsonAdaptedBooking::new).collect(Collectors.toList()));
         availableServices.addAll(sourceHotel.getAvailableServiceList().stream()
                 .map(JsonAvailableService::new).collect(Collectors.toList()));
+        stays.addAll(sourceHotel.getStayList().stream()
+                .map(JsonAdaptedStay::new).collect(Collectors.toList()));
     }
 
     /**
@@ -83,6 +90,11 @@ public class JsonSerializableHotel {
             }
             hotel.addAvailableService(service);
         }
+        for (JsonAdaptedStay jsonAdaptedStay : stays) {
+            Stay stay = jsonAdaptedStay.toModelType();
+            hotel.addStay(stay);
+        }
+
         return hotel;
     }
 

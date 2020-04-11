@@ -49,7 +49,9 @@ public class CheckOutCommand extends Command {
         }
 
         if (model.checkOut(room.get())) {
-            return new CommandResult(String.format(MESSAGE_SUCCESS, roomId));
+
+            model.deleteBill(roomId);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, roomId), "room");
         } else {
             throw new CommandException(String.format(MESSAGE_ROOM_NOT_OCCUPIED, roomId));
         }
