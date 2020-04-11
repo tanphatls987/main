@@ -30,6 +30,10 @@ public class RoomCard extends UiPart<Region> {
     private Label roomNum;
     @FXML
     private Label cost;
+    @FXML
+    private Label stay;
+    @FXML
+    private Label occupancy;
 
     public RoomCard(Room room, int displayedIndex) {
         super(FXML);
@@ -43,6 +47,21 @@ public class RoomCard extends UiPart<Region> {
             cost = new Label();
         }
         cost.setText(room.getRoomCost().getCost().toString()); //getCost probably could be deleted
+        if (stay == null) {
+            stay = new Label();
+        }
+        if (occupancy == null) {
+            occupancy = new Label();
+        }
+        if (room.getStay() == null) {
+            stay.setText("No current stay");
+            occupancy.setText("free");
+            occupancy.setStyle("-fx-background-color:GREEN");
+        } else {
+            stay.setText("Current stay until: " + room.getStay().getTimeTo().toString());
+            occupancy.setText("occupied");
+            occupancy.setStyle("-fx-background-color:RED");
+        }
     }
 
     @Override

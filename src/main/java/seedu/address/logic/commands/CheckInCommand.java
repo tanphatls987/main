@@ -41,7 +41,7 @@ public class CheckInCommand extends Command {
         + "or "
         + PREFIX_BOOKINGID + "BOOKING_ID";
 
-    public static final String MESSAGE_SUCCESS = "Room %1$s is booked by %2$s";
+    public static final String MESSAGE_SUCCESS = "Checked in %2$s into room %1$s";
     public static final String MESSAGE_ROOM_OCCUPIED = "Room %1$s is occupied";
     public static final String MESSAGE_ROOM_NOT_EXISTS = "Room %1$s does not exist.";
     public static final String MESSAGE_PERSON_NOT_EXISTS = "Guest (ID: %1$s) does not exist.";
