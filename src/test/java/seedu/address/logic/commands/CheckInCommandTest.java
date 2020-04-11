@@ -439,7 +439,6 @@ public class CheckInCommandTest {
 
         @Override
         public void updateFilteredRoomList(Predicate<Room> predicate) {
-            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -492,6 +491,11 @@ public class CheckInCommandTest {
 
         @Override
         public void deleteAvailableService(AvailableServiceId id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Booking> findBookingById(String bookingId) {
             throw new AssertionError("This method should not be called.");
         }
     }

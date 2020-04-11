@@ -20,8 +20,9 @@ public class JsonAdaptedStay extends JsonAdaptedBooking {
                               @JsonProperty("payeeId") String payeeId,
                               @JsonProperty("from") String timeFrom,
                               @JsonProperty("to") String timeTo,
+                              @JsonProperty("uuid") String uuid,
                               @JsonProperty("description") String description) {
-        super(roomNum, payeeName, payeeId, timeFrom, timeTo);
+        super(roomNum, payeeName, payeeId, timeFrom, timeTo, uuid);
         this.description = description;
     }
 

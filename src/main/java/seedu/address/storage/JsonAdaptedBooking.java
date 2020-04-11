@@ -17,11 +17,12 @@ import seedu.address.model.ids.PersonId;
  */
 public class JsonAdaptedBooking {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Booking's %s field is missing!";
-    protected final String room;
-    protected final String payeeName;
-    protected final String payeeId;
-    protected final String timeFrom;
-    protected final String timeTo;
+    private final String room;
+    private final String payeeName;
+    private final String payeeId;
+    private final String timeFrom;
+    private final String timeTo;
+    private final String uuid;
 
     /**
      * Constructs a {@code JsonAdaptedBooking} with the given booking details.
@@ -31,12 +32,14 @@ public class JsonAdaptedBooking {
                               @JsonProperty("payeeName") String payeeName,
                               @JsonProperty("payeeId") String payeeId,
                               @JsonProperty("from") String timeFrom,
-                              @JsonProperty("to") String timeTo) {
+                              @JsonProperty("to") String timeTo,
+                              @JsonProperty("uuid") String uuid) {
         this.room = roomNum;
         this.payeeName = payeeName;
         this.payeeId = payeeId;
         this.timeFrom = timeFrom;
         this.timeTo = timeTo;
+        this.uuid = uuid;
     }
 
     /**
@@ -48,6 +51,7 @@ public class JsonAdaptedBooking {
         payeeId = source.getPayee().getPersonId().toString();
         timeFrom = source.getTimeFrom().toString();
         timeTo = source.getTimeTo().toString();
+        uuid = source.getBookingId();
     }
 
     /**
@@ -81,10 +85,14 @@ public class JsonAdaptedBooking {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "To"));
         }
 
+        if (uuid == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "BookingId"));
+        }
+
         final LocalDateTime modelTimeFrom = LocalDateTime.parse(timeFrom);
         final LocalDateTime modelTimeTo = LocalDateTime.parse(timeTo);
 
-        return new Booking(modelPayee, modelRoom, modelTimeFrom, modelTimeTo);
+        return new Booking(modelPayee, modelRoom, modelTimeFrom, modelTimeTo, uuid);
     }
 }
 

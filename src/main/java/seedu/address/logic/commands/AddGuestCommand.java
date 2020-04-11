@@ -7,9 +7,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.function.Predicate;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.hotel.person.Person;
+
 
 /**
  * Adds a person to the address book.
@@ -60,7 +63,10 @@ public class AddGuestCommand extends Command {
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        Predicate<Person> personPredicate = person -> person.getPersonId().equals(this.toAdd.getPersonId());
+        model.updateFilteredPersonList(personPredicate);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), "guest");
     }
 
     @Override

@@ -21,6 +21,11 @@ public class Stay extends Booking {
         this.description = description;
     }
 
+    public Stay(Booking booking, String description) {
+        super(booking.getPayee(), booking.getRoom(), booking.getBookDuration());
+        this.description = description;
+    }
+
     public String getDescription() {
         return description;
     }

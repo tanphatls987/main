@@ -61,6 +61,6 @@ public class AddServiceCommand extends Command {
         }
 
         model.addAvailableService(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, description, id));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, description, id), "service");
     }
 }
