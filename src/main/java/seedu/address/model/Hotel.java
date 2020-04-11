@@ -137,10 +137,10 @@ public class Hotel implements ReadOnlyHotel {
         requireNonNull(room);
 
         return stayList
-                .stream()
-                .filter(u -> u.isCorrectRoom(room))
-                .filter(u -> u.isCurrentlyClash(room))
-                .findFirst();
+            .stream()
+            .filter(u -> u.isCorrectRoom(room))
+            .filter(u -> u.isCurrentlyClash(room))
+            .findFirst();
     }
 
     /**
@@ -156,7 +156,6 @@ public class Hotel implements ReadOnlyHotel {
         return false;
     }
 
-    /**Returns observable list of tiers*/
     @Override
     public ObservableList<Tier> getTierList() {
         return FXCollections.observableArrayList(tierList);
@@ -191,9 +190,9 @@ public class Hotel implements ReadOnlyHotel {
      */
     public Optional<Room> findRoomWithRoomId(RoomId roomId) {
         return roomList.asUnmodifiableObservableList()
-                .stream()
-                .filter(u -> u.getRoomId().equals(roomId))
-                .findFirst();
+            .stream()
+            .filter(u -> u.getRoomId().equals(roomId))
+            .findFirst();
     }
 
     /**
@@ -204,10 +203,10 @@ public class Hotel implements ReadOnlyHotel {
      */
     public Optional<Room> getRoom(RoomId roomNum) {
         return roomList
-                .asUnmodifiableObservableList()
-                .stream()
-                .filter(u -> u.getRoomNum().equals(roomNum.toString()))
-                .findFirst();
+            .asUnmodifiableObservableList()
+            .stream()
+            .filter(u -> u.getRoomNum().equals(roomNum.toString()))
+            .findFirst();
     }
 
     /**
@@ -215,10 +214,10 @@ public class Hotel implements ReadOnlyHotel {
      */
     public Optional<AvailableService> getAvailableService(AvailableServiceId id) {
         return availableServiceList
-                .asUnmodifiableObservableList()
-                .stream()
-                .filter(service -> service.getId().equals(id))
-                .findFirst();
+            .asUnmodifiableObservableList()
+            .stream()
+            .filter(service -> service.getId().equals(id))
+            .findFirst();
     }
 
     /**
@@ -337,9 +336,9 @@ public class Hotel implements ReadOnlyHotel {
      */
     public Optional<AvailableService> findServiceWithId(AvailableServiceId serviceId) {
         return availableServiceList.asUnmodifiableObservableList()
-                .stream()
-                .filter(u -> u.getId().equals(serviceId))
-                .findFirst();
+            .stream()
+            .filter(u -> u.getId().equals(serviceId))
+            .findFirst();
     }
 
     //// util methods
@@ -357,7 +356,7 @@ public class Hotel implements ReadOnlyHotel {
 
         if (other instanceof Hotel) {
             return this.roomList.equals(((Hotel) other).roomList)
-                    && this.bookingList.equals(((Hotel) other).bookingList);
+                && this.bookingList.equals(((Hotel) other).bookingList);
         }
 
 
@@ -371,22 +370,19 @@ public class Hotel implements ReadOnlyHotel {
 
     /**
      * Check in to the hotel according to the stay details.
-     *
      * @param stay
      */
     public void checkIn(Stay stay) {
 
         bookingList.removeIf(booking -> (
-                stay.getRoom() == booking.getRoom()
-                        && stay.isInside(booking)));
+            stay.getRoom() == booking.getRoom()
+                && stay.isInside(booking)));
 
         addStay(stay);
-        updateRoomStays();
     }
 
     /**
      * Check out the current room
-     *
      * @param room the room that wants to be checked out
      * @return
      */
@@ -403,7 +399,6 @@ public class Hotel implements ReadOnlyHotel {
 
     /**
      * Delete stay from hotel stay list.
-     *
      * @param stay
      */
     private void deleteStay(Stay stay) {
@@ -412,9 +407,8 @@ public class Hotel implements ReadOnlyHotel {
 
     /**
      * Check if room wants to be booked by this person is empty during the duration
-     *
-     * @param person   person who wants to checked
-     * @param room     the room that is checked
+     * @param person person who wants to checked
+     * @param room the room that is checked
      * @param duration the duration of the booking
      * @return
      */
@@ -426,14 +420,14 @@ public class Hotel implements ReadOnlyHotel {
         //timeframe create successfully mean no bogus duration
 
         boolean isRoomCurrentlyEmpty = stayList
-                .stream()
-                .noneMatch(u -> u.isClash(room, duration));
+            .stream()
+            .noneMatch(u -> u.isClash(room, duration));
 
         boolean isBookingNotClash = bookingList
-                .asUnmodifiableObservableList()
-                .stream()
-                .filter(u -> u.getPayee() != person)
-                .noneMatch(u -> u.isClash(room, duration));
+            .asUnmodifiableObservableList()
+            .stream()
+            .filter(u -> u.getPayee() != person)
+            .noneMatch(u -> u.isClash(room, duration));
 
         return isRoomCurrentlyEmpty && isBookingNotClash;
     }
@@ -442,25 +436,7 @@ public class Hotel implements ReadOnlyHotel {
         stayList.add(stay);
     }
 
-    /**
-     * Goes through stay list and sets
-     * the current stay for each room
-     */
-    public void updateRoomStays() {
-        for (Stay stay : stayList) {
-            for (Room room : roomList) {
-                if (stay.getRoom().equals(room)) {
-                    Room newRoom = new Room(room);
-                    newRoom.setStay(stay);
-                    roomList.setRoom(room, newRoom);
-                }
-            }
-        }
-    }
-
     public Optional<Booking> findBookingById(String booking) {
         return bookingList.findBookingById(booking);
     }
 }
-
-

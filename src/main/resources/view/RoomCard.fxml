@@ -26,10 +26,8 @@
                 </Label>
                 <Label fx:id="roomNum" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="occupancy" styleClass="occupancy" />
             <Label fx:id="tier" styleClass="cell_small_label" text="\$Tier" />
             <Label fx:id="cost" styleClass="cell_small_label" text="\$cost" />
-            <Label fx:id="stay" styleClass="cell_small_label" text="\$stay" />
         </VBox>
     </GridPane>
 </HBox>
