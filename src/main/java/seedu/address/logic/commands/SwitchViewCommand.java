@@ -10,10 +10,10 @@ import seedu.address.model.Model;
 public class SwitchViewCommand extends Command {
     public static final String COMMAND_WORD = "switch";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " : "
-        + "Switch to a select tab\n"
+        + "Switch to and reset filter on a selected tab\n"
         + "Parameter: "
-        + "TAB_NAME" + " "
-        + "(One of {welcome, guest, room, booking, service})\n"
+        + "TAB_NAME"
+        + "(One of {welcome, guest, room, booking, service, bill})\n"
         + "Example: " + COMMAND_WORD + " " + "welcome";
 
     private final String uiView;
@@ -42,6 +42,9 @@ public class SwitchViewCommand extends Command {
             break;
         case "service" :
             model.updateFilteredServiceList(u -> true);
+            break;
+        case "bill":
+            model.updateFilteredBillList(u -> true);
             break;
         default:
             throw new CommandException("Not a valid tab name");
