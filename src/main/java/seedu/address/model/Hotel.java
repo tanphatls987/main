@@ -454,7 +454,6 @@ public class Hotel implements ReadOnlyHotel {
             for (Room room : roomList) {
                 if (stay.getRoom().getRoomNum().equals(room.getRoomNum())) {
                     room.setStay(stay);
-                    System.out.println("this room has stay: " + room.getStay());
                 }
             }
         }
