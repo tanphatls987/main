@@ -1,0 +1,11 @@
+{
+  "rooms" : [ {
+    "tier" : "GOLD",
+    "cost" : "150.00",
+    "number" : "001"
+  } ],
+  "bookings" : [ ],
+  "availableServices" : [ ],
+  "stays" : [ ]
+}
+
