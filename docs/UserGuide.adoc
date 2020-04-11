@@ -98,6 +98,7 @@ Features can be divided into 4 groups of command
 
 Format: `help`
 
+//tag::switch[]
 === Switch tab : `switch'
 
 Switch to and reset all filter on specified tab.
@@ -110,6 +111,8 @@ Format: `switch TAB_NAME`
 
 Examples:
 * `switch guest` Switch to and reset filter on guest tab.
+
+//end::switch[]
 
 //tag::addguest[]
 === Adding a guest : `addguest`
@@ -164,6 +167,7 @@ Examples:
 === Show a list of all the guests in the hotel: `list`
 Format: `list`
 
+//tag::findguest[]
 === Locating guests by name or id: `findguest`
 Finds persons whose names or id match.
 Format: `findguest [n/NAME] ... [n/NAME] [i/ID] ... [i/ID]`
@@ -178,6 +182,7 @@ Examples:
 
 * `findguest n/John Doe i/A10`
 Return person with name John Doe or id A10
+//end::findguest[]
 
 === Finding bookings by name, id or room number: `findbooking`
 Finds bookings whose names, id or roomnumber match.

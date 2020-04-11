@@ -1,0 +1,59 @@
+= Tran Tan Phat - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets
+
+== PROJECT: Morpheus
+
+---
+
+== Overview
+
+Morpheus is a desktop application used for hotel management. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 15 kLoC.
+
+== Summary of contributions
+
+* *Major enhancement*: added *the ability to show and switch between tabs*
+** What it does: allows the user to quickly navigate between tabs.
+** Justification: This feature improves the product significantly because a user need to work with multiple type of data and the app should provide a convenient way to traverse between them.
+** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation was challenging as existed implementation only accounted for 1 tab.
+
+* *Minor enhancement*: modify old search command to accommodate new needs.
+* *Code contributed*: [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=tanphatls987&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=false[Functional code]]
+
+* *Other contributions*:
+
+** Project management:
+*** Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
+** Enhancements to existing features:
+*** Updated the GUI (Pull requests https://github.com/AY1920S2-CS2103T-W13-2/main/pull/69[#69])
+*** Wrote additional tests for existing features(Pull requests https://github.com/AY1920S2-CS2103T-W13-2/main/pull/181[#181])
+** Documentation:
+*** Document for implementation: https://github.com/AY1920S2-CS2103T-W13-2/main/pull/92[#92], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/232[#232]
+** Community:
+*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W13-2/main/pull/71[#71], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/85[#85]
+*** Reported bugs and suggestions for other teams in the class (examples: https://github.com/tanphatls987/ped/issues/3[1],
+    https://github.com/tanphatls987/ped/issues/2[2], https://github.com/tanphatls987/ped/issues/1[3])
+
+
+== Contributions to the User Guide
+
+
+|===
+|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|===
+
+include::../UserGuide.adoc[tag=switch]
+
+include::../UserGuide.adoc[tag=findguest]
+
+
+== Contributions to the Developer Guide
+
+|===
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
+
+include::../DeveloperGuide.adoc[tag=UiCompJohnny]
+include::../DeveloperGuide.adoc[tag=findguest]
+

@@ -93,6 +93,8 @@ image::ArchitectureComponentDiagram.png[]
 The sections below give more details of each component.
 
 [[Design-Ui]]
+
+//tag::UiCompJohnny[]
 === UI component
 
 .Structure of the UI Component
@@ -109,6 +111,14 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+* Receive command result to change view accordingly.
+
+Below is diagram for how UI extract command result for changing view.
+
+.Command work flow for MainWindow
+image::commandSwitchUi.png[]
+
+//end::UiCompJohnny[]
 [[Design-Logic]]
 === Logic component
 
@@ -184,6 +194,7 @@ The following steps show how to set up a hotel:
 
 === Search feature
 
+//tag::findguest[]
 ==== FindGuestCommand
 ===== Implementation
 Currently this command only support searching for full name or/and id number.
@@ -196,6 +207,7 @@ The following steps show how the search guest feature works:
 
 The diagram below show how the search command store its pattern.
 
+.Class diagram for FindGuestCommand
 image::FindGuestCommand.png[]
 
 The diagram below shows the execution of the command:
@@ -210,7 +222,7 @@ image::SearchWorkflow.png[]
 * **Alternative 2:** Store pattern as a combination of Predicate.
 ** Pros: Easy to implement and add more complicated pattern.
 ** Cons: Harder to test, more prone to error.
-
+//end::findguest[]
 
 === Billing feature
 
