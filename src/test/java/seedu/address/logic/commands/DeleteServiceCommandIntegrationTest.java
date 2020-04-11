@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.BookKeeper;
 import seedu.address.model.Hotel;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -24,7 +25,7 @@ public class DeleteServiceCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Hotel());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Hotel(), new BookKeeper());
     }
 
     @Test
@@ -34,7 +35,8 @@ public class DeleteServiceCommandIntegrationTest {
         Cost cost = new Cost("100.00");
         AvailableService service = new AvailableService(description, cost, id);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getHotel());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+                model.getHotel(), model.getBookKeeper());
         expectedModel.addAvailableService(service);
         expectedModel.deleteAvailableService(id);
         model.addAvailableService(service);
@@ -50,7 +52,8 @@ public class DeleteServiceCommandIntegrationTest {
         Cost cost = new Cost("100.00");
         AvailableService service = new AvailableService(description, cost, id);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getHotel());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+                model.getHotel(), model.getBookKeeper());
         expectedModel.addAvailableService(service);
         expectedModel.deleteAvailableService(id);
 

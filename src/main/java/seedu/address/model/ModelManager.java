@@ -16,6 +16,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.Bill;
+import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
@@ -40,11 +41,13 @@ public class ModelManager implements Model {
     private final FilteredList<AvailableService> filteredServices;
     private final FilteredList<Bill> filteredBills;
     private final Hotel hotel;
+    private final BookKeeper bookKeeper;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyHotel hotel) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyHotel hotel, ReadOnlyBookKeeper bookKeeper) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -53,19 +56,20 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.hotel = new Hotel(hotel);
+        this.bookKeeper = new BookKeeper(bookKeeper);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredBookings = new FilteredList<>(this.hotel.getBookingList());
         filteredRooms = new FilteredList<>(this.hotel.getRoomList());
         filteredServices = new FilteredList<>(this.hotel.getAvailableServiceList());
-        filteredBills = null;
+        filteredBills = new FilteredList<>(this.bookKeeper.getBillList());
     }
 
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        this(addressBook, userPrefs, new Hotel());
+        this(addressBook, userPrefs, new Hotel(), new BookKeeper());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new Hotel());
+        this(new AddressBook(), new UserPrefs(), new Hotel(), new BookKeeper());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -100,6 +104,11 @@ public class ModelManager implements Model {
     @Override
     public Path getHotelFilePath() {
         return userPrefs.getHotelFilePath();
+    }
+
+    @Override
+    public Path getBookKeeperFilePath() {
+        return userPrefs.getBookKeeperFilePath();
     }
 
     @Override
@@ -220,7 +229,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredBillList(Predicate<Bill> predicate) {
-        requireNonNull(predicate);
+        requireAllNonNull(predicate);
         filteredBills.setPredicate(predicate);
     }
 
@@ -388,6 +397,11 @@ public class ModelManager implements Model {
     //=========== Billing System =============================================================================
 
     @Override
+    public ReadOnlyBookKeeper getBookKeeper() {
+        return bookKeeper;
+    }
+
+    @Override
     public void setRoomCost(Room room, RoomCost roomCost) {
         requireAllNonNull(room, roomCost);
         room.setCost(roomCost);
@@ -406,21 +420,45 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void chargeService(PersonId personId, RoomId roomId, AvailableService service) {
-        requireAllNonNull(personId, roomId, service);
-        addressBook.findPersonWithId(personId).get().addToBill(roomId, service);
+    public void chargeRoomCost(RoomId roomId, RoomCost roomCost, Stay stay) {
+        requireAllNonNull(roomId, roomCost, stay);
+        bookKeeper.chargeRoomCostToBill(roomId, roomCost, stay);
     }
 
-    // to update accordingly when implementing billing system.
     @Override
-    public void fetchBillList(Person person) {
-        requireNonNull(person);
+    public void chargeService(RoomId roomId, AvailableService service) {
+        requireAllNonNull(roomId, service);
+        bookKeeper.chargeServiceToBill(roomId, service);
     }
 
-    // to update accordingly when implementing billing system.
     @Override
-    public void fetchBill(Person person, RoomId roomNum) {
-        requireAllNonNull(person, roomNum);
+    public void addBill(Bill bill) {
+        requireNonNull(bill);
+        bookKeeper.addBill(bill);
+    }
+
+    @Override
+    public void deleteBill(RoomId roomId) {
+        requireNonNull(roomId);
+        bookKeeper.deleteBill(roomId);
+    }
+
+    @Override
+    public ObservableList<Bill> findBillList(PersonId personId) {
+        requireNonNull(personId);
+        return bookKeeper.getBills(personId);
+    }
+
+    @Override
+    public Optional<Bill> findBill(RoomId roomId) {
+        requireNonNull(roomId);
+        return bookKeeper.getBill(roomId);
+    }
+
+    @Override
+    public Cost getGuestBillsTotal(PersonId personId) {
+        requireNonNull(personId);
+        return bookKeeper.getGuestBillsTotal(personId);
     }
 
     @Override

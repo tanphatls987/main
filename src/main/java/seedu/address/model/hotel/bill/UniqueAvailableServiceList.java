@@ -10,15 +10,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.hotel.bill.exceptions.DuplicateServiceException;
 import seedu.address.model.hotel.bill.exceptions.ServiceNotFoundException;
-import seedu.address.model.hotel.room.UniqueRoomList;
 
 /**
  * A list of AVAILABLESERVICES that enforces uniqueness between its elements and does not allow nulls.
- * A room is considered unique by comparing using {@code AvailableService#isSameService(AvailableService)}. As such,
+ * A service is considered unique by comparing using {@code AvailableService#isSameService(AvailableService)}. As such,
  * adding and updating of services uses AvailableService#isSameService(AvailableService) for equality so as to ensure
- * that the room being added or updated is unique in terms of serviceId in the UniqueRoomList. However, the removal
- * of a service uses AvailableService#equals(Object) so as to ensure that the person with exactly the same fields
- * will be removed.
+ * that the service being added or updated is unique in terms of serviceId in the UniqueAvailableServiceList. However,
+ * the removal of a service uses AvailableService#equals(Object) so as to ensure that the service with exactly the same
+ * fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -53,7 +52,7 @@ public class UniqueAvailableServiceList implements Iterable<AvailableService> {
     /**
      * Replaces the service {@code target} in the list with {@code editedService}.
      * {@code target} must exist in the list.
-     * The room identity of {@code editedService} must not be the same as another existing service in the list.
+     * The service identity of {@code editedService} must not be the same as another existing service in the list.
      */
     public void setService(AvailableService target, AvailableService editedService) {
         requireAllNonNull(target, editedService);
@@ -118,7 +117,7 @@ public class UniqueAvailableServiceList implements Iterable<AvailableService> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueRoomList // instanceof handles nulls
+                || (other instanceof UniqueAvailableServiceList // instanceof handles nulls
                 && internalList.equals(((UniqueAvailableServiceList) other).internalList));
     }
 

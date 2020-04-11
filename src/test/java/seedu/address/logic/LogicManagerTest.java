@@ -21,6 +21,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonBookKeeperStorage;
 import seedu.address.storage.JsonHotelStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -39,8 +40,11 @@ public class LogicManagerTest {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonHotelStorage hotelStorage = new JsonHotelStorage((temporaryFolder).resolve("hotel.json"));
+        JsonBookKeeperStorage bookKeeperStorage = new JsonBookKeeperStorage((temporaryFolder)
+                .resolve("bookkeeper.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, hotelStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(addressBookStorage, hotelStorage,
+                bookKeeperStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
