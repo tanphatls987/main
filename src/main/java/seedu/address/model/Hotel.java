@@ -314,8 +314,6 @@ public class Hotel implements ReadOnlyHotel {
         serviceOptional.ifPresent(availableServiceList::remove);
     }
 
-    //// util methods
-
     /**
      * adds a new tier.
      */

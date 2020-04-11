@@ -71,7 +71,7 @@ Features can be divided into 4 groups of command
 ** `checkin` and `checkout` command receives and returns customers.
 ** `chargeservice` command charges customers for getting services.
 ** `reserve` command makes a reservation.
-** `bill` command fetches the bill of a guest.
+** `fetchbill` command fetches the bill of a guest.
 
 * Statistical commands
 
@@ -178,10 +178,10 @@ Examples:
 * `findbooking n/Alice rn/001`
 Returns booking of ALICE or at room 001.
 
-=== Fetching the bill of a guest : `bill`
+=== Fetching the bill of a guest : `fetchbill`
 
 Retrieves the bill of a guest. +
-Format: `bill i/ID [rn/ROOM_NUMBER]`
+Format: `fetchbill i/ID [rn/ROOM_NUMBER]`
 
 ****
 * Fetches the entire bill tied to a guest's name.
@@ -189,7 +189,7 @@ Format: `bill i/ID [rn/ROOM_NUMBER]`
 
 Examples:
 
-* `bill  i/G1231231X` +
+* `fetchbill  i/G1231231X` +
 Shows the bill for guest with ID G1231231X's stay up till present moment.
 
 === Charging a service : `chargeservice`
@@ -327,8 +327,8 @@ e.g. `checkout rn/101`
 * *List* : `list`
 * *Find Guest* : `findguest n/NAME …​ n/NAME i/ID …​ i/ID` +
 e.g. `findguest n/Alice i/A10`
-* *Fetch Bill* : `bill i/ID [rn/ROOM_NUMBER]` +
-e.g. `bill i/G1231231X`
+* *Fetch Bill* : `fetchbill i/ID [rn/ROOM_NUMBER]` +
+e.g. `fetchbill i/G1231231X`
 * *Charge Service* : `chargeservice i/PERSON_ID rn/ROOM_NUMBER si/SERVICE_ID` +
 e.g. `chargeservice i/G1231231X rn/100 si/WC`
 * *Make Reservation* : `reserve i/ID rn/ROOM_NUMBER df/FROM_DATE dt/TO_DATE` +

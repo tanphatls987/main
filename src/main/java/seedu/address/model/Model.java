@@ -11,6 +11,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.Bill;
+import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
@@ -37,6 +38,11 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Room> PREDICATE_SHOW_ALL_ROOMS = unused -> true;
+
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
+    Predicate<Bill> PREDICATE_SHOW_ALL_BILLS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -69,6 +75,11 @@ public interface Model {
     Path getHotelFilePath();
 
     /**
+     * Returns the user prefs' book keeper file path
+     */
+    Path getBookKeeperFilePath();
+
+    /**
      * Sets the user prefs' address book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
@@ -83,6 +94,9 @@ public interface Model {
 
     /** Returns the Hotel*/
     ReadOnlyHotel getHotel();
+
+    /** Returns the BookKeeper*/
+    ReadOnlyBookKeeper getBookKeeper();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -163,8 +177,7 @@ public interface Model {
     void updateFilteredServiceList(Predicate<AvailableService> predicate);
 
     /**
-     * Updates the filter of the filtered bill list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
+     * Updates the filter of the filtered service list to filter by the given {@code predicate}.
      */
     void updateFilteredBillList(Predicate<Bill> predicate);
 
@@ -180,9 +193,6 @@ public interface Model {
 
     /** Returns list of bookings */
     ObservableList<Booking> getBookingList();
-
-
-
 
     Optional<Booking> getCurrentStay(Room room);
 
@@ -215,11 +225,30 @@ public interface Model {
 
     void deleteBooking(Booking booking);
 
-    /** Returns list of bills for specified person*/
-    void fetchBillList(Person person);
+    /**
+     * Adds {@code bill} to the bookkeeper.
+     */
+    void addBill(Bill bill);
 
-    /** Returns bill for specified room of person */
-    void fetchBill(Person person, RoomId roomId);
+    /**
+     * Deletes {@code bill} from the bookkeeper.
+     */
+    void deleteBill(RoomId roomId);
+
+    /**
+     * Returns the list of bills for specified personId.
+     */
+    ObservableList<Bill> findBillList(PersonId personId);
+
+    /**
+     * Returns the bill for the specified roomId.
+     */
+    Optional<Bill> findBill(RoomId roomId);
+
+    /**
+     * Returns the total cost of all bills belonging to specified personId.
+     */
+    Cost getGuestBillsTotal(PersonId personId);
 
     /**
      * Add a room with roomName
@@ -272,9 +301,14 @@ public interface Model {
     Optional<AvailableService> findService(AvailableServiceId serviceId);
 
     /**
-     * Charges a service to the bill of a guest.
+     * Charges the room cost to the bill of the corresponding room number.
      */
-    void chargeService(PersonId personId, RoomId roomId, AvailableService service);
+    void chargeRoomCost(RoomId roomId, RoomCost roomCost, Stay stay);
+
+    /**
+     * Charges a service to the bill of the corresponding room number.
+     */
+    void chargeService(RoomId roomId, AvailableService service);
 
     /**
      * deletes a room from hotel

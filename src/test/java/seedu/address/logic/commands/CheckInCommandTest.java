@@ -23,11 +23,13 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Hotel;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyBookKeeper;
 import seedu.address.model.ReadOnlyHotel;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.Bill;
+import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
@@ -184,6 +186,11 @@ public class CheckInCommandTest {
         }
 
         @Override
+        public Path getBookKeeperFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
@@ -275,6 +282,7 @@ public class CheckInCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+
         @Override
         public void bookRoom(Booking booking) {
             requireNonNull(booking);
@@ -312,6 +320,11 @@ public class CheckInCommandTest {
         //=========== Billing System =============================================================================
 
         @Override
+        public ReadOnlyBookKeeper getBookKeeper() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setRoomCost(Room room, RoomCost roomCost) {
             throw new AssertionError("This method should not be called.");
         }
@@ -322,18 +335,33 @@ public class CheckInCommandTest {
         }
 
         @Override
-        public void chargeService(PersonId personId, RoomId roomId, AvailableService service) {
+        public void chargeRoomCost(RoomId roomId, RoomCost roomCost, Stay stay) {
+
+        }
+
+        @Override
+        public void chargeService(RoomId roomId, AvailableService service) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void fetchBillList(Person person) {
+        public void addBill(Bill bill) {
+
+        }
+
+        @Override
+        public void deleteBill(RoomId roomId) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void fetchBill(Person person, RoomId roomId) {
+        public ObservableList<Bill> findBillList(PersonId personId) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Bill> findBill(RoomId roomId) {
+            return Optional.empty();
         }
 
         @Override
@@ -351,6 +379,10 @@ public class CheckInCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public Cost getGuestBillsTotal(PersonId personId) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     private class ModelStubWithRoomsAndPerson extends ModelStub {

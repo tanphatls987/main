@@ -8,7 +8,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyBookKeeper;
 import seedu.address.model.ReadOnlyHotel;
+import seedu.address.model.hotel.bill.Bill;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
@@ -40,6 +42,13 @@ public interface Logic {
      */
     ReadOnlyHotel getHotel();
 
+    /**
+     * Returns the BookKeeper.
+     *
+     * @see seedu.address.model.Model#getBookKeeper()
+     */
+    ReadOnlyBookKeeper getBookKeeper();
+
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
@@ -58,6 +67,11 @@ public interface Logic {
      * Returns an unmodifiable view of the room list.
      */
     ObservableList<Room> getFilteredRoomList();
+
+    /**
+     * Returns an unmodifiable view of the bill list.
+     */
+    ObservableList<Bill> getFilteredBillList();
 
     /**
      * Returns the user prefs' address book file path.
