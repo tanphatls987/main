@@ -37,15 +37,6 @@ public class Room {
         this(roomNum, new Tier(), new RoomCost());
     }
 
-    /**
-     * Construct a room with attributes of @param other
-     */
-    public Room(Room room) {
-        this.roomTier = room.getTier();
-        this.roomNum = room.getRoomNum();
-        this.roomId = room.getRoomId();
-        this.roomCost = room.getRoomCost();
-    }
 
     /**
      * RoomNum getter.

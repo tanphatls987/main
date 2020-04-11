@@ -48,6 +48,7 @@ public class Hotel implements ReadOnlyHotel {
             bookingList = new UniqueBookingList();
 
         }
+        updateRoomStays();
     }
 
     /**
@@ -61,6 +62,7 @@ public class Hotel implements ReadOnlyHotel {
         this.bookingList.setBookings(toBeCopied.getBookingList());
         this.stayList.addAll(toBeCopied.getStayList());
         this.availableServiceList.setServices(toBeCopied.getAvailableServiceList());
+        updateRoomStays();
     }
 
     //// room-level operations
@@ -398,6 +400,7 @@ public class Hotel implements ReadOnlyHotel {
         }
 
         deleteStay(stay.get());
+        room.setStay(null);
         return true;
     }
 
@@ -449,10 +452,9 @@ public class Hotel implements ReadOnlyHotel {
     public void updateRoomStays() {
         for (Stay stay : stayList) {
             for (Room room : roomList) {
-                if (stay.getRoom().equals(room)) {
-                    Room newRoom = new Room(room);
-                    newRoom.setStay(stay);
-                    roomList.setRoom(room, newRoom);
+                if (stay.getRoom().getRoomNum().equals(room.getRoomNum())) {
+                    room.setStay(stay);
+
                 }
             }
         }
