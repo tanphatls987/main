@@ -19,11 +19,14 @@ public class DeleteRoomCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteroom";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a room from Morpheus.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a room from Morpheus by ROOM_ID"
+            + ", or  index number used in the displayed person list or a person\n"
             + "Parameters: "
             + PREFIX_ROOMNUMBER + "ROOM_NUM\n"
+            + "or Parameters: Index INDEX (must be a positive integer)"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ROOMNUMBER + "12E";
+            + PREFIX_ROOMNUMBER + "12E\n"
+            + "Example: " + COMMAND_WORD + " 0";
 
     public static final String MESSAGE_SUCCESS = "Room %1$s has been deleted.";
     public static final String MESSAGE_ROOM_NOT_FOUND = "There is no such room.";
