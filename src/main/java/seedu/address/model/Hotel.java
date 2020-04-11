@@ -156,6 +156,7 @@ public class Hotel implements ReadOnlyHotel {
         return false;
     }
 
+    /**Returns observable list of tiers*/
     @Override
     public ObservableList<Tier> getTierList() {
         return FXCollections.observableArrayList(tierList);
