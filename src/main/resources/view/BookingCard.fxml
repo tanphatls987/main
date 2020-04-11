@@ -24,6 +24,7 @@
                     </minWidth>
                 </Label>
             </HBox>
+            <Label fx:id="bookingId" styleClass="cell_small_label" text="\$bookingId" />
             <Label fx:id="payee" text="\$first" styleClass="cell_big_label" />
             <Label fx:id="duration" styleClass="cell_small_label" text="\$Duration" />
         </VBox>

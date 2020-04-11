@@ -375,11 +375,11 @@ public class Hotel implements ReadOnlyHotel {
      * @param stay
      */
     public void checkIn(Stay stay) {
-        for (Booking booking : bookingList) {
-            if (stay.isInside(booking)) {
-                bookingList.remove(booking);
-            }
-        }
+
+        bookingList.removeIf(booking -> (
+            stay.getRoom() == booking.getRoom()
+                && stay.isInside(booking)));
+
         addStay(stay);
     }
 
@@ -438,4 +438,7 @@ public class Hotel implements ReadOnlyHotel {
         stayList.add(stay);
     }
 
+    public Optional<Booking> findBookingById(String booking) {
+        return bookingList.findBookingById(booking);
+    }
 }
