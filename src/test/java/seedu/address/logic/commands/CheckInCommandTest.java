@@ -29,7 +29,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.Bill;
-import seedu.address.model.hotel.bill.Chargeable;
 import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
@@ -336,8 +335,13 @@ public class CheckInCommandTest {
         }
 
         @Override
-        public void chargeService(RoomId roomId, Chargeable service) {
+        public void chargeRoomCost(RoomId roomId, RoomCost roomCost, Stay stay) {
 
+        }
+
+        @Override
+        public void chargeService(RoomId roomId, AvailableService service) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

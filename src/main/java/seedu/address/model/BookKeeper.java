@@ -8,9 +8,11 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.hotel.Stay;
+import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.Bill;
-import seedu.address.model.hotel.bill.Chargeable;
 import seedu.address.model.hotel.bill.Cost;
+import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.bill.UniqueBillList;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
@@ -79,16 +81,30 @@ public class BookKeeper implements ReadOnlyBookKeeper {
     }
 
     /**
+     * Charges {@code roomCost} to the bill of {@code roomId}.
+     */
+    public void chargeRoomCostToBill(RoomId roomId, RoomCost roomCost, Stay stay) {
+        Bill bill = bills.asUnmodifiableObservableList()
+                .stream()
+                .filter(b -> b.getRoomId().equals(roomId))
+                .findFirst()
+                .get();
+
+        bill.addRoomCost(roomCost, stay);
+    }
+
+
+    /**
      * Charges {@code service} to the bill of {@code roomId}.
      */
-    public void chargeServiceToBill(RoomId roomId, Chargeable chargeable) {
+    public void chargeServiceToBill(RoomId roomId, AvailableService service) {
         Bill bill = bills.asUnmodifiableObservableList()
             .stream()
             .filter(b -> b.getRoomId().equals(roomId))
             .findFirst()
             .get();
 
-        bill.addChargeable(chargeable);
+        bill.addService(service);
     }
 
     /**

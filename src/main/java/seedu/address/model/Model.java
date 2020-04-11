@@ -11,7 +11,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
 import seedu.address.model.hotel.bill.Bill;
-import seedu.address.model.hotel.bill.Chargeable;
 import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.bill.RoomCost;
 import seedu.address.model.hotel.booking.Booking;
@@ -302,9 +301,14 @@ public interface Model {
     Optional<AvailableService> findService(AvailableServiceId serviceId);
 
     /**
+     * Charges the room cost to the bill of the corresponding room number.
+     */
+    void chargeRoomCost(RoomId roomId, RoomCost roomCost, Stay stay);
+
+    /**
      * Charges a service to the bill of the corresponding room number.
      */
-    void chargeService(RoomId roomId, Chargeable service);
+    void chargeService(RoomId roomId, AvailableService service);
 
     /**
      * deletes a room from hotel

@@ -91,7 +91,7 @@ public class CheckInCommand extends Command {
             model.addBill(new Bill(personId, roomId));
         }
 
-        model.chargeService(roomId, room.get().getRoomCost());
+        model.chargeRoomCost(roomId, room.get().getRoomCost(), stay);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, roomId, personId));
     }

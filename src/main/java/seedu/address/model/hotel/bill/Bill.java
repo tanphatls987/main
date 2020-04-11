@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.hotel.Stay;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 
@@ -39,11 +40,21 @@ public class Bill {
     }
 
     /**
-     * Adds {@code chargeable} to the stored list of chargeable objects.
+     * Adds {@code roomCost} to the stored list of chargeable objects.
      */
-    public void addChargeable(Chargeable chargeable) {
-        charges.add(chargeable);
-        billTotal += chargeable.getCost().getCostAsDouble();
+    public void addRoomCost(RoomCost roomCost, Stay stay) {
+        charges.add(roomCost);
+        long daysOfStay = stay.getBookDuration().getDays();
+
+        billTotal += roomCost.getCostAsDouble() * daysOfStay;
+    }
+
+    /**
+     * Adds {@code service} to the stored list of chargeable objects.
+     */
+    public void addService(AvailableService service) {
+        charges.add(service);
+        billTotal += service.getCost().getCostAsDouble();
     }
 
     /**
@@ -88,7 +99,7 @@ public class Bill {
 
         for (Chargeable charge : charges) {
             if (charge instanceof RoomCost) {
-                builder.append("- Room Cost ($" + charge + ")\n");
+                builder.append("- Room Cost ($" + charge + " per night)\n");
             } else {
                 builder.append("- " + charge + "\n");
             }
