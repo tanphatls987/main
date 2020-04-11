@@ -19,7 +19,7 @@ By: `AY1920S2-CS2103T-W13-2`      Since: `Jan 2020`      Licence: `MIT`
 == Introduction
 Hello there!
 
-Morpheus is for hotel receptionists like you who prefer to use a desktop app for hotel room management.
+**Morpheus** is for **hotel receptionists** like you who prefer to use a **desktop app** for hotel room management.
 
 Tired of searching through rows and columns in books or excel spreadsheets? Morpheus has got you covered with our intuitive user interface!
 
@@ -32,7 +32,20 @@ Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
 This user guide gives you an overview of the features of Morpheus. With the help of given examples, you will be able to learn how to use the application to help manage the rooms and services in the hotel.
 
+=== How to navigate this document
+* _This section shows you how to read and understand this document._
+
+Any text in `markup` suggests that you may enter it as a command in the app.
+
+****
+* This shows important information to take note of!
+****
+
+A link like link:{repoURL}[this] will take you to the link destination when clicked.
+
+
 == Quick Start
+* _This section will show you how to get started with using Morpheus!_
 
 .  Ensure you have Java `11` or above installed in your Computer.
 .  Download the latest `main.jar` link:{repoURL}/releases[here].
@@ -54,6 +67,8 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 [[Features]]
 == Features
+* _This section highlights the features of Morpheus._
+
 ====
 *Overview*
 
@@ -94,12 +109,12 @@ Features can be divided into 4 groups of command
 * Parameters can be in any order e.g. if the command specifies `n/NAME rn/ROOM_NUMBER`, `rn/ROOM_NUMBER n/NAME` is also acceptable.
 ====
 
-=== Viewing help : `help`
+=== If you would like to get help : `help`
 
 Format: `help`
 
 //tag::switch[]
-=== Switch tab : `switch'
+=== If you want to switch between tabs : `switch`
 
 Switch to and reset all filter on specified tab.
 
@@ -115,7 +130,7 @@ Examples:
 //end::switch[]
 
 //tag::addguest[]
-=== Adding a guest : `addguest`
+=== If you want to add a guest : `addguest`
 
 Create a guest in the hotel list. +
 Format: `addguest n/NAME i/ID p/PHONE_NUMBER e/EMAIL [t/TAG]...`
@@ -127,7 +142,7 @@ Add John Doe with his information into the database.
 * `addguest n/Sallly Smith i/G1231232X p/512685123 e/sallysmith@gmail.com t/VIP`
 //end::addguest[]
 
-=== Adding a room : `addroom`
+=== If you want to add a room : `addroom`
 
 Create a room in the hotel list. +
 Format: `addroom rn/ROOM_NUMBER`
@@ -137,7 +152,7 @@ Examples:
 Add Room 101 into the database.
 
 
-=== Deleting a room : `deleteroom`
+=== If you want to delete a room : `deleteroom`
 
 Deletes a room in the hotel list. +
 Format: `deleteroom rn/ROOM_NUMBER`
@@ -146,7 +161,7 @@ Examples:
 * `deleteroom rn/101`
 Deletes Room 101 into the database.
 
-=== Checking in a guest: `checkin`
+=== If you want to check-in a guest: `checkin`
 
 Checks in a guest to the hotel from the current date until the TO_DATE +
 Format: `checkin i/ID rn/ROOM_NUMBER td/TO_DATE`
@@ -155,7 +170,7 @@ Examples:
 
 * `checkin i/G1231231X rn/101 td/2020-03-14`
 
-=== Checking out a guest: `checkout`
+=== If you want to check-out a guest: `checkout`
 
 Checks out a guest from the hotel +
 Format: `checkout rn/ROOM_NUMBER`
@@ -164,11 +179,11 @@ Examples:
 
 * `checkout rn/101`
 
-=== Show a list of all the guests in the hotel: `list`
+=== If you want to show a list of all the guests in the hotel: `list`
 Format: `list`
 
 //tag::findguest[]
-=== Locating guests by name or id: `findguest`
+=== If you want to locate guests by name or id: `findguest`
 Finds persons whose names or id match.
 Format: `findguest [n/NAME] ... [n/NAME] [i/ID] ... [i/ID]`
 
@@ -184,7 +199,7 @@ Examples:
 Return person with name John Doe or id A10
 //end::findguest[]
 
-=== Finding bookings by name, id or room number: `findbooking`
+=== If you want to find bookings by name, id or room number: `findbooking`
 Finds bookings whose names, id or roomnumber match.
 Format: `findbooking n/NAME ... n/NAME i/ID ... i/ID rn/ROOM_NUMBER ... rn/ROOM_NUMBER`
 
@@ -198,7 +213,7 @@ Examples:
 * `findbooking n/Alice rn/001`
 Returns booking of ALICE or at room 001.
 
-=== Fetching the bill of a guest : `fetchbill`
+=== If you want to fetch the bill of a guest : `fetchbill`
 
 Retrieves the bill of a guest. +
 Format: `fetchbill i/ID [rn/ROOM_NUMBER]`
@@ -212,7 +227,7 @@ Examples:
 * `fetchbill  i/G1231231X` +
 Shows the bill for guest with ID G1231231X's stay up till present moment.
 
-=== Charging a service : `chargeservice`
+=== If you need to charge a service : `chargeservice`
 
 Charges a service to the guest's tab. +
 Format: `chargeservice i/PERSON_ID rn/ROOM_NUMBER si/SERVICE_ID`
@@ -225,7 +240,7 @@ Examples:
 
 * `chargeservice i/G1231231X rn/100 si/WC`
 
-=== Making a reservation : `reserve`
+=== If you want to make a reservation : `reserve`
 
 Makes a reservation for a guest in the hotel +
 Format: `reserve i/ID rn/ROOM_NUMBER fd/FROM_DATE td/TO_DATE`
@@ -238,9 +253,9 @@ Examples:
 
 * `reserve i/G1231231X rn/102 fd/ 2020-12-12 td/ 2020-12-30`
 
-=== Locating the room of a guest : `getroom`
+=== If you want to locate the room of a guest : `getroom`
 
-Retrieves the room number of the guest. +
+The command `getroom` retrieves the room number of the guest. +
 Format: `getroom i/ID`
 
 ****
@@ -253,7 +268,7 @@ Examples:
 
 * `getroom i/G1231231X`
 
-=== Add a new room : `addroom`
+=== If you want to add a new room : `addroom`
 
 Add a new room with the corresponding tier and cost. +
 Format: `addroom rn/ROOM_NUMBER c/COST t/Tier`
@@ -263,7 +278,7 @@ Examples:
 * `addroom rn/101 c/150.00 t/GOLD` +
 Add a gold tier room 101 with the price of $150.00
 
-=== Adding a tier: `addtier`
+=== If you want to add a tier to a room: `addtier`
 
 Add a tier and set this tier to certain rooms +
 Format: `addtier ti/TIER_NAME rn/ROOM_NUMBERS`
@@ -272,7 +287,7 @@ Examples:
 
 * `addtier ti/Gold rn/12E 12F 12T`.
 
-=== Adding an available service: `addservice`
+=== If you want to add an available service: `addservice`
 
 Add an available service with id, cost, and description
 Format: `addservice si/SERVICE_ID d/DESCRIPTION c/COST`
@@ -281,7 +296,7 @@ Examples:
 * `addservice si/WC d/Wash clothes c/100.00`
 Adds a service with id WC, description Wash clothes and costs 100.00.
 
-=== Adding an available service: `deleteservice`
+=== If you want to delete an available service: `deleteservice`
 
 Delete an available service with id
 Format: `deleteservice si/SERVICE_ID`
@@ -290,7 +305,7 @@ Examples:
 * `deleteservice si/WC`
 Deletes a service with service id WC.
 
-=== Setting the cost for a room : `setrcost`
+=== If you want to set the cost for a room : `setrcost`
 
 Sets the cost for a room (per night). +
 Format: `setrcost rn/ROOM_NUMBER c/COST`
@@ -303,12 +318,12 @@ Examples:
 
 * `setrcost  rn/101 c/50`
 
-=== Clearing all entries : `clear`
+=== If you need to clear all entries : `clear`
 
 Clears all entries from Morpheus. +
 Format: `clear`
 
-=== Exiting the program : `exit`
+=== To exit the program : `exit`
 
 Exits the program. +
 Format: `exit`
@@ -318,11 +333,6 @@ Format: `exit`
 The data of Morpheus is saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
-// tag::dataencryption[]
-=== Encrypting data files `[coming in v2.0]`
-
-_{explain how the user can enable/disable data encryption}_
-// end::dataencryption[]
 
 == FAQ
 

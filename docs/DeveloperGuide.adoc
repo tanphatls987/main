@@ -45,13 +45,17 @@ Refer to the guide <<SettingUp#, here>>.
 image::OverallArchitecture.png[]
 
 The *_Architecture Diagram_* given above explains the high-level design of the App.
-*Morpheus* closely follows the **Command Result ** pattern of software.
-This is a quick representation of how the Command Result pattern works:
+
+*Morpheus* closely follows the **Command Pattern ** design of software. +
+This is a quick representation of how the Command Pattern works: +
 _Client -> Invoker -> CommandQueue -> ExecuteCommand_
+
+In this case, the client is the application which creates and adds a command object to the invoker.
+The invoker then executes the command objects.
 
 Given below is a quick overview of the components in the architecture of the software.
 
-<<Design-Main,*`Main`*>> has two classes called link:{repoURL}/src/main/java/seedu/address/Main.java[`Main`] and link:{repoURL}/src/main/java/seedu/address/MainApp.java[`MainApp`]. It is responsible for,
+<<Design-Main,*`Main`*>> has two classes called link:{repoURL}/src/main/java/seedu/address/Main.java[`Main`] and link:{repoURL}/src/main/java/seedu/address/MainApp.java[`MainApp`]. It is responsible for:
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup method where necessary.
@@ -189,8 +193,25 @@ This section describes some noteworthy details on how certain features are imple
 === Hotel initialization
 The following steps show how to set up a hotel:
 
-1.  Add rooms using `AddRoomCommand` to add rooms with names.
-2.  Add tiers using `AddTierCommand`, and attach rooms with tiers.
+==== AddGuestCommand
+===== Implementation
+This command adds a guest into the hotel using their name, guest ID, phone and email.
+
+The following steps show how the add guest feature works:
+
+1. The `addguest` command entered by the user is parsed and the different fields are tokenized.
+
+2. The command is then executed by creating a new Guest object using the fields entered and adding the guest object into the Hotel.
+
+==== AddRoomCommand
+===== Implementation
+This command adds a room into the hotel using the room number, tier and the cost of the room.
+
+The following steps show how the add room feature works:
+
+1. The `addroom` command entered by the user is parsed and the different fields are tokenized.
+
+2. A new room object is created using the tokenized arguments and it is added into the hotel.
 
 === Search feature
 
@@ -386,7 +407,6 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`*` |receptionist |call rooms directly |notify guests easily
 |=======================================================================
 
-_{More to be added}_
 
 [appendix]
 == Use Cases
@@ -452,7 +472,6 @@ Use case ends.
 +
 Use case resumes at step 1.
 
-_{More to be added}_
 
 [appendix]
 == Non Functional Requirements
@@ -473,22 +492,6 @@ Windows, Linux, Unix, OS-X
 [[private-contact-detail]] Private contact detail::
 A contact detail that is not meant to be shared with others
 
-[appendix]
-== Product Survey
-
-*Product Name*
-
-Author: ...
-
-Pros:
-
-* ...
-* ...
-
-Cons:
-
-* ...
-* ...
 
 [appendix]
 == Instructions for Manual Testing
@@ -511,8 +514,6 @@ These instructions only provide a starting point for testers to work on; testers
 .. Resize the window to an optimum size. Move the window to a different location. Close the window.
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
-
-_{ more test cases ... }_
 
 === Deleting a person
 
@@ -545,8 +546,17 @@ _{ more test cases ... }_
 .. Test case: `reserve i/i000000 rn/001 fd/2020-12-12 td/2020-12-24` +
     Expected: Room number `001` is reserved by person `I000000` from `2020-12-12` to `2020-12-24`
 .. Test case: `reserve i/B000000 rn/001 fd/2020-12-13 td/2020-12-23` +
-    Expected: There is a clash in booking dates for the same room. Error details shown in the status message.
+    Expected: There is a clash in booking dates for the same room. Error details shown in the result display box.
 .. Test case: `reserve i/Bzagda rn/001 fd/2020-12-13 td/2020-12-23`
     Expected: No such person found. No booking made. Error details shown in the status message.
+
+=== Checking in and out guests
+. Dealing with invalid check-ins and check-outs
+
+.. Prerequisites: List all bookings by using the command `switch booking`
+.. Test case: `checkin i/i000000 rn/001 td/2020-12-24` +
+    Expected: Guest `i000000` is checked into room `001`
+.. Test case: `checkin i/B000000 rn/5602 td/2020-12-23` +
+    Expected: There is no such room. Error message shown in result display box.
 
 
