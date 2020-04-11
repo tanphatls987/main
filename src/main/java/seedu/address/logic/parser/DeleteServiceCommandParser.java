@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICEID;
 
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteServiceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ids.AvailableServiceId;
@@ -23,15 +24,21 @@ public class DeleteServiceCommandParser implements Parser<DeleteServiceCommand> 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_SERVICEID);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_SERVICEID)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            DeleteServiceCommand.MESSAGE_USAGE)
-            );
+        if (isAnyPrefixPresent(argMultimap, PREFIX_SERVICEID)) {
+            String id = argMultimap.getValue(PREFIX_SERVICEID).get();
+            return new DeleteServiceCommand(new AvailableServiceId(id));
+        } else {
+            try {
+                Index index = ParserUtil.parseIndex(args);
+                return new DeleteServiceCommand(index);
+            } catch (ParseException e) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                DeleteServiceCommand.MESSAGE_USAGE)
+                );
+            }
         }
-        String id = argMultimap.getValue(PREFIX_SERVICEID).get();
-        return new DeleteServiceCommand(new AvailableServiceId(id));
+
     }
 
     /**
@@ -41,4 +48,8 @@ public class DeleteServiceCommandParser implements Parser<DeleteServiceCommand> 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
+    private boolean isAnyPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    };
 }

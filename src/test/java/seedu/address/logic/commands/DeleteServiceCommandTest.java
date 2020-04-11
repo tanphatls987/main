@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,11 +10,6 @@ import seedu.address.model.ids.AvailableServiceId;
  * Tests for DeleteServiceCommand
  */
 public class DeleteServiceCommandTest {
-
-    @Test
-    public void construct_nullPtr() {
-        assertThrows(NullPointerException.class, () -> new DeleteServiceCommand(null));
-    }
 
     @Test
     public void equals() {

@@ -20,7 +20,7 @@ public class DeleteRoomCommand extends Command {
     public static final String COMMAND_WORD = "deleteroom";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a room from Morpheus by ROOM_ID"
-            + ", or  index number used in the displayed person list or a person\n"
+            + ", or  index number used in the displayed room list\n"
             + "Parameters: "
             + PREFIX_ROOMNUMBER + "ROOM_NUM\n"
             + "or Parameters: Index INDEX (must be a positive integer)"
