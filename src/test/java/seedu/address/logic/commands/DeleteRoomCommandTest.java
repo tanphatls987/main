@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,11 +11,6 @@ import seedu.address.model.hotel.room.Room;
  * Tests for DeleteRoomCommand
  */
 public class DeleteRoomCommandTest {
-
-    @Test
-    public void construct_nullPtr() {
-        assertThrows(NullPointerException.class, () -> new DeleteRoomCommand(null));
-    }
 
     @Test
     public void equals() {
