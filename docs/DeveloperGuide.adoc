@@ -37,7 +37,7 @@ The intended audience is the developers, designers and software testers who wish
 Refer to the guide <<SettingUp#, here>>.
 
 == Design
-
+//tag::Architecture[]
 [[Design-Architecture]]
 === Architecture
 
@@ -52,6 +52,7 @@ _Client -> Invoker -> CommandQueue -> ExecuteCommand_
 
 In this case, the client is the application which creates and adds a command object to the invoker.
 The invoker then executes the command objects.
+//end::Architecture[]
 
 Given below is a quick overview of the components in the architecture of the software.
 
@@ -494,6 +495,7 @@ A contact detail that is not meant to be shared with others
 
 
 [appendix]
+//tag::Testing[]
 == Instructions for Manual Testing
 
 Given below are instructions to test the app manually.
@@ -558,5 +560,5 @@ These instructions only provide a starting point for testers to work on; testers
     Expected: Guest `i000000` is checked into room `001`
 .. Test case: `checkin i/B000000 rn/5602 td/2020-12-23` +
     Expected: There is no such room. Error message shown in result display box.
-
+//end::Testing[]
 
