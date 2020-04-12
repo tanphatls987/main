@@ -214,6 +214,16 @@ The following steps show how the add room feature works:
 
 2. A new room object is created using the tokenized arguments and it is added into the hotel.
 
+==== AddService Command
+===== Implementation
+
+The following steps show how the AddService command is implemented:
+
+1.  The command from user is parsed and undergoes checks for the validity of the `SERVICE_ID`, `COST` and `DESCRIPTION`.
+2.  If the parameters are valid, `AddServiceCommand#execute(Model model)` is invoked, which checks if the service id exists.
+3.  If the service id does not exist, a `AvailableService` object is created and `Model#add(AvailableService service) is called to add an available service to hotel.
+
+
 === Search feature
 
 //tag::findguest[]
@@ -285,8 +295,7 @@ image::SetRoomCostSequenceDiagram.png[]
 ** Pros: Easy to implement.
 ** Cons: Might limit the relationship between the rooms and their costs.
 
-==== AddService Command
-===== Implementation
+
 ===== Design Considerations
 
 ==== ChargeService Command Implementation
