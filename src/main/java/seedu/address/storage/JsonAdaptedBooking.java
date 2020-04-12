@@ -70,7 +70,7 @@ public class JsonAdaptedBooking {
 
         Optional<Room> optionalRoom = hotel.getRoom(room);
         if (optionalRoom.isEmpty()) {
-           throw new IllegalValueException(String.format(MISSING_ROOM_MESSAGE_FORMAT, room));
+            throw new IllegalValueException(String.format(MISSING_ROOM_MESSAGE_FORMAT, room));
         }
         final Room modelRoom = optionalRoom.get();
 

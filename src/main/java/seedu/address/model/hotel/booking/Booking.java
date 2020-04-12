@@ -1,7 +1,6 @@
 package seedu.address.model.hotel.booking;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 import java.util.UUID;
 
 import seedu.address.model.hotel.person.Person;
