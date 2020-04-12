@@ -191,7 +191,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-=== Hotel initialization
+=== Hotel Initialization
 The following steps show how to set up a hotel:
 
 ==== AddGuestCommand
@@ -214,6 +214,7 @@ The following steps show how the add room feature works:
 
 2. A new room object is created using the tokenized arguments and it is added into the hotel.
 
+[[Initialization-AddService]]
 ==== AddService Command
 ===== Implementation
 
@@ -256,20 +257,19 @@ image::SearchWorkflow.png[]
 ** Cons: Harder to test, more prone to error.
 //end::findguest[]
 
-=== Billing feature
+=== Billing System
 
-The billing feature is designed to aid hotel receptionists in their bookkeeping and consists of the following operations:
+The billing system is designed to aid hotel receptionists in their bookkeeping and consists of the following operations:
 
 * `SetRoomCostCommand` -- Sets the cost of a room.
 * `AddServiceCommand` -- Creates a chargeable service.
 * `ChargeServiceCommand` -- Charges a guest for a requested service.
 * `RemoveChargedServiceCommand` -- Removes a charged service from the bill of a guest.
-* `ApplyDiscountCommand` -- Applies a discount to an item on the bill.
 * `FetchBillCommand` -- Fetches the bill of a guest, including the cost of the room.
 
 The following activity diagram summarizes the usage of the billing feature:
 
-.Activity Diagram of Billing Feature
+.Activity Diagram of Billing System
 image::BillingActivityDiagram.png[]
 
 ==== SetRoomCost Command
@@ -295,23 +295,34 @@ image::SetRoomCostSequenceDiagram.png[]
 ** Pros: Easy to implement.
 ** Cons: Might limit the relationship between the rooms and their costs.
 
+==== AddService Command
 
-===== Design Considerations
+(See <<Initialization-AddService>>)
 
 ==== ChargeService Command Implementation
 ===== Implementation
+
+The following steps show how the ChargeService command is implemented:
+
+1.  The command from the user is parsed and undergoes checks for the validity of the given `ROOMNUMBER` and `COST`.
+2.  If the parameters are valid, `SetRoomCommand#execute(Model model)` is invoked, which checks if the given room exists.
+3.  If the room exists, a `RoomCost` object is created and `Model#setRoomCost(Room room, RoomCost roomCost)` is called to set the cost of the room by setting the 'roomCost' attribute of the `Room` object.
+
+
 ===== Design Considerations
 
 ==== RemoveChargedService Command Implementation
 ===== Implementation
-===== Design Considerations
 
-==== ApplyDiscount Command Implementation
-===== Implementation
+The following steps show how the ChargeService command is implemented:
+
 ===== Design Considerations
 
 ==== FetchBill Command Implementation
 ===== Implementation
+
+The following steps show how the ChargeService command is implemented:
+
 ===== Design Considerations
 
 
