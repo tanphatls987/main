@@ -41,7 +41,7 @@ public class SwitchViewCommand extends Command {
             model.updateFilteredRoomList(u -> true);
             break;
         case "booking" :
-            model.updateFilteredPersonList(u -> true);
+            model.updateFilteredBookingList(u -> true);
             break;
         case "service" :
             model.updateFilteredServiceList(u -> true);
