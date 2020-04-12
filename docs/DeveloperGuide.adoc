@@ -17,7 +17,6 @@ endif::[]
 By: `AY1920S2-CS2103T-W13-2`      Since: `Feb 2020`      Licence: `MIT`
 
 == Introduction
-
 === Product Description
 
 Morpheus is a desktop application that aims to facilitate the administrative work of hotel services as a hotel room management system.
@@ -29,8 +28,8 @@ image::Ui.png[]
 
 === Purpose
 
-This document describes the architecture and software design of Morpheus.
-The intended audience is the developers, designers and software testers who wish to understand, maintain & upgrade the desktop application.
+This *Developer Guide* describes the architecture and software design of Morpheus.
+The intended audience is the *developers, designers and software testers* who wish to understand, maintain & upgrade the desktop application.
 
 == Setting up
 
@@ -274,7 +273,7 @@ image::BillingActivityDiagram.png[]
 
 ==== SetRoomCost Command
 
-This section goes through the implementation and design considerations of the SetRoomCost command.
+This section goes through the implementation and design considerations of the `SetRoomCost` command.
 
 ===== Implementation
 
@@ -286,9 +285,9 @@ The following steps show how the command is implemented:
 4.  `Room##setCost(RoomCost roomcost)` is then invoked to set the cost of the room by setting the 'roomCost' attribute of the `Room` object.
 6.  If successful, a `CommandResult` object is created to show a success message in the feedback box of the ui.
 
-The sequence diagram below illustrates how the SetRoomCost command works:
+The sequence diagram below illustrates how the `SetRoomCost` command works with the input `setrcost rn/001 c/50`:
 
-.Sequence Diagram of SetRooomCost Command
+.Sequence Diagram of `SetRooomCost` Command
 image::SetRoomCostSequenceDiagram.png[]
 
 ===== Design Considerations
@@ -308,7 +307,7 @@ The command is also a Hotel Initialization feature and is hence covered above in
 
 ==== ChargeService Command
 
-This section goes through the implementation and design considerations of the ChargeService command.
+This section goes through the implementation and design considerations of the `ChargeService` command.
 
 ===== Implementation
 
@@ -321,9 +320,9 @@ The following steps show how the command is implemented:
 5.  The service is added to stored list of chargeable objects in the bill and its cost is added to the stored total in the bill.
 6.  If successful, a `CommandResult` object is created to show a success message in the feedback box of the ui.
 
-The sequence diagram below illustrates how the ChargeService command works:
+The sequence diagram below illustrates how the `ChargeService` command works:
 
-.Sequence Diagram of ChargeService Command
+.Sequence Diagram of `ChargeService` Command
 image::ChargeServiceSequenceDiagram.png[]
 
 ===== Design Considerations
@@ -339,7 +338,7 @@ Below describes ideas that were considered when designing the command.
 
 ==== DeleteChargedService Command
 
-This section goes through the implementation and design considerations of the DeleteChargedService command.
+This section goes through the implementation and design considerations of the `DeleteChargedService` command.
 
 ===== Implementation
 
@@ -352,9 +351,9 @@ The following steps show how the command is implemented:
 5.  The service is removed from the stored list of chargeable objects in the bill and its cost is subtracted from the stored total in the bill.
 6.  If successful, a `CommandResult` object is created to show a success message in the feedback box of the ui.
 
-The sequence diagram below illustrates how the RemoveChargedService command works:
+The sequence diagram below illustrates how the `DeleteChargedService` command works:
 
-.Sequence Diagram of RemoveChargedService Command
+.Sequence Diagram of `DeleteChargedService` Command
 image::RemoveChargedServiceSequenceDiagram.png[]
 
 ===== Design Considerations
@@ -370,7 +369,7 @@ Below describes ideas that were considered when designing the command.
 
 ==== FetchBill Command
 
-This section goes through the implementation and design considerations of the FetchBill command.
+This section goes through the implementation and design considerations of the `FetchBill` command.
 
 ===== Implementation
 
@@ -393,7 +392,7 @@ a.  `Model#getGuestBillsTotal(PersonId personId)` is called to get the total of 
 b.  `Model#updateFilteredBillList(Predicate predicate)` is then called to update the bill tab to show all the bills belonging to the guest.
 c.  If successful, a `CommandResult` object is created to show a success message in the feedback box of the ui.
 
-The sequence diagram below illustrates how the FetchBill command works:
+The sequence diagram below illustrates how the `FetchBill` command works:
 
 .Sequence Diagram of RemoveChargedService Command
 image::RemoveChargedServiceSequenceDiagram.png[]
