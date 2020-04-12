@@ -71,7 +71,7 @@
     "room" : "002",
     "payeeName" : "Bernice Yu",
     "payeeId" : "B000000",
-    "uuid" : "96e9696a-6808-4489-af7e-ccab0ba1204b",
+    "uuid" : "d4f5b645-49df-4563-b6cc-4cadbf4742df",
     "description" : "",
     "timeFrom" : "2020-04-10T12:00",
     "timeTo" : "2020-04-12T12:00"
@@ -79,9 +79,17 @@
     "room" : "006",
     "payeeName" : "Alex Yeoh",
     "payeeId" : "A000000",
-    "uuid" : "f43b8226-355c-400c-86d4-206d499cb73f",
+    "uuid" : "a131f03f-809d-4d9b-b645-614d5c1cf620",
     "description" : "",
     "timeFrom" : "2020-04-11T12:00",
+    "timeTo" : "2020-04-13T12:00"
+  }, {
+    "room" : "101",
+    "payeeName" : "Alex Yeoh",
+    "payeeId" : "A000000",
+    "uuid" : "9f6b3acf-ecb4-4249-b908-f1b14b54d239",
+    "description" : "",
+    "timeFrom" : "2020-04-12T19:20:05.516054",
     "timeTo" : "2020-04-13T12:00"
   } ]
 }
