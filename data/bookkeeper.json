@@ -2,9 +2,19 @@
   "bills" : [ {
     "personId" : "A000000",
     "roomId" : "001",
-    "total" : "36600.00",
-    "charged" : [ ],
+    "total" : "4660.00",
+    "charged" : [ {
+      "description" : "Wash Clothes",
+      "id" : "WC",
+      "cost" : "10.00"
+    } ],
     "roomCost" : "150.00"
+  }, {
+    "personId" : "B000000",
+    "roomId" : "002",
+    "total" : "600.00",
+    "charged" : [ ],
+    "roomCost" : "100.00"
   } ]
 }
 
