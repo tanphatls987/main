@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.Hotel;
 import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.booking.Booking;
 
@@ -34,8 +35,8 @@ public class JsonAdaptedStay extends JsonAdaptedBooking {
     /**
      * Constructs a Stay
      */
-    public Stay toModelType() throws IllegalValueException {
-        Booking booking = super.toModelType();
+    public Stay toModelType(Hotel hotel) throws IllegalValueException {
+        Booking booking = super.toModelType(hotel);
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "description"));
         }

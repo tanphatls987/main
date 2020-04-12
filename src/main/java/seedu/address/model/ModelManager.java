@@ -55,7 +55,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.hotel = new Hotel(hotel);
+        this.hotel = new Hotel(hotel, this.addressBook);
         this.bookKeeper = new BookKeeper(bookKeeper);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredBookings = new FilteredList<>(this.hotel.getBookingList());

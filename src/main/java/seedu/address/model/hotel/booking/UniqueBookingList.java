@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.AddressBook;
 import seedu.address.model.hotel.booking.exception.BookingNotFoundException;
 import seedu.address.model.hotel.booking.exception.RoomBookedException;
 
@@ -62,13 +63,16 @@ public class UniqueBookingList implements Iterable<Booking> {
      * Replaces the contents of this list with {@code bookings}.
      * {@code bookings} must not contain duplicate bookings.
      */
-    public void setBookings(List<Booking> bookings) {
+    public void setBookings(List<Booking> bookings, AddressBook addressBook) {
         requireAllNonNull(bookings);
         if (!bookingsAreUnique(bookings)) {
             throw new RoomBookedException();
         }
 
         internalList.setAll(bookings);
+        for (Booking booking: internalList) {
+            booking.setPayee(addressBook.findPersonWithId(booking.getPayee().getPersonId()).get());
+        }
     }
 
     /**
