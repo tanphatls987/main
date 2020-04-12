@@ -204,6 +204,11 @@ The following steps show how the add guest feature works:
 
 2. The command is then executed by creating a new Guest object using the fields entered and adding the guest object into the Hotel.
 
+The diagram below shows the class diagram for AddGuestCommand.
+
+.Class diagram for AddGuestCommand
+image::AddGuestClass.png[]
+
 ==== AddRoomCommand
 ===== Implementation
 This command adds a room into the hotel using the room number, tier and the cost of the room.
@@ -214,15 +219,44 @@ The following steps show how the add room feature works:
 
 2. A new room object is created using the tokenized arguments and it is added into the hotel.
 
+The diagram below shows the class diagram for AddRoomCommand
+
+.Class diagram for AddRoomCommand
+image::AddRoomClassDiagram.png[]
+
 ==== AddService Command
 ===== Implementation
-
 The following steps show how the AddService command is implemented:
 
 1.  The command from user is parsed and undergoes checks for the validity of the `SERVICE_ID`, `COST` and `DESCRIPTION`.
 2.  If the parameters are valid, `AddServiceCommand#execute(Model model)` is invoked, which checks if the service id exists.
 3.  If the service id does not exist, a `AvailableService` object is created and `Model#add(AvailableService service) is called to add an available service to hotel.
 
+The diagram below shows the class diagram for AddServiceCommand
+
+.Class diagram for AddServiceCommand
+image::AddServiceClass.png[]
+
+The Diagram below shows the general activity sequence of the initialization feature.
+.Activity Diagram of Hotel Initialization
+image::AddCommandDiagram.png[]
+
+=== Service feature
+
+==== Reserve Command
+===== Implementation
+This command makes a reservation under the specified guest's name for the specified duration.
+
+The following steps show how the Reserve command is implemented.
+
+1. The command from the user is tokenized and parsed.
+2. `ReserveCommand#execute(Model model)` is invoked which checks if guest ID, room ID exists in the database and if there are any clashes with other bookings.
+3. A new Booking object is created and added into the hotel database.
+
+==== Checkin Command
+===== Implementation
+
+==== Checkout Command
 
 === Search feature
 
