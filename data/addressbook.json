@@ -5,7 +5,7 @@
     "phone" : "87438807",
     "email" : "alexyeoh@example.com",
     "remark" : "",
-    "tagged" : [ "friends" ],
+    "tagged" : [ "VIP" ],
     "billed" : [ ]
   }, {
     "name" : "Bernice Yu",
@@ -13,7 +13,7 @@
     "phone" : "99272758",
     "email" : "berniceyu@example.com",
     "remark" : "",
-    "tagged" : [ "colleagues", "friends" ],
+    "tagged" : [ "VIP" ],
     "billed" : [ ]
   }, {
     "name" : "Charlotte Oliveiro",
@@ -21,7 +21,7 @@
     "phone" : "93210283",
     "email" : "charlotte@example.com",
     "remark" : "",
-    "tagged" : [ "neighbours" ],
+    "tagged" : [ "Member" ],
     "billed" : [ ]
   }, {
     "name" : "David Li",
@@ -29,7 +29,7 @@
     "phone" : "91031282",
     "email" : "lidavid@example.com",
     "remark" : "",
-    "tagged" : [ "family" ],
+    "tagged" : [ "Member" ],
     "billed" : [ ]
   }, {
     "name" : "Irfan Ibrahim",
@@ -37,7 +37,7 @@
     "phone" : "92492021",
     "email" : "irfan@example.com",
     "remark" : "",
-    "tagged" : [ "classmates" ],
+    "tagged" : [ "VIP" ],
     "billed" : [ ]
   }, {
     "name" : "Roy Balakrishnan",
@@ -45,7 +45,7 @@
     "phone" : "92624417",
     "email" : "royb@example.com",
     "remark" : "",
-    "tagged" : [ "colleagues" ],
+    "tagged" : [ "Friend" ],
     "billed" : [ ]
   } ]
 }

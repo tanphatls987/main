@@ -33,8 +33,7 @@ public class AddGuestCommand extends Command {
             + PREFIX_ID + "J000000 "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "VIP ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
 
