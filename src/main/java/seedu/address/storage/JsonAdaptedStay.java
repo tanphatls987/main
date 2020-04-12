@@ -41,6 +41,6 @@ public class JsonAdaptedStay extends JsonAdaptedBooking {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "description"));
         }
         return new Stay(booking.getPayee(), booking.getRoom(), booking.getTimeFrom(), booking.getTimeTo(),
-                description);
+                booking.getBookingId(), description);
     }
 }

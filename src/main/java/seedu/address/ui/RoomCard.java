@@ -36,6 +36,8 @@ public class RoomCard extends UiPart<Region> {
     private Label stay;
     @FXML
     private Label occupancy;
+    @FXML
+    private Label guest;
 
     public RoomCard(Room room, int displayedIndex) {
         super(FXML);
@@ -55,6 +57,9 @@ public class RoomCard extends UiPart<Region> {
         if (occupancy == null) {
             occupancy = new Label();
         }
+        if (guest == null) {
+            guest = new Label();
+        }
         if (room.getStay() == null) {
             stay.setText("No current stay");
             occupancy.setText("free");
@@ -63,6 +68,7 @@ public class RoomCard extends UiPart<Region> {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             String formattedTo = room.getStay().getTimeTo().format(formatter);
             stay.setText("Current stay until: " + formattedTo);
+            guest.setText("Guest: " + room.getStay().getPayee().getPersonId().toString());
             occupancy.setText("occupied");
             occupancy.setStyle("-fx-background-color:RED");
         }
