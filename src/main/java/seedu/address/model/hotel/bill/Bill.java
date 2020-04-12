@@ -2,6 +2,7 @@ package seedu.address.model.hotel.bill;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
@@ -45,6 +46,16 @@ public class Bill {
     public void addRoomCost(RoomCost roomCost, Stay stay) {
         charges.add(roomCost);
         long daysOfStay = stay.getBookDuration().getDays();
+
+        billTotal += roomCost.getCostAsDouble() * daysOfStay;
+    }
+
+    /**
+     * Adds {@code roomCost} to the stored list of chargeable objects.
+     */
+    public void addExtendRoomCost(RoomCost roomCost, Stay stay, LocalDateTime fromDate) {
+        charges.add(roomCost);
+        long daysOfStay = stay.getBookDuration().getDaysDiff(fromDate);
 
         billTotal += roomCost.getCostAsDouble() * daysOfStay;
     }

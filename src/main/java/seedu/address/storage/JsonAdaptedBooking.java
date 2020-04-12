@@ -1,22 +1,26 @@
 package seedu.address.storage;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.Hotel;
 import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.person.Name;
 import seedu.address.model.hotel.person.Person;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.PersonId;
+import seedu.address.model.ids.RoomId;
 
 /**
  * Jackson-friendly version of {@link Booking}.
  */
 public class JsonAdaptedBooking {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Booking's %s field is missing!";
+    public static final String MISSING_ROOM_MESSAGE_FORMAT = "Room %s doesn't exist";
     private final String room;
     private final String payeeName;
     private final String payeeId;
@@ -59,13 +63,17 @@ public class JsonAdaptedBooking {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted booking.
      */
-    public Booking toModelType() throws IllegalValueException {
+    public Booking toModelType(Hotel hotel) throws IllegalValueException {
 
         if (room == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Room.class.getSimpleName()));
         }
 
-        final Room modelRoom = new Room(room);
+        Optional<Room> optionalRoom = hotel.findRoomWithRoomId(new RoomId(room));
+        if (optionalRoom.isEmpty()) {
+            throw new IllegalValueException(String.format(MISSING_ROOM_MESSAGE_FORMAT, room));
+        }
+        final Room modelRoom = optionalRoom.get();
 
         if (payeeName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "PayeeName"));
@@ -75,7 +83,8 @@ public class JsonAdaptedBooking {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "PayeeId"));
         }
 
-        final Person modelPayee = new Person(new Name(payeeName), new PersonId(payeeId));
+        final Person modelPayee =
+            new Person(new Name(payeeName), new PersonId(payeeId));
 
         if (timeFrom == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "From"));

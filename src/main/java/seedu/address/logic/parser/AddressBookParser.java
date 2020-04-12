@@ -21,6 +21,7 @@ import seedu.address.logic.commands.DeleteRoomCommand;
 import seedu.address.logic.commands.DeleteServiceCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.ExtendCommand;
 import seedu.address.logic.commands.FetchBillCommand;
 import seedu.address.logic.commands.FindBookingCommand;
 import seedu.address.logic.commands.FindEmptyRoomCommand;
@@ -121,6 +122,9 @@ public class AddressBookParser {
 
         case SetRoomCostCommand.COMMAND_WORD:
             return new SetRoomCostCommandParser().parse(arguments);
+
+        case ExtendCommand.COMMAND_WORD:
+            return new ExtendCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

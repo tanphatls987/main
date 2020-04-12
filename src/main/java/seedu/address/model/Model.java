@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -221,6 +222,8 @@ public interface Model {
 
     void checkIn(Stay stay);
 
+    Optional<Stay> findStay(Room room);
+
     boolean checkOut(Room room);
 
     void deleteBooking(Booking booking);
@@ -305,6 +308,8 @@ public interface Model {
      */
     void chargeRoomCost(RoomId roomId, RoomCost roomCost, Stay stay);
 
+    void chargeExtendRoomCost(RoomId roomId, RoomCost roomCost, Stay stay, LocalDateTime fromDate);
+
     /**
      * Charges a service to the bill of the corresponding room number.
      */
@@ -324,4 +329,11 @@ public interface Model {
      * Returns a Booking with matching bookingId.
      */
     Optional<Booking> findBookingById(String bookingId);
+
+    /**
+     * Extend a room stay until toDate
+     * @param stay
+     * @param toDate
+     */
+    void extendRoom(Stay stay, LocalDateTime toDate);
 }

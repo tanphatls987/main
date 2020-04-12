@@ -7,6 +7,8 @@ import seedu.address.model.hotel.booking.Booking;
 import seedu.address.model.hotel.room.Room;
 import seedu.address.model.hotel.room.Tier;
 
+import java.util.Optional;
+
 /**
  * Unmodifiable hotel
  */
@@ -33,4 +35,6 @@ public interface ReadOnlyHotel {
      * @return list of available stays
      */
     ObservableList<Stay> getStayList();
+
+    Optional<Stay> findStay(Room room);
 }
