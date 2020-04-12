@@ -378,21 +378,21 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |busy receptionist |type as few things as possible |add in information fast
 
-|`* * *` |receptionist |change the tag of a room to served | know which rooms' requests have been fulfilled
-
 |`* * *` |receptionist |see which guests are VIPS |treat these guests with extra care
 
 |`* * *` |receptionist |add people into the database |track hotel guests during their stay
 
-|`* * *` |receptionist |group people together |see which guests are in the same group/family
+|`* *` |receptionist |group people together |see which guests are in the same group/family
 
-|`* * *` |receptionist |sort rooms into different categories |search for rooms more easily
+|`* *` |receptionist |change the tag of a room to served | know which rooms' requests have been fulfilled
 
-|`* * *` |receptionist |keep track of rooms that ordered room service |charge them accordingly
+|`* *` |receptionist |keep track of rooms that ordered room service |charge them accordingly
 
-|`* * *` |hotel staff |quickly see which rooms have been checked out |go clean the rooms
+|`* *` |hotel staff |quickly see which rooms have been checked out |go clean the rooms
 
-|`* * *` |cleaning staff |quickly see rooms with the "clean my room tag" |prioritize cleaning those rooms
+|`* * ` |cleaning staff |quickly see rooms with the "clean my room tag" |prioritize cleaning those rooms
+
+|`* *` |receptionist |sort rooms into different categories |search for rooms more easily
 
 |`* *` |receptionist |apply discounts to customers' bills |charge customers according to the hotel's ongoing promotions
 
@@ -410,11 +410,8 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *` |receptionist |execute the same command on different rooms |efficiently carry out my job
 
-|`*` |receptionist |see notifications |be aware of customer requests quickly
-
 |`*` |receptionist |see the online bookings that guests have made |efficiently check guests in
 
-|`*` |receptionist |call rooms directly |notify guests easily
 |=======================================================================
 
 
