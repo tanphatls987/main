@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -211,6 +212,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public Optional<Stay> findStay(Room room) {
+        throw new AssertionError("This method should not be called");
+    }
+
+    @Override
     public boolean checkOut(Room room) {
         throw new AssertionError("This method should not be called");
     }
@@ -271,6 +277,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void chargeExtendRoomCost(RoomId roomId, RoomCost roomCost, Stay stay, LocalDateTime fromDate) {
+
+    }
+
+    @Override
     public void chargeService(RoomId roomId, AvailableService service) {
         throw new AssertionError("This method should not be called.");
     }
@@ -318,5 +329,10 @@ public class ModelStub implements Model {
     @Override
     public Optional<Booking> findBookingById(String bookingId) {
         throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void extendRoom(Stay stay, LocalDateTime toDate) {
+
     }
 }

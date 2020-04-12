@@ -29,4 +29,8 @@ public class Stay extends Booking {
     public String getDescription() {
         return description;
     }
+
+    public void extendToDate(LocalDateTime td) {
+        this.bookDuration.setEndTime(td);
+    }
 }
