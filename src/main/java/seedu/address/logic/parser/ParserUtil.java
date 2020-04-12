@@ -11,7 +11,6 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.commands.CheckInCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.hotel.bill.Cost;
 import seedu.address.model.hotel.person.Email;
