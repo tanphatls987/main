@@ -238,6 +238,7 @@ The diagram below shows the class diagram for AddServiceCommand
 image::AddServiceClass.png[]
 
 The Diagram below shows the general activity sequence of the initialization feature.
+
 .Activity Diagram of Hotel Initialization
 image::AddCommandDiagram.png[]
 
