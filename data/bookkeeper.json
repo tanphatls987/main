@@ -2,9 +2,21 @@
   "bills" : [ {
     "personId" : "A000000",
     "roomId" : "001",
-    "total" : "3600.00",
+    "total" : "40200.00",
     "charged" : [ ],
     "roomCost" : "150.00"
+  }, {
+    "personId" : "D000000",
+    "roomId" : "313",
+    "total" : "36600.00",
+    "charged" : [ ],
+    "roomCost" : "150.00"
+  }, {
+    "personId" : "I000000",
+    "roomId" : "123",
+    "total" : "12200.00",
+    "charged" : [ ],
+    "roomCost" : "50.00"
   } ]
 }
 
