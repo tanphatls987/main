@@ -248,17 +248,22 @@ If you want to make a reservation for a guest in the hotel, use the command `res
 //tag::checkin[]
 === Checking in a guest: `checkin`
 
-If you want to check in a guest to the hotel from the current date until the an end-date, use the command `checkin` +
+If you want to check in a guest to the hotel from the current date until the end-date, use the command `checkin` +
 
-*Format:* `checkin i/ID rn/ROOM_NUMBER td/TO_DATE`
+*Format:* `checkin i/ID rn/ROOM_NUMBER td/TO_DATE` +
+or `checkin bi/BOOKING_ID`
 
-IMPORTANT: A reservation in the guest's ID must exist before checking the guest in.
+IMPORTANT: `BOOKING_ID` could be shorten by taking only its first 8 characters.
 
 *Examples:*
-
 * `checkin i/G1231231X rn/101 td/2020-12-14` +
+* `checkin bi/a1b2c3d4`
 
-*Result:* Checks in guest with ID `G1231231X` to room `101` until `2020-12-14`.
+image::checkin1.png[]
+image::checkin2.png[]
+
+
+*Result:* Checks in guest with ID `A000000` to room `001` until `2020-05-05`.
 //end::checkin[]
 
 //tag::checkout[]
