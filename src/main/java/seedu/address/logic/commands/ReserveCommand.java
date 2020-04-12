@@ -71,11 +71,11 @@ public class ReserveCommand extends Command {
         if (room.isEmpty()) {
             throw new CommandException(String.format(MESSAGE_ROOM_NONEXISTENT, roomId));
         }
-        Booking toBook = new Booking(payee.get(), room.get(), reserveDuration);
-        if (model.hasBooking(toBook)) {
+        if (!(model.isRoomFree(payee.get(), room.get(), reserveDuration))) {
             throw new CommandException(String.format(MESSAGE_ROOM_BOOKED, roomId));
         }
 
+        Booking toBook = new Booking(payee.get(), room.get(), reserveDuration);
         model.bookRoom(toBook);
         Predicate<Booking> predicate = booking -> booking.getBookingId().equals(toBook.getBookingId());
         model.updateFilteredBookingList(predicate);
