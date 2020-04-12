@@ -183,4 +183,8 @@ public class Booking {
     public String getBookingId() {
         return uuid.toString();
     }
+
+    public void setPayee(Person personWithId) {
+        this.payee = personWithId;
+    }
 }
