@@ -17,7 +17,7 @@ Morpheus is a hotel management system desktop application designed to manage the
 ** What it does: Allows the app to save room and booking details to storage upon exit.
 ** Justification: This feature improves the product significantly because room and booking data of a hotel must be saved in a database to facilitate hotel management.
 ** Highlights: This implementation affected commands added in the future as initialization commands have to modify data in the storage. It required in depth analysis of the design of the storage component.
-* *Major enhancement*: Set up the display of the various lists in the UI i.e. Room list, Booking list, Stay List
+* *Major enhancement*: Set up the *display of the various lists* in the UI i.e. Room list, Booking list, Stay List
 ** What it does: Allows users to view the rooms, bookings and stays in the hotel.
 ** Justification: This feature improves the product significantly as the users need to be able to see the current state of the hotel in the UI.
 ** Highlights: This implementation affected commands added in the future because users need to be able to view these lists first before executing commands on them.
@@ -25,7 +25,7 @@ Morpheus is a hotel management system desktop application designed to manage the
 * *Minor enhancement*: added a reserve command that allows the user to make reservations for a guest.
 * *Minor enhancement*: updated and modified the user interface to make it personalized to Morpheus.
 
-* *Code contributed*: [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#=undefined&search=sancharib-git[Functional code]]
+* *Code contributed*: [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=sancharib-git&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false[Functional code]]
 
 * *Other contributions*:
 
@@ -38,12 +38,10 @@ Morpheus is a hotel management system desktop application designed to manage the
 *** Cosmetic tweaks to the User Guide to improve readability: (Pull requests https://github.com/AY1920S2-CS2103T-W13-2/main/pull/240[#240], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/245[#245])
 *** Updated diagrams and cosmetic tweaks to the Developer Guide (Pull requests https://github.com/AY1920S2-CS2103T-W13-2/main/pull/205[#205], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/240[#240] )
 ** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W13-2/main/pull/183[#183], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com/sancharib-git/ped/issues/7[1], https://github.com/sancharib-git/ped/issues/6[2], https://github.com/sancharib-git/ped/issues/5[3], https://github.com/sancharib-git/ped/issues/4[4], https://github.com/sancharib-git/ped/issues/1[1])
+*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W13-2/main/pull/183[#183], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/248[#248] , https://github.com/AY1920S2-CS2103T-W13-2/main/pull/75[#75] , https://github.com/AY1920S2-CS2103T-W13-2/main/pull/109[#109]
+*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com/sancharib-git/ped/issues/7[1], https://github.com/sancharib-git/ped/issues/6[2], https://github.com/sancharib-git/ped/issues/5[3], https://github.com/sancharib-git/ped/issues/4[4], https://github.com/sancharib-git/ped/issues/1[5])
 
 == Contributions to the User Guide
-
-
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
@@ -55,7 +53,6 @@ include::../UserGuide.adoc[tag=commonparameters]
 include::../UserGuide.adoc[tag=reserve]
 
 == Contributions to the Developer Guide
-
 |===
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
