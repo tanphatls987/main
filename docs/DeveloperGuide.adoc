@@ -298,13 +298,13 @@ Below describes ideas that were considered when designing the command.
 * **Alternative 1 (current choice):** Store the cost of the room as an attribute in the `Room` object.
 ** Pros: Application of OOP concepts.
 ** Cons: Requires a deeper understanding of the Logic & Model components in order to implement.
-* **Alternative 2:** Store the costs of rooms in a separate list (e.g. as a HashMap) in the Model component.
-** Pros: Easy to implement.
+* **Alternative 2:** Store the costs of rooms in a separate list (e.g. as a HashMap) in the Hotel component.
+** Pros: Simple to implement.
 ** Cons: Might limit the relationship between the rooms and their costs.
 
 ==== AddService Command
 
-The command is also a Hotel Initialization feature and hence covered above in <<Initialization-AddService>>.
+The command is also a Hotel Initialization feature and is hence covered above in <<Initialization-AddService>>.
 
 ==== ChargeService Command
 
@@ -330,6 +330,13 @@ image::ChargeServiceSequenceDiagram.png[]
 
 Below describes ideas that were considered when designing the command.
 
+* **Alternative 1 (current choice):** Store the charged services in an ArrayList and the total cost as a double in the bill.
+** Pros: Implementing the removal of charges services would be more direct and simple.
+** Cons: Have to be careful with the calculation of the total cost.
+* **Alternative 2:** Create another class to handle the list of charged services.
+** Pros: Calculation of the total cost would be less prone to errors.
+** Cons: Might cause the design of the application be unnecessarily complicated with many classes.
+
 ==== DeleteChargedService Command
 
 This section goes through the implementation and design considerations of the DeleteChargedService command.
@@ -354,6 +361,13 @@ image::RemoveChargedServiceSequenceDiagram.png[]
 
 Below describes ideas that were considered when designing the command.
 
+* **Alternative 1 (current choice):** Remove any one instance of the service in the list of charged services.
+** Pros: Simple to implement.
+** Cons: Does not make sense logically.
+* **Alternative 2:** Remove the last instance of the service that was inserted.
+** Pros: Makes sense logically.
+** Cons: Need to keep track of the index, which unnecessarily complicates the program as the output would be the same.
+
 ==== FetchBill Command
 
 This section goes through the implementation and design considerations of the FetchBill command.
@@ -366,14 +380,14 @@ The following steps show how the command is implemented:
 2.  If the parameter/s are valid, `FetchBillCommand#execute(Model model)` is invoked, which checks if the given guest, room if `ROOMNUMBER` is provided, and bill/s exist.
 3.  If they exist, different methods are called depending on whether `ROOMNUMBER` is provided:
 
-- If `ROOMNUMBER` is provided:
+* If `ROOMNUMBER` is provided:
 
 a.  `Model#findBill(RoomId roomId)` is called to retrieve the bill for specified room.
 b.  `Bill#getBillTotal()` is next called to get the total cost of expenses.
 c.  `Model#updateFilteredBillList(Predicate predicate)` is then called to update the bill tab to show the bill details of the room.
 d.  If successful, a `CommandResult` object is created to show a success message in the feedback box of the ui.
 
-- If `ROOMNUMBER` is not provided:
+* If `ROOMNUMBER` is not provided:
 
 a.  `Model#getGuestBillsTotal(PersonId personId)` is called to get the total of all the bills of the guest.
 b.  `Model#updateFilteredBillList(Predicate predicate)` is then called to update the bill tab to show all the bills belonging to the guest.
@@ -387,6 +401,13 @@ image::RemoveChargedServiceSequenceDiagram.png[]
 ===== Design Considerations
 
 Below describes ideas that were considered when designing the command.
+
+* **Alternative 1 (current choice):** Allow the user to fetch the bill of a room of all bills of a person with a single command.
+** Pros: Easier on user as they have lesser commands to remember.
+** Cons: More considerations for different scenarios are needed, causing the implementation to be more complicated.
+* **Alternative 2:** Have two separate commands to fetch the bill of a room and the bills of a person.
+** Pros: Easier to parse the parameters for the command.
+** Cons: User needs to remember more commands.
 
 === Logging
 
