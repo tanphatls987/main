@@ -475,6 +475,11 @@ public class CheckInCommandTest {
         public void checkIn(Stay stay) { }
 
         @Override
+        public Optional<Stay> findStay(Room room) {
+            return Optional.empty();
+        }
+
+        @Override
         public void addRoom(String roomName, Tier tier, RoomCost cost) {
             throw new AssertionError("This method should not be called.");
         }
@@ -490,6 +495,11 @@ public class CheckInCommandTest {
         }
 
         @Override
+        public void chargeExtendRoomCost(RoomId roomId, RoomCost roomCost, Stay stay, LocalDateTime fromDate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteRoom(String roomNum) {
             throw new AssertionError("This method should not be called.");
         }
@@ -501,6 +511,11 @@ public class CheckInCommandTest {
 
         @Override
         public Optional<Booking> findBookingById(String bookingId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void extendRoom(Stay stay, LocalDateTime toDate) {
             throw new AssertionError("This method should not be called.");
         }
     }

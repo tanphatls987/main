@@ -1,5 +1,7 @@
 package seedu.address.model;
 
+import java.util.Optional;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.hotel.Stay;
 import seedu.address.model.hotel.bill.AvailableService;
@@ -33,4 +35,6 @@ public interface ReadOnlyHotel {
      * @return list of available stays
      */
     ObservableList<Stay> getStayList();
+
+    Optional<Stay> findStay(Room room);
 }

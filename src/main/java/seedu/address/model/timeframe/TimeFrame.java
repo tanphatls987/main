@@ -49,7 +49,15 @@ public class TimeFrame {
     }
 
     /**
-     * Gets the number of days in the timme frame
+     * Set end time of the timeframe to toDate
+     * @param td
+     */
+    public void setEndTime(LocalDateTime toDate) {
+        to = toDate;
+    }
+
+    /**
+     * Gets the number of days in the time frame
      */
     public long getDays() {
         long days = from.until(to, DAYS);
@@ -59,6 +67,15 @@ public class TimeFrame {
         }
 
         return days;
+    }
+
+    /**
+     * Get the number of days different from the fromDate to the current toDate
+     * @param fromDate
+     * @return
+     */
+    public long getDaysDiff(LocalDateTime fromDate) {
+        return fromDate.until(to, DAYS) + 1;
     }
 
     /**
