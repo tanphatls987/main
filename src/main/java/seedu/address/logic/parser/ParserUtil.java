@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -27,6 +28,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    private static final String MESSAGE_DATE_FORMAT = "Date should be in YYYY-MM-DD format.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -65,7 +67,14 @@ public class ParserUtil {
     public static LocalDateTime parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        LocalDate localDate = LocalDate.parse(trimmedDate);
+        LocalDate localDate;
+        try {
+            localDate = LocalDate.parse(trimmedDate);
+        } catch (Exception e) {
+            throw new ParseException(
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                MESSAGE_DATE_FORMAT));
+        }
         return localDate.atTime(12, 0, 0);
     }
 
