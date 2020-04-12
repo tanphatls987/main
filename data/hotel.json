@@ -61,6 +61,13 @@
     "uuid" : "35e3b492-3efd-4b78-86e6-9e2726c3c5b5",
     "timeFrom" : "2020-02-23T12:00",
     "timeTo" : "2020-02-28T12:00"
+  }, {
+    "room" : "313",
+    "payeeName" : "Alex Yeoh",
+    "payeeId" : "A000000",
+    "uuid" : "92bdedbb-879f-4377-8fe5-efbd0e2c52f0",
+    "timeFrom" : "2020-12-12T12:00",
+    "timeTo" : "2020-12-12T12:00"
   } ],
   "availableServices" : [ {
     "description" : "Wash Clothes",
@@ -71,7 +78,7 @@
     "room" : "002",
     "payeeName" : "Bernice Yu",
     "payeeId" : "B000000",
-    "uuid" : "d4f5b645-49df-4563-b6cc-4cadbf4742df",
+    "uuid" : "34ea0508-664a-47a7-81b3-92252c0bc8bb",
     "description" : "",
     "timeFrom" : "2020-04-10T12:00",
     "timeTo" : "2020-04-12T12:00"
@@ -79,7 +86,7 @@
     "room" : "006",
     "payeeName" : "Alex Yeoh",
     "payeeId" : "A000000",
-    "uuid" : "a131f03f-809d-4d9b-b645-614d5c1cf620",
+    "uuid" : "7524d49f-2096-4d69-9c0e-eba12c1322d5",
     "description" : "",
     "timeFrom" : "2020-04-11T12:00",
     "timeTo" : "2020-04-13T12:00"
@@ -87,10 +94,18 @@
     "room" : "101",
     "payeeName" : "Alex Yeoh",
     "payeeId" : "A000000",
-    "uuid" : "9f6b3acf-ecb4-4249-b908-f1b14b54d239",
+    "uuid" : "0576b5c3-a68f-4ef0-bed3-c2648a010545",
     "description" : "",
     "timeFrom" : "2020-04-12T19:20:05.516054",
     "timeTo" : "2020-04-13T12:00"
+  }, {
+    "room" : "001",
+    "payeeName" : "Alex Yeoh",
+    "payeeId" : "A000000",
+    "uuid" : "41a9e98b-46dc-4796-8ccb-d4f2f271a2ff",
+    "description" : "",
+    "timeFrom" : "2020-04-12T19:30:39.885449",
+    "timeTo" : "2020-12-12T12:00"
   } ]
 }
 
