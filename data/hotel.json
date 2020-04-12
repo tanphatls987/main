@@ -67,38 +67,6 @@
     "id" : "WC",
     "cost" : "10.00"
   } ],
-  "stays" : [ {
-    "room" : "002",
-    "payeeName" : "Bernice Yu",
-    "payeeId" : "B000000",
-    "uuid" : "a11cae9b-021c-40f1-a3bf-27e55f59d072",
-    "description" : "",
-    "timeFrom" : "2020-04-10T12:00",
-    "timeTo" : "2020-04-12T12:00"
-  }, {
-    "room" : "006",
-    "payeeName" : "Alex Yeoh",
-    "payeeId" : "A000000",
-    "uuid" : "17773545-94d6-4a6f-89bc-f25cf493656c",
-    "description" : "",
-    "timeFrom" : "2020-04-11T12:00",
-    "timeTo" : "2020-04-13T12:00"
-  }, {
-    "room" : "313",
-    "payeeName" : "David Li",
-    "payeeId" : "D000000",
-    "uuid" : "9d574b7d-6196-4e7f-9b38-c36b3d4a5ce8",
-    "description" : "",
-    "timeFrom" : "2020-04-12T15:13:45.730635",
-    "timeTo" : "2020-12-12T12:00"
-  }, {
-    "room" : "123",
-    "payeeName" : "Irfan Ibrahim",
-    "payeeId" : "I000000",
-    "uuid" : "686f8b5d-2b27-4ecd-aa85-1448ddf06c0c",
-    "description" : "",
-    "timeFrom" : "2020-04-12T15:19:40.179686",
-    "timeTo" : "2020-12-12T12:00"
-  } ]
+  "stays" : [ ]
 }
 
