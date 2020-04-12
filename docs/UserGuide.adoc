@@ -291,6 +291,7 @@ IMPORTANT: - Room must be checked in before it can be extended. +
 If you want to find guests using their names or id, use the commmand `findguest`. +
 
 Format: `findguest [n/NAME] ... [n/NAME] [i/ID] ... [i/ID]`
+
 === Charging a service : `chargeservice`
 If you want to charges a service to the guest's tab, use the command `chargeservice` +
 
