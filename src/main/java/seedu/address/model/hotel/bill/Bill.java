@@ -3,10 +3,12 @@ package seedu.address.model.hotel.bill;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.hotel.Stay;
+import seedu.address.model.ids.AvailableServiceId;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 
@@ -50,11 +52,33 @@ public class Bill {
     }
 
     /**
+     * Adds {@code roomCost} to the stored list of chargeable objects.
+     */
+    public Optional<Chargeable> getService(AvailableServiceId serviceId) {
+        return FXCollections.observableList(charges)
+                .stream()
+                .filter(s -> s instanceof AvailableService)
+                .filter(s -> ((AvailableService) s).getId().equals(serviceId))
+                .findFirst();
+    }
+
+    /**
      * Adds {@code service} to the stored list of chargeable objects.
      */
     public void addService(AvailableService service) {
         charges.add(service);
         billTotal += service.getCost().getCostAsDouble();
+    }
+
+    /**
+     * Deletes {@code service} from the stored list of chargeable objects.
+     */
+    public void deleteService(AvailableService service) {
+        boolean isRemoved = charges.remove(service);
+
+        if (isRemoved) {
+            billTotal -= service.getCost().getCostAsDouble();
+        }
     }
 
     /**

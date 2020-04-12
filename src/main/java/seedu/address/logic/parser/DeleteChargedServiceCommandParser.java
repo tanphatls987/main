@@ -8,22 +8,23 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICEID;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.ChargeServiceCommand;
+import seedu.address.logic.commands.DeleteChargedServiceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ids.AvailableServiceId;
 import seedu.address.model.ids.PersonId;
 import seedu.address.model.ids.RoomId;
 
 /**
- * Parses input arguments and creates a new ServiceCommand object
+ * Parses input arguments and creates a new DeleteChargesServiceCommand object
  */
-public class ChargeServiceCommandParser implements Parser<ChargeServiceCommand> {
+public class DeleteChargedServiceCommandParser implements Parser<DeleteChargedServiceCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the ChargeServiceCommand
-     * and returns a ChargeServiceCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteChargedServiceCommand
+     * and returns a DeleteChargedServiceCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public ChargeServiceCommand parse(String args) throws ParseException {
+    public DeleteChargedServiceCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ID, PREFIX_ROOMNUMBER, PREFIX_SERVICEID);
 
@@ -38,7 +39,7 @@ public class ChargeServiceCommandParser implements Parser<ChargeServiceCommand> 
         RoomId roomNum = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOMNUMBER).get());
         AvailableServiceId serviceId = ParserUtil.parseAvailableServiceId(argMultimap.getValue(PREFIX_SERVICEID).get());
 
-        return new ChargeServiceCommand(personId, roomNum, serviceId);
+        return new DeleteChargedServiceCommand(personId, roomNum, serviceId);
 
     }
 

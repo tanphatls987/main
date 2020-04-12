@@ -323,6 +323,11 @@ public class AddGuestCommandTest {
         }
 
         @Override
+        public void deleteChargedService(RoomId roomId, AvailableService service) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void chargeService(RoomId roomId, AvailableService service) {
             throw new AssertionError("This method should not be called.");
         }
