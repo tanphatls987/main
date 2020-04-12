@@ -61,6 +61,13 @@
     "uuid" : "35e3b492-3efd-4b78-86e6-9e2726c3c5b5",
     "timeFrom" : "2020-02-23T12:00",
     "timeTo" : "2020-02-28T12:00"
+  }, {
+    "room" : "002",
+    "payeeName" : "David Li",
+    "payeeId" : "D000000",
+    "uuid" : "b248a38e-7549-4c99-a2c7-c8b96625fb70",
+    "timeFrom" : "2020-04-17T12:00",
+    "timeTo" : "2020-04-19T12:00"
   } ],
   "availableServices" : [ {
     "description" : "Wash Clothes",

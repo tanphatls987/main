@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -91,6 +92,19 @@ public class BookKeeper implements ReadOnlyBookKeeper {
                 .get();
 
         bill.addRoomCost(roomCost, stay);
+    }
+
+    /**
+     * Charges extended {@code roomCost} to the bill of {@code roomId}.
+     */
+    public void chargeExtendedRoomCostToBill(RoomId roomId, RoomCost roomCost, Stay stay, LocalDateTime fromDate) {
+        Bill bill = bills.asUnmodifiableObservableList()
+            .stream()
+            .filter(b -> b.getRoomId().equals(roomId))
+            .findFirst()
+            .get();
+
+        bill.addExtendRoomCost(roomCost, stay, fromDate);
     }
 
 

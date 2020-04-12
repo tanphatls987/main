@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -324,6 +325,21 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Return the current stay with the corresponding room
+     * @param room
+     * @return
+     */
+    @Override
+    public Optional<Stay> findStay(Room room) {
+        return hotel.findStay(room);
+    }
+
+    @Override
+    public void extendRoom(Stay stay, LocalDateTime td) {
+        stay.extendToDate(td);
+    }
+
+    /**
      * Checks out anyone from the room.
      * @param room the room that wants to be checked out
      * @return 1 if checkout successful, 0 if room does not exist
@@ -423,6 +439,12 @@ public class ModelManager implements Model {
     public void chargeRoomCost(RoomId roomId, RoomCost roomCost, Stay stay) {
         requireAllNonNull(roomId, roomCost, stay);
         bookKeeper.chargeRoomCostToBill(roomId, roomCost, stay);
+    }
+
+    @Override
+    public void chargeExtendRoomCost(RoomId roomId, RoomCost roomCost, Stay stay, LocalDateTime fromDate) {
+        requireAllNonNull(roomId, roomCost, stay, fromDate);
+        bookKeeper.chargeExtendedRoomCostToBill(roomId, roomCost, stay, fromDate);
     }
 
     @Override
