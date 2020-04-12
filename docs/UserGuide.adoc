@@ -411,10 +411,14 @@ e.g. `addroom rn/101`
 e.g. `addtier ti/Gold rn/12E 12F 12T`
 * *Add Service* : `addservice si/SERVICE_ID d/DESCRIPTION c/COST` +
 e.g. `addservice si/WC d/Wash clothes c/100.00`
-* *Check in* : `checkin i/ID rn/ROOM_NUMBER td/TO_DATE` +
-e.g. `checkin i/G1231231X rn/101 td/2020-03-14`
+* *Check in* : `checkin i/ID rn/ROOM_NUMBER td/TO_DATE` or +
+`checkin bi/BOOKING_ID` +
+e.g. `checkin i/G1231231X rn/101 td/2020-03-14` +
+or `checkin bi/a1b2c3d4`
 * *Check out* : `checkout rn/ROOM_NUMBER` +
 e.g. `checkout rn/101`
+* *Extend* : `extend rn/ROOM_NUMBER td/TO_DATE` +
+e.g. `extend rn/313 td/2020-05-20`
 * *List* : `list`
 * *Find Guest* : `findguest n/NAME …​ n/NAME i/ID …​ i/ID` +
 e.g. `findguest n/Alice i/A10`
