@@ -32,6 +32,7 @@ Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
 This user guide gives you an overview of the features of Morpheus. With the help of given examples, you will be able to learn how to use the application to help manage the rooms and services in the hotel.
 
+//tag::nav[]
 === How to navigate this document
 * _This section shows you how to read and understand this document._
 
@@ -44,6 +45,7 @@ This user guide gives you an overview of the features of Morpheus. With the help
 TIP: This is a useful tip to help optimize your experience using Morpheus.
 
 IMPORTANT: This is important information you need to take note of!
+//end::nav[]
 
 == Quick Start
 * _This section will show you how to get started with using Morpheus!_
@@ -77,27 +79,31 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window. +
 ====
 *[.underline]#Overview Of Features#*
 
-Features can be divided into 4 groups of commands
+Features can be divided into 5 groups of commands
 
 * Initialization commands
-** `addroom` command adds a room into hotel.
 ** `addguest` command adds a guest.
+** `addroom` command adds a room into hotel.
 ** `addtier` command adds a tier to a room
+** `addservice` command adds an available service to the hotel.
 ** `setrcost` command sets the cost of a room.
 
 * Service commands
 
-
+** `reserve` command makes a reservation.
 ** `checkin` and `checkout` command receives and returns customers.
 ** `chargeservice` command charges customers for getting services.
 ** `deletecservice` command removes a charged service from the bill of customers.
-** `reserve` command makes a reservation.
 ** `fetchbill` command fetches the bill of a guest.
 
 * Statistical commands
 
-** `list` command shows list of guests
-** `findguest`, `getroom` quickly looks up for queries of rooms and quests.
+** `findguest`, `getroom` , `findbooking` quickly looks up guests, rooms and bookings.
+
+* Deletion commands
+
+** `delete` command deletes a guest from the hotel database.
+** `deleteservice` and `deletebooking` commands removes available services and bookings from the hotel database.
 
 * General purpose commands
 
@@ -107,13 +113,14 @@ Features can be divided into 4 groups of commands
 ** `switch` command navigate between tabs.
 ====
 ====
-*[.underline]#Command Format#*
+*[.underline]#Command Format:#*
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `checkin i/ID rn/ROOM_NUMBER td/TO_DATE`, `ID` is a parameter which can be used as `checkin i/G1231231X`.
 * Items in square brackets are optional e.g `n/NAME [t/TIER]` can be used as `n/Smith t/Member` or as `n/Smith`.
 * Parameters can be in any order e.g. if the command specifies `n/NAME rn/ROOM_NUMBER`, `rn/ROOM_NUMBER n/NAME` is also acceptable.
 ====
 
+//tag::commonparameters[]
 =====
 **[.underline]#Some Common Parameters#** +
 
@@ -122,10 +129,10 @@ Features can be divided into 4 groups of commands
 * `i/` : Guest ID
 * `n/` : Guest name
 * `p/` : Guest phone
-* `e/' : Guest email
-* 't/' : Guest tag
+* `e/` : Guest email
+* `t/` : Guest tag
 
-*Rooms and Bookings* +
+*Rooms and Bookings and Services* +
 
 * `rn/` : Room number
 * `ti/` : Room tier
@@ -133,50 +140,44 @@ Features can be divided into 4 groups of commands
 * `fd/` : Date from
 * `td/` : Date to
 * `c/`  : Cost
-
-*Services* +
-
 * `si/` : Service ID
 * `d/`  : Description of the service
 =====
+//end::commonparameters[]
 
 === Getting help: `help`
 If you need to view help, use the command `help` .
 
-Format: `help`
+*Format:*: `help`
 
 //tag::switch[]
 === Switching between tabs : `switch`
 If you want to switch to a new tab and view all the data on the specified tab, use the command `switch` .
 
-Format: `switch TAB_NAME`
+*Format:*: `switch TAB_NAME`
 
 IMPORTANT: *`TAB_NAME`* must be one of `welcome`, `guest`, `room`, `booking`, `service`, `bill`
 
-Examples:
+*Examples:*
 
 * `switch guest` +
 
-Result: Switches to and shows all entries on guest tab.
+**Result:** Switches to and shows all entries on guest tab.
 
 //end::switch[]
 
 //tag::addguest[]
 === Adding a guest : `addguest`
 
-If you want to add a guest in the hotel list, use the command `addguest` +
+If you want to add a guest to the hotel database, use the command `addguest` +
 
-Format: `addguest n/NAME i/ID p/PHONE_NUMBER e/EMAIL [t/TAG]...`
+*Format:* `addguest n/NAME i/ID p/PHONE_NUMBER e/EMAIL [t/TAG]...`
 
-Examples:
-
-* `addguest n/John Doe i/G1231231X p/1928310 e/johndoe@gmail.com` +
-
-Result: Add John Doe with his information into the database.
+*Examples:*
 
 * `addguest n/Sallly Smith i/G1231232X p/512685123 e/sallysmith@gmail.com t/VIP` +
 
-Result: Adds Sally Smith with her information into the hotel database.
+*Result:* Adds Sally Smith with her information into the hotel database.
 
 TIP: You may use `t/TAG` to specify the status of the guest in the hotel! E.g. `t/VIP`
 //end::addguest[]
@@ -185,70 +186,83 @@ TIP: You may use `t/TAG` to specify the status of the guest in the hotel! E.g. `
 
 If you want to add a room to the hotel database, use the command `addroom` +
 
-Format: `addroom rn/ROOM_NUMBER ti/TIER c/COST`
+*Format:* `addroom rn/ROOM_NUMBER ti/TIER c/COST`
 
-Examples:
+*Examples:*
 
 * `addroom rn/101 ti/GOLD c/150.00` +
 
-Result: Add room `101` into the database.
-
-
-=== Deleting a room : `deleteroom`
-
-If you want to delete a room from the hotel, use the command `deleteroom`. +
-
-Format: `deleteroom rn/ROOM_NUMBER`
-
-Examples:
-
-* `deleteroom rn/101` +
-
-Result: Deletes room `101` into the database.
+*Result:* Add room `101` into the database.
 
 === Adding a tier to a room: `addtier`
 
 If you want to add a tier and set this tier for certain rooms, use the command `addtier` +
 
-Format: `addtier ti/TIER_NAME rn/ROOM_NUMBERS`
+*Format:* `addtier ti/TIER_NAME rn/ROOM_NUMBERS`
 
-Examples:
+*Examples:*
 
 * `addtier ti/GOLD rn/001 002 003`. +
 
-Result: Sets the tier for rooms `001`, `002`, and `003` to `GOLD`.
+*Result:* Sets the tier for rooms `001`, `002`, and `003` to `GOLD`.
 
 === Adding an available service: `addservice`
 
 If you want to add an available service to the database, use the command `addservice` +
 
-Format: `addservice si/SERVICE_ID d/DESCRIPTION c/COST`
+*Format:* `addservice si/SERVICE_ID d/DESCRIPTION c/COST`
 
-Examples:
+*Examples:*
 
 * `addservice si/WC d/Wash clothes c/100.00` +
 
-Result: Adds a service with id `WC`, description `Wash clothes` and cost `100.00`.
+*Result:* Adds a service with id `WC`, description `Wash clothes` and cost `100.00`.
+
+=== Setting the cost for a room : `setrcost`
+If you want to set the cost for a room (per night), use the command `setrcost` +
+
+*Format:* `setrcost rn/ROOM_NUMBER c/COST`
+
+*Examples:*
+
+* `setrcost  rn/101 c/50.00` +
+
+*Result:* Sets the cost for `101` as `50.00` per night.
+
+//tag::reserve[]
+=== Making a reservation : `reserve`
+If you want to make a reservation for a guest in the hotel, use the command `reserve` +
+
+*Format:* `reserve i/ID rn/ROOM_NUMBER fd/FROM_DATE td/TO_DATE`
+
+*Examples:*
+
+* `reserve i/G1231231X rn/102 fd/ 2020-12-12 td/ 2020-12-30` +
+
+*Result:* Reserves room `102` for guest with the ID `G1231231X` from `2020-12-12` to `2020-12-30`.
+//end::reserve[]
 
 === Checking in a guest: `checkin`
 
 If you want to check in a guest to the hotel from the current date until the an end-date, use the command `checkin` +
 
-Format: `checkin i/ID rn/ROOM_NUMBER td/TO_DATE`
+*Format:* `checkin i/ID rn/ROOM_NUMBER td/TO_DATE`
 
-Examples:
+IMPORTANT: A reservation in the guest's ID must exist before checking the guest in.
+
+*Examples:*
 
 * `checkin i/G1231231X rn/101 td/2020-12-14` +
 
-Result: Checks in guest with ID `G1231231X` to room `101` until `2020-12-14`.
+*Result:* Checks in guest with ID `G1231231X` to room `101` until `2020-12-14`.
 
 === Checking out a guest: `checkout`
 
 If you want to check out a guest from the hotel, use the command `checkout` +
 
-Format: `checkout rn/ROOM_NUMBER`
+*Format:* `checkout rn/ROOM_NUMBER`
 
-Examples:
+*Examples:*
 
 * `checkout rn/101` +
 
@@ -274,119 +288,125 @@ IMPORTANT: - Room must be checked in before it can be extended. +
 If you want to find guests using their names or id, use the commmand `findguest`. +
 
 Format: `findguest [n/NAME] ... [n/NAME] [i/ID] ... [i/ID]`
+=== Charging a service : `chargeservice`
+If you want to charges a service to the guest's tab, use the command `chargeservice` +
+
+*Format:* `chargeservice i/PERSON_ID rn/ROOM_NUMBER si/SERVICE_ID`
+
+*Examples:*
+
+* `chargeservice i/G1231231X rn/100.00 si/WC` +
+
+*Result:* Charges service with the ID `WC` for room `100` to the guest with ID `G1231231X` 's bill.
+
+=== Deleting a service from a bill : `deletecservice`
+If you want to remove a charged service from the guest's bill. +
+
+*Format:* `deletecservice i/PERSON_ID rn/ROOM_NUMBER si/SERVICE_ID`
+
+*Examples:*
+
+* `deletecservice i/G1231231X rn/100 si/WC` +
+
+*Result:* Removes service with ID `WC` from guest with ID `G1231231X` 's bill for `100`.
+
+=== Fetching bill of a guest : `fetchbill`
+If you want to retrieve the bill of a guest, use the command `fetchbill` +
+
+*Format:* `fetchbill i/ID [rn/ROOM_NUMBER]`
+
+*Examples:*
+
+* `fetchbill  i/G1231231X` +
+
+*Result:* Shows the entire bill, consisting of all costs incurred, for guest with ID `G1231231X` 's stay up till present moment.
+
+//tag::findguest[]
+=== Finding guests: `findguest`
+If you want to find guests using their names or id, use the commmand `findguest`. +
+
+*Format:* `findguest [n/NAME] ... [n/NAME] [i/ID] ... [i/ID]`
 
 IMPORTANT: - Name must be an exact match. +
 - The order of the keywords does not matter. e.g. `n/Alice i/A10` is same as `i/A10 n/Alice`. +
 - Persons matching at least one keyword will be returned.
 
-Examples:
+*Examples:*
 
 * `findguest n/John Doe i/A10` +
 
-Result: Shows persons with name: `John Doe` or ID: `A10`
+*Result:* Shows persons with name: `John Doe` or ID: `A10`
 //end::findguest[]
 
 === Finding bookings: `findbooking`
 If you want to find bookings using the guest's name, guest's ID or by room number, use the command `findbooking`. +
 
-Format: `findbooking n/NAME ... n/NAME i/ID ... i/ID rn/ROOM_NUMBER ... rn/ROOM_NUMBER`
+*Format:* `findbooking n/NAME ... n/NAME i/ID ... i/ID rn/ROOM_NUMBER ... rn/ROOM_NUMBER`
 
 IMPORTANT: - The order of the keywords does not matter. e.g. `n/Alice i/A10` is same as `i/A10 n/Alice` +
 - Booking matching at least one keyword will be returned
 
-Examples:
+*Examples:*
 
 * `findbooking n/Alice rn/001` +
 
-Result: Shows booking of `Alice` or of room `001`.
-
-=== Fetching bill of a guest : `fetchbill`
-If you want to retrieve the bill of a guest, use the command `fetchbill` +
-
-Format: `fetchbill i/ID [rn/ROOM_NUMBER]`
-
-Examples:
-
-* `fetchbill  i/G1231231X` +
-
-Result: Shows the entire bill, consisting of all costs incurred, for guest with ID `G1231231X` 's stay up till present moment.
-
-=== Charging a service : `chargeservice`
-If you want to charges a service to the guest's tab, use the command `chargeservice` +
-
-Format: `chargeservice i/PERSON_ID rn/ROOM_NUMBER si/SERVICE_ID`
-
-Examples:
-
-* `chargeservice i/G1231231X rn/100.00 si/WC` +
-
-Result: Charges service with the ID `WC` for room `100` to the guest with ID `G1231231X` 's bill.
-
-=== Making a reservation : `reserve`
-If you want to make a reservation for a guest in the hotel, use the command `reserve` +
-
-Format: `reserve i/ID rn/ROOM_NUMBER fd/FROM_DATE td/TO_DATE`
-
-Examples:
-
-* `reserve i/G1231231X rn/102 fd/ 2020-12-12 td/ 2020-12-30` +
-
-Result: Reserves room `102` for guest with the ID `G1231231X` from `2020-12-12` to `2020-12-30`.
+*Result:* Shows booking of `Alice` or of room `001`.
 
 === Locating a guest's room : `getroom`
 If you want to retrieve the room number related to a guest's reservation, use the command `getroom`. +
 
-Format: `getroom i/ID`
+*Format:* `getroom i/ID`
 
-Examples:
+*Examples:*
 
 * `getroom i/G1231231X` +
 
-Result: Shows the room booked by the guest with ID `G12311231X`
+*Result:* Shows the room booked by the guest with ID `G12311231X`
+
+=== Deleting a guest : `delete`
+If you want to delete a guest's details from the hotel database, use the command `delete`. +
+
+Format: `delete INDEX`
+
+*Examples:*
+
+* `delete 1` +
+
+*Result:* Deletes the first guest on the list.
+
+=== Deleting a room : `deleteroom`
+
+If you want to delete a room from the hotel, use the command `deleteroom`. +
+
+*Format:* `deleteroom rn/ROOM_NUMBER`
+
+*Examples:*
+
+* `deleteroom rn/101` +
+
+*Result:* Deletes room `101` into the database.
 
 === Deleting an available service: `deleteservice`
-If you want to delete an available service using the service's ID, use the command `deleteservice` +
+If you want to delete an available service from the hotel database using the service's ID, use the command `deleteservice` +
 
-Format: `deleteservice si/SERVICE_ID`
+*Format:* `deleteservice si/SERVICE_ID`
 
-Examples:
+*Examples:*
 
 * `deleteservice si/WC` +
 
-Result: Deletes a service with service ID `WC`.
-
-=== Deleting a service from a bill : `deletecservice`
-If you want to remove a charged service from the guest's bill. +
-
-Format: `deletecservice i/PERSON_ID rn/ROOM_NUMBER si/SERVICE_ID`
-
-Examples:
-
-* `deletecservice i/G1231231X rn/100 si/WC` +
-
-Result: Removes service with ID `WC` from guest with ID `G1231231X` 's bill for `100`.
-
-=== Setting the cost for a room : `setrcost`
-If you want to set the cost for a room (per night), use the command `setrcost` +
-
-Format: `setrcost rn/ROOM_NUMBER c/COST`
-
-Examples:
-
-* `setrcost  rn/101 c/50.00` +
-
-Result: Sets the cost for `101` as `50.00` per night.
+*Result:* Deletes a service with service ID `WC`.
 
 === Clearing all entries : `clear`
 If you want to clear all data from Morpheus, use the command `clear` +
 
-Format: `clear`
+*Format:* `clear`
 
 === Exiting the program : `exit`
 
-Result: If you want to exit the program, use the command `exit` +
+*Result:* If you want to exit the program, use the command `exit` +
 
-Format: `exit`
+*Format:* `exit`
 
 === Saving the data
 
