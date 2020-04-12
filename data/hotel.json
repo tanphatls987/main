@@ -24,7 +24,35 @@
     "cost" : "50.00",
     "number" : "006"
   } ],
-  "bookings" : [ ],
+  "bookings" : [ {
+    "room" : "001",
+    "payeeName" : "Bernice Yu",
+    "payeeId" : "B000000",
+    "uuid" : "e2de89f3-759f-4140-9dbb-49c19bb4b157",
+    "timeFrom" : "2020-04-15T12:00",
+    "timeTo" : "2020-04-17T12:00"
+  }, {
+    "room" : "003",
+    "payeeName" : "Charlotte Oliveiro",
+    "payeeId" : "C000000",
+    "uuid" : "7c8c1233-d8dc-47d9-b44a-ab48ccd93589",
+    "timeFrom" : "2020-04-15T12:00",
+    "timeTo" : "2020-04-17T12:00"
+  }, {
+    "room" : "002",
+    "payeeName" : "Charlotte Oliveiro",
+    "payeeId" : "C000000",
+    "uuid" : "5c2ab7e8-c5ca-4128-a13d-1dfa88844a63",
+    "timeFrom" : "2020-04-15T12:00",
+    "timeTo" : "2020-04-17T12:00"
+  }, {
+    "room" : "004",
+    "payeeName" : "Charlotte Oliveiro",
+    "payeeId" : "C000000",
+    "uuid" : "17471747-d45c-4bc0-9d3a-0c66e45b4f58",
+    "timeFrom" : "2020-05-05T12:00",
+    "timeTo" : "2020-06-06T12:00"
+  } ],
   "availableServices" : [ {
     "description" : "Wash Clothes",
     "id" : "WC",
@@ -34,9 +62,17 @@
     "room" : "001",
     "payeeName" : "Alex Yeoh",
     "payeeId" : "A000000",
-    "uuid" : "1379a5ce-b678-42fd-89e7-07ee4c134c68",
+    "uuid" : "3645ed3f-8998-4d1c-9ded-8a4772de5c18",
     "description" : "",
-    "timeFrom" : "2020-04-12T07:44:09.989436800",
+    "timeFrom" : "2020-04-12T18:45:22.912537500",
+    "timeTo" : "2020-05-13T12:00"
+  }, {
+    "room" : "002",
+    "payeeName" : "Bernice Yu",
+    "payeeId" : "B000000",
+    "uuid" : "e4b7f4a8-058e-4592-bd99-7b3fab3882b6",
+    "description" : "",
+    "timeFrom" : "2020-04-12T18:56:44.992711800",
     "timeTo" : "2020-05-05T12:00"
   } ]
 }
