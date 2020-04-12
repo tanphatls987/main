@@ -54,6 +54,7 @@ public class PersonCard extends UiPart<Region> {
         remark.setText(person.getRemark().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
+                .filter(tag -> tag.tagName.equals("VIP") || tag.tagName.equals("Member"))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 

@@ -152,13 +152,11 @@ public class Hotel implements ReadOnlyHotel {
      * Checks if {@code person} is checked into {@code room}.
      */
     public boolean isGuestCheckedIn(Person person, Room room) {
-        for (Stay b : stayList) {
-            if (b.getPayee().equals(person) && b.getRoom().equals(room)) {
-                return true;
-            }
-        }
-
-        return false;
+        return !stayList
+                .stream()
+                .filter(s -> s.getPayee().equals(person) && s.getRoom().equals(room))
+                .findFirst()
+                .isEmpty();
     }
 
     /**Returns observable list of tiers*/
