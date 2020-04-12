@@ -273,12 +273,15 @@ The following activity diagram summarizes the usage of the billing feature:
 image::BillingActivityDiagram.png[]
 
 ==== SetRoomCost Command
+
+This section goes through the implementation and design considerations of the SetRoomCost command.
+
 ===== Implementation
 
-The following steps show how the SetRoomCost command is implemented:
+The following steps show how the command is implemented:
 
 1.  The command from the user is parsed and undergoes checks for the validity of the given `ROOMNUMBER` and `COST`.
-2.  If the parameters are valid, `SetRoomCommand#execute(Model model)` is invoked, which checks if the given room exists.
+2.  If the parameters are valid, `SetRoomCostCommand#execute(Model model)` is invoked, which checks if the given room exists.
 3.  If the room exists, a `RoomCost` object is created and `Model#setRoomCost(Room room, RoomCost roomCost)` is called to set the cost of the room by setting the 'roomCost' attribute of the `Room` object.
 
 The sequence diagram below shoes how the SetRoomCost command works:
@@ -287,6 +290,8 @@ The sequence diagram below shoes how the SetRoomCost command works:
 image::SetRoomCostSequenceDiagram.png[]
 
 ===== Design Considerations
+
+Below describes ideas that were considered when designing the command.
 
 * **Alternative 1 (current choice):** Store the cost of the room as an attribute in the `Room` object.
 ** Pros: Application of OOP concepts.
@@ -297,34 +302,63 @@ image::SetRoomCostSequenceDiagram.png[]
 
 ==== AddService Command
 
-(See <<Initialization-AddService>>)
+The command is also a Hotel Initialization feature and hence covered above in <<Initialization-AddService>>.
 
-==== ChargeService Command Implementation
+==== ChargeService Command
+
+This section goes through the implementation and design considerations of the ChargeService command.
+
 ===== Implementation
 
-The following steps show how the ChargeService command is implemented:
+The following steps show how the command is implemented:
 
-1.  The command from the user is parsed and undergoes checks for the validity of the given `ROOMNUMBER` and `COST`.
-2.  If the parameters are valid, `SetRoomCommand#execute(Model model)` is invoked, which checks if the given room exists.
-3.  If the room exists, a `RoomCost` object is created and `Model#setRoomCost(Room room, RoomCost roomCost)` is called to set the cost of the room by setting the 'roomCost' attribute of the `Room` object.
+1.  The command from the user is parsed and undergoes checks for the validity of the given `PERSONID`, `ROOMNUMBER` and `SERVICEID`.
+2.  If the parameters are valid, `ChargeServiceCommand#execute(Model model)` is invoked, which checks if the given guest, room and service exists.
+3.  If they exist, `Model#chargeService(RoomId roomId, AvailableService service)` is called which in following calls `BookKeeper#chargeServiceToBill(RoomId roomId, AvailableService service)`.
+4.  D
 
+The sequence diagram below shoes how the ChargeService command works:
+
+.Sequence Diagram of ChargeService Command
+image::ChargeServiceSequenceDiagram.png[]
 
 ===== Design Considerations
 
-==== RemoveChargedService Command Implementation
+Below describes ideas that were considered when designing the command.
+
+==== RemoveChargedService Command
+
+This section goes through the implementation and design considerations of the RemoveChargedService command.
+
 ===== Implementation
 
-The following steps show how the ChargeService command is implemented:
+The following steps show how the RemoveChargedService command is implemented:
+
+The sequence diagram below shoes how the RemoveChargedService command works:
+
+.Sequence Diagram of RemoveChargedService Command
+image::RemoveChargedServiceSequenceDiagram.png[]
 
 ===== Design Considerations
 
-==== FetchBill Command Implementation
+Below describes ideas that were considered when designing the command.
+
+==== FetchBill Command
+
+This section goes through the implementation and design considerations of the FetchBill command.
+
 ===== Implementation
 
-The following steps show how the ChargeService command is implemented:
+The following steps show how the FetchBill command is implemented:
+
+The sequence diagram below shoes how the FetchBill command works:
+
+.Sequence Diagram of RemoveChargedService Command
+image::RemoveChargedServiceSequenceDiagram.png[]
 
 ===== Design Considerations
 
+Below describes ideas that were considered when designing the command.
 
 === Logging
 
