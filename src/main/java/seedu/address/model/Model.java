@@ -324,4 +324,9 @@ public interface Model {
      * Returns a Booking with matching bookingId.
      */
     Optional<Booking> findBookingById(String bookingId);
+
+    /**
+     * Deletes a charged service from the bill of the corresponding room number.
+     */
+    void deleteChargedService(RoomId roomId, AvailableService service);
 }

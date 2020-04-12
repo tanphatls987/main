@@ -474,4 +474,10 @@ public class ModelManager implements Model {
         hotel.deleteAvailableService(id);
     }
 
+    @Override
+    public void deleteChargedService(RoomId roomId, AvailableService service) {
+        requireAllNonNull(roomId, service);
+        bookKeeper.deleteChargedServiceFromBill(roomId, service);
+    }
+
 }

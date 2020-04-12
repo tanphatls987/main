@@ -62,7 +62,11 @@
     "timeFrom" : "2020-02-23T12:00",
     "timeTo" : "2020-02-28T12:00"
   } ],
-  "availableServices" : [ ],
+  "availableServices" : [ {
+    "description" : "Wash Clothes",
+    "id" : "WC",
+    "cost" : "10.00"
+  } ],
   "stays" : [ {
     "room" : "002",
     "payeeName" : "Bernice Yu",
