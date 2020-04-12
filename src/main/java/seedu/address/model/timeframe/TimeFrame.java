@@ -56,12 +56,17 @@ public class TimeFrame {
     }
 
     /**
-     * Gets the number of days in the timme frame
+     * Gets the number of days in the time frame
      */
     public long getDays() {
         return from.until(to, DAYS) + 1;
     }
 
+    /**
+     * Get the number of days different from the fromDate to the current toDate
+     * @param fromDate
+     * @return
+     */
     public long getDaysDiff(LocalDateTime fromDate) {
         return fromDate.until(to, DAYS) + 1;
     }
