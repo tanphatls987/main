@@ -1,5 +1,6 @@
 package seedu.address.model.timeframe;
 
+import static java.time.LocalTime.NOON;
 import static java.time.temporal.ChronoUnit.DAYS;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -51,7 +52,13 @@ public class TimeFrame {
      * Gets the number of days in the timme frame
      */
     public long getDays() {
-        return from.until(to, DAYS) + 1;
+        long days = from.until(to, DAYS);
+
+        if (LocalDateTime.now().toLocalTime().isAfter(NOON)) {
+            days++;
+        }
+
+        return days;
     }
 
     /**
