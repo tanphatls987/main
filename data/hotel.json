@@ -62,12 +62,16 @@
     "timeFrom" : "2020-02-23T12:00",
     "timeTo" : "2020-02-28T12:00"
   } ],
-  "availableServices" : [ ],
+  "availableServices" : [ {
+    "description" : "Wash Clothes",
+    "id" : "WC",
+    "cost" : "10.00"
+  } ],
   "stays" : [ {
     "room" : "002",
     "payeeName" : "Bernice Yu",
     "payeeId" : "B000000",
-    "uuid" : "e72ad95e-6a78-41b4-be2d-0db83a78e734",
+    "uuid" : "73660b11-0fdc-4a22-9df0-1eb66cc16fc5",
     "description" : "",
     "timeFrom" : "2020-04-10T12:00",
     "timeTo" : "2020-04-12T12:00"
@@ -75,7 +79,7 @@
     "room" : "006",
     "payeeName" : "Alex Yeoh",
     "payeeId" : "A000000",
-    "uuid" : "1d074e8a-744b-42ab-8bb8-6c1112f9247e",
+    "uuid" : "2f1e8bf1-6c31-4862-b0bc-73a3705d7943",
     "description" : "",
     "timeFrom" : "2020-04-11T12:00",
     "timeTo" : "2020-04-13T12:00"

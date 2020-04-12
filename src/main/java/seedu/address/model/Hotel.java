@@ -54,13 +54,16 @@ public class Hotel implements ReadOnlyHotel {
     /**
      * Create new hotel from ReadOnlyHotel
      */
-    public Hotel(ReadOnlyHotel toBeCopied) {
+    public Hotel(ReadOnlyHotel toBeCopied, AddressBook addressBook) {
         this();
         requireNonNull(toBeCopied);
         this.roomList.setRooms(toBeCopied.getRoomList());
         this.tierList.addAll(toBeCopied.getTierList());
-        this.bookingList.setBookings(toBeCopied.getBookingList());
+        this.bookingList.setBookings(toBeCopied.getBookingList(), addressBook);
         this.stayList.addAll(toBeCopied.getStayList());
+        for (Stay stay: stayList) {
+            stay.setPayee(addressBook.findPersonWithId(stay.getPayee().getPersonId()).get());
+        }
         this.availableServiceList.setServices(toBeCopied.getAvailableServiceList());
         updateRoomStays();
     }
@@ -209,6 +212,16 @@ public class Hotel implements ReadOnlyHotel {
                 .stream()
                 .filter(u -> u.getRoomNum().equals(roomNum.toString()))
                 .findFirst();
+    }
+
+    /**
+     * Return a room with matching room number
+     *
+     * @param roomNum
+     * @return Room
+     */
+    public Optional<Room> getRoom(String roomNum) {
+        return getRoom(new RoomId(roomNum));
     }
 
     /**
@@ -466,7 +479,6 @@ public class Hotel implements ReadOnlyHotel {
             for (Room room : roomList) {
                 if (stay.getRoom().getRoomNum().equals(room.getRoomNum())) {
                     room.setStay(stay);
-
                 }
             }
         }

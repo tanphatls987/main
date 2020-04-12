@@ -336,4 +336,8 @@ public interface Model {
      * @param toDate
      */
     void extendRoom(Stay stay, LocalDateTime toDate);
+    /**
+     * Deletes a charged service from the bill of the corresponding room number.
+     */
+    void deleteChargedService(RoomId roomId, AvailableService service);
 }

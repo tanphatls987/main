@@ -77,7 +77,7 @@ public class JsonSerializableHotel {
             hotel.addRoom(room);
         }
         for (JsonAdaptedBooking jsonAdaptedBooking : bookings) {
-            Booking booking = jsonAdaptedBooking.toModelType();
+            Booking booking = jsonAdaptedBooking.toModelType(hotel);
             if (hotel.hasBooking(booking)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_BOOKINGS);
             }
@@ -91,7 +91,7 @@ public class JsonSerializableHotel {
             hotel.addAvailableService(service);
         }
         for (JsonAdaptedStay jsonAdaptedStay : stays) {
-            Stay stay = jsonAdaptedStay.toModelType();
+            Stay stay = jsonAdaptedStay.toModelType(hotel);
             hotel.addStay(stay);
         }
 

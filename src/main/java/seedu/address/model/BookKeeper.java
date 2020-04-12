@@ -122,6 +122,19 @@ public class BookKeeper implements ReadOnlyBookKeeper {
     }
 
     /**
+     * Deletes {@code service} to the bill of {@code roomId}.
+     */
+    public void deleteChargedServiceFromBill(RoomId roomId, AvailableService service) {
+        Bill bill = bills.asUnmodifiableObservableList()
+                .stream()
+                .filter(b -> b.getRoomId().equals(roomId))
+                .findFirst()
+                .get();
+
+        bill.deleteService(service);
+    }
+
+    /**
      * Returns the total cost of all bills belonging to {@code personId}.
      */
     public Cost getGuestBillsTotal(PersonId personId) {

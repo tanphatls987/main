@@ -56,7 +56,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.hotel = new Hotel(hotel);
+        this.hotel = new Hotel(hotel, this.addressBook);
         this.bookKeeper = new BookKeeper(bookKeeper);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredBookings = new FilteredList<>(this.hotel.getBookingList());
@@ -494,6 +494,12 @@ public class ModelManager implements Model {
     public void deleteAvailableService(AvailableServiceId id) {
         requireNonNull(id);
         hotel.deleteAvailableService(id);
+    }
+
+    @Override
+    public void deleteChargedService(RoomId roomId, AvailableService service) {
+        requireAllNonNull(roomId, service);
+        bookKeeper.deleteChargedServiceFromBill(roomId, service);
     }
 
 }
