@@ -254,6 +254,21 @@ Examples:
 
 Result: Checks out the guest from room `101`.
 
+=== Extend a stay for a guest: `extend`
+
+If you want to extend your stay, use the command `extend` +
+
+Format: `extend rn/ROOM_NUMBER td/TO_DATE`
+
+Example:
+
+* `extend rn/101 td/2020-04-20`
+
+Result: Extend the stay of room 101 until 20th April 2020.
+
+IMPORTANT: - Room must be checked in before it can be extended. +
+- The extend period must not clash with other future reservation.
+
 //tag::findguest[]
 === Finding guests: `findguest`
 If you want to find guests using their names or id, use the commmand `findguest`. +
