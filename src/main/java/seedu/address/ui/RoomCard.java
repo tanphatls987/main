@@ -6,6 +6,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.hotel.room.Room;
 
+import java.time.format.DateTimeFormatter;
+
 /**
  * An UI component that displays information of a {@code Room}.
  */
@@ -58,7 +60,9 @@ public class RoomCard extends UiPart<Region> {
             occupancy.setText("free");
             occupancy.setStyle("-fx-background-color:GREEN");
         } else {
-            stay.setText("Current stay until: " + room.getStay().getTimeTo().toString());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String formattedTo = room.getStay().getTimeTo().format(formatter);
+            stay.setText("Current stay until: " + formattedTo);
             occupancy.setText("occupied");
             occupancy.setStyle("-fx-background-color:RED");
         }

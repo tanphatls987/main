@@ -2,7 +2,7 @@
   "bills" : [ {
     "personId" : "A000000",
     "roomId" : "001",
-    "total" : "4660.00",
+    "total" : "7960.00",
     "charged" : [ {
       "description" : "Wash Clothes",
       "id" : "WC",
