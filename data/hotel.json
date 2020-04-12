@@ -3,9 +3,41 @@
     "tier" : "GOLD",
     "cost" : "150.00",
     "number" : "001"
+  }, {
+    "tier" : "SILVER",
+    "cost" : "100.00",
+    "number" : "002"
+  }, {
+    "tier" : "SILVER",
+    "cost" : "100.00",
+    "number" : "003"
+  }, {
+    "tier" : "BRONZE",
+    "cost" : "50.00",
+    "number" : "004"
+  }, {
+    "tier" : "BRONZE",
+    "cost" : "50.00",
+    "number" : "005"
+  }, {
+    "tier" : "BRONZE",
+    "cost" : "50.00",
+    "number" : "006"
   } ],
   "bookings" : [ ],
-  "availableServices" : [ ],
-  "stays" : [ ]
+  "availableServices" : [ {
+    "description" : "Wash Clothes",
+    "id" : "WC",
+    "cost" : "10.00"
+  } ],
+  "stays" : [ {
+    "room" : "001",
+    "payeeName" : "Alex Yeoh",
+    "payeeId" : "A000000",
+    "uuid" : "1379a5ce-b678-42fd-89e7-07ee4c134c68",
+    "description" : "",
+    "timeFrom" : "2020-04-12T07:44:09.989436800",
+    "timeTo" : "2020-05-05T12:00"
+  } ]
 }
 

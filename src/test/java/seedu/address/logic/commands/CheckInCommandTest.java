@@ -345,6 +345,11 @@ public class CheckInCommandTest {
         }
 
         @Override
+        public void deleteChargedService(RoomId roomId, AvailableService service) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addBill(Bill bill) {
 
         }
