@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteRoomCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -22,15 +23,20 @@ public class DeleteRoomCommandParser implements Parser<DeleteRoomCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ROOMNUMBER);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ROOMNUMBER)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            DeleteRoomCommand.MESSAGE_USAGE)
-            );
+        if (isAnyPrefixPresent(argMultimap, PREFIX_ROOMNUMBER)) {
+            String roomNum = argMultimap.getValue(PREFIX_ROOMNUMBER).get();
+            return new DeleteRoomCommand(roomNum);
+        } else {
+            try {
+                Index target = ParserUtil.parseIndex(args);
+                return new DeleteRoomCommand(target);
+            } catch (ParseException e) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                DeleteRoomCommand.MESSAGE_USAGE)
+                );
+            }
         }
-        String roomNum = argMultimap.getValue(PREFIX_ROOMNUMBER).get();
-        return new DeleteRoomCommand(roomNum);
     }
 
     /**
@@ -40,4 +46,9 @@ public class DeleteRoomCommandParser implements Parser<DeleteRoomCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
+    private static boolean isAnyPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    };
+
 }

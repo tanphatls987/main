@@ -90,6 +90,7 @@ Features can be divided into 4 groups of commands
 
 ** `checkin` and `checkout` command receives and returns customers.
 ** `chargeservice` command charges customers for getting services.
+** `deletecservice` command removes a charged service from the bill of customers.
 ** `reserve` command makes a reservation.
 ** `fetchbill` command fetches the bill of a guest.
 
@@ -339,6 +340,17 @@ Examples:
 
 Result: Deletes a service with service ID `WC`.
 
+=== Deleting a service from a bill : `deletecservice`
+If you want to remove a charged service from the guest's bill. +
+
+Format: `deletecservice i/PERSON_ID rn/ROOM_NUMBER si/SERVICE_ID`
+
+Examples:
+
+* `deletecservice i/G1231231X rn/100 si/WC` +
+
+Result: Removes service with ID `WC` from guest with ID `G1231231X` 's bill for `100`.
+
 === Setting the cost for a room : `setrcost`
 If you want to set the cost for a room (per night), use the command `setrcost` +
 
@@ -395,6 +407,8 @@ e.g. `findguest n/Alice i/A10`
 e.g. `fetchbill i/G1231231X`
 * *Charge Service* : `chargeservice i/PERSON_ID rn/ROOM_NUMBER si/SERVICE_ID` +
 e.g. `chargeservice i/G1231231X rn/100 si/WC`
+* *Delete Charged Service* : `deleteceservice i/PERSON_ID rn/ROOM_NUMBER si/SERVICE_ID` +
+e.g. `deletecservice i/G1231231X rn/100 si/WC`
 * *Make Reservation* : `reserve i/ID rn/ROOM_NUMBER df/FROM_DATE dt/TO_DATE` +
 e.g. `reserve i/G1231231X rn/102 df/ 2020-12-12 dt/ 2020-12-30`
 * *Locate Room* : `getroom i/ID` +

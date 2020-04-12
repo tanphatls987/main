@@ -113,7 +113,7 @@ public class FetchBillCommand extends Command {
             model.updateFilteredBillList(predicate);
 
             return new CommandResult(String.format(MESSAGE_SUCCESS_SPECIFIC,
-                    roomId, person.get().getName(), personId, total));
+                    roomId, person.get().getName(), personId, total), "bill");
         } else {
 
             total = model.getGuestBillsTotal(personId);
@@ -128,7 +128,7 @@ public class FetchBillCommand extends Command {
             model.updateFilteredBillList(predicate);
 
             return new CommandResult(String.format(MESSAGE_SUCCESS_NONSPECIFIC,
-                    person.get().getName(), personId, total));
+                    person.get().getName(), personId, total), "bill");
         }
     }
 }
