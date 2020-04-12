@@ -1,5 +1,13 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TODATE;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
+import java.util.function.Predicate;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.hotel.Stay;
@@ -9,15 +17,10 @@ import seedu.address.model.hotel.room.Room;
 import seedu.address.model.ids.RoomId;
 import seedu.address.model.timeframe.TimeFrame;
 
-import java.time.LocalDateTime;
-import java.util.Optional;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TODATE;
-
-public class ExtendCommand extends Command{
+/**
+ * Extend stay for a room command.
+ */
+public class ExtendCommand extends Command {
 
     public static final String COMMAND_WORD = "extend";
 

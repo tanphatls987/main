@@ -1,15 +1,15 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.ExtendCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ids.RoomId;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TODATE;
 
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TODATE;
+import seedu.address.logic.commands.ExtendCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ids.RoomId;
 
 /**
  * Parses input arguments and creates a new ExtendCommand object.

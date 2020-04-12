@@ -5,6 +5,12 @@
     "total" : "3600.00",
     "charged" : [ ],
     "roomCost" : "150.00"
+  }, {
+    "personId" : "B000000",
+    "roomId" : "002",
+    "total" : "400.00",
+    "charged" : [ ],
+    "roomCost" : "100.00"
   } ]
 }
 

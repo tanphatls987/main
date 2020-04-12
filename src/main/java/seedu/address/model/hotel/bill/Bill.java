@@ -131,7 +131,8 @@ public class Bill {
 
         for (Chargeable charge : charges) {
             if (charge instanceof RoomCost) {
-                builder.append("- Room Cost ($" + charge + " per night)\n"); } else {
+                builder.append("- Room Cost ($" + charge + " per night)\n");
+            } else {
                 builder.append("- " + charge + "\n");
             }
         }
