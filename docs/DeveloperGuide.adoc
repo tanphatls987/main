@@ -264,7 +264,7 @@ The billing system is designed to aid hotel receptionists in their bookkeeping a
 * `SetRoomCostCommand` -- Sets the cost of a room.
 * `AddServiceCommand` -- Creates a chargeable service.
 * `ChargeServiceCommand` -- Charges a guest for a requested service.
-* `RemoveChargedServiceCommand` -- Removes a charged service from the bill of a guest.
+* `DeleteChargedServiceCommand` -- Removes a charged service from the bill of a guest.
 * `FetchBillCommand` -- Fetches the bill of a guest, including the cost of the room.
 
 The following activity diagram summarizes the usage of the billing feature:
@@ -282,9 +282,11 @@ The following steps show how the command is implemented:
 
 1.  The command from the user is parsed and undergoes checks for the validity of the given `ROOMNUMBER` and `COST`.
 2.  If the parameters are valid, `SetRoomCostCommand#execute(Model model)` is invoked, which checks if the given room exists.
-3.  If the room exists, a `RoomCost` object is created and `Model#setRoomCost(Room room, RoomCost roomCost)` is called to set the cost of the room by setting the 'roomCost' attribute of the `Room` object.
+3.  If the room exists, a `RoomCost` object is created and `Model#setRoomCost(Room room, RoomCost roomCost)` is called.
+4.  `Room##setCost(RoomCost roomcost)` is then invoked to set the cost of the room by setting the 'roomCost' attribute of the `Room` object.
+6.  If successful, a `CommandResult` object is created to show a success message in the feedback box of the ui.
 
-The sequence diagram below shoes how the SetRoomCost command works:
+The sequence diagram below illustrates how the SetRoomCost command works:
 
 .Sequence Diagram of SetRooomCost Command
 image::SetRoomCostSequenceDiagram.png[]
@@ -313,11 +315,13 @@ This section goes through the implementation and design considerations of the Ch
 The following steps show how the command is implemented:
 
 1.  The command from the user is parsed and undergoes checks for the validity of the given `PERSONID`, `ROOMNUMBER` and `SERVICEID`.
-2.  If the parameters are valid, `ChargeServiceCommand#execute(Model model)` is invoked, which checks if the given guest, room and service exists.
+2.  If the parameters are valid, `ChargeServiceCommand#execute(Model model)` is invoked, which checks if the given guest, room and service exist.
 3.  If they exist, `Model#chargeService(RoomId roomId, AvailableService service)` is called which in following calls `BookKeeper#chargeServiceToBill(RoomId roomId, AvailableService service)`.
-4.  D
+4.  The bill for the corresponding room is retrieved and `Bill#addService(AvailableService service)` is then invoked by `BookKeeper`.
+5.  The service is added to stored list of chargeable objects in the bill and its cost is added to the stored total in the bill.
+6.  If successful, a `CommandResult` object is created to show a success message in the feedback box of the ui.
 
-The sequence diagram below shoes how the ChargeService command works:
+The sequence diagram below illustrates how the ChargeService command works:
 
 .Sequence Diagram of ChargeService Command
 image::ChargeServiceSequenceDiagram.png[]
@@ -326,15 +330,22 @@ image::ChargeServiceSequenceDiagram.png[]
 
 Below describes ideas that were considered when designing the command.
 
-==== RemoveChargedService Command
+==== DeleteChargedService Command
 
-This section goes through the implementation and design considerations of the RemoveChargedService command.
+This section goes through the implementation and design considerations of the DeleteChargedService command.
 
 ===== Implementation
 
-The following steps show how the RemoveChargedService command is implemented:
+The following steps show how the command is implemented:
 
-The sequence diagram below shoes how the RemoveChargedService command works:
+1.  The command from the user is parsed and undergoes checks for the validity of the given `PERSONID`, `ROOMNUMBER` and `SERVICEID`.
+2.  If the parameters are valid, `DeleteChargedServiceCommand#execute(Model model)` is invoked, which checks if the given guest, room and service exist.
+3.  If they exist, `Model#deleteChargedService(RoomId roomId, AvailableService service)` is called which in following calls `BookKeeper#deleteChargedServiceFromBill(RoomId roomId, AvailableService service)`.
+4.  The bill for the corresponding room is retrieved and `Bill#deleteService(AvailableService service)` is then invoked by `BookKeeper`.
+5.  The service is removed from the stored list of chargeable objects in the bill and its cost is subtracted from the stored total in the bill.
+6.  If successful, a `CommandResult` object is created to show a success message in the feedback box of the ui.
+
+The sequence diagram below illustrates how the RemoveChargedService command works:
 
 .Sequence Diagram of RemoveChargedService Command
 image::RemoveChargedServiceSequenceDiagram.png[]
@@ -349,9 +360,26 @@ This section goes through the implementation and design considerations of the Fe
 
 ===== Implementation
 
-The following steps show how the FetchBill command is implemented:
+The following steps show how the command is implemented:
 
-The sequence diagram below shoes how the FetchBill command works:
+1.  The command from the user is parsed and undergoes checks for the validity of the given `PERSONID` and `ROOMNUMBER`, if provided.
+2.  If the parameter/s are valid, `FetchBillCommand#execute(Model model)` is invoked, which checks if the given guest, room if `ROOMNUMBER` is provided, and bill/s exist.
+3.  If they exist, different methods are called depending on whether `ROOMNUMBER` is provided:
+
+- If `ROOMNUMBER` is provided:
+
+a.  `Model#findBill(RoomId roomId)` is called to retrieve the bill for specified room.
+b.  `Bill#getBillTotal()` is next called to get the total cost of expenses.
+c.  `Model#updateFilteredBillList(Predicate predicate)` is then called to update the bill tab to show the bill details of the room.
+d.  If successful, a `CommandResult` object is created to show a success message in the feedback box of the ui.
+
+- If `ROOMNUMBER` is not provided:
+
+a.  `Model#getGuestBillsTotal(PersonId personId)` is called to get the total of all the bills of the guest.
+b.  `Model#updateFilteredBillList(Predicate predicate)` is then called to update the bill tab to show all the bills belonging to the guest.
+c.  If successful, a `CommandResult` object is created to show a success message in the feedback box of the ui.
+
+The sequence diagram below illustrates how the FetchBill command works:
 
 .Sequence Diagram of RemoveChargedService Command
 image::RemoveChargedServiceSequenceDiagram.png[]
