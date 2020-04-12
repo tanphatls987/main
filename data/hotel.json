@@ -61,6 +61,13 @@
     "uuid" : "35e3b492-3efd-4b78-86e6-9e2726c3c5b5",
     "timeFrom" : "2020-02-23T12:00",
     "timeTo" : "2020-02-28T12:00"
+  }, {
+    "room" : "002",
+    "payeeName" : "David Li",
+    "payeeId" : "D000000",
+    "uuid" : "b248a38e-7549-4c99-a2c7-c8b96625fb70",
+    "timeFrom" : "2020-04-17T12:00",
+    "timeTo" : "2020-04-19T12:00"
   } ],
   "availableServices" : [ {
     "description" : "Wash Clothes",
@@ -74,7 +81,7 @@
     "uuid" : "96e9696a-6808-4489-af7e-ccab0ba1204b",
     "description" : "",
     "timeFrom" : "2020-04-10T12:00",
-    "timeTo" : "2020-04-12T12:00"
+    "timeTo" : "2020-04-16T12:00"
   }, {
     "room" : "006",
     "payeeName" : "Alex Yeoh",
@@ -85,4 +92,3 @@
     "timeTo" : "2020-04-13T12:00"
   } ]
 }
-

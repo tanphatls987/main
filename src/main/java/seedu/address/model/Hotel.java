@@ -166,7 +166,6 @@ public class Hotel implements ReadOnlyHotel {
     }
 
     /**
-     * @Return observable list of bookings
      */
     @Override
     public ObservableList<Booking> getBookingList() {
@@ -395,6 +394,19 @@ public class Hotel implements ReadOnlyHotel {
 
         addStay(stay);
         updateRoomStays();
+    }
+
+    /**
+     * Return the current stay with the corresponding room
+     * @param room
+     * @return
+     */
+    @Override
+    public Optional<Stay> findStay(Room room) {
+        return stayList
+            .stream()
+            .filter(u -> u.getRoom().equals(room))
+            .findFirst();
     }
 
     /**
