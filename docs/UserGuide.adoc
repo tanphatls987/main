@@ -33,6 +33,7 @@ Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 This user guide gives you an overview of the features of Morpheus. With the help of given examples, you will be able to learn how to use the application to help manage the rooms and services in the hotel.
 
 //tag::nav[]
+//sanchari
 === How to navigate this document
 * _This section shows you how to read and understand this document._
 
@@ -121,6 +122,7 @@ Features can be divided into 5 groups of commands
 ====
 
 //tag::commonparameters[]
+//tag::sanchari[]
 =====
 **[.underline]#Some Common Parameters#** +
 
@@ -144,6 +146,7 @@ Features can be divided into 5 groups of commands
 * `d/`  : Description of the service
 =====
 //end::commonparameters[]
+//end::sanchari[]
 
 === Getting help: `help`
 If you need to view help, use the command `help` .
@@ -276,13 +279,13 @@ Result: Checks out the guest from room `101`.
 
 If you want to extend your stay, use the command `extend` +
 
-Format: `extend rn/ROOM_NUMBER td/TO_DATE`
+*Format:* `extend rn/ROOM_NUMBER td/TO_DATE`
 
-Example:
+*Example:*
 
 * `extend rn/101 td/2020-04-20`
 
-Result: Extend the stay of room 101 until 20th April 2020.
+*Result:* Extend the stay of room 101 until 20th April 2020.
 
 NOTE: - Room must be checked in before it can be extended. +
 - The extend period must not clash with other future reservation.
@@ -309,7 +312,7 @@ If you want to remove a charged service from the guest's bill. +
 
 * `deletecservice i/G1231231X rn/100 si/WC` +
 
-*Result:* Removes service with ID `WC` from guest with ID `G1231231X` 's bill for `100`.
+*Result:* Removes service with ID `WC` from guest with ID `G1231231X` 's bill for room `100`.
 //end::deletecservice[]
 //tag::fetchbill[]
 === Fetching bill of a guest : `fetchbill`
@@ -335,13 +338,13 @@ NOTE: - Name must be an exact match. +
 
 *Examples:*
 
-* `findguest i/A0000000 i/B0000000 n/Alice` +
+* `findguest i/A0000000 n/Alice` +
 
-*Result:* Shows persons with name: `John Doe` or ID: `A10`
+*Result:* Shows persons with name: `Alice` or ID: `A1000000`
 //end::findguest[]
 
 === Finding bookings: `findbooking`
-If you want to find bookings using the guest's name, guest's ID or by room number, use the command `findbooking`. +
+If you want to find bookings made by a guest using the guest's name, guest's ID or by room number, use the command `findbooking`. +
 
 *Format:* `findbooking [n/NAME] ... [n/NAME] [i/ID] ... [i/ID] [rn/ROOM_NUMBER] ... [rn/ROOM_NUMBER]`
 
@@ -363,7 +366,7 @@ If you want to retrieve the room related to a guest's reservation, use the comma
 
 * `findroom i/A000000 rn/001 n/Tuan Le` +
 
-*Result:* Shows the room booked by the guest with ID `G12311231X`
+*Result:* Shows the room booked by the guest with ID `A000000`
 
 === Deleting a guest : `delete`
 If you want to delete a guest's details from the hotel database, use the command `delete`. +
