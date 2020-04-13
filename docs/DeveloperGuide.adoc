@@ -182,6 +182,7 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the Address Book data in json format and read it back.
 * can save Hotel data in json format and read it back.
+* can save BookKeeper data in json format and read it back.
 
 [[Design-Commons]]
 === Common classes
@@ -202,28 +203,13 @@ This command adds a guest into the hotel using their name, guest ID, phone and e
 The following steps show how the add guest feature works:
 
 1. The `addguest` command entered by the user is parsed and the different fields are tokenized.
-
-2. The command is then executed by creating a new Guest object using the fields entered and adding the guest object into the Hotel.
+2. `AddGuestCommand#execute(Model model)` is invoked which checks for validity of the entered parameter values.
+3. The command is then executed by creating a new Guest object using the parameter values entered and adding the Guest object into the Hotel.
 
 The diagram below shows the class diagram for AddGuestCommand.
 
-.Class diagram for AddGuestCommand
+.Class Diagram for AddGuestCommand
 image::AddGuestClass.png[]
-
-==== AddRoomCommand
-===== Implementation
-This command adds a room into the hotel using the room number, tier and the cost of the room.
-
-The following steps show how the add room feature works:
-
-1. The `addroom` command entered by the user is parsed and the different fields are tokenized.
-
-2. A new room object is created using the tokenized arguments and it is added into the hotel.
-
-The diagram below shows the class diagram for AddRoomCommand
-
-.Class diagram for AddRoomCommand
-image::AddRoomClassDiagram.png[]
 
 [[Initialization-AddService]]
 ==== AddService Command
@@ -236,8 +222,28 @@ The following steps show how the AddService command is implemented:
 
 The diagram below shows the class diagram for AddServiceCommand
 
-.Class diagram for AddServiceCommand
+.Class Diagram for AddServiceCommand
 image::AddServiceClass.png[]
+
+==== AddRoomCommand
+===== Implementation
+This command adds a room into the hotel using the room number, tier and the cost of the room.
+
+The following steps show how the add room feature works:
+
+1. The `addroom` command entered by the user is parsed and the different fields are tokenized.
+2. `AddRoomCommand#execute(model)` is invoked which checks for validity of the arguments.
+3. If all arguments are valid, a new Room object is created using the tokenized arguments and it is added into the hotel.
+
+The diagram below shows the class diagram for AddRoomCommand
+
+.Class Diagram for AddRoomCommand
+image::AddRoomClassDiagram.png[]
+
+The Diagram below shows the sequence diagram for AddRoomCommand. All Initialization commands are similar in their interactions with the <<Design-Logic>> and <<Design-Model>>.
+
+.Sequence Diagram for AddRoomCommand
+image::AddRoomSequenceDiagram.png[]
 
 The Diagram below shows the general activity sequence of the initialization feature.
 
