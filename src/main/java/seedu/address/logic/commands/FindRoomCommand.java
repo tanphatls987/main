@@ -27,10 +27,10 @@ public class FindRoomCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": returns all rooms with matching Room ID"
             + "or the person who stay in this room.\n"
-            + "Parameters: [rn/ROOM_NUMBER] ... [rn/ROOM_NUMBER] [n/NAME] ... [n/NAME] [i/ID] ... [i/ID]"
+            + "Parameters: [rn/ROOM_NUMBER] ... [rn/ROOM_NUMBER] [n/NAME] ... [n/NAME] [i/ID] ... [i/ID]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ID + "A000000"
-            + PREFIX_ROOMNUMBER + "001"
+            + PREFIX_ID + "A000000 "
+            + PREFIX_ROOMNUMBER + "001 "
             + PREFIX_NAME + "Tuan Le";
 
     private HashSet<Name> names;
