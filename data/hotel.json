@@ -75,10 +75,10 @@
     "cost" : "10.00"
   } ],
   "stays" : [ {
-    "room" : "002",
+    "room" : "003",
     "payeeName" : "Bernice Yu",
     "payeeId" : "B000000",
-    "uuid" : "a50cd8c3-437b-41d9-872c-39fc97638e8d",
+    "uuid" : "2df7ff43-df49-4ff1-acf1-5be916f71244",
     "description" : "",
     "timeFrom" : "2020-04-10T12:00",
     "timeTo" : "2020-04-16T12:00"
@@ -100,3 +100,4 @@
     "timeTo" : "2020-05-05T12:00"
   } ]
 }
+
