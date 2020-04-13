@@ -40,12 +40,12 @@ Morpheus is a desktop application that aims to facilitate the administrative wor
 *** User Guide: https://github.com/AY1920S2-CS2103T-W13-2/main/pull/95[#95], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/177/files[#177], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/183[#183], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/270[#270]
 **** Standardized and cleaned up team's updates
 **** Added `setrcost`, `chargeservice`, `deletecservice` & `fetchbill` features
-**** Updated https://github.com/AY1920S2-CS2103T-W13-2/main/blob/master/docs/UserGuide.adoc#introduction[Introduction] & https://github.com/AY1920S2-CS2103T-W13-2/main/blob/master/docs/UserGuide.adoc#command-summary[Command Summary]
+**** Updated Introduction, Command Summary
 *** Developer Guide: https://github.com/AY1920S2-CS2103T-W13-2/main/pull/95[#95], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/259[#259], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/271[#271], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/278/[#278]
 **** Standardized and cleaned up team's updates
-**** Added https://github.com/AY1920S2-CS2103T-W13-2/main/blob/master/docs/DeveloperGuide.adoc#billing-system[Billing System Implementation]
-**** Added diagrams (Use Cases, Billing System)
-**** Updated https://github.com/AY1920S2-CS2103T-W13-2/main/blob/master/docs/DeveloperGuide.adoc#introduction[Introduction], https://github.com/AY1920S2-CS2103T-W13-2/main/blob/master/docs/DeveloperGuide.adoc#user-stories[User Stories], https://github.com/AY1920S2-CS2103T-W13-2/main/blob/master/docs/DeveloperGuide.adoc#use-cases[Use Cases]
+**** Added Billing System Implementation
+**** Added diagrams (Billing System)
+**** Updated Introduction, User Stories, Use Cases
 ** Community:
 *** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W13-2/main/pull/180[#180], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/206[#206], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/248[#248]
 
@@ -73,7 +73,3 @@ include::../UserGuide.adoc[tag=fetchbill]
 include::../DeveloperGuide.adoc[tag=introduction]
 
 include::../DeveloperGuide.adoc[tag=billingsystem]
-
-include::../DeveloperGuide.adoc[tag=userstories]
-
-include::../DeveloperGuide.adoc[tag=usecases]

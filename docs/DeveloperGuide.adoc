@@ -433,6 +433,7 @@ Below describes ideas that were considered when designing the command.
 * **Alternative 2:** Create another class to handle the list of charged services.
 ** Pros: Calculation of the total cost would be less prone to errors.
 ** Cons: Might cause the design of the application be unnecessarily complicated with many classes.
+//end::billingsystem[]
 
 ==== DeleteChargedService Command (Hui Ming)
 
@@ -505,7 +506,7 @@ Below describes ideas that were considered when designing the command.
 * **Alternative 2:** Have two separate commands to fetch the bill of a room and the bills of a person.
 ** Pros: Easier to parse the parameters for the command.
 ** Cons: User needs to remember more commands.
-//end::billingsystem[]
+
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
