@@ -74,6 +74,6 @@ include::../DeveloperGuide.adoc[tag=introduction]
 
 include::../DeveloperGuide.adoc[tag=billingsystem]
 
-include::../DeveloperGuide.adoc[tag=userstoriess]
+include::../DeveloperGuide.adoc[tag=userstories]
 
 include::../DeveloperGuide.adoc[tag=usecases]
