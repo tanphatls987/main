@@ -14,12 +14,12 @@ Morpheus is a hotel management system desktop application designed to manage the
 == Summary of contributions
 
 * *Major enhancement*: Set up the *storage architecture for the Hotel* and implemented storage for **rooms and bookings**
-** What it does: Allows the app to save room and booking details to storage upon exit.
+** What it does: Allows the app to read and write room and booking details to hotel storage upon exit.
 ** Justification: This feature improves the product significantly because room and booking data of a hotel must be saved in a database to facilitate hotel management.
 ** Highlights: This implementation affected commands added in the future as initialization commands have to modify data in the storage. It required in depth analysis of the design of the storage component.
 * *Major enhancement*: Set up the *display of the various lists* in the UI i.e. Room list, Booking list, Stay List
 ** What it does: Allows users to view the rooms, bookings and stays in the hotel.
-** Justification: This feature improves the product significantly as the users need to be able to see the current state of the hotel in the UI.
+** Justification: This feature improves the product significantly as the users need to be able to see the current state of the hotel in the UI before entering any commands.
 ** Highlights: This implementation affected commands added in the future because users need to be able to view these lists first before executing commands on them.
 
 * *Minor enhancement*: added a reserve command that allows the user to make reservations for a guest.
@@ -43,7 +43,7 @@ Morpheus is a hotel management system desktop application designed to manage the
 
 == Contributions to the User Guide
 |===
-|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|_Given below are some sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
 include::../UserGuide.adoc[tag=nav]
@@ -54,7 +54,7 @@ include::../UserGuide.adoc[tag=reserve]
 
 == Contributions to the Developer Guide
 |===
-|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|_Given below are some sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
 include::../DeveloperGuide.adoc[tag=Architecture]
