@@ -275,9 +275,12 @@ If you want to check out a guest from the hotel, use the command `checkout` +
 
 *Examples:*
 
-* `checkout rn/101` +
+* `checkout rn/003` +
 
-Result: Checks out the guest from room `101`.
+image::checkout1.png[]
+image::checkout2.png[]
+
+Result: Checks out the guest from room `003`.
 //end::checkout[]
 
 //tag::extend[]
