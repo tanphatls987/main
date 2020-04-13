@@ -17,6 +17,8 @@ endif::[]
 By: `AY1920S2-CS2103T-W13-2`      Since: `Jan 2020`      Licence: `MIT`
 
 == Introduction
+(Hui Ming)
+
 Hello there!
 
 **Morpheus** is for **hotel receptionists** like you who prefer to use a **desktop app** for hotel room management.
@@ -29,6 +31,7 @@ More importantly, Morpheus is optimized for those who prefer to work with a Comm
 Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
 == About this document
+(Hui Ming)
 
 This user guide gives you an overview of the features of Morpheus. With the help of given examples, you will be able to learn how to use the application to help manage the rooms and services in the hotel.
 
@@ -223,6 +226,8 @@ If you want to add an available service to the database, use the command `addser
 
 //tag::setrcost[]
 === Setting the cost for a room : `setrcost`
+(Hui Ming)
+
 If you want to set the cost for a room (per night), use the command `setrcost` +
 
 *Format:* `setrcost rn/ROOM_NUMBER c/COST`
@@ -233,6 +238,7 @@ If you want to set the cost for a room (per night), use the command `setrcost` +
 
 *Result:* Sets the cost for `101` as `50.00` per night.
 //end::setrcost[]
+
 //tag::reserve[]
 === Making a reservation : `reserve`
 If you want to make a reservation for a guest in the hotel, use the command `reserve` +
@@ -289,6 +295,8 @@ NOTE: - Room must be checked in before it can be extended. +
 
 //tag::chargeservice[]
 === Charging a service : `chargeservice`
+(Hui Ming)
+
 If you want to charges a service to the guest's tab, use the command `chargeservice` +
 
 *Format:* `chargeservice i/PERSON_ID rn/ROOM_NUMBER si/SERVICE_ID`
@@ -299,8 +307,11 @@ If you want to charges a service to the guest's tab, use the command `chargeserv
 
 *Result:* Charges service with the ID `WC` for room `100` to the guest with ID `G1231231X` 's bill.
 //end::chargeservice[]
+
 //tag::deletecservice[]
 === Deleting a service from a bill : `deletecservice`
+(Hui Ming)
+
 If you want to remove a charged service from the guest's bill. +
 
 *Format:* `deletecservice i/PERSON_ID rn/ROOM_NUMBER si/SERVICE_ID`
@@ -311,8 +322,11 @@ If you want to remove a charged service from the guest's bill. +
 
 *Result:* Removes service with ID `WC` from guest with ID `G1231231X` 's bill for `100`.
 //end::deletecservice[]
+
 //tag::fetchbill[]
 === Fetching bill of a guest : `fetchbill`
+(Hui Ming)
+
 If you want to retrieve the bill of a guest, use the command `fetchbill` +
 
 *Format:* `fetchbill i/ID [rn/ROOM_NUMBER]`
@@ -323,6 +337,7 @@ If you want to retrieve the bill of a guest, use the command `fetchbill` +
 
 *Result:* Shows the entire bill, consisting of all costs incurred, for guest with ID `G1231231X` 's stay up till present moment.
 //end::fetchbill[]
+
 //tag::findguest[]
 === Finding guests: `findguest`
 If you want to find guests using their names or id, use the commmand `findguest`. +

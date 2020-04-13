@@ -19,6 +19,7 @@ By: `AY1920S2-CS2103T-W13-2`      Since: `Feb 2020`      Licence: `MIT`
 //tag::introduction[]
 == Introduction
 === Product Description
+(Hui Ming)
 
 Morpheus is a desktop application that aims to facilitate the administrative work of hotel services as a hotel room management system.
 The system will also provide statistics and reports, constructed from the analysis of the details in the user-provided database.
@@ -28,6 +29,7 @@ Most of the user interaction occurs via a CLI (Command Line Interface).
 image::Ui.png[]
 
 === Purpose
+(Hui Ming)
 
 This *Developer Guide* describes the architecture and software design of Morpheus.
 The intended audience is the *developers, designers and software testers* who wish to understand, maintain & upgrade the desktop application.
@@ -295,6 +297,7 @@ image::SearchWorkflow.png[]
 
 //tag::billingsystem[]
 === Billing System
+(Hui Ming)
 
 The billing system is designed to aid hotel receptionists in their bookkeeping and consists of the following operations:
 
@@ -310,6 +313,7 @@ The following activity diagram summarizes the usage of the billing feature:
 image::BillingActivityDiagram.png[]
 
 ==== SetRoomCost Command
+(Hui Ming)
 
 This section goes through the implementation and design considerations of the `SetRoomCost` command.
 
@@ -344,6 +348,7 @@ Below describes ideas that were considered when designing the command.
 The command is also a Hotel Initialization feature and is hence covered above in <<Initialization-AddService>>.
 
 ==== ChargeService Command
+(Hui Ming)
 
 This section goes through the implementation and design considerations of the `ChargeService` command.
 
@@ -375,6 +380,7 @@ Below describes ideas that were considered when designing the command.
 ** Cons: Might cause the design of the application be unnecessarily complicated with many classes.
 
 ==== DeleteChargedService Command
+(Hui Ming)
 
 This section goes through the implementation and design considerations of the `DeleteChargedService` command.
 
@@ -406,6 +412,7 @@ Below describes ideas that were considered when designing the command.
 ** Cons: Need to keep track of the index, which unnecessarily complicates the program as the output would be the same.
 
 ==== FetchBill Command
+(Hui Ming)
 
 This section goes through the implementation and design considerations of the `FetchBill` command.
 
@@ -496,6 +503,7 @@ Refer to the guide <<DevOps#, here>>.
 //tag::userstories[]
 [appendix]
 == User Stories
+(Sanchari & Hui Ming)
 
 Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*`
 
