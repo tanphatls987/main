@@ -16,6 +16,7 @@ endif::[]
 
 By: `AY1920S2-CS2103T-W13-2`      Since: `Feb 2020`      Licence: `MIT`
 
+//tag::introduction[]
 == Introduction
 === Product Description
 
@@ -30,6 +31,7 @@ image::Ui.png[]
 
 This *Developer Guide* describes the architecture and software design of Morpheus.
 The intended audience is the *developers, designers and software testers* who wish to understand, maintain & upgrade the desktop application.
+//end::introduction[]
 
 == Setting up
 
@@ -256,6 +258,7 @@ image::SearchWorkflow.png[]
 ** Cons: Harder to test, more prone to error.
 //end::findguest[]
 
+//tag::billingsystem[]
 === Billing System
 
 The billing system is designed to aid hotel receptionists in their bookkeeping and consists of the following operations:
@@ -407,7 +410,7 @@ Below describes ideas that were considered when designing the command.
 * **Alternative 2:** Have two separate commands to fetch the bill of a room and the bills of a person.
 ** Pros: Easier to parse the parameters for the command.
 ** Cons: User needs to remember more commands.
-
+//end::billingsystem[]
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
@@ -455,7 +458,7 @@ Refer to the guide <<DevOps#, here>>.
 
 
 *Value proposition*: manage guests faster than a typical mouse/GUI driven app
-
+//tag::userstories[]
 [appendix]
 == User Stories
 
@@ -506,8 +509,9 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`*` |receptionist |see the online bookings that guests have made |efficiently check guests in
 
 |=======================================================================
+//end::userstories[]
 
-
+//tag::usecases[]
 [appendix]
 == Use Cases
 
@@ -571,7 +575,7 @@ Use case ends.
 ** 2a1. AddressBook shows an error message.
 +
 Use case resumes at step 1.
-
+//end::usecases[]
 
 [appendix]
 == Non Functional Requirements

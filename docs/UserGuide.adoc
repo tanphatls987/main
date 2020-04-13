@@ -221,6 +221,7 @@ If you want to add an available service to the database, use the command `addser
 
 *Result:* Adds a service with id `WC`, description `Wash clothes` and cost `100.00`.
 
+//tag::setrcost[]
 === Setting the cost for a room : `setrcost`
 If you want to set the cost for a room (per night), use the command `setrcost` +
 
@@ -231,7 +232,7 @@ If you want to set the cost for a room (per night), use the command `setrcost` +
 * `setrcost  rn/101 c/50.00` +
 
 *Result:* Sets the cost for `101` as `50.00` per night.
-
+//end::setrcost[]
 //tag::reserve[]
 === Making a reservation : `reserve`
 If you want to make a reservation for a guest in the hotel, use the command `reserve` +
@@ -286,12 +287,7 @@ Result: Extend the stay of room 101 until 20th April 2020.
 IMPORTANT: - Room must be checked in before it can be extended. +
 - The extend period must not clash with other future reservation.
 
-//tag::findguest[]
-=== Finding guests: `findguest`
-If you want to find guests using their names or id, use the commmand `findguest`. +
-
-Format: `findguest [n/NAME] ... [n/NAME] [i/ID] ... [i/ID]`
-
+//tag::chargeservice[]
 === Charging a service : `chargeservice`
 If you want to charges a service to the guest's tab, use the command `chargeservice` +
 
@@ -302,7 +298,8 @@ If you want to charges a service to the guest's tab, use the command `chargeserv
 * `chargeservice i/G1231231X rn/100.00 si/WC` +
 
 *Result:* Charges service with the ID `WC` for room `100` to the guest with ID `G1231231X` 's bill.
-
+//end::chargeservice[]
+//tag::deletecservice[]
 === Deleting a service from a bill : `deletecservice`
 If you want to remove a charged service from the guest's bill. +
 
@@ -313,7 +310,8 @@ If you want to remove a charged service from the guest's bill. +
 * `deletecservice i/G1231231X rn/100 si/WC` +
 
 *Result:* Removes service with ID `WC` from guest with ID `G1231231X` 's bill for `100`.
-
+//end::deletecservice[]
+//tag::fetchbill[]
 === Fetching bill of a guest : `fetchbill`
 If you want to retrieve the bill of a guest, use the command `fetchbill` +
 
@@ -324,7 +322,7 @@ If you want to retrieve the bill of a guest, use the command `fetchbill` +
 * `fetchbill  i/G1231231X` +
 
 *Result:* Shows the entire bill, consisting of all costs incurred, for guest with ID `G1231231X` 's stay up till present moment.
-
+//end::fetchbill[]
 //tag::findguest[]
 === Finding guests: `findguest`
 If you want to find guests using their names or id, use the commmand `findguest`. +
