@@ -303,7 +303,7 @@ If you want to charges a service to the guest's tab, use the command `chargeserv
 
 *Examples:*
 
-* `chargeservice i/G1231231X rn/100.00 si/WC` +
+* `chargeservice i/G1231231X rn/100 si/WC` +
 
 *Result:* Charges service with the ID `WC` for room `100` to the guest with ID `G1231231X` 's bill.
 //end::chargeservice[]

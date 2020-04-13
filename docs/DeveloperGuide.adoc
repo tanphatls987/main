@@ -363,7 +363,7 @@ The following steps show how the command is implemented:
 5.  The service is added to stored list of chargeable objects in the bill and its cost is added to the stored total in the bill.
 6.  If successful, a `CommandResult` object is created to show a success message in the feedback box of the ui.
 
-The sequence diagram below illustrates how the `ChargeService` command works:
+The sequence diagram below illustrates how the `ChargeService` command works with the input `chargeservice i/A000000 rn/001 si/WC`:
 
 .Sequence Diagram of `ChargeService` Command
 image::ChargeServiceSequenceDiagram.png[]
@@ -389,16 +389,16 @@ This section goes through the implementation and design considerations of the `D
 The following steps show how the command is implemented:
 
 1.  The command from the user is parsed and undergoes checks for the validity of the given `PERSONID`, `ROOMNUMBER` and `SERVICEID`.
-2.  If the parameters are valid, `DeleteChargedServiceCommand#execute(Model model)` is invoked, which checks if the given guest, room and service exist.
+2.  If the parameters are valid, `DeleteChargedServiceCommand#execute(Model model)` is invoked, which checks if the given guest, room, service and bill exist.
 3.  If they exist, `Model#deleteChargedService(RoomId roomId, AvailableService service)` is called which in following calls `BookKeeper#deleteChargedServiceFromBill(RoomId roomId, AvailableService service)`.
 4.  The bill for the corresponding room is retrieved and `Bill#deleteService(AvailableService service)` is then invoked by `BookKeeper`.
 5.  The service is removed from the stored list of chargeable objects in the bill and its cost is subtracted from the stored total in the bill.
 6.  If successful, a `CommandResult` object is created to show a success message in the feedback box of the ui.
 
-The sequence diagram below illustrates how the `DeleteChargedService` command works:
+The sequence diagram below illustrates how the `DeleteChargedService` command works with the input `deletecservice i/A000000 rn/001 si/WC`:
 
 .Sequence Diagram of `DeleteChargedService` Command
-image::RemoveChargedServiceSequenceDiagram.png[]
+image::DeleteChargedServiceSequenceDiagram.png[]
 
 ===== Design Considerations
 
@@ -437,10 +437,10 @@ a.  `Model#getGuestBillsTotal(PersonId personId)` is called to get the total of 
 b.  `Model#updateFilteredBillList(Predicate predicate)` is then called to update the bill tab to show all the bills belonging to the guest.
 c.  If successful, a `CommandResult` object is created to show a success message in the feedback box of the ui.
 
-The sequence diagram below illustrates how the `FetchBill` command works:
+The sequence diagram below illustrates how the `FetchBill` command works with the input `fetchbill i/A000000 rn/001`:
 
-.Sequence Diagram of RemoveChargedService Command
-image::RemoveChargedServiceSequenceDiagram.png[]
+.Sequence Diagram of FetchBill Command
+image::FetchBillSequenceDiagram.png[]
 
 ===== Design Considerations
 
