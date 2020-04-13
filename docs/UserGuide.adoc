@@ -16,8 +16,7 @@ endif::[]
 
 By: `AY1920S2-CS2103T-W13-2`      Since: `Jan 2020`      Licence: `MIT`
 
-== Introduction
-(Hui Ming)
+== Introduction (Hui Ming)
 
 Hello there!
 
@@ -30,8 +29,7 @@ Frustrated with slow and tedious bookkeeping? Morpheus can settle it within a fe
 More importantly, Morpheus is optimized for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Morpheus can get your hotel room management tasks done faster than traditional GUI apps.
 Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
-== About this document
-(Hui Ming)
+== About this document (Hui Ming)
 
 This user guide gives you an overview of the features of Morpheus. With the help of given examples, you will be able to learn how to use the application to help manage the rooms and services in the hotel.
 
@@ -225,8 +223,7 @@ If you want to add an available service to the database, use the command `addser
 *Result:* Adds a service with id `WC`, description `Wash clothes` and cost `100.00`.
 
 //tag::setrcost[]
-=== Setting the cost for a room : `setrcost`
-(Hui Ming)
+=== Setting the cost for a room : `setrcost` (Hui Ming)
 
 If you want to set the cost for a room (per night), use the command `setrcost` +
 
@@ -294,8 +291,7 @@ NOTE: - Room must be checked in before it can be extended. +
 - The extend period must not clash with other future reservation.
 
 //tag::chargeservice[]
-=== Charging a service : `chargeservice`
-(Hui Ming)
+=== Charging a service : `chargeservice` (Hui Ming)
 
 If you want to charges a service to the guest's tab, use the command `chargeservice` +
 
@@ -309,8 +305,7 @@ If you want to charges a service to the guest's tab, use the command `chargeserv
 //end::chargeservice[]
 
 //tag::deletecservice[]
-=== Deleting a service from a bill : `deletecservice`
-(Hui Ming)
+=== Deleting a service from a bill : `deletecservice` (Hui Ming)
 
 If you want to remove a charged service from the guest's bill. +
 
@@ -324,8 +319,7 @@ If you want to remove a charged service from the guest's bill. +
 //end::deletecservice[]
 
 //tag::fetchbill[]
-=== Fetching bill of a guest : `fetchbill`
-(Hui Ming)
+=== Fetching bill of a guest : `fetchbill` (Hui Ming)
 
 If you want to retrieve the bill of a guest, use the command `fetchbill` +
 

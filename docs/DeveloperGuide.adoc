@@ -18,8 +18,7 @@ By: `AY1920S2-CS2103T-W13-2`      Since: `Feb 2020`      Licence: `MIT`
 
 //tag::introduction[]
 == Introduction
-=== Product Description
-(Hui Ming)
+=== Product Description (Hui Ming)
 
 Morpheus is a desktop application that aims to facilitate the administrative work of hotel services as a hotel room management system.
 The system will also provide statistics and reports, constructed from the analysis of the details in the user-provided database.
@@ -28,8 +27,7 @@ Most of the user interaction occurs via a CLI (Command Line Interface).
 .Morpheus UI
 image::Ui.png[]
 
-=== Purpose
-(Hui Ming)
+=== Purpose (Hui Ming)
 
 This *Developer Guide* describes the architecture and software design of Morpheus.
 The intended audience is the *developers, designers and software testers* who wish to understand, maintain & upgrade the desktop application.
@@ -162,7 +160,8 @@ The `Model`,
 * stores a `UserPref` object that represents the user's preferences.
 * stores the Address Book data.
 * stores the Hotel data.
-* exposes an unmodifiable `ObservableList<Person>` ,  `ObservableList<Room>` , `ObservableList<Booking>` , `ObservableList<AvailableService>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the BookKeeper data
+* exposes an unmodifiable `ObservableList<Person>` ,  `ObservableList<Room>` , `ObservableList<Booking>` , `ObservableList<AvailableService>`, `ObservableList<Bill>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * exposes Hotel's data.
 * does not depend on any of the other three components.
 
@@ -296,10 +295,17 @@ image::SearchWorkflow.png[]
 //end::findguest[]
 
 //tag::billingsystem[]
-=== Billing System
-(Hui Ming)
+=== Billing System (Hui Ming)
 
-The billing system is designed to aid hotel receptionists in their bookkeeping and consists of the following operations:
+The billing system is designed to aid hotel receptionists in their bookkeeping. It is oversen by the `BookKeeper` class, which keeps track of all bills in the hotel and facillitates in the manipulation of bills.
+The bills are kept in a `UniqueBillList`, which ensures that there are no duplicate bills in the `BookKeeper` class.
+
+The structure of the billing system is shown in the class diagram below:
+
+.Class Diagram of Billing System
+image::BillingClassDiagram.png[]
+
+To utilize the billing system, users are provided with the following operations:
 
 * `SetRoomCostCommand` -- Sets the cost of a room.
 * `AddServiceCommand` -- Creates a chargeable service.
@@ -307,13 +313,12 @@ The billing system is designed to aid hotel receptionists in their bookkeeping a
 * `DeleteChargedServiceCommand` -- Removes a charged service from the bill of a guest.
 * `FetchBillCommand` -- Fetches the bill of a guest, including the cost of the room.
 
-The following activity diagram summarizes the usage of the billing feature:
+The following activity diagram summarizes the typical procedure of billing a guest:
 
 .Activity Diagram of Billing System
 image::BillingActivityDiagram.png[]
 
-==== SetRoomCost Command
-(Hui Ming)
+==== SetRoomCost Command (Hui Ming)
 
 This section goes through the implementation and design considerations of the `SetRoomCost` command.
 
@@ -347,8 +352,7 @@ Below describes ideas that were considered when designing the command.
 
 The command is also a Hotel Initialization feature and is hence covered above in <<Initialization-AddService>>.
 
-==== ChargeService Command
-(Hui Ming)
+==== ChargeService Command (Hui Ming)
 
 This section goes through the implementation and design considerations of the `ChargeService` command.
 
@@ -379,8 +383,7 @@ Below describes ideas that were considered when designing the command.
 ** Pros: Calculation of the total cost would be less prone to errors.
 ** Cons: Might cause the design of the application be unnecessarily complicated with many classes.
 
-==== DeleteChargedService Command
-(Hui Ming)
+==== DeleteChargedService Command (Hui Ming)
 
 This section goes through the implementation and design considerations of the `DeleteChargedService` command.
 
@@ -411,8 +414,7 @@ Below describes ideas that were considered when designing the command.
 ** Pros: Makes sense logically.
 ** Cons: Need to keep track of the index, which unnecessarily complicates the program as the output would be the same.
 
-==== FetchBill Command
-(Hui Ming)
+==== FetchBill Command (Hui Ming)
 
 This section goes through the implementation and design considerations of the `FetchBill` command.
 
@@ -502,8 +504,7 @@ Refer to the guide <<DevOps#, here>>.
 *Value proposition*: manage guests faster than a typical mouse/GUI driven app
 //tag::userstories[]
 [appendix]
-== User Stories
-(Sanchari & Hui Ming)
+== User Stories (Sanchari & Hui Ming)
 
 Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*`
 
