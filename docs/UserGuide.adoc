@@ -154,7 +154,7 @@ If you need to view help, use the command `help` .
 *Format:*: `help`
 
 //tag::switch[]
-=== Switching between tabs : `switch`
+=== Switching between tabs : `switch`(Johnny)
 If you want to switch to a new tab and view all the data on the specified tab, use the command `switch` .
 
 *Format:*: `switch TAB_NAME`
@@ -352,7 +352,7 @@ If you want to retrieve the bill of a guest, use the command `fetchbill` +
 
 //tag::findguest[]
 
-=== Finding guests: `findguest`
+=== Finding guests: `findguest` (Johnny)
 If you want to find guests using their names or id, use the commmand `findguest`. +
 
 *Format:* `findguest [n/NAME] ... [n/NAME] [i/ID] ... [i/ID]`

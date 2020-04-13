@@ -117,8 +117,10 @@ The sections below give more details of each component.
 //tag::UiCompJohnny[]
 === UI component
 
+(Johnny)
+
 .Structure of the UI Component
-image::UiDiagram.png[]
+image::UIDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
 
@@ -130,8 +132,7 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
-
-* Receive command result to change view accordingly.
+* Receive command result and change user view accordingly.
 
 Below is diagram for how UI extract command result for changing view.
 

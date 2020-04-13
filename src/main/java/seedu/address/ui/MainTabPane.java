@@ -23,7 +23,6 @@ public class MainTabPane extends UiPart<Region> {
     private BookingListPanel bookingListPanel;
     private AvailableServiceListPanel availableServiceListPanel;
     private BillListPanel billListPanel;
-    private MainWindow mainWindow;
 
     private HashMap<String, Tab> tabMapping;
 
