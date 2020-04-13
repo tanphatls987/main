@@ -279,6 +279,19 @@ The following steps show how the CheckIn command is implemented.
 6. The room will be charged by calling `model#chargeRoomCost(RoomId roomId, RoomCost roomCost, Stay stay)`.
 7. If all of the above is successfully executed, this will return a `CommandResult` object to show success message.
 
+.Sequence Diagram for CheckInCommand
+image::CheckInSequenceDiagram.png
+
+===== Design Considerations
+
+Below describes ideas that were considered when designing the command.
+
+* **Alternative 1 (current choice):** Create a stay object which differentiate between the current stay and reservation.
+** Pros: Could easily get the list of current stay.
+** Cons: Requires more planning since we have to maintain 2 list now (stay and reservation).
+* **Alternative 2:** Store all stay in a reservation object.
+** Pros: Simple to implement.
+** Cons: Could not differentiate between stay and reservation unless there is another instance in the reservation object.
 
 ==== Checkout Command
 
@@ -288,7 +301,12 @@ This command checks out a guest from the hotel by providing a room number.
 
 The folowing steps show how the CheckOut command is implemented.
 
-//write the checkout implementation
+1. The command is parsed by `CheckOutCommandParser#parse(String args)` into list of pattern there (room number).
+2. The `CheckOutCommandParser` will create `CheckOutCommand`
+3. `CheckOutCommand` will call `model#checkOut` will be called.
+4. The list in the UI will be updated by calling `model#updateFilteredRoomList(Predicate predicate)`
+5. The room will clean up the previous bill by calling `model#deleteBill(RoomId roomId)`.
+6. If all of the above is successfully executed, this will return a `CommandResult` object to show success message.
 
 === Search feature
 
