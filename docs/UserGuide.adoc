@@ -34,8 +34,7 @@ Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 This user guide gives you an overview of the features of Morpheus. With the help of given examples, you will be able to learn how to use the application to help manage the rooms and services in the hotel.
 
 //tag::nav[]
-=== How to navigate this document +
-(Sanchari)
+=== How to navigate this document (Sanchari)
 
 * _This section shows you how to read and understand this document._
 
@@ -252,20 +251,27 @@ If you want to make a reservation for a guest in the hotel, use the command `res
 *Result:* Reserves room `102` for guest with the ID `G1231231X` from `2020-12-12` to `2020-12-30`.
 //end::reserve[]
 
+//tag::checkin[]
 === Checking in a guest: `checkin`
 
-If you want to check in a guest to the hotel from the current date until the an end-date, use the command `checkin` +
+If you want to check in a guest to the hotel from the current date until the end-date, use the command `checkin` +
 
-*Format:* `checkin i/ID rn/ROOM_NUMBER td/TO_DATE`
+*Format:* `checkin i/ID rn/ROOM_NUMBER td/TO_DATE` +
+or `checkin bi/BOOKING_ID`
 
-NOTE: A reservation in the guest's ID must exist before checking the guest in.
+NOTE: `BOOKING_ID` could be shorten by taking only its first 8 characters.
 
 *Examples:*
-
 * `checkin i/G1231231X rn/101 td/2020-12-14` +
+* `checkin bi/a1b2c3d4`
 
-*Result:* Checks in guest with ID `G1231231X` to room `101` until `2020-12-14`.
+image::checkin1.png[]
+image::checkin2.png[]
 
+*Result:* Checks in guest with ID `A000000` to room `001` until `2020-05-05`.
+//end::checkin[]
+
+//tag::checkout[]
 === Checking out a guest: `checkout`
 
 If you want to check out a guest from the hotel, use the command `checkout` +
@@ -274,10 +280,15 @@ If you want to check out a guest from the hotel, use the command `checkout` +
 
 *Examples:*
 
-* `checkout rn/101` +
+* `checkout rn/003` +
 
-Result: Checks out the guest from room `101`.
+image::checkout1.png[]
+image::checkout2.png[]
 
+Result: Checks out the guest from room `003`.
+//end::checkout[]
+
+//tag::extend[]
 === Extend a stay for a guest: `extend`
 
 If you want to extend your stay, use the command `extend` +
@@ -292,6 +303,7 @@ If you want to extend your stay, use the command `extend` +
 
 NOTE: - Room must be checked in before it can be extended. +
 - The extend period must not clash with other future reservation.
+//end::extend[]
 
 //tag::chargeservice[]
 === Charging a service : `chargeservice` (Hui Ming)
@@ -436,8 +448,7 @@ There is no need to save manually.
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Morpheus folder.
 
-== Glossary +
-(Sanchari)
+== Glossary (Sanchari)
 
 * GUI - Graphical User Interface: System that conveys information through visual components.
 * CLI - Command Line Interface: System that accepts text information from the user to execute actions.

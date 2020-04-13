@@ -1,0 +1,64 @@
+= Daniel Alfred Widjaja - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets
+
+== PROJECT: Morpheus
+
+== Overview
+
+Morpheus is a desktop application that aims to facilitate the administrative work of hotel services as a hotel room management system. The system will also provide statistics and reports, constructed from the analysis of the details in the user-provided database. Most of the user interaction occurs via a CLI (Command Line Interface).
+
+== Summary of contributions
+
+* *Major enhancement #1*: implemented *check-in/check-out command*
+** What it does: This allows the user to check-in or check-out guest into the hotel.
+** Justification: It enables the user to keep track of which room is empty and which room is occupied.
+** Highlights: This enhancement is quite challenging since it is created in the early period which needs more planning.
+
+* *Major enhancement #2*: implemented *extend command*
+** What it does: This allows the user to extend the stay of guest.
+** Justification: Guest could probably extend stay if they wanted to. Without creating the bill for the previous stay, extend command allows it to be combined in the same bill.
+
+* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
+
+* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
+
+* *Other contributions*:
+
+** Project management:
+*** Managed releases `v1.3`
+*** Created several milestones on Github Page
+*** Create and assign issue after discovery of bugs (Example: https://github.com[#249])
+** Documentation:
+*** Update the User Guide accordingly https://github.com/AY1920S2-CS2103T-W13-2/main/pull/61[#61]
+** Community:
+*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W13-2/main/pull/80[#80],
+https://github.com/AY1920S2-CS2103T-W13-2/main/pull/85[#85],
+https://github.com/AY1920S2-CS2103T-W13-2/main/pull/175[#175],
+https://github.com/AY1920S2-CS2103T-W13-2/main/pull/211[#211],
+https://github.com/AY1920S2-CS2103T-W13-2/main/pull/223[#223]
+*** Add checker script to make sure the code pass CI before they commit: https://github.com/AY1920S2-CS2103T-W13-2/main/pull/109[#109]
+
+
+== Contributions to the User Guide
+
+|===
+|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|===
+
+include::../UserGuide.adoc[tag=checkin]
+
+include::../UserGuide.adoc[tag=checkout]
+
+include::../UserGuide.adoc[tag=extend]
+
+== Contributions to the Developer Guide
+
+|===
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
+
+include::../DeveloperGuide.adoc[tag=undoredo]
+
+include::../DeveloperGuide.adoc[tag=dataencryption]
