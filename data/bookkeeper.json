@@ -1,4 +1,10 @@
 {
-  "bills" : [ ]
+  "bills" : [ {
+    "personId" : "B000000",
+    "roomId" : "003",
+    "total" : "7100.00",
+    "charged" : [ ],
+    "roomCost" : "100.00"
+  } ]
 }
 
