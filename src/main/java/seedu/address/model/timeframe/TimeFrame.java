@@ -5,6 +5,7 @@ import static java.time.temporal.ChronoUnit.DAYS;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import seedu.address.model.timeframe.exception.InvalidTimeFrameException;
 
@@ -128,6 +129,9 @@ public class TimeFrame {
 
     @Override
     public String toString() {
-        return "From: " + from + " To: " + to + "\n";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedFrom = from.format(formatter);
+        String formattedTo = to.format(formatter);
+        return "From: " + formattedFrom + " To: " + formattedTo + "\n";
     }
 }
