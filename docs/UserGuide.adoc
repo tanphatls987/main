@@ -262,6 +262,7 @@ or `checkin bi/BOOKING_ID`
 NOTE: `BOOKING_ID` could be shorten by taking only its first 8 characters.
 
 *Examples:*
+
 * `checkin i/G1231231X rn/101 td/2020-12-14` +
 * `checkin bi/a1b2c3d4`
 
