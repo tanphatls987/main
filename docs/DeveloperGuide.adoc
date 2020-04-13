@@ -296,7 +296,7 @@ The Diagram below shows the general activity sequence of the initialization feat
 image::AddCommandDiagram.png[]
 //end:init[]
 
-=== Hotel Services
+=== Hotel Services (Daniel)
 
 ==== Reserve Command
 ===== Implementation

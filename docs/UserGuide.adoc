@@ -252,7 +252,7 @@ If you want to make a reservation for a guest in the hotel, use the command `res
 //end::reserve[]
 
 //tag::checkin[]
-=== Checking in a guest: `checkin`
+=== Checking in a guest: `checkin` (Daniel)
 
 If you want to check in a guest to the hotel from the current date until the end-date, use the command `checkin` +
 
@@ -273,7 +273,7 @@ image::checkin2.png[]
 //end::checkin[]
 
 //tag::checkout[]
-=== Checking out a guest: `checkout`
+=== Checking out a guest: `checkout` (Daniel)
 
 If you want to check out a guest from the hotel, use the command `checkout` +
 
@@ -290,7 +290,7 @@ Result: Checks out the guest from room `003`.
 //end::checkout[]
 
 //tag::extend[]
-=== Extend a stay for a guest: `extend`
+=== Extend a stay for a guest: `extend` (Daniel)
 
 If you want to extend your stay, use the command `extend` +
 
