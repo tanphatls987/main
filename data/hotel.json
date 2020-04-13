@@ -80,8 +80,24 @@
     "payeeId" : "B000000",
     "uuid" : "2df7ff43-df49-4ff1-acf1-5be916f71244",
     "description" : "",
-    "timeFrom" : "2020-04-13T01:54:26.832612",
-    "timeTo" : "2020-06-23T12:00"
+    "timeFrom" : "2020-04-10T12:00",
+    "timeTo" : "2020-04-16T12:00"
+  }, {
+    "room" : "006",
+    "payeeName" : "Alex Yeoh",
+    "payeeId" : "A000000",
+    "uuid" : "15042c9f-a416-478a-ae47-aebdcdceffc5",
+    "description" : "",
+    "timeFrom" : "2020-04-11T12:00",
+    "timeTo" : "2020-04-13T12:00"
+  }, {
+    "room" : "001",
+    "payeeName" : "Alex Yeoh",
+    "payeeId" : "A000000",
+    "uuid" : "540a2401-819b-4a47-a83c-70bf25d60a37",
+    "description" : "",
+    "timeFrom" : "2020-04-13T00:55:37.918990",
+    "timeTo" : "2020-05-05T12:00"
   } ]
 }
 

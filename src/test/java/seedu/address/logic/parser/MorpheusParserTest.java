@@ -35,9 +35,9 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class MorpheusParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final MorpheusParser parser = new MorpheusParser();
 
     @Test
     public void parseCommand_addGuest() throws Exception {

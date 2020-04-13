@@ -1,0 +1,78 @@
+= Tey Hui Ming - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets
+
+== PROJECT: Morpheus
+
+---
+
+== Overview
+
+Morpheus is a desktop application that aims to facilitate the administrative work of hotel services as a hotel management system. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
+
+== Summary of contributions
+
+* *Major enhancement*: Set up the *billing system* for the Morpheus
+
+. Added the ability to *charge services to a bill*, *remove charged services from a bill* and *fetch & view bills*
+** What it does: Allows the user to keep track of guests' bills and outstanding payments, with a list of their requested or used services.
+** Justification: This feature improves the product significantly because as a hotel management system, Morpheus should be able to carry out administrative work like bookkeeping. This makes the billing system a key feature of the product.
+** Highlights: This enhancement is a *core feature* of Morpheus and *necessary feature* of the billing system. Hence, it affects commands to be added in the future. It required an in-depth analysis of design alternatives as there were many ways to keep track of and manipulate bills in the code.
+
+. Added the ability to *store & load bills*
+** What it does: Allows the application to store bill information to the hard disk upon exit and load the data when reopened.
+** Justification: This feature improves the product significantly because in order to facilitate bookkeeping, Morpheus must be able to save and load bill information.
+** Highlights: This enhancement is a *necessary feature* of the billing system and therefore affects commands to be added in the future. It required a deep understanding of the storage component in the original addressbook.
+
+* *Minor enhancement*: added the ability to set the cost of a room.
+
+* *Code contributed*: https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#=undefined&search=hmtey[[Functional & Test code]]
+
+* *Other contributions*:
+
+** Project management:
+*** Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
+** Enhancements to existing features:
+*** Updated old references to addressbook (Pull requests https://github.com/AY1920S2-CS2103T-W13-2/main/pull/177[#177], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/260[#260])
+** Documentation:
+*** User Guide: https://github.com/AY1920S2-CS2103T-W13-2/main/pull/95[#95], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/177/files[#177], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/183[#183], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/270[#270]
+**** Standardized and cleaned up team's updates
+**** Added `setrcost`, `chargeservice`, `deletecservice` & `fetchbill` features
+**** Updated https://github.com/AY1920S2-CS2103T-W13-2/main/blob/master/docs/UserGuide.adoc#introduction[Introduction] & https://github.com/AY1920S2-CS2103T-W13-2/main/blob/master/docs/UserGuide.adoc#command-summary[Command Summary]
+*** Developer Guide: https://github.com/AY1920S2-CS2103T-W13-2/main/pull/95[#95], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/259[#259]
+**** Standardized and cleaned up team's updates
+**** Added https://github.com/AY1920S2-CS2103T-W13-2/main/blob/master/docs/DeveloperGuide.adoc#billing-system[Billing System Implementation]
+**** Added diagrams (Use Cases, Billing System)
+**** Updated https://github.com/AY1920S2-CS2103T-W13-2/main/blob/master/docs/DeveloperGuide.adoc#introduction[Introduction], https://github.com/AY1920S2-CS2103T-W13-2/main/blob/master/docs/DeveloperGuide.adoc#user-stories[User Stories], https://github.com/AY1920S2-CS2103T-W13-2/main/blob/master/docs/DeveloperGuide.adoc#use-cases[Use Cases]
+** Community:
+*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W13-2/main/pull/180[#180], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/206[#206], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/248[#248]
+
+== Contributions to the User Guide
+
+
+|===
+|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|===
+
+include::../UserGuide.adoc[tag=setrcost]
+
+include::../UserGuide.adoc[tag=chargeservice]
+
+include::../UserGuide.adoc[tag=deletecservice]
+
+include::../UserGuide.adoc[tag=fetchbill]
+
+== Contributions to the Developer Guide
+
+|===
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
+
+include::../DeveloperGuide.adoc[tag=introduction]
+
+include::../DeveloperGuide.adoc[tag=billingsystem]
+
+include::../DeveloperGuide.adoc[tag=userstoriess]
+
+include::../DeveloperGuide.adoc[tag=usecases]
