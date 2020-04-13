@@ -36,7 +36,7 @@ Morpheus is a desktop application that aims to facilitate the administrative wor
 ** Enhancements to existing features:
 *** Updated old references to addressbook (Pull requests https://github.com/AY1920S2-CS2103T-W13-2/main/pull/177[#177], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/260[#260])
 ** Documentation:
-*** User Guide: https://github.com/AY1920S2-CS2103T-W13-2/main/pull/95[#95], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/177/files[#177], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/183[#183]
+*** User Guide: https://github.com/AY1920S2-CS2103T-W13-2/main/pull/95[#95], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/177/files[#177], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/183[#183], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/270[#270]
 **** Standardized and cleaned up team's updates
 **** Added `setrcost`, `chargeservice`, `deletecservice` & `fetchbill` features
 **** Updated https://github.com/AY1920S2-CS2103T-W13-2/main/blob/master/docs/UserGuide.adoc#introduction[Introduction] & https://github.com/AY1920S2-CS2103T-W13-2/main/blob/master/docs/UserGuide.adoc#command-summary[Command Summary]
