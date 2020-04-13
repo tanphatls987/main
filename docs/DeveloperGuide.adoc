@@ -323,8 +323,8 @@ This command extend the booking of a guest by providing room number and end date
 1. The command is parsed by `ExtendCommandParser#parse(String args)` into list of pattern there (room number and end date).
 2. The `ExtendCommandParser` will create `ExtendCommand`
 3. `ExtendCommand` will call `model#extendRoom` to extend the room in the hotel.
-3. `ExtendCommand` will call `model#chargeExtendRoomCost` to charge the room according to the room cost and number of extra nights.
-6. If this is successfully executer, this will return a `CommandResult` object to show success message.
+4. `ExtendCommand` will call `model#chargeExtendRoomCost` to charge the room according to the room cost and number of extra nights.
+5. If this is successfully executer, this will return a `CommandResult` object to show success message.
 
 //end::extend[]
 
