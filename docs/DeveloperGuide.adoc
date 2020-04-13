@@ -263,9 +263,32 @@ The following steps show how the Reserve command is implemented.
 3. A new Booking object is created and added into the hotel database.
 
 ==== Checkin Command
+
+This command checks in guest either with a room number, guest's name, and the end date of the stay.
+Or by providing the booking ID.
+
 ===== Implementation
 
+The following steps show how the CheckIn command is implemented.
+
+1. The command is parsed by `CheckInCommandParser#parse(String args)` into list of pattern there (room number, guest id, end date of the stay or booking id).
+2. If `BOOKING_ID` exists in the pattern, it will ignore the rest of the pattern and checkin using that booking id instead by creating `CheckInByIdCommand`
+3. The `CheckInByIdCommand` will invoke `model#findBookingById(String BookigId)` which will create a normal `CheckInCommand`
+4. `CheckInCommand` will call `model#checkIn` will be called.
+5. The list in the UI will be updated by calling `model#updateFilteredRoomList(Predicate predicate)`
+6. The room will be charged by calling `model#chargeRoomCost(RoomId roomId, RoomCost roomCost, Stay stay)`.
+7. If all of the above is successfully executed, this will return a `CommandResult` object to show success message.
+
+
 ==== Checkout Command
+
+This command checks out a guest from the hotel by providing a room number.
+
+===== Implementation
+
+The folowing steps show how the CheckOut command is implemented.
+
+//write the checkout implementation
 
 === Search feature
 
