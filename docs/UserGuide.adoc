@@ -34,8 +34,9 @@ Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 This user guide gives you an overview of the features of Morpheus. With the help of given examples, you will be able to learn how to use the application to help manage the rooms and services in the hotel.
 
 //tag::nav[]
-//sanchari
-=== How to navigate this document
+=== How to navigate this document +
+(Sanchari)
+
 * _This section shows you how to read and understand this document._
 
 ** Any text in `markup` suggests that you may enter it as a command in the app.
@@ -123,9 +124,9 @@ Features can be divided into 5 groups of commands
 ====
 
 //tag::commonparameters[]
-//tag::sanchari[]
 =====
 **[.underline]#Some Common Parameters#** +
+(Sanchari)
 
 *Guest:* +
 
@@ -147,7 +148,6 @@ Features can be divided into 5 groups of commands
 * `d/`  : Description of the service
 =====
 //end::commonparameters[]
-//end::sanchari[]
 
 === Getting help: `help`
 If you need to view help, use the command `help` .
@@ -308,6 +308,7 @@ If you want to charges a service to the guest's tab, use the command `chargeserv
 //end::chargeservice[]
 
 //tag::deletecservice[]
+
 === Deleting a service from a bill : `deletecservice` (Hui Ming)
 
 If you want to remove a charged service from the guest's bill. +
@@ -322,6 +323,7 @@ If you want to remove a charged service from the guest's bill. +
 //end::deletecservice[]
 
 //tag::fetchbill[]
+
 === Fetching bill of a guest : `fetchbill` (Hui Ming)
 
 If you want to retrieve the bill of a guest, use the command `fetchbill` +
@@ -336,6 +338,7 @@ If you want to retrieve the bill of a guest, use the command `fetchbill` +
 //end::fetchbill[]
 
 //tag::findguest[]
+
 === Finding guests: `findguest`
 If you want to find guests using their names or id, use the commmand `findguest`. +
 
@@ -432,6 +435,13 @@ There is no need to save manually.
 
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Morpheus folder.
+
+== Glossary +
+(Sanchari)
+
+* GUI - Graphical User Interface: System that conveys information through visual components.
+* CLI - Command Line Interface: System that accepts text information from the user to execute actions.
+* Hard Disk - Memory on your computer.
 
 == Command Summary
 
