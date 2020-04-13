@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -49,7 +50,8 @@ public class CheckOutCommand extends Command {
         }
 
         if (model.checkOut(room.get())) {
-
+            Predicate<Room> predicate = thisRoom -> room.get().isSameRoom(thisRoom);
+            model.updateFilteredRoomList(predicate);
             model.deleteBill(roomId);
             return new CommandResult(String.format(MESSAGE_SUCCESS, roomId), "room");
         } else {
