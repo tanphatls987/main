@@ -697,7 +697,7 @@ These instructions only provide a starting point for testers to work on; testers
 
 . Adding a guest when all guests are listed.
 
-.. Prerequisites: List all persons using the `switch guest` command. Multiple persons in the list.
+.. Prerequisites: List all persons using the `switch guest` command. Multiple guests in the list.
 .. Test case: `addguest n/Joey i/J000000 p/12345679 e/joey@email.com t/VIP` +
    Expected: Guest Joey is added to the list. Details of the added Guest shown in the status message.
 .. Test case: `addguest n/Jolene i/J000000 p/12345679 e/jolene@email.com t/VIP` +
@@ -709,7 +709,7 @@ These instructions only provide a starting point for testers to work on; testers
 
 . Adding a room when all rooms are listed.
 
-.. Prerequisites: List all rooms using the `switch room` command. Multiple persons in the list.
+.. Prerequisites: List all rooms using the `switch room` command. Multiple rooms in the list.
 .. Test case: `addroom rn/300 ti/GOLD c/300.00` +
    Expected: Room 300 is added to the list. Details of the added Room shown in the status message.
 .. Test case: `addroom rn/300 ti/GOLD c/300.00` +
@@ -718,6 +718,17 @@ These instructions only provide a starting point for testers to work on; testers
    Expected: Invalid Tier value. No Room is added. Error details shown in the status message.
 .. Other incorrect addroom commands to try: `addroom`, `addroom rn/500 ti/BRONZE` +
    Expected: Similar to previous.
+
+=== Adding a tier
+
+. Adding a tier and setting it to rooms
+
+.. Prerequisites: List all rooms using the `switch room` command. Multiple rooms in the list.
+.. Test case: `addtier ti/GOLD rn/001 002 003`
+    Expected: Sets the tier for rooms `001`, `002`, and `003` to `GOLD`
+.. Test case: `addtier ti/Gold rn/001 002 003`
+    Expected: Invalid tier value. No tier added. Error message shown.
+.. Other invalid addtier commands to try: `addtier` , `addtier ti/BRONZE rn/000`
 
 === Adding a service
 
