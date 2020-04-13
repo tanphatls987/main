@@ -7,6 +7,7 @@
 :imagesDir: images
 :stylesDir: stylesheets
 :xrefstyle: full
+:experimental:
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
@@ -33,6 +34,19 @@ This *Developer Guide* describes the architecture and software design of Morpheu
 The intended audience is the *developers, designers and software testers* who wish to understand, maintain & upgrade the desktop application.
 //end::introduction[]
 
+=== How to navigate this document
+* _This section shows you how to read and understand this document._
+
+** Any text in `markup` suggests that you may enter it as a command in the app.
+
+** A link like link:{repoURL}[this] will take you to the link destination when clicked.
+
+** kbd:[Keyboard] shows that this is a key that can be pressed on the keyboard.
+
+TIP: This is a useful tip to help optimize your experience using Morpheus.
+
+NOTE: This is important information you need to take note of!
+
 == Setting up
 
 Refer to the guide <<SettingUp#, here>>.
@@ -40,7 +54,8 @@ Refer to the guide <<SettingUp#, here>>.
 == Design
 //tag::Architecture[]
 [[Design-Architecture]]
-=== Architecture
+=== Architecture +
+(Sanchari)
 
 .Architecture Diagram
 image::OverallArchitecture.png[]
@@ -170,14 +185,16 @@ As a more OOP model, we can store a `Tag` list in `Address Book`, which `Person`
 image:BetterModelClassDiagram.png[]
 
 [[Design-Storage]]
-=== Storage component
+=== Storage component +
+(Sanchari)
 
 .Structure of the Storage Component
 image::StorageDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/storage/Storage.java[`Storage.java`]
 
-The `Storage` component,
+The `Storage` component is responsible for serializing `Model` and deserializing Json data to facilitate reading and writing into the database. +
+The `Storage` component can:
 
 * can save `UserPref` objects in json format and read it back.
 * can save the Address Book data in json format and read it back.
@@ -194,8 +211,8 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 //tag::init[]
-//sanchari
-=== Hotel Initialization
+=== Hotel Initialization +
+(Sanchari)
 The following steps show how to set up a hotel by adding guests, rooms and services:
 
 ==== AddGuestCommand
@@ -281,7 +298,7 @@ The Diagram below shows the general activity sequence of the initialization feat
 image::AddCommandDiagram.png[]
 //end:init[]
 
-=== Hotel Services feature
+=== Hotel Services
 
 ==== Reserve Command
 ===== Implementation
@@ -671,8 +688,8 @@ A contact detail that is not meant to be shared with others
 
 [appendix]
 //tag::Testing[]
-//sanchari
-== Instructions for Manual Testing
+== Instructions for Manual Testing +
+(Sanchari)
 
 Given below are instructions to test the app manually.
 
@@ -878,8 +895,8 @@ These instructions only provide a starting point for testers to work on; testers
 
 [appendix]
 //tag::effort[]
-//sanchari
-== Effort
+== Effort +
+(Sanchari)
 === Overview
 Morpheus is an extension from AB3 and is considerably more complex than AB3. We have incorporated several new features which required extending the
 UI, Storage and Model components of Morpheus. We extended current AB3 features (which only had 1 entity type: AddressBook) to include more entity types such as Hotel and BookKeeper which in turn

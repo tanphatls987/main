@@ -35,9 +35,10 @@ Morpheus is a hotel management system desktop application designed to manage the
 *** Updated the GUI design (Pull requests https://github.com/AY1920S2-CS2103T-W13-2/main/pull/189[#189])
 *** Added hotel storage, and saved rooms and bookings and stays to hotel storage (Pull requests https://github.com/AY1920S2-CS2103T-W13-2/main/pull/85[#85], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/107[#107], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/223[#223])
 ** Documentation:
-*** Cosmetic tweaks to the User Guide to improve readability: (Pull requests https://github.com/AY1920S2-CS2103T-W13-2/main/pull/240[#240], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/245[#245])
-*** Updated diagrams and cosmetic tweaks to the Developer Guide (Pull requests https://github.com/AY1920S2-CS2103T-W13-2/main/pull/205[#205], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/240[#240] )
+*** Added section on how to navigate the User Guide and cosmetic tweaks: (Pull requests https://github.com/AY1920S2-CS2103T-W13-2/main/pull/240[#240], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/245[#245])
+*** Added architecture diagrams, section on Initialization Feature, section on navigating the document and cosmetic tweaks to the Developer Guide (Pull requests https://github.com/AY1920S2-CS2103T-W13-2/main/pull/205[#205], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/240[#240] )
 ** Community:
+*** Issue management: (Examples: https://github.com/AY1920S2-CS2103T-W13-2/main/issues/255[#255], https://github.com/AY1920S2-CS2103T-W13-2/main/issues/37[#37])
 *** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W13-2/main/pull/183[#183], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/248[#248] , https://github.com/AY1920S2-CS2103T-W13-2/main/pull/75[#75] , https://github.com/AY1920S2-CS2103T-W13-2/main/pull/109[#109]
 *** Reported bugs and suggestions for other teams in the class (examples:  https://github.com/sancharib-git/ped/issues/7[1], https://github.com/sancharib-git/ped/issues/6[2], https://github.com/sancharib-git/ped/issues/5[3], https://github.com/sancharib-git/ped/issues/4[4], https://github.com/sancharib-git/ped/issues/1[5])
 
