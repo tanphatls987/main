@@ -33,6 +33,7 @@ Morpheus is a desktop application that aims to facilitate the administrative wor
 
 ** Project management:
 *** Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
+*** Maintaining the issue tracker
 ** Enhancements to existing features:
 *** Updated old references to addressbook (Pull requests https://github.com/AY1920S2-CS2103T-W13-2/main/pull/177[#177], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/260[#260])
 ** Documentation:
@@ -40,7 +41,7 @@ Morpheus is a desktop application that aims to facilitate the administrative wor
 **** Standardized and cleaned up team's updates
 **** Added `setrcost`, `chargeservice`, `deletecservice` & `fetchbill` features
 **** Updated https://github.com/AY1920S2-CS2103T-W13-2/main/blob/master/docs/UserGuide.adoc#introduction[Introduction] & https://github.com/AY1920S2-CS2103T-W13-2/main/blob/master/docs/UserGuide.adoc#command-summary[Command Summary]
-*** Developer Guide: https://github.com/AY1920S2-CS2103T-W13-2/main/pull/95[#95], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/259[#259]
+*** Developer Guide: https://github.com/AY1920S2-CS2103T-W13-2/main/pull/95[#95], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/259[#259], https://github.com/AY1920S2-CS2103T-W13-2/main/pull/271[#271]
 **** Standardized and cleaned up team's updates
 **** Added https://github.com/AY1920S2-CS2103T-W13-2/main/blob/master/docs/DeveloperGuide.adoc#billing-system[Billing System Implementation]
 **** Added diagrams (Use Cases, Billing System)
