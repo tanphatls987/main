@@ -614,7 +614,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 [discrete]
 === Use cases example:
-===== Use Case: UC01 - Add a guest
+==== Use Case: UC01 - Add a guest
 
 *MSS*
 
@@ -634,7 +634,7 @@ Use case ends.
 +
 Use case ends.
 
-===== Use Case: UC02 - Add a room
+==== Use Case: UC02 - Add a room
 
 *MSS*
 
@@ -652,7 +652,7 @@ Use case ends.
 +
 Use case ends.
 
-===== Use Case: UC03 - Add a tier
+==== Use Case: UC03 - Add a tier
 
 *MSS*
 
@@ -675,7 +675,7 @@ Use case ends.
 +
 Use case ends.
 
-===== Use Case: UC04 - Add a service
+==== Use Case: UC04 - Add a service
 
 *MSS*
 
@@ -693,7 +693,7 @@ Use case ends.
 +
 Use case ends.
 
-===== Use Case: UC05 - Reserve a room
+==== Use Case: UC05 - Reserve a room
 
 *MSS*
 
@@ -721,7 +721,7 @@ Use case ends.
 +
 Use case ends.
 
-===== Use Case: UC06 - Check in a guest
+==== Use Case: UC06 - Check in a guest
 
 *MSS*
 
@@ -749,7 +749,7 @@ Use case ends.
 +
 Use case ends.
 
-===== Use Case: UC07 - Check out a guest
+==== Use Case: UC07 - Check out a guest
 
 *MSS*
 
@@ -772,7 +772,7 @@ Use case ends.
 +
 Use case ends.
 
-===== Use Case: UC08 - Extend the stay of a guest
+==== Use Case: UC08 - Extend the stay of a guest
 
 *MSS*
 
@@ -800,7 +800,7 @@ Use case ends.
 +
 Use case ends.
 
-===== Use Case: UC09 - Charging a guest for a service
+==== Use Case: UC09 - Charging a guest for a service
 
 *MSS*
 
@@ -833,7 +833,7 @@ Use case ends.
 +
 Use case ends.
 
-===== Use Case: UC10 - Fetch the bills of a guest
+==== Use Case: UC10 - Fetch the bills of a guest
 
 *MSS*
 
@@ -856,7 +856,7 @@ Use case ends.
 +
 Use case ends.
 
-===== Use Case: UC11 - Remove a charged service from a bill
+==== Use Case: UC11 - Remove a charged service from a bill
 
 *MSS*
 
@@ -894,7 +894,7 @@ Use case ends.
 +
 Use case ends.
 
-===== Use Case: UC12 - Search for a guest
+==== Use Case: UC12 - Search for a guest
 
 *MSS*
 
@@ -904,7 +904,7 @@ Use case ends.
 +
 Use case ends.
 
-===== Use Case: UC13 - Search for a room
+==== Use Case: UC13 - Search for a room
 
 *MSS*
 
@@ -914,7 +914,7 @@ Use case ends.
 +
 Use case ends.
 
-===== Use Case: UC14 - Search for a booking
+==== Use Case: UC14 - Search for a booking
 
 *MSS*
 
@@ -924,7 +924,7 @@ Use case ends.
 +
 Use case ends.
 
-===== Use Case: UC15 - Delete a guest
+==== Use Case: UC15 - Delete a guest
 
 *MSS*
 
