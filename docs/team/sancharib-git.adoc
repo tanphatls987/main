@@ -25,7 +25,7 @@ Morpheus is a hotel management system desktop application designed to manage the
 * *Minor enhancement*: added a reserve command that allows the user to make reservations for a guest.
 * *Minor enhancement*: updated and modified the user interface to make it personalized to Morpheus.
 
-* *Code contributed*: [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=sancharib-git&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false[Functional code]]
+* *Code contributed*: https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=sancharib-git&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false[Functional code]
 
 * *Other contributions*:
 

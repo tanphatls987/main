@@ -34,8 +34,7 @@ Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 This user guide gives you an overview of the features of Morpheus. With the help of given examples, you will be able to learn how to use the application to help manage the rooms and services in the hotel.
 
 //tag::nav[]
-=== How to navigate this document +
-(Sanchari)
+=== How to navigate this document (Sanchari)
 
 * _This section shows you how to read and understand this document._
 
@@ -436,8 +435,7 @@ There is no need to save manually.
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Morpheus folder.
 
-== Glossary +
-(Sanchari)
+== Glossary (Sanchari)
 
 * GUI - Graphical User Interface: System that conveys information through visual components.
 * CLI - Command Line Interface: System that accepts text information from the user to execute actions.
