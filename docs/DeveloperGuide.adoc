@@ -608,68 +608,339 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 //tag::usecases[]
 [appendix]
-== Use Cases
+== Use Cases (Hui Ming)
 
 (For all use cases below, the *System* is the `Morpheus` and the *Actor* is the `user`, unless specified otherwise)
 
-.Use Case Diagram
-image::UseCaseDiagram.png[]
-
 [discrete]
 === Use cases example:
-=== Show list of available rooms
+===== Use Case: UC01 - Add a guest
 
 *MSS*
 
-1.  User requests to list the available room for a given date
-2.  Morpheus shows a list of rooms that is available
+1.  User requests to add a guest
+2.  User supplies guest name, id, phone number, email & tags
+3.  Morpheus adds the guest to the application
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. The list is empty.
+* 2a. The guest already exists in the application.
++
+[none]
+** 2a1. Morpheus shows an error message.
 +
 Use case ends.
 
-=== Use case: Make a reservation for a room
+===== Use Case: UC02 - Add a room
+
 *MSS*
 
-1.  User requests to <<c1-show-list-of-available-rooms, +++<u>show list of available rooms (C1)</u>+++>>
-2.  User requests to make a booking for the selected room(s)
-3.  Morpheus will mark the booking
+1.  User requests to add a room
+2.  User supplies room number, tier and cost
+3.  Morpheus adds the room to the application
 +
 Use case ends.
 
 *Extensions*
 
-[none]
-* 2a. The given room(s) are invalid or booked.
+* 2a. The room already exists in the application
 +
-[none]
-** 2a1. AddressBook shows an error message.
+** 2a1. Morpheus shows an error message
 +
-Use case resumes at step 1.
+Use case ends.
 
-=== Use case: Get bill
+===== Use Case: UC03 - Add a tier
+
 *MSS*
 
-1.  User requests to get bill from room number or customer's name
-2.  Morpheus provide the bill
+1.  User requests to add a tier to a room
+2.  User supplies tier and room number
+3.  Morpheus adds a tier to the application
 +
 Use case ends.
 
 *Extensions*
 
-[none]
+* 2a. The room already exists in the application
++
+** 2a1. Morpheus shows an error message
++
+Use case ends.
+* 2b. The room already has a tier
++
+** 2b1. Morpheus shows an error message
++
+Use case ends.
 
-* 2a. The given room number and customer's name is not valid
+===== Use Case: UC04 - Add a service
+
+*MSS*
+
+1.  User requests to add a service
+2.  User supplies service id, description and cost
+3.  Morpheus adds the service to the application
 +
-[none]
-** 2a1. AddressBook shows an error message.
+Use case ends.
+
+*Extensions*
+
+* 2a. The service already exists in the application
 +
-Use case resumes at step 1.
+** 2a1. Morpheus shows an error message
++
+Use case ends.
+
+===== Use Case: UC05 - Reserve a room
+
+*MSS*
+
+1.  User requests to reserve a room
+2.  User supplies guest id, room number, start and end dates of reservation
+3.  Morpheus reserves the room
++
+Use case ends.
+
+*Extensions*
+
+* 2a. The guest does not exist in the application
++
+** 2a1. Morpheus shows an error message
++
+Use case ends.
+* 2b. The room does not exist in the application
++
+** 2b1. Morpheus shows an error message
++
+Use case ends.
+* 2c. The room is already reserved/occupied
++
+** 2c1. Morpheus shows an error message
++
+Use case ends.
+
+===== Use Case: UC06 - Check in a guest
+
+*MSS*
+
+1.  User requests to check in a guest
+2.  User supplies guest id, room number end date of check out
+3.  Morpheus marks the room as occupied
++
+Use case ends.
+
+*Extensions*
+
+* 2a. The guest does not exist in the application
++
+** 2a1. Morpheus shows an error message
++
+Use case ends.
+* 2b. The room does not exist in the application
++
+** 2b1. Morpheus shows an error message
++
+Use case ends.
+* 2c. The room is already reserved/occupied
++
+** 2c1. Morpheus shows an error message
++
+Use case ends.
+
+===== Use Case: UC07 - Check out a guest
+
+*MSS*
+
+1.  User requests to check out a guest
+2.  User supplies room number
+3.  Morpheus marks the room as unoccupied
++
+Use case ends.
+
+*Extensions*
+
+* 2a. The room does not exist in the application
++
+** 2a1. Morpheus shows an error message
++
+Use case ends.
+* 2b. The room is not occupied
++
+** 2b1. Morpheus shows an error message
++
+Use case ends.
+
+===== Use Case: UC08 - Extend the stay of a guest
+
+*MSS*
+
+1.  User requests to extend the stay of a guest
+2.  User supplies room number and new date to check out
+3.  Morpheus updates the period of time where the room is occupied
++
+Use case ends.
+
+*Extensions*
+
+* 2a. The room does not exist in the application
++
+** 2a1. Morpheus shows an error message
++
+Use case ends.
+* 2b. The room is not occupied
++
+** 2b1. Morpheus shows an error message
++
+Use case ends.
+* 2c. The room is reserved by another guest
++
+** 2c1. Morpheus shows an error message
++
+Use case ends.
+
+===== Use Case: UC09 - Charging a guest for a service
+
+*MSS*
+
+1.  User requests to charge a guest for a service
+2.  User supplies guest id, room number and service id
+3.  Morpheus charges the service to the bill of the guest
++
+Use case ends.
+
+*Extensions*
+
+* 2a. The guest does not exist in the application
++
+** 2a1. Morpheus shows an error message
++
+Use case ends.
+* 2b. The room does not exist in the application
++
+** 2b1. Morpheus shows an error message
++
+Use case ends.
+* 2c. The service does not exist in the application
++
+** 2c1. Morpheus shows an error message
++
+Use case ends.
+* 2d. The guest is not checked into the specified room
++
+** 2d1. Morpheus shows an error message
++
+Use case ends.
+
+===== Use Case: UC10 - Fetch the bills of a guest
+
+*MSS*
+
+1.  User requests to fetch the bill of a guest
+2.  User supplies guest id
+3.  Morpheus shows the total outstanding payment of the guest and the bill details
++
+Use case ends.
+
+*Extensions*
+
+* 2a. The guest does not exist in the application
++
+** 2a1. Morpheus shows an error message
++
+Use case ends.
+* 2b. The guest does not have outstanding bills
++
+** 2b1. Morpheus shows an error message
++
+Use case ends.
+
+===== Use Case: UC11 - Remove a charged service from a bill
+
+*MSS*
+
+1.  User requests to remove a charged service from a bill
+2.  User supplies guest id, room number and service id
+3.  Morpheus removed charged service from the bill of the guest
++
+Use case ends.
+
+*Extensions*
+
+* 2a. The guest does not exist in the application
++
+** 2a1. Morpheus shows an error message
++
+Use case ends.
+* 2b. The room does not exist in the application
++
+** 2b1. Morpheus shows an error message
++
+Use case ends.
+* 2c. The service does not exist in the application
++
+** 2c1. Morpheus shows an error message
++
+Use case ends.
+* 2d. The guest does not have outstanding bills
++
+** 2d1. Morpheus shows an error message
++
+Use case ends.
+* 2e. The bill does not have the charged service
++
+** 2e1. Morpheus shows an error message
++
+Use case ends.
+
+===== Use Case: UC12 - Search for a guest
+
+*MSS*
+
+1.  User requests to search for a guest
+2.  User supplies guest id and/or name
+3.  Morpheus shows a list of guests with matching id/names
++
+Use case ends.
+
+===== Use Case: UC13 - Search for a room
+
+*MSS*
+
+1.  User requests to search for a room
+2.  User supplies guest id and/or name and/or room number
+3.  Morpheus shows a list of rooms with matching id/names/room bumbers
++
+Use case ends.
+
+===== Use Case: UC14 - Search for a booking
+
+*MSS*
+
+1.  User requests to search for a guest
+2.  User supplies guest id and/or name and/or room number
+3.  Morpheus shows a list of bookings with matching id/names/room numbers
++
+Use case ends.
+
+===== Use Case: UC15 - Delete a guest
+
+*MSS*
+
+1.  User requests to delete a guest
+2.  User supplies index of guest or guest id
+3.  Morpheus deletes the guest from the application
++
+Use case ends.
+
+*Extensions*
+
+* 2a. The guest does not exist in the application
++
+** 2a1. Morpheus shows an error message
++
+Use case ends.
 //end::usecases[]
 
 [appendix]
