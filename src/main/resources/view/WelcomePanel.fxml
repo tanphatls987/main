@@ -18,12 +18,7 @@
         <Label text="1. To Get Started " styleClass="welcome-subheading"></Label>
     </TextFlow>
     <TextFlow textAlignment="LEFT">
-        <Label text="Click on " styleClass="welcome-body"></Label>
-        <Label text="Guests" styleClass="markup"></Label>
-        <Label text=" " styleClass="welcome-body"></Label>
-        <Label text="Rooms" styleClass="markup"></Label>
-        <Label text=" " styleClass="welcome-body"></Label>
-        <Label text="Bookings" styleClass="markup"></Label>
+        <Label text="Click on a tab to get started!" styleClass="welcome-body"></Label>
     </TextFlow>
     <TextFlow>
         <Label text="             "></Label>

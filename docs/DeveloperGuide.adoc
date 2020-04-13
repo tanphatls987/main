@@ -193,8 +193,10 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+//tag::init[]
+//sanchari
 === Hotel Initialization
-The following steps show how to set up a hotel:
+The following steps show how to set up a hotel by adding guests, rooms and services:
 
 ==== AddGuestCommand
 ===== Implementation
@@ -205,11 +207,20 @@ The following steps show how the add guest feature works:
 1. The `addguest` command entered by the user is parsed and the different fields are tokenized.
 2. `AddGuestCommand#execute(Model model)` is invoked which checks for validity of the entered parameter values.
 3. The command is then executed by creating a new Guest object using the parameter values entered and adding the Guest object into the Hotel.
+4.  If successful, a `CommandResult` object is created to show a success message in the feedback box of the ui.
 
 The diagram below shows the class diagram for AddGuestCommand.
 
 .Class Diagram for AddGuestCommand
 image::AddGuestClass.png[]
+
+===== Design Considerations
+* **Alternative 1 (current choice):** Creates a new Guest object in AddGuestCommandParser.
+** Pros: Simpler to test and understand.
+** Cons: Command object should not know details about model i.e. Person.
+* **Alternative 2:** New Guest object is created and added to hotel in model.
+** Pros: Command has no knowledge of Model and its attributes.
+** Cons: More prone to error.
 
 [[Initialization-AddService]]
 ==== AddService Command
@@ -218,12 +229,22 @@ The following steps show how the AddService command is implemented:
 
 1.  The command from user is parsed and undergoes checks for the validity of the `SERVICE_ID`, `COST` and `DESCRIPTION`.
 2.  If the parameters are valid, `AddServiceCommand#execute(Model model)` is invoked, which checks if the service id exists.
-3.  If the service id does not exist, a `AvailableService` object is created and `Model#add(AvailableService service) is called to add an available service to hotel.
+3.  If the service id does not exist, a `AvailableService` object is created and `Model#add(AvailableService service)` is called to add an available service to hotel.
+4.  If successful, a `CommandResult` object is created to show a success message in the feedback box of the ui.
 
 The diagram below shows the class diagram for AddServiceCommand
 
 .Class Diagram for AddServiceCommand
 image::AddServiceClass.png[]
+
+===== Design Considerations
+* **Alternative 1 (current choice):** Creates a new Service object in AddServiceCommandParser.
+** Pros: Simpler to test and understand.
+** Cons: Command object should not know details about model i.e. Service.
+* **Alternative 2:** New Service object is created and added to hotel in model.
+** Pros: Command has no knowledge of Model and its attributes.
+** Cons: More prone to error.
+
 
 ==== AddRoomCommand
 ===== Implementation
@@ -234,13 +255,22 @@ The following steps show how the add room feature works:
 1. The `addroom` command entered by the user is parsed and the different fields are tokenized.
 2. `AddRoomCommand#execute(model)` is invoked which checks for validity of the arguments.
 3. If all arguments are valid, a new Room object is created using the tokenized arguments and it is added into the hotel.
+4.  If successful, a `CommandResult` object is created to show a success message in the feedback box of the ui.
 
 The diagram below shows the class diagram for AddRoomCommand
 
 .Class Diagram for AddRoomCommand
 image::AddRoomClassDiagram.png[]
 
-The Diagram below shows the sequence diagram for AddRoomCommand. All Initialization commands are similar in their interactions with the <<Design-Logic>> and <<Design-Model>>.
+===== Design Considerations
+* **Alternative 1 (current choice):** New Room object is created and added to hotel in Hotel.
+** Pros: Command has no knowledge of Model and its attributes.
+** Cons: More prone to error.
+* **Alternative 2:** Creates a new Guest object in AddRoomCommandParser.
+** Pros: Simpler to test and understand.
+** Cons: Command object should not know details about model and its attributes i.e. Room.
+
+The Diagram below shows the sequence diagram for AddRoomCommand. All Initialization commands above are similar in their interactions with the <<Design-Logic>> and <<Design-Model>>.
 
 .Sequence Diagram for AddRoomCommand
 image::AddRoomSequenceDiagram.png[]
@@ -249,8 +279,9 @@ The Diagram below shows the general activity sequence of the initialization feat
 
 .Activity Diagram of Hotel Initialization
 image::AddCommandDiagram.png[]
+//end:init[]
 
-=== Service feature
+=== Hotel Services feature
 
 ==== Reserve Command
 ===== Implementation
@@ -327,7 +358,7 @@ The following steps show how the command is implemented:
 2.  If the parameters are valid, `SetRoomCostCommand#execute(Model model)` is invoked, which checks if the given room exists.
 3.  If the room exists, a `RoomCost` object is created and `Model#setRoomCost(Room room, RoomCost roomCost)` is called.
 4.  `Room##setCost(RoomCost roomcost)` is then invoked to set the cost of the room by setting the 'roomCost' attribute of the `Room` object.
-6.  If successful, a `CommandResult` object is created to show a success message in the feedback box of the ui.
+5.  If successful, a `CommandResult` object is created to show a success message in the feedback box of the ui.
 
 The sequence diagram below illustrates how the `SetRoomCost` command works with the input `setrcost rn/001 c/50`:
 
@@ -640,6 +671,7 @@ A contact detail that is not meant to be shared with others
 
 [appendix]
 //tag::Testing[]
+//sanchari
 == Instructions for Manual Testing
 
 Given below are instructions to test the app manually.
@@ -661,18 +693,165 @@ These instructions only provide a starting point for testers to work on; testers
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
 
-=== Deleting a person
+=== Adding a guest
 
-. Deleting a person while all persons are listed
+. Adding a guest when all guests are listed.
 
-.. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-.. Test case: `delete 1` +
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `delete 0` +
-   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +
+.. Prerequisites: List all persons using the `switch guest` command. Multiple persons in the list.
+.. Test case: `addguest n/Joey i/J000000 p/12345679 e/joey@email.com t/VIP` +
+   Expected: Guest Joey is added to the list. Details of the added Guest shown in the status message.
+.. Test case: `addguest n/Jolene i/J000000 p/12345679 e/jolene@email.com t/VIP` +
+   Expected: Guest Id clashes with an existing guest. No Guest is added. Error details shown in the status message.
+.. Other incorrect addguest commands to try: `addguest`, `addguest i/P000000 p/12345679 e/joey@email.com` +
    Expected: Similar to previous.
 
+=== Adding a room
+
+. Adding a room when all rooms are listed.
+
+.. Prerequisites: List all rooms using the `switch room` command. Multiple persons in the list.
+.. Test case: `addroom rn/300 ti/GOLD c/300.00` +
+   Expected: Room 300 is added to the list. Details of the added Room shown in the status message.
+.. Test case: `addroom rn/300 ti/GOLD c/300.00` +
+   Expected: Room Id clashes with an existing room. No Room is added. Error details shown in the status message.
+.. Test case: `addroom rn/400 ti/Gold c/300.00` +
+   Expected: Invalid Tier value. No Room is added. Error details shown in the status message.
+.. Other incorrect addroom commands to try: `addroom`, `addroom rn/500 ti/BRONZE` +
+   Expected: Similar to previous.
+
+=== Adding a service
+
+. Adding a service when all services are listed.
+
+.. Prerequisites: List all service using the `switch service` command. Multiple services in the list.
+.. Test case: `addservice si/WC d/Wash clothes c/100.00` +
+   Expected: Service WC is added to the list. Details of the added Service shown in the status message.
+.. Test case: `addservice si/WC d/Other service c/100.00` +
+   Expected: Service Id clashes with an existing service. No service is added. Error details shown in the status message.
+.. Test case: `addservice si/WC c/100.00` +
+   Expected: Invalid description value. No service is added. Error details shown in the status message.
+.. Other incorrect addservice commands to try: `addservice`, `addservice c/190.00` +
+   Expected: Similar to previous.
+
+=== Reserving a room
+
+. Adding a booking when all bookings are listed
+
+.. Prerequisites: List all the bookings by using the `switch booking` command. Multiple bookings shown.
+.. Test case: `reserve i/i000000 rn/001 fd/2020-12-12 td/2020-12-24` +
+    Expected: Room number `001` is reserved by person `I000000` from `2020-12-12` to `2020-12-24`
+.. Test case: `reserve i/B000000 rn/001 fd/2020-12-13 td/2020-12-23` +
+    Expected: There is a clash in booking dates for the same room. Error details shown in the result display box.
+.. Test case: `reserve i/Bzagda rn/001 fd/2020-12-13 td/2020-12-23`
+    Expected: No such person found. No booking made. Error details shown in the status message.
+.. Other incorrect reserve commands to try: `reserve`, `reserve i/A000000` , `reserve i/i000000 rn/004 fd/2012-12-12 td/2012-12-24`
+
+=== Checking in and out guests
+
+. Dealing with check-ins and check-outs
+
+.. Prerequisites: List all bookings by using the command `switch booking`
+.. Test case: `checkin i/i000000 rn/001 td/2020-12-24` +
+    Expected: Guest `i000000` is checked into room `001`
+.. Test case: `checkin i/B000000 rn/5602 td/2020-12-23` +
+    Expected: There is no such room. Error message shown in result display box.
+.. Test case: `checkout rn/001` +
+    Expected: Guest is checked out of room `001`
+.. Test case: `checkout rn/009` +
+    Expected: Room `009` has no guests. Error message is shown in the result display box.
+.. Other incorrect checkin/checkout commands to try: `checkin`, `checkin i/A000000` , `checkin i/i000000 rn/004 fd/2012-12-12 td/2012-12-24`, `checkout` , `checkout rn/000`
+
+
+=== Extending the stay of a guest
+
+. Dealing with extension of a stay.
+
+.. Prerequisites: List all the stays by using the `switch room` command. Stays are shown in the rooms.
+.. Test case: `extend rn/101 td/2020-04-20` +
+    Expected: Room number `101` 's stay is extended until `2020-04-20`
+.. Test case: `extend rn/006 td/2020-04-20` +
+    Expected: There is no guest checked into room `006`. Stay cannot be extended. Error details shown in the result display box.
+.. Test case: `extend rn/001 fd/2012-12-12` +
+    Expected: Invalid date. Date has passed. Stay cannot be extended. Error details shown in the result display box.
+.. Other incorrect extend commands to try: `extend`, `reserve rn/000` , `extend td/2012-12-12`
+
+=== Charging a service
+
+.Charging a service to the guest's tab.
+
+.. Prerequisites: List all the stays by using the `switch room` command. Stays are shown in the rooms.
+.. Test case: `chargeservice i/A000000 rn/004 si/WC` +
+    Expected: Charges service with the ID `WC` for room `100` to the guest with ID `A000000` 's bill.
+.. Test case: `chargeservice i/R000000 rn/004 si/WC` +
+    Expected: Guest `R000000` is not checked in. No service can be added to his bill. Error details shown in the result display box.
+.. Other incorrect chargeservice commands to try: `chargeservice`, `chargeservice i/R000000 rn/000 si/WC` , `chargeservice i/R000000 rn/100 si/DD
+
+=== Fetching the bill of a guest
+
+.Retrieving the bill of a guest
+
+.. Prerequisites: List all the stays by using the `switch room` command. Stays are shown in the rooms.
+.. Test case: `fetchbill i/A000000` +
+    Expected: Shows the entire bill, consisting of all costs incurred, for guest with ID `G1231231X` 's stay up till present moment.
+.. Test case: `fetchbill i/R000000` +
+    Expected: Guest `R000000` is not checked in. His bill cannot be shown. Error details shown in the result display box.
+.. Other incorrect fetchbill commands to try: `fetchbill`
+
+=== Deleting service from a bill
+
+.Deleting a service from a bill
+
+.. Prerequisites: List all bills by using the `switch bill` command
+.. Test case: `deletecservice i/G1231231X rn/100 si/WC`
+    Expected: Removes service with ID `WC` from guest with ID `G1231231X` 's bill for room `100`
+.. Test case: `deletecservice i/B000000 rn/100 si/WC`
+    Expected: Guest `B000000` does not have the service `WC` in their bill. Error message shown in the result display box.
+.. Other incorrect deletecservice commands to try: `deletecservice` , `deletecservice i/A000000 rn/000`
+
+=== Finding a guest
+
+.Finding a guest from the list
+
+.. Prerequisites: List all guests by using the `switch guest` command. Guests are listed.
+.. Test case: `findguest i/A0000000 n/Alice`
+    Expected: Shows persons with name: `Alice` or ID: `A1000000`
+.. Test case: `findguest`
+    Expected: Invalid command format. Error message is shown in the result display box.
+.. Other incorrect findguest commands to try: `findguest i/` , `findguest n/`
+
+=== Finding a room
+
+.Finding a room related to a guest's reservation/stay
+
+.. Prerequisites: List all rooms by using the `switch room` command. Rooms are listed.
+.. Test case: `findroom i/A000000 rn/001 n/Tuan Le`
+    Expected: Shows rooms booked by Guest with name: `Tuan Le` and/or ID: `A000000`
+.. Test case: `findroom`
+    Expected: Invalid command format. Error message is shown in the result display box.
+.. Other incorrect findroom commands to try: `findroom i/` , `findroom n/`
+
+=== Finding a booking
+
+.Finding a booking made by a guest
+
+.. Prerequisites: List all bookings by using the `switch room` command. Rooms are listed.
+.. Test case: `findbooking n/Alice rn/001`
+    Expected: Shows booking of `Alice` or of room `001`.
+.. Test case: `findbooking`
+    Expected: Invalid command format. Error message is shown in the result display box.
+.. Other incorrect findbooking commands to try: `findbooking rn/` , `findbooking n/`
+
+=== Deleting a person
+
+. Deleting a Guest while all Guests are listed
+
+.. Prerequisites: List all guests using the `switch guest` command. Multiple guests in the list.
+.. Test case: `delete 1` +
+   Expected: First Guest is deleted from the list. Details of the deleted Guest shown in the status message.
+.. Test case: `delete 0` +
+   Expected: Index is out of bounds. No Guest is deleted. Error details shown in the status message. Status bar remains the same.
+.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size)
+   Expected: Similar to previous.
 
 === Saving data
 
@@ -684,25 +863,41 @@ These instructions only provide a starting point for testers to work on; testers
 .. Other tests to try: Delete some '{}' in hotel.json +
     Expected: Morpheus will restart with an empty addressbook and hotel.
 
-=== Reserving a room
-
-. Dealing with clashes in bookings
-
-.. Prerequisites: List all the bookings by clicking on booking tab. Multiple bookings.
-.. Test case: `reserve i/i000000 rn/001 fd/2020-12-12 td/2020-12-24` +
-    Expected: Room number `001` is reserved by person `I000000` from `2020-12-12` to `2020-12-24`
-.. Test case: `reserve i/B000000 rn/001 fd/2020-12-13 td/2020-12-23` +
-    Expected: There is a clash in booking dates for the same room. Error details shown in the result display box.
-.. Test case: `reserve i/Bzagda rn/001 fd/2020-12-13 td/2020-12-23`
-    Expected: No such person found. No booking made. Error details shown in the status message.
-
-=== Checking in and out guests
-. Dealing with invalid check-ins and check-outs
-
-.. Prerequisites: List all bookings by using the command `switch booking`
-.. Test case: `checkin i/i000000 rn/001 td/2020-12-24` +
-    Expected: Guest `i000000` is checked into room `001`
-.. Test case: `checkin i/B000000 rn/5602 td/2020-12-23` +
-    Expected: There is no such room. Error message shown in result display box.
 //end::Testing[]
 
+[appendix]
+//tag::effort[]
+//sanchari
+== Effort
+=== Overview
+Morpheus is an extension from AB3 and is considerably more complex than AB3. We have incorporated several new features which required extending the
+UI, Storage and Model components of Morpheus. We extended current AB3 features (which only had 1 entity type: AddressBook) to include more entity types such as Hotel and BookKeeper which in turn
+contained more entities such as Rooms and Bills. We did this so as to be able to create an application that allows seamless management of a hotel's daily
+activities. As there were many new things to add on to AB3, the entire team put in their collaborative effort to create the end product.
+
+=== Challenges
+
+* Planning out the structure and architecture of the application
+
+** A hotel is a complex system of activities, thus we had to hold several meetings to discuss what would be the structure of our application so as to allow
+management of all the activities in one app.
+
+* New storage components for the `Hotel` and `BookKeeper`
+
+** As the AddressBook only stored persons, we has to extend the storage system to keep track of the hotel's data and the finance data in the `Hotel` and `BookKeeper`
+classes respectively. This required thorough understanding of AB3's storage system.
+
+* New Commands to aid the job of a hotel receptionist.
+
+** We had to extend AB3's current implementation of `Logic` as a hotel receptionist has to manage many more things than a person list. Hence, through
+thorough understanding of the `Model` and `Logic` component, we implemented a variety of new commands that works with the model to digitize the management of a hotel.
+
+* User Interface
+
+** We wanted to show all of the hotel's activity and data in 1 window. As such, it was necessary to upgrade AB3's UI to incorporate the hotel's data.
+The Ui was improved and edited using JavaFx and CSS. All bugs and errors that were reflected in the Ui were tested and fixed by the team.
+
+=== Conclusion
+We believe that this was a difficult project to execute as a hotel has many interlinked components working together. However, through the combined effort
+of the entire team, we believe that we have created an end-product that is able to manage the hotel's important activities altogether in one application.
+//end:effort[]
