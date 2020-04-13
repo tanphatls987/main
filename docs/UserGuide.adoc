@@ -44,7 +44,7 @@ This user guide gives you an overview of the features of Morpheus. With the help
 
 TIP: This is a useful tip to help optimize your experience using Morpheus.
 
-IMPORTANT: This is important information you need to take note of!
+NOTE: This is important information you need to take note of!
 //end::nav[]
 
 == Quick Start
@@ -98,7 +98,7 @@ Features can be divided into 5 groups of commands
 
 * Statistical commands
 
-** `findguest`, `getroom` , `findbooking` quickly looks up guests, rooms and bookings.
+** `findguest`, `findroom` , `findbooking` quickly looks up guests, rooms and bookings.
 
 * Deletion commands
 
@@ -156,7 +156,7 @@ If you want to switch to a new tab and view all the data on the specified tab, u
 
 *Format:*: `switch TAB_NAME`
 
-IMPORTANT: *`TAB_NAME`* must be one of `welcome`, `guest`, `room`, `booking`, `service`, `bill`
+NOTE: *`TAB_NAME`* must be one of `welcome`, `guest`, `room`, `booking`, `service`, `bill`
 
 *Examples:*
 
@@ -173,7 +173,7 @@ If you want to add a guest to the hotel database, use the command `addguest` +
 
 *Format:* `addguest n/NAME i/ID p/PHONE_NUMBER e/EMAIL [t/TAG]...`
 
-IMPORTANT: - You may use `t/TAG` to specify the status of the guest in the hotel! E.g. `t/VIP` +
+NOTE: - You may use `t/TAG` to specify the status of the guest in the hotel! E.g. `t/VIP` +
 - The only valid values for `TAG` are `VIP` and `Member`. +
 - Any other values will result in an empty tag.
 
@@ -221,6 +221,7 @@ If you want to add an available service to the database, use the command `addser
 
 *Result:* Adds a service with id `WC`, description `Wash clothes` and cost `100.00`.
 
+//tag::setrcost[]
 === Setting the cost for a room : `setrcost`
 If you want to set the cost for a room (per night), use the command `setrcost` +
 
@@ -231,7 +232,7 @@ If you want to set the cost for a room (per night), use the command `setrcost` +
 * `setrcost  rn/101 c/50.00` +
 
 *Result:* Sets the cost for `101` as `50.00` per night.
-
+//end::setrcost[]
 //tag::reserve[]
 === Making a reservation : `reserve`
 If you want to make a reservation for a guest in the hotel, use the command `reserve` +
@@ -253,7 +254,7 @@ If you want to check in a guest to the hotel from the current date until the end
 *Format:* `checkin i/ID rn/ROOM_NUMBER td/TO_DATE` +
 or `checkin bi/BOOKING_ID`
 
-IMPORTANT: `BOOKING_ID` could be shorten by taking only its first 8 characters.
+NOTE: `BOOKING_ID` could be shorten by taking only its first 8 characters.
 
 *Examples:*
 * `checkin i/G1231231X rn/101 td/2020-12-14` +
@@ -261,7 +262,6 @@ IMPORTANT: `BOOKING_ID` could be shorten by taking only its first 8 characters.
 
 image::checkin1.png[]
 image::checkin2.png[]
-
 
 *Result:* Checks in guest with ID `A000000` to room `001` until `2020-05-05`.
 //end::checkin[]
@@ -293,15 +293,11 @@ Example:
 
 Result: Extend the stay of room 101 until 20th April 2020.
 
-IMPORTANT: - Room must be checked in before it can be extended. +
+NOTE: - Room must be checked in before it can be extended. +
 - The extend period must not clash with other future reservation.
 //end::extend[]
 
-//tag::findguest[]
-=== Finding guests: `findguest`
-If you want to find guests using their names or id, use the commmand `findguest`. +
-
-Format: `findguest [n/NAME] ... [n/NAME] [i/ID] ... [i/ID]`
+//tag::chargeservice[]
 === Charging a service : `chargeservice`
 If you want to charges a service to the guest's tab, use the command `chargeservice` +
 
@@ -312,7 +308,8 @@ If you want to charges a service to the guest's tab, use the command `chargeserv
 * `chargeservice i/G1231231X rn/100.00 si/WC` +
 
 *Result:* Charges service with the ID `WC` for room `100` to the guest with ID `G1231231X` 's bill.
-
+//end::chargeservice[]
+//tag::deletecservice[]
 === Deleting a service from a bill : `deletecservice`
 If you want to remove a charged service from the guest's bill. +
 
@@ -323,7 +320,8 @@ If you want to remove a charged service from the guest's bill. +
 * `deletecservice i/G1231231X rn/100 si/WC` +
 
 *Result:* Removes service with ID `WC` from guest with ID `G1231231X` 's bill for `100`.
-
+//end::deletecservice[]
+//tag::fetchbill[]
 === Fetching bill of a guest : `fetchbill`
 If you want to retrieve the bill of a guest, use the command `fetchbill` +
 
@@ -334,20 +332,20 @@ If you want to retrieve the bill of a guest, use the command `fetchbill` +
 * `fetchbill  i/G1231231X` +
 
 *Result:* Shows the entire bill, consisting of all costs incurred, for guest with ID `G1231231X` 's stay up till present moment.
-
+//end::fetchbill[]
 //tag::findguest[]
 === Finding guests: `findguest`
 If you want to find guests using their names or id, use the commmand `findguest`. +
 
 *Format:* `findguest [n/NAME] ... [n/NAME] [i/ID] ... [i/ID]`
 
-IMPORTANT: - Name must be an exact match. +
+NOTE: - Name must be an exact match. +
 - The order of the keywords does not matter. e.g. `n/Alice i/A10` is same as `i/A10 n/Alice`. +
 - Persons matching at least one keyword will be returned.
 
 *Examples:*
 
-* `findguest n/John Doe i/A10` +
+* `findguest i/A0000000 i/B0000000 n/Alice` +
 
 *Result:* Shows persons with name: `John Doe` or ID: `A10`
 //end::findguest[]
@@ -355,9 +353,9 @@ IMPORTANT: - Name must be an exact match. +
 === Finding bookings: `findbooking`
 If you want to find bookings using the guest's name, guest's ID or by room number, use the command `findbooking`. +
 
-*Format:* `findbooking n/NAME ... n/NAME i/ID ... i/ID rn/ROOM_NUMBER ... rn/ROOM_NUMBER`
+*Format:* `findbooking [n/NAME] ... [n/NAME] [i/ID] ... [i/ID] [rn/ROOM_NUMBER] ... [rn/ROOM_NUMBER]`
 
-IMPORTANT: - The order of the keywords does not matter. e.g. `n/Alice i/A10` is same as `i/A10 n/Alice` +
+NOTE: - The order of the keywords does not matter. e.g. `n/Alice i/A10` is same as `i/A10 n/Alice` +
 - Booking matching at least one keyword will be returned
 
 *Examples:*
@@ -366,14 +364,14 @@ IMPORTANT: - The order of the keywords does not matter. e.g. `n/Alice i/A10` is 
 
 *Result:* Shows booking of `Alice` or of room `001`.
 
-=== Locating a guest's room : `getroom`
-If you want to retrieve the room number related to a guest's reservation, use the command `getroom`. +
+=== Locating a guest's room : `findroom`
+If you want to retrieve the room related to a guest's reservation, use the command `findroom`. +
 
-*Format:* `getroom i/ID`
+*Format:* `[rn/ROOM_NUMBER] ... [rn/ROOM_NUMBER] [n/NAME] ... [n/NAME] [i/ID] ... [i/ID]`
 
 *Examples:*
 
-* `getroom i/G1231231X` +
+* `findroom i/A000000 rn/001 n/Tuan Le` +
 
 *Result:* Shows the room booked by the guest with ID `G12311231X`
 
@@ -455,7 +453,7 @@ e.g. `checkout rn/101`
 e.g. `extend rn/313 td/2020-05-20`
 * *List* : `list`
 * *Find Guest* : `findguest n/NAME …​ n/NAME i/ID …​ i/ID` +
-e.g. `findguest n/Alice i/A10`
+e.g. `findguest i/A0000000 i/B0000000 n/Alice`
 * *Fetch Bill* : `fetchbill i/ID [rn/ROOM_NUMBER]` +
 e.g. `fetchbill i/G1231231X`
 * *Charge Service* : `chargeservice i/PERSON_ID rn/ROOM_NUMBER si/SERVICE_ID` +
@@ -464,11 +462,9 @@ e.g. `chargeservice i/G1231231X rn/100 si/WC`
 e.g. `deletecservice i/G1231231X rn/100 si/WC`
 * *Make Reservation* : `reserve i/ID rn/ROOM_NUMBER df/FROM_DATE dt/TO_DATE` +
 e.g. `reserve i/G1231231X rn/102 df/ 2020-12-12 dt/ 2020-12-30`
-* *Locate Room* : `getroom i/ID` +
-e.g. `getroom i/ID`
+* *Locate Room* : `rn/ROOM_NUMBER] ... [rn/ROOM_NUMBER] [n/NAME] ... [n/NAME] [i/ID] ... [i/ID]` +
+e.g. `findroom i/A000000 rn/001 n/Tuan Le`
 * *Set Room Cost* : `setrcost rn/ROOM_NUMBER c/COST` +
 e.g. `setrcost rn/101 c/50`
 * *Clear* : `clear`
-* *Find* : `find KEYWORD [MORE_KEYWORDS]` +
-e.g. `find James Jake`
 
