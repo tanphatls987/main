@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -63,7 +65,9 @@ public class RoomCard extends UiPart<Region> {
             occupancy.setText("free");
             occupancy.setStyle("-fx-background-color:GREEN");
         } else {
-            stay.setText("Current stay until: " + room.getStay().getTimeTo().toString());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String formattedTo = room.getStay().getTimeTo().format(formatter);
+            stay.setText("Current stay until: " + formattedTo);
             guest.setText("Guest: " + room.getStay().getPayee().getPersonId().toString());
             occupancy.setText("occupied");
             occupancy.setStyle("-fx-background-color:RED");
