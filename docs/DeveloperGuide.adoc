@@ -262,6 +262,7 @@ The following steps show how the Reserve command is implemented.
 2. `ReserveCommand#execute(Model model)` is invoked which checks if guest ID, room ID exists in the database and if there are any clashes with other bookings.
 3. A new Booking object is created and added into the hotel database.
 
+//tag::checkin[]
 ==== Checkin Command
 
 This command checks in guest either with a room number, guest's name, and the end date of the stay.
@@ -292,7 +293,9 @@ Below describes ideas that were considered when designing the command.
 * **Alternative 2:** Store all stay in a reservation object.
 ** Pros: Simple to implement.
 ** Cons: Could not differentiate between stay and reservation unless there is another instance in the reservation object.
+//end::checkin[]
 
+//tag::checkout[]
 ==== Checkout Command
 
 This command checks out a guest from the hotel by providing a room number.
@@ -307,6 +310,24 @@ The folowing steps show how the CheckOut command is implemented.
 4. The list in the UI will be updated by calling `model#updateFilteredRoomList(Predicate predicate)`
 5. The room will clean up the previous bill by calling `model#deleteBill(RoomId roomId)`.
 6. If all of the above is successfully executed, this will return a `CommandResult` object to show success message.
+//end::checkout[]
+
+//tag::extend[]
+
+==== Extend Command
+
+This command extend the booking of a guest by providing room number and end date of the stay.
+
+==== Implementation
+
+1. The command is parsed by `ExtendCommandParser#parse(String args)` into list of pattern there (room number and end date).
+2. The `ExtendCommandParser` will create `ExtendCommand`
+3. `ExtendCommand` will call `model#extendRoom` to extend the room in the hotel.
+3. `ExtendCommand` will call `model#chargeExtendRoomCost` to charge the room according to the room cost and number of extra nights.
+6. If this is successfully executer, this will return a `CommandResult` object to show success message.
+
+//end::extend[]
+
 
 === Search feature
 
